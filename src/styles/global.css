@@ -1,14 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #6C3CE0;
-  --color-brand-light: #8B5CF6;
-  --color-brand-dark: #4C1D95;
-  --color-accent: #F59E0B;
-  --color-surface: #F8F9FA;
-  --color-surface-dark: #1A1A2E;
-  --color-text: #1F2937;
-  --color-text-light: #6B7280;
+  --color-brand: #0B64DD;
+  --color-brand-light: #3C8AE8;
+  --color-brand-dark: #0850B5;
+  --color-accent: #BC1E70;
+  --color-accent-secondary: #008B87;
+  --color-success: #008A5E;
+  --color-warning: #FACB3D;
+  --color-danger: #C61E25;
+  --color-surface: #F6F9FC;
+  --color-surface-dark: #111C2C;
+  --color-text: #1D2A3E;
+  --color-text-light: #516381;
+  --color-text-heading: #111C2C;
 }
 
 html { scroll-behavior: smooth; }
@@ -19,7 +24,7 @@ body {
 }
 
 .hero {
-  background: linear-gradient(135deg, var(--color-brand-dark) 0%, var(--color-brand) 50%, var(--color-brand-light) 100%);
+  background: linear-gradient(135deg, var(--color-surface-dark) 0%, var(--color-brand-dark) 40%, var(--color-brand) 100%);
 }
 
 .btn-primary {
