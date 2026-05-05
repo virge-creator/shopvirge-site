@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Icon from '../../../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
 ---
 <Layout title="Features — Everything you need" lang="en">
@@ -19,7 +20,9 @@ const base = import.meta.env.BASE_URL;
 
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <div class="text-5xl mb-4">🌍</div>
+          <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="globe" size={28} class="text-brand" />
+          </div>
           <h2 class="text-3xl font-bold mb-4">Automatic multilingual</h2>
           <p class="text-gray-600 mb-4">Your entire site — products, text, pages — gets translated automatically in the languages you choose.</p>
           <ul class="space-y-2 text-gray-600">
@@ -29,12 +32,16 @@ const base = import.meta.env.BASE_URL;
             <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Automatic language detection for visitors</li>
           </ul>
         </div>
-        <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center"><div class="text-8xl">🌐</div></div>
+        <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
+          <Icon name="languages" size={96} class="text-brand/30" />
+        </div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="md:order-2">
-          <div class="text-5xl mb-4">⚡</div>
+          <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="zap" size={28} class="text-accent" />
+          </div>
           <h2 class="text-3xl font-bold mb-4">Live in under an hour</h2>
           <p class="text-gray-600 mb-4">From concept to fully live site in less than an hour. No technical knowledge needed.</p>
           <ul class="space-y-2 text-gray-600">
@@ -44,12 +51,16 @@ const base = import.meta.env.BASE_URL;
             <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Publish with one click</li>
           </ul>
         </div>
-        <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1"><div class="text-8xl">🚀</div></div>
+        <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
+          <Icon name="rocket" size={96} class="text-accent/30" />
+        </div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <div class="text-5xl mb-4">💳</div>
+          <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="credit-card" size={28} class="text-brand" />
+          </div>
           <h2 class="text-3xl font-bold mb-4">Payment platforms built-in</h2>
           <p class="text-gray-600 mb-4">Accept payments via iDEAL, PayPal, credit card and more — all integrated, no plugins.</p>
           <ul class="space-y-2 text-gray-600">
@@ -59,12 +70,16 @@ const base = import.meta.env.BASE_URL;
             <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Automatic invoices and receipts</li>
           </ul>
         </div>
-        <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center"><div class="text-8xl">💰</div></div>
+        <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
+          <Icon name="wallet" size={96} class="text-brand/30" />
+        </div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="md:order-2">
-          <div class="text-5xl mb-4">📱</div>
+          <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="smartphone" size={28} class="text-accent" />
+          </div>
           <h2 class="text-3xl font-bold mb-4">Mobile-first design</h2>
           <p class="text-gray-600 mb-4">Every site looks perfect on phone, tablet and desktop. Optimized for speed and conversion.</p>
           <ul class="space-y-2 text-gray-600">
@@ -74,12 +89,16 @@ const base = import.meta.env.BASE_URL;
             <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> PWA-ready</li>
           </ul>
         </div>
-        <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1"><div class="text-8xl">📲</div></div>
+        <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
+          <Icon name="tablet-smartphone" size={96} class="text-accent/30" />
+        </div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <div class="text-5xl mb-4">🎨</div>
+          <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="palette" size={28} class="text-brand" />
+          </div>
           <h2 class="text-3xl font-bold mb-4">No design skills needed</h2>
           <p class="text-gray-600 mb-4">Professional-looking websites out of the box. Choose from templates and customize with your brand.</p>
           <ul class="space-y-2 text-gray-600">
@@ -89,12 +108,16 @@ const base = import.meta.env.BASE_URL;
             <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Dark mode support</li>
           </ul>
         </div>
-        <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center"><div class="text-8xl">🎭</div></div>
+        <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
+          <Icon name="brush" size={96} class="text-brand/30" />
+        </div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="md:order-2">
-          <div class="text-5xl mb-4">📊</div>
+          <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="bar-chart-3" size={28} class="text-accent" />
+          </div>
           <h2 class="text-3xl font-bold mb-4">Analytics built-in</h2>
           <p class="text-gray-600 mb-4">Track visitors, conversions and product performance with built-in dashboards.</p>
           <ul class="space-y-2 text-gray-600">
@@ -104,7 +127,9 @@ const base = import.meta.env.BASE_URL;
             <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> GDPR-compliant (no cookies)</li>
           </ul>
         </div>
-        <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1"><div class="text-8xl">📈</div></div>
+        <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
+          <Icon name="trending-up" size={96} class="text-accent/30" />
+        </div>
       </div>
 
     </div>

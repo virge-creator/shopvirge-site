@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
 ---
 <Layout title="ShopVirge — Meertalige webshops & portfolios" lang="nl">
@@ -40,46 +41,46 @@ const base = import.meta.env.BASE_URL;
 
       <div class="grid md:grid-cols-3 gap-8">
         <div class="card">
-          <div class="text-4xl mb-4">🌍</div>
+          <div class="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+            <Icon name="globe" size={24} class="text-brand" />
+          </div>
           <h3 class="text-xl font-bold mb-2">Automatisch meertalig</h3>
-          <p class="text-gray-600">
-            Jouw hele site wordt automatisch vertaald. Kies zelf welke talen.
-          </p>
+          <p class="text-gray-600">Jouw hele site wordt automatisch vertaald. Kies zelf welke talen.</p>
         </div>
         <div class="card">
-          <div class="text-4xl mb-4">⚡</div>
+          <div class="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+            <Icon name="zap" size={24} class="text-brand" />
+          </div>
           <h3 class="text-xl font-bold mb-2">Live in één uur</h3>
-          <p class="text-gray-600">
-            Van concept tot live site in minder dan een uur. Geen technische kennis nodig.
-          </p>
+          <p class="text-gray-600">Van concept tot live site in minder dan een uur. Geen technische kennis nodig.</p>
         </div>
         <div class="card">
-          <div class="text-4xl mb-4">💳</div>
+          <div class="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+            <Icon name="credit-card" size={24} class="text-brand" />
+          </div>
           <h3 class="text-xl font-bold mb-2">Betaalplatforms ingebakken</h3>
-          <p class="text-gray-600">
-            iDEAL, PayPal, creditcard — allemaal geïntegreerd, zonder extra plugins.
-          </p>
+          <p class="text-gray-600">iDEAL, PayPal, creditcard — allemaal geïntegreerd, zonder extra plugins.</p>
         </div>
         <div class="card">
-          <div class="text-4xl mb-4">📱</div>
+          <div class="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+            <Icon name="smartphone" size={24} class="text-brand" />
+          </div>
           <h3 class="text-xl font-bold mb-2">Mobiel-first design</h3>
-          <p class="text-gray-600">
-            Perfect op telefoon, tablet en desktop. Geoptimaliseerd voor conversie.
-          </p>
+          <p class="text-gray-600">Perfect op telefoon, tablet en desktop. Geoptimaliseerd voor conversie.</p>
         </div>
         <div class="card">
-          <div class="text-4xl mb-4">🎨</div>
+          <div class="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+            <Icon name="palette" size={24} class="text-brand" />
+          </div>
           <h3 class="text-xl font-bold mb-2">Geen design-skills nodig</h3>
-          <p class="text-gray-600">
-            Professioneel ogende websites uit de doos met kant-en-klare templates.
-          </p>
+          <p class="text-gray-600">Professioneel ogende websites uit de doos met kant-en-klare templates.</p>
         </div>
         <div class="card">
-          <div class="text-4xl mb-4">📊</div>
+          <div class="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+            <Icon name="bar-chart-3" size={24} class="text-brand" />
+          </div>
           <h3 class="text-xl font-bold mb-2">Analytics ingebouwd</h3>
-          <p class="text-gray-600">
-            Volg bezoekers, conversies en productprestaties. Geen externe tools nodig.
-          </p>
+          <p class="text-gray-600">Volg bezoekers, conversies en productprestaties. Geen externe tools nodig.</p>
         </div>
       </div>
 
@@ -93,9 +94,7 @@ const base = import.meta.env.BASE_URL;
   <section class="section-alt py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Hoe het werkt
-        </h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Hoe het werkt</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="text-center">
@@ -121,9 +120,7 @@ const base = import.meta.env.BASE_URL;
   <section class="py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Eenvoudige prijzen
-        </h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Eenvoudige prijzen</h2>
         <p class="text-lg text-gray-600">Geen verrassingen. Betaal voor wat je gebruikt.</p>
       </div>
       <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">

@@ -1,11 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <Layout title="Portfolio — ShopVirge" description="Toon je werk aan de wereld met een professioneel portfolio van ShopVirge." lang="nl">
   <section class="hero text-white py-24 md:py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
-        <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-sm mb-4">✨ Feature</span>
+        <span class="inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full text-sm mb-4">
+          <Icon name="sparkles" size={16} class="text-white" /> Feature
+        </span>
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
           Jouw werk, <span class="text-accent">perfect gepresenteerd</span>
         </h1>
@@ -14,7 +18,7 @@ import Layout from '../../layouts/Layout.astro';
           Het is je visitekaartje, je verhaal, je eerste indruk. 
           ShopVirge helpt je om op te vallen.
         </p>
-        <a href={`${import.meta.env.BASE_URL}#contact`} class="btn-primary bg-white text-brand hover:bg-gray-100">
+        <a href={`${base}nl/contact/`} class="btn-primary bg-white text-brand hover:bg-gray-100">
           Bekijk opties →
         </a>
       </div>
@@ -24,16 +28,14 @@ import Layout from '../../layouts/Layout.astro';
   <section class="py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Webshop of Portfolio?
-        </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          Kies de vorm die past bij wat je wilt bereiken.
-        </p>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Webshop of Portfolio?</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Kies de vorm die past bij wat je wilt bereiken.</p>
       </div>
       <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         <div class="card border-2 border-brand">
-          <div class="text-4xl mb-4">🛒</div>
+          <div class="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+            <Icon name="shopping-cart" size={24} class="text-brand" />
+          </div>
           <h3 class="text-2xl font-bold mb-3">Webshop</h3>
           <p class="text-gray-600 mb-6">
             Perfect als je producten direct online wilt verkopen. 
@@ -48,7 +50,9 @@ import Layout from '../../layouts/Layout.astro';
           </ul>
         </div>
         <div class="card">
-          <div class="text-4xl mb-4">🎨</div>
+          <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4">
+            <Icon name="palette" size={24} class="text-accent" />
+          </div>
           <h3 class="text-2xl font-bold mb-3">Portfolio</h3>
           <p class="text-gray-600 mb-6">
             Ideaal voor het tonen van je werk of producten zonder directe verkoop. 
@@ -56,7 +60,7 @@ import Layout from '../../layouts/Layout.astro';
             en bouw geloofwaardigheid bij potentiële klanten of samenwerkingspartners.
           </p>
           <ul class="space-y-2 text-sm text-gray-600">
-            <li>✓ Beautifully showcase work</li>
+            <li>✓ Prachtige presentatie</li>
             <li>✓ Contactformulier</li>
             <li>✓ Project categorieën</li>
             <li>✓ SEO geoptimaliseerd</li>
@@ -68,40 +72,54 @@ import Layout from '../../layouts/Layout.astro';
 
   <section class="section-alt py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
-        Voorbeelden van wat je kunt tonen
-      </h2>
+      <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Voorbeelden van wat je kunt tonen</h2>
       <div class="grid md:grid-cols-4 gap-6">
         <div class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-3xl mb-3">📸</div>
+          <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <Icon name="camera" size={20} class="text-brand" />
+          </div>
           <p class="font-medium text-sm">Fotografie</p>
         </div>
         <div class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-3xl mb-3">🎬</div>
+          <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <Icon name="video" size={20} class="text-brand" />
+          </div>
           <p class="font-medium text-sm">Video & Film</p>
         </div>
         <div class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-3xl mb-3">🎨</div>
+          <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <Icon name="pen-tool" size={20} class="text-brand" />
+          </div>
           <p class="font-medium text-sm">Graphic Design</p>
         </div>
         <div class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-3xl mb-3">🏗️</div>
+          <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <Icon name="building-2" size={20} class="text-brand" />
+          </div>
           <p class="font-medium text-sm">Architectuur</p>
         </div>
         <div class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-3xl mb-3">🧑‍💻</div>
+          <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <Icon name="code-2" size={20} class="text-brand" />
+          </div>
           <p class="font-medium text-sm">Development</p>
         </div>
         <div class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-3xl mb-3">👗</div>
+          <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <Icon name="shirt" size={20} class="text-brand" />
+          </div>
           <p class="font-medium text-sm">Fashion</p>
         </div>
         <div class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-3xl mb-3">🏋️</div>
+          <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <Icon name="heart-pulse" size={20} class="text-brand" />
+          </div>
           <p class="font-medium text-sm">Fitness & Wellness</p>
         </div>
         <div class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-3xl mb-3">🍳</div>
+          <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <Icon name="chef-hat" size={20} class="text-brand" />
+          </div>
           <p class="font-medium text-sm">Catering & Recepten</p>
         </div>
       </div>
@@ -110,13 +128,9 @@ import Layout from '../../layouts/Layout.astro';
 
   <section class="py-20 md:py-28">
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-        Klaar om je werk te tonen?
-      </h2>
-      <p class="text-lg text-gray-600 mb-8">
-        Vraag een vrijblijvende offerte aan en we helpen je binnen 24 uur verder.
-      </p>
-      <a href={`${import.meta.env.BASE_URL}#contact`} class="btn-primary">Neem contact op →</a>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Klaar om je werk te tonen?</h2>
+      <p class="text-lg text-gray-600 mb-8">Vraag een vrijblijvende offerte aan en we helpen je binnen 24 uur verder.</p>
+      <a href={`${base}nl/contact/`} class="btn-primary">Neem contact op →</a>
     </div>
   </section>
 </Layout>

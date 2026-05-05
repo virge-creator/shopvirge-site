@@ -10,6 +10,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^5.7.10",
+    "lucide-static": "^1.14.0",
     "tailwindcss": "^4.2.4"
   }
 }
