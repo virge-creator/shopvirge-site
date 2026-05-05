@@ -9,6 +9,8 @@ interface Props {
 const { title, description = "ShopVirge — Launch your multilingual online shop or portfolio in minutes.", lang = "nl" } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const isEn = lang === 'en';
+const nlBase = `${base}nl/`;
+const enBase = `${base}en/`;
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -21,7 +23,7 @@ const isEn = lang === 'en';
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="alternate" hreflang="nl" href="https://shopvirge.com/" />
+  <link rel="alternate" hreflang="nl" href="https://shopvirge.com/nl/" />
   <link rel="alternate" hreflang="en" href="https://shopvirge.com/en/" />
 </head>
 <body class="min-h-screen flex flex-col">
@@ -29,27 +31,48 @@ const isEn = lang === 'en';
   <header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <a href={isEn ? `${base}en/` : base} class="flex items-center gap-2">
+        <a href={isEn ? enBase : nlBase} class="flex items-center gap-2">
           <img src={`${base}images/logo.png`} alt="ShopVirge" class="h-9" />
         </a>
         
         <nav class="hidden md:flex items-center gap-8">
-          <a href={isEn ? `${base}en/features/` : `${base}functies/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+          <a href={isEn ? `${enBase}features/` : `${nlBase}functies/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
             {isEn ? 'Features' : 'Functies'}
           </a>
-          <a href={isEn ? `${base}en/pricing/` : `${base}prijzen/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+          <a href={isEn ? `${enBase}pricing/` : `${nlBase}prijzen/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
             {isEn ? 'Pricing' : 'Prijzen'}
           </a>
-          <a href={isEn ? `${base}en/blog/` : `${base}nl/blog/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+          <a href={isEn ? `${enBase}blog/` : `${nlBase}blog/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
             Blog
           </a>
-          <a href={isEn ? `${base}en/contact/` : `${base}contact/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+          <a href={isEn ? `${enBase}contact/` : `${nlBase}contact/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
             Contact
           </a>
-          <a href={isEn ? base : `${base}en/`} class="text-sm font-medium text-gray-500 hover:text-brand transition-colors">
-            {isEn ? '🇳🇱 NL' : '🇬🇧 EN'}
-          </a>
-          <a href={isEn ? `${base}en/contact/` : `${base}contact/`} class="btn-primary text-sm !px-5 !py-2">
+
+          <!-- Language switcher dropdown -->
+          <div class="relative" id="lang-switcher">
+            <button id="lang-btn" class="flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:text-brand transition-colors px-3 py-1.5 rounded-lg border border-gray-200 hover:border-brand/30 bg-white">
+              <span class="text-base">{isEn ? '🇬🇧' : '🇳🇱'}</span>
+              <span>{isEn ? 'EN' : 'NL'}</span>
+              <svg class="w-3.5 h-3.5 text-gray-400 transition-transform" id="lang-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div id="lang-dropdown" class="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden opacity-0 invisible transition-all duration-200 origin-top-right scale-95">
+              <a href={nlBase} class={`flex items-center gap-3 px-4 py-3 text-sm hover:bg-brand/5 transition-colors ${!isEn ? 'bg-brand/5 text-brand font-semibold' : 'text-gray-700'}`}>
+                <span class="text-lg">🇳🇱</span>
+                <span>Nederlands</span>
+                {!isEn && <svg class="w-4 h-4 ml-auto text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>}
+              </a>
+              <a href={enBase} class={`flex items-center gap-3 px-4 py-3 text-sm hover:bg-brand/5 transition-colors ${isEn ? 'bg-brand/5 text-brand font-semibold' : 'text-gray-700'}`}>
+                <span class="text-lg">🇬🇧</span>
+                <span>English</span>
+                {isEn && <svg class="w-4 h-4 ml-auto text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>}
+              </a>
+            </div>
+          </div>
+
+          <a href={isEn ? `${enBase}contact/` : `${nlBase}contact/`} class="btn-primary text-sm !px-5 !py-2">
             {isEn ? 'Get Started' : 'Start nu'}
           </a>
         </nav>
@@ -66,11 +89,21 @@ const isEn = lang === 'en';
     <!-- Mobile menu -->
     <div id="mobile-menu" class="md:hidden" style="display:none;">
       <div class="px-4 py-4 space-y-3 bg-white border-t">
-        <a href={isEn ? `${base}en/features/` : `${base}functies/`} class="block text-sm font-medium text-gray-700">{isEn ? 'Features' : 'Functies'}</a>
-        <a href={isEn ? `${base}en/pricing/` : `${base}prijzen/`} class="block text-sm font-medium text-gray-700">{isEn ? 'Pricing' : 'Prijzen'}</a>
-        <a href={isEn ? `${base}en/blog/` : `${base}nl/blog/`} class="block text-sm font-medium text-gray-700">Blog</a>
-        <a href={isEn ? `${base}en/contact/` : `${base}contact/`} class="block text-sm font-medium text-gray-700">Contact</a>
-        <a href={isEn ? base : `${base}en/`} class="block text-sm font-medium text-gray-500">{isEn ? '🇳🇱 Nederlands' : '🇬🇧 English'}</a>
+        <a href={isEn ? `${enBase}features/` : `${nlBase}functies/`} class="block text-sm font-medium text-gray-700">{isEn ? 'Features' : 'Functies'}</a>
+        <a href={isEn ? `${enBase}pricing/` : `${nlBase}prijzen/`} class="block text-sm font-medium text-gray-700">{isEn ? 'Pricing' : 'Prijzen'}</a>
+        <a href={isEn ? `${enBase}blog/` : `${nlBase}blog/`} class="block text-sm font-medium text-gray-700">Blog</a>
+        <a href={isEn ? `${enBase}contact/` : `${nlBase}contact/`} class="block text-sm font-medium text-gray-700">Contact</a>
+        <div class="border-t border-gray-100 pt-3">
+          <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">{isEn ? 'Language' : 'Taal'}</p>
+          <div class="flex gap-2">
+            <a href={nlBase} class={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${!isEn ? 'bg-brand/10 text-brand' : 'text-gray-600 hover:bg-gray-50'}`}>
+              🇳🇱 NL
+            </a>
+            <a href={enBase} class={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${isEn ? 'bg-brand/10 text-brand' : 'text-gray-600 hover:bg-gray-50'}`}>
+              🇬🇧 EN
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -94,10 +127,10 @@ const isEn = lang === 'en';
         <div>
           <h4 class="font-semibold mb-3">{isEn ? 'Quick Links' : 'Snelle links'}</h4>
           <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href={isEn ? `${base}en/features/` : `${base}functies/`} class="hover:text-white transition-colors">{isEn ? 'Features' : 'Functies'}</a></li>
-            <li><a href={isEn ? `${base}en/pricing/` : `${base}prijzen/`} class="hover:text-white transition-colors">{isEn ? 'Pricing' : 'Prijzen'}</a></li>
-            <li><a href={isEn ? `${base}en/blog/` : `${base}nl/blog/`} class="hover:text-white transition-colors">Blog</a></li>
-            <li><a href={isEn ? `${base}en/contact/` : `${base}contact/`} class="hover:text-white transition-colors">Contact</a></li>
+            <li><a href={isEn ? `${enBase}features/` : `${nlBase}functies/`} class="hover:text-white transition-colors">{isEn ? 'Features' : 'Functies'}</a></li>
+            <li><a href={isEn ? `${enBase}pricing/` : `${nlBase}prijzen/`} class="hover:text-white transition-colors">{isEn ? 'Pricing' : 'Prijzen'}</a></li>
+            <li><a href={isEn ? `${enBase}blog/` : `${nlBase}blog/`} class="hover:text-white transition-colors">Blog</a></li>
+            <li><a href={isEn ? `${enBase}contact/` : `${nlBase}contact/`} class="hover:text-white transition-colors">Contact</a></li>
           </ul>
         </div>
         <div>
@@ -116,10 +149,40 @@ const isEn = lang === 'en';
   </footer>
 
   <script>
+    // Mobile menu
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     btn?.addEventListener('click', () => {
       menu!.style.display = menu!.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Language dropdown
+    const langBtn = document.getElementById('lang-btn');
+    const langDropdown = document.getElementById('lang-dropdown');
+    const langChevron = document.getElementById('lang-chevron');
+    let langOpen = false;
+
+    langBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langOpen = !langOpen;
+      if (langOpen) {
+        langDropdown!.classList.remove('opacity-0', 'invisible', 'scale-95');
+        langDropdown!.classList.add('opacity-100', 'visible', 'scale-100');
+        langChevron!.style.transform = 'rotate(180deg)';
+      } else {
+        langDropdown!.classList.add('opacity-0', 'invisible', 'scale-95');
+        langDropdown!.classList.remove('opacity-100', 'visible', 'scale-100');
+        langChevron!.style.transform = '';
+      }
+    });
+
+    document.addEventListener('click', () => {
+      if (langOpen) {
+        langOpen = false;
+        langDropdown?.classList.add('opacity-0', 'invisible', 'scale-95');
+        langDropdown?.classList.remove('opacity-100', 'visible', 'scale-100');
+        if (langChevron) langChevron.style.transform = '';
+      }
     });
   </script>
 </body>
