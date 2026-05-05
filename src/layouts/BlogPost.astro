@@ -1,0 +1,86 @@
+---
+import Layout from './Layout.astro';
+const { frontmatter } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<Layout title={frontmatter.title} description={frontmatter.description} lang="nl">
+  <article class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <!-- Back -->
+      <a href={`${base}blog/`} class="inline-flex items-center gap-1 text-sm text-brand hover:underline mb-8">
+        ← Terug naar blog
+      </a>
+
+      <!-- Hero image -->
+      {frontmatter.image && (
+        <div class="rounded-2xl overflow-hidden mb-8 aspect-video">
+          <img src={frontmatter.image.startsWith('http') ? frontmatter.image : `${base}${frontmatter.image}`} 
+               alt={frontmatter.title} 
+               class="w-full h-full object-cover" />
+        </div>
+      )}
+
+      <!-- Meta -->
+      <div class="flex flex-wrap items-center gap-3 text-sm text-text-light mb-4">
+        <time datetime={frontmatter.date}>
+          {new Date(frontmatter.date).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        {frontmatter.author && (
+          <>
+            <span>•</span>
+            <span class="flex items-center gap-1">
+              ✍️ {frontmatter.author}
+            </span>
+          </>
+        )}
+      </div>
+
+      <!-- Tags -->
+      {frontmatter.tags && (
+        <div class="flex flex-wrap gap-2 mb-6">
+          {frontmatter.tags.map((tag: string) => (
+            <span class="inline-block px-3 py-1 bg-brand/10 text-brand text-xs font-semibold rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <!-- Title -->
+      <h1 class="text-3xl md:text-4xl font-extrabold text-text-heading mb-8 leading-tight">
+        {frontmatter.title}
+      </h1>
+
+      <!-- Content -->
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-text-heading prose-headings:font-bold
+        prose-p:text-text prose-p:leading-relaxed
+        prose-a:text-brand prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-text-heading
+        prose-ul:text-text prose-ol:text-text
+        prose-img:rounded-xl">
+        <slot />
+      </div>
+
+      <!-- Author box -->
+      {frontmatter.author && (
+        <div class="mt-12 p-6 bg-surface rounded-2xl flex items-center gap-4">
+          <div class="w-12 h-12 bg-brand text-white rounded-full flex items-center justify-center text-lg font-bold shrink-0">
+            {frontmatter.author.charAt(0)}
+          </div>
+          <div>
+            <p class="font-semibold text-text-heading">{frontmatter.author}</p>
+            <p class="text-sm text-text-light">ShopVirge Blog</p>
+          </div>
+        </div>
+      )}
+
+      <!-- CTA -->
+      <div class="mt-12 p-8 bg-brand/5 rounded-2xl text-center">
+        <h3 class="text-xl font-bold text-text-heading mb-2">Klaar om te starten?</h3>
+        <p class="text-text-light mb-4">Lanceer je eigen meertalige webshop met ShopVirge.</p>
+        <a href={`${base}#contact`} class="btn-primary">Neem contact op →</a>
+      </div>
+    </div>
+  </article>
+</Layout>
