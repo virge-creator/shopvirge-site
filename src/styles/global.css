@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #6C3CE0;
+  --color-brand-light: #8B5CF6;
+  --color-brand-dark: #4C1D95;
+  --color-accent: #F59E0B;
+  --color-surface: #F8F9FA;
+  --color-surface-dark: #1A1A2E;
+  --color-text: #1F2937;
+  --color-text-light: #6B7280;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--color-text);
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--color-brand-dark) 0%, var(--color-brand) 50%, var(--color-brand-light) 100%);
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-brand text-white font-semibold transition-all hover:bg-brand-light hover:shadow-lg hover:-translate-y-0.5;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-brand text-brand font-semibold transition-all hover:bg-brand hover:text-white;
+}
+
+.card {
+  @apply bg-white rounded-2xl shadow-md p-6 transition-all hover:shadow-xl hover:-translate-y-1;
+}
+
+.section-alt {
+  @apply bg-surface;
+}
