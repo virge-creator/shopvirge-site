@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPostNL.astro
 title: "Shopify alternatieven voor Europese ondernemers in 2026"
 description: "Shopify is populair, maar niet altijd de beste keuze voor Europese webshops. Ontdek welke alternatieven beter passen bij de Europese markt."
 date: 2026-04-23

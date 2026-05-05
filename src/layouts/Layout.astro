@@ -34,22 +34,22 @@ const isEn = lang === 'en';
         </a>
         
         <nav class="hidden md:flex items-center gap-8">
-          <a href={isEn ? `${base}en/#features` : `${base}#features`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+          <a href={isEn ? `${base}en/features/` : `${base}functies/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
             {isEn ? 'Features' : 'Functies'}
           </a>
-          <a href={isEn ? `${base}en/#pricing` : `${base}#pricing`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+          <a href={isEn ? `${base}en/pricing/` : `${base}prijzen/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
             {isEn ? 'Pricing' : 'Prijzen'}
           </a>
-          <a href={isEn ? `${base}en/blog/` : `${base}blog/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+          <a href={isEn ? `${base}en/blog/` : `${base}nl/blog/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
             Blog
           </a>
-          <a href={isEn ? `${base}en/#contact` : `${base}#contact`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+          <a href={isEn ? `${base}en/contact/` : `${base}contact/`} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
             Contact
           </a>
           <a href={isEn ? base : `${base}en/`} class="text-sm font-medium text-gray-500 hover:text-brand transition-colors">
             {isEn ? '🇳🇱 NL' : '🇬🇧 EN'}
           </a>
-          <a href={isEn ? `${base}en/#contact` : `${base}#contact`} class="btn-primary text-sm !px-5 !py-2">
+          <a href={isEn ? `${base}en/contact/` : `${base}contact/`} class="btn-primary text-sm !px-5 !py-2">
             {isEn ? 'Get Started' : 'Start nu'}
           </a>
         </nav>
@@ -66,10 +66,10 @@ const isEn = lang === 'en';
     <!-- Mobile menu -->
     <div id="mobile-menu" class="md:hidden" style="display:none;">
       <div class="px-4 py-4 space-y-3 bg-white border-t">
-        <a href={isEn ? `${base}en/#features` : `${base}#features`} class="block text-sm font-medium text-gray-700">{isEn ? 'Features' : 'Functies'}</a>
-        <a href={isEn ? `${base}en/#pricing` : `${base}#pricing`} class="block text-sm font-medium text-gray-700">{isEn ? 'Pricing' : 'Prijzen'}</a>
-        <a href={isEn ? `${base}en/blog/` : `${base}blog/`} class="block text-sm font-medium text-gray-700">Blog</a>
-        <a href={isEn ? `${base}en/#contact` : `${base}#contact`} class="block text-sm font-medium text-gray-700">Contact</a>
+        <a href={isEn ? `${base}en/features/` : `${base}functies/`} class="block text-sm font-medium text-gray-700">{isEn ? 'Features' : 'Functies'}</a>
+        <a href={isEn ? `${base}en/pricing/` : `${base}prijzen/`} class="block text-sm font-medium text-gray-700">{isEn ? 'Pricing' : 'Prijzen'}</a>
+        <a href={isEn ? `${base}en/blog/` : `${base}nl/blog/`} class="block text-sm font-medium text-gray-700">Blog</a>
+        <a href={isEn ? `${base}en/contact/` : `${base}contact/`} class="block text-sm font-medium text-gray-700">Contact</a>
         <a href={isEn ? base : `${base}en/`} class="block text-sm font-medium text-gray-500">{isEn ? '🇳🇱 Nederlands' : '🇬🇧 English'}</a>
       </div>
     </div>
@@ -94,10 +94,10 @@ const isEn = lang === 'en';
         <div>
           <h4 class="font-semibold mb-3">{isEn ? 'Quick Links' : 'Snelle links'}</h4>
           <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href={isEn ? `${base}en/#features` : `${base}#features`} class="hover:text-white transition-colors">{isEn ? 'Features' : 'Functies'}</a></li>
-            <li><a href={isEn ? `${base}en/#pricing` : `${base}#pricing`} class="hover:text-white transition-colors">{isEn ? 'Pricing' : 'Prijzen'}</a></li>
-            <li><a href={isEn ? `${base}en/blog/` : `${base}blog/`} class="hover:text-white transition-colors">Blog</a></li>
-            <li><a href={isEn ? `${base}en/#contact` : `${base}#contact`} class="hover:text-white transition-colors">Contact</a></li>
+            <li><a href={isEn ? `${base}en/features/` : `${base}functies/`} class="hover:text-white transition-colors">{isEn ? 'Features' : 'Functies'}</a></li>
+            <li><a href={isEn ? `${base}en/pricing/` : `${base}prijzen/`} class="hover:text-white transition-colors">{isEn ? 'Pricing' : 'Prijzen'}</a></li>
+            <li><a href={isEn ? `${base}en/blog/` : `${base}nl/blog/`} class="hover:text-white transition-colors">Blog</a></li>
+            <li><a href={isEn ? `${base}en/contact/` : `${base}contact/`} class="hover:text-white transition-colors">Contact</a></li>
           </ul>
         </div>
         <div>

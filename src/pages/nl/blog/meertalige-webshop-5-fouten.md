@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPostNL.astro
 title: "5 fouten die ondernemers maken bij een meertalige webshop"
 description: "Een meertalige webshop opzetten klinkt simpel, maar er zijn valkuilen. Vermijd deze 5 veelgemaakte fouten en bereik klanten in heel Europa."
 date: 2026-04-30

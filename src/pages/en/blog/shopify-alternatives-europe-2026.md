@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPostEN.astro
 title: "Shopify Alternatives for European Entrepreneurs in 2026"
 description: "Shopify is popular, but not always the best choice for European webshops. Discover which alternatives better suit the European market."
 date: 2026-04-23

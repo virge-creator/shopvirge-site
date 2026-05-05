@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPostEN.astro
 title: "The AI Revolution in E-commerce: What's Changing in 2026?"
 description: "From AI-powered product recommendations to automated customer service — how artificial intelligence is transforming the e-commerce industry."
 date: 2026-05-07

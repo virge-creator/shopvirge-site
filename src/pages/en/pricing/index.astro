@@ -1,0 +1,88 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Pricing — Simple and transparent" lang="en">
+  <section class="hero text-white py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Pricing</h1>
+        <p class="text-xl text-white/80">No surprises. Transparent pricing for every type of project.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="card border-2 border-brand relative">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+            <span class="inline-block px-4 py-1.5 bg-brand text-white text-sm font-semibold rounded-full">Popular</span>
+          </div>
+          <div class="text-center pt-4 mb-8">
+            <h3 class="text-2xl font-bold mb-2">Webshop</h3>
+            <p class="text-gray-600">Sell products online in multiple languages</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Unlimited products</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Automatic translation (NL/EN + more)</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> iDEAL, PayPal, credit card</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Mobile-first design</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Analytics dashboard</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SEO optimized</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL certificate included</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Custom domain</li>
+          </ul>
+          <a href={`${base}en/contact/`} class="btn-primary w-full text-center block">Start now →</a>
+        </div>
+        <div class="card">
+          <div class="text-center mb-8 pt-4">
+            <h3 class="text-2xl font-bold mb-2">Portfolio</h3>
+            <p class="text-gray-600">Showcase your work to the world</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Unlimited projects</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Automatic translation (NL/EN + more)</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Contact form</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Mobile-first design</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SEO optimized</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL certificate included</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Custom domain</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Gallery with lightbox</li>
+          </ul>
+          <a href={`${base}en/contact/`} class="btn-secondary w-full text-center block">Request quote →</a>
+        </div>
+      </div>
+
+      <div class="mt-20">
+        <h2 class="text-3xl font-bold text-center mb-12">Frequently asked questions</h2>
+        <div class="space-y-6 max-w-3xl mx-auto">
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">Are there setup costs?</h3>
+            <p class="text-gray-600">No, you only pay the monthly subscription. No hidden fees.</p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">Can I cancel anytime?</h3>
+            <p class="text-gray-600">Yes, no lock-in. Cancel monthly.</p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">How many languages can I add?</h3>
+            <p class="text-gray-600">NL/EN by default. Additional languages (DE, FR, ES, etc.) can be added on request.</p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">Do I get help setting up?</h3>
+            <p class="text-gray-600">Absolutely. We guide you step by step through the launch of your site.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Not sure which plan fits?</h2>
+      <p class="text-gray-600 mb-6">Get in touch and we'll help you choose.</p>
+      <a href={`${base}en/contact/`} class="btn-primary">Contact us →</a>
+    </div>
+  </section>
+</Layout>

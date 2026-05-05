@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPostEN.astro
 title: "5 Mistakes Entrepreneurs Make with Multilingual Webshops"
 description: "Setting up a multilingual webshop sounds simple, but there are pitfalls. Avoid these 5 common mistakes and reach customers across Europe."
 date: 2026-04-30

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <Layout title="ShopVirge — Multilingual webshops & portfolios" lang="en">
   <!-- Hero -->
@@ -14,10 +15,10 @@ import Layout from '../../layouts/Layout.astro';
           Describe your products once, and we'll handle the rest.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <a href="#contact" class="btn-primary bg-white text-brand hover:bg-gray-100">
+          <a href={`${base}en/contact/`} class="btn-primary bg-white text-brand hover:bg-gray-100">
             Start free →
           </a>
-          <a href={`${import.meta.env.BASE_URL}portfolio`} class="btn-secondary border-white text-white hover:bg-white hover:text-brand">
+          <a href={`${base}portfolio`} class="btn-secondary border-white text-white hover:bg-white hover:text-brand">
             See examples
           </a>
         </div>
@@ -25,8 +26,8 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Features -->
-  <section id="features" class="py-20 md:py-28">
+  <!-- Features teaser -->
+  <section class="py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -41,51 +42,37 @@ import Layout from '../../layouts/Layout.astro';
         <div class="card">
           <div class="text-4xl mb-4">🌍</div>
           <h3 class="text-xl font-bold mb-2">Automatic multilingual</h3>
-          <p class="text-gray-600">
-            Translating has never been easier. Your entire site — products, text, pages — 
-            gets translated automatically. You choose which languages.
-          </p>
+          <p class="text-gray-600">Your entire site gets translated automatically. You choose which languages.</p>
         </div>
         <div class="card">
           <div class="text-4xl mb-4">⚡</div>
           <h3 class="text-xl font-bold mb-2">Live in under an hour</h3>
-          <p class="text-gray-600">
-            From concept to fully live site in less than an hour. 
-            No technical knowledge needed. Upload your products and the rest happens automatically.
-          </p>
+          <p class="text-gray-600">From concept to live site in less than an hour. No technical knowledge needed.</p>
         </div>
         <div class="card">
           <div class="text-4xl mb-4">💳</div>
           <h3 class="text-xl font-bold mb-2">Payment platforms built-in</h3>
-          <p class="text-gray-600">
-            Accept payments via iDEAL, PayPal, credit card and more — 
-            all integrated, no extra plugins required.
-          </p>
+          <p class="text-gray-600">iDEAL, PayPal, credit card — all integrated, no plugins.</p>
         </div>
         <div class="card">
           <div class="text-4xl mb-4">📱</div>
           <h3 class="text-xl font-bold mb-2">Mobile-first design</h3>
-          <p class="text-gray-600">
-            Every site looks perfect on phone, tablet and desktop. 
-            Optimized for speed and conversion.
-          </p>
+          <p class="text-gray-600">Perfect on phone, tablet and desktop. Optimized for conversion.</p>
         </div>
         <div class="card">
           <div class="text-4xl mb-4">🎨</div>
           <h3 class="text-xl font-bold mb-2">No design skills needed</h3>
-          <p class="text-gray-600">
-            Professional-looking websites out of the box. 
-            Choose from ready-made templates and customize with your own brand colors.
-          </p>
+          <p class="text-gray-600">Professional-looking websites out of the box with ready-made templates.</p>
         </div>
         <div class="card">
           <div class="text-4xl mb-4">📊</div>
           <h3 class="text-xl font-bold mb-2">Analytics built-in</h3>
-          <p class="text-gray-600">
-            Track visitors, conversions and product performance with 
-            built-in dashboards. No external tools needed.
-          </p>
+          <p class="text-gray-600">Track visitors, conversions and product performance. No external tools.</p>
         </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href={`${base}en/features/`} class="btn-primary">View all features →</a>
       </div>
     </div>
   </section>
@@ -94,9 +81,7 @@ import Layout from '../../layouts/Layout.astro';
   <section class="section-alt py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          How it works
-        </h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How it works</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="text-center">
@@ -118,116 +103,49 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Pricing -->
-  <section id="pricing" class="py-20 md:py-28">
+  <!-- Pricing teaser -->
+  <section class="py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Simple pricing
-        </h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Simple pricing</h2>
         <p class="text-lg text-gray-600">No surprises. Pay for what you use.</p>
       </div>
       <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <div class="card border-2 border-brand">
-          <div class="text-center mb-6">
+          <div class="text-center mb-4">
             <span class="inline-block px-3 py-1 bg-brand/10 text-brand text-sm font-semibold rounded-full mb-3">Popular</span>
             <h3 class="text-2xl font-bold">Webshop</h3>
-            <p class="text-gray-600 mt-2">Sell products online</p>
+            <p class="text-gray-600 mt-2">Sell products online in multiple languages</p>
           </div>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-2 text-sm">
-              <span class="text-brand">✓</span> Unlimited products
-            </li>
-            <li class="flex items-center gap-2 text-sm">
-              <span class="text-brand">✓</span> Automatic translation (NL/EN)
-            </li>
-            <li class="flex items-center gap-2 text-sm">
-              <span class="text-brand">✓</span> iDEAL, PayPal, credit card
-            </li>
-            <li class="flex items-center gap-2 text-sm">
-              <span class="text-brand">✓</span> Mobile-first design
-            </li>
-            <li class="flex items-center gap-2 text-sm">
-              <span class="text-brand">✓</span> Analytics dashboard
-            </li>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Unlimited products</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Automatic translation</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> iDEAL, PayPal, credit card</li>
           </ul>
-          <a href="#contact" class="btn-primary w-full text-center block">Start now →</a>
+          <a href={`${base}en/pricing/`} class="btn-primary w-full text-center block">More info →</a>
         </div>
         <div class="card">
-          <div class="text-center mb-6">
-            <h3 class="text-2xl font-bold">Portfolio</h3>
+          <div class="text-center mb-4">
+            <h3 class="text-2xl font-bold mt-8">Portfolio</h3>
             <p class="text-gray-600 mt-2">Showcase your work to the world</p>
           </div>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-2 text-sm">
-              <span class="text-brand">✓</span> Unlimited projects
-            </li>
-            <li class="flex items-center gap-2 text-sm">
-              <span class="text-brand">✓</span> Automatic translation (NL/EN)
-            </li>
-            <li class="flex items-center gap-2 text-sm">
-              <span class="text-brand">✓</span> Contact form
-            </li>
-            <li class="flex items-center gap-2 text-sm">
-              <span class="text-brand">✓</span> Mobile-first design
-            </li>
-            <li class="flex items-center gap-2 text-sm">
-              <span class="text-brand">✓</span> SEO optimized
-            </li>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Unlimited projects</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Automatic translation</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> SEO optimized</li>
           </ul>
-          <a href="#contact" class="btn-secondary w-full text-center block">Request quote →</a>
+          <a href={`${base}en/pricing/`} class="btn-secondary w-full text-center block">More info →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Map + Contact -->
-  <section id="contact" class="section-alt py-20 md:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-12 items-start">
-        <div>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Get in touch
-          </h2>
-          <p class="text-gray-600 mb-8">
-            Ready to start? Send us a message and we'll help you within 24 hours.
-          </p>
-          <form action="https://formspree.io/f/mkokrkdl" method="POST" class="space-y-4">
-            <input type="hidden" name="_subject" value="New contact message - ShopVirge" />
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-              <input type="text" name="name" required 
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <input type="email" name="email" required 
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-              <textarea name="message" rows="4" required
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none resize-none"></textarea>
-            </div>
-            <button type="submit" class="btn-primary w-full">Send message →</button>
-          </form>
-        </div>
-        <div>
-          <div class="bg-gray-200 rounded-2xl overflow-hidden h-80 grayscale">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2486.0!2d5.65!3d51.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sJulianastraat+63%2C+6039+AH+Stramproy!5e0!3m2!1snl!2snl!4v1700000000000!5m2!1snl!2snl"
-              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-          </div>
-          <div class="mt-4 text-center">
-            <p class="text-sm text-gray-600">
-              <strong>Julianastraat 63, 6039 AH Stramproy</strong><br />
-              The Netherlands
-            </p>
-          </div>
-        </div>
-      </div>
+  <!-- CTA -->
+  <section class="section-alt py-20">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to get started?</h2>
+      <p class="text-gray-600 mb-8">Get in touch and we'll help you within 24 hours.</p>
+      <a href={`${base}en/contact/`} class="btn-primary">Contact us →</a>
     </div>
   </section>
 </Layout>

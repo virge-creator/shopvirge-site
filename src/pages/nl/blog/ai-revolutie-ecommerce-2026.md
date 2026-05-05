@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPostNL.astro
 title: "De AI-revolutie in e-commerce: wat verandert er in 2026?"
 description: "Van AI-gestuurde productaanbevelingen tot geautomatiseerde klantenservice — hoe kunstmatige intelligentie de e-commerce sector transformeert."
 date: 2026-05-07
