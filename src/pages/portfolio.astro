@@ -14,7 +14,7 @@ import Layout from '../layouts/Layout.astro';
           Het is je visitekaartje, je verhaal, je eerste indruk. 
           ShopVirge helpt je om op te vallen.
         </p>
-        <a href="/#contact" class="btn-primary bg-white text-brand hover:bg-gray-100">
+        <a href={`${import.meta.env.BASE_URL}#contact`} class="btn-primary bg-white text-brand hover:bg-gray-100">
           Bekijk opties →
         </a>
       </div>
@@ -116,7 +116,7 @@ import Layout from '../layouts/Layout.astro';
       <p class="text-lg text-gray-600 mb-8">
         Vraag een vrijblijvende offerte aan en we helpen je binnen 24 uur verder.
       </p>
-      <a href="/#contact" class="btn-primary">Neem contact op →</a>
+      <a href={`${import.meta.env.BASE_URL}#contact`} class="btn-primary">Neem contact op →</a>
     </div>
   </section>
 </Layout>
