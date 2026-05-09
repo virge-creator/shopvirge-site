@@ -5,23 +5,36 @@ const base = import.meta.env.BASE_URL;
 ---
 <Layout title="ShopVirge — Meertalige webshops & portfolios" lang="nl">
   <!-- Hero -->
-  <section class="hero text-white py-24 md:py-32">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-          Je webshop, <span class="text-accent">in elke taal</span>, in enkele minuten.
-        </h1>
-        <p class="text-xl md:text-2xl text-white/80 mb-8">
-          ShopVirge bouwt je meertalige webshop of portfolio — geen code, geen gedoe. 
-          Beschrijf je producten één keer, en wij zorgen voor de rest.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href={`${base}nl/contact/`} class="btn-primary bg-white text-brand hover:bg-gray-100">
-            Start gratis →
-          </a>
-          <a href={`${base}nl/portfolio`} class="btn-secondary border-white text-white hover:bg-white hover:text-brand">
-            Bekijk voorbeelden
-          </a>
+  <section class="relative overflow-hidden">
+    <!-- Hero image -->
+    <div class="relative w-full h-[500px] md:h-[600px] lg:h-[700px]">
+      <img 
+        src={`${base}images/hero-home.jpg`}
+        alt="ShopVirge — Vertaal je webshop automatisch naar elke taal"
+        class="w-full h-full object-cover"
+      />
+      <!-- Gradient overlay -->
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand/70 to-transparent"></div>
+      <!-- Content overlay -->
+      <div class="absolute inset-0 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div class="max-w-2xl">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-lg">
+              Je webshop, <span class="text-amber-400">in elke taal</span>, in enkele minuten.
+            </h1>
+            <p class="text-lg md:text-xl text-white/90 mb-8 drop-shadow">
+              ShopVirge bouwt je meertalige webshop of portfolio — geen code, geen gedoe. 
+              Beschrijf je producten één keer, en wij zorgen voor de rest.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href={`${base}nl/contact/`} class="btn-primary bg-white text-brand hover:bg-gray-100 shadow-lg">
+                Start gratis →
+              </a>
+              <a href={`${base}nl/portfolio`} class="btn-secondary border-white text-white hover:bg-white/20 shadow-lg">
+                Bekijk voorbeelden
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
