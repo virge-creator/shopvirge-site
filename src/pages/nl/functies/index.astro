@@ -205,6 +205,40 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
 
+      <!-- MCP Support -->
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="cpu" size={28} class="text-brand" />
+          </div>
+          <h2 class="text-3xl font-bold mb-4">MCP-ready: AI-agents voor je PIM</h2>
+          <p class="text-gray-600 mb-4">
+            ShopVirge is een van de eerste e-commerce platforms met native MCP-ondersteuning (Model Context Protocol). 
+            Alles wat je via de API kunt doen, kan nu ook door AI-agents worden aangestuurd. 
+            Denk aan productbeschrijvingen genereren, vertalingen bijwerken, categorieën beheren en prijslijsten optimaliseren, 
+            allemaal vanuit tools zoals Claude, ChatGPT of je eigen agent-framework.
+          </p>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Producten aanmaken, bijwerken en vertalen via MCP</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Categorieën en tags beheren met AI-agents</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Prijslijsten en attributen automatisch optimaliseren</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Compatibel met Claude Desktop, Cursor, VS Code en meer</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Werkt met elk MCP-compatibel agent-framework</li>
+          </ul>
+        </div>
+        <div class="bg-brand/5 rounded-2xl p-8 text-center">
+          <div class="mb-4">
+            <Icon name="cpu" size={64} class="text-brand/40 mx-auto" />
+          </div>
+          <div class="text-sm text-gray-500 font-mono space-y-1">
+            <p class="bg-white/80 rounded px-3 py-1.5 text-left"><span class="text-brand">→</span> mcp: products.create</p>
+            <p class="bg-white/80 rounded px-3 py-1.5 text-left"><span class="text-brand">→</span> mcp: translations.update</p>
+            <p class="bg-white/80 rounded px-3 py-1.5 text-left"><span class="text-brand">→</span> mcp: categories.list</p>
+            <p class="bg-white/80 rounded px-3 py-1.5 text-left"><span class="text-brand">→</span> mcp: prices.optimize</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
