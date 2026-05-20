@@ -132,6 +132,55 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
 
+      <!-- Open-source backend -->
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="code-2" size={28} class="text-brand" />
+          </div>
+          <h2 class="text-3xl font-bold mb-4">Open-source headless backend</h2>
+          <p class="text-gray-600 mb-4">
+            Unique in the market: the ShopVirge backend is fully open source. Built with FastAPI and PostgreSQL, 
+            with a documented REST API. No vendor lock-in. Your data and code are always yours.
+          </p>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> FastAPI REST API with Swagger/ReDoc documentation</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Multi-tenant architecture (multiple shops per installation)</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> AWS Cognito SSO authentication</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Built-in multilingual translations per product and category</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Stripe integration for payments</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> <a href="https://shopvirge.readthedocs.io" class="text-brand hover:underline" target="_blank">Full documentation on ReadTheDocs</a></li>
+          </ul>
+        </div>
+        <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
+          <Icon name="github" size={96} class="text-brand/30" />
+        </div>
+      </div>
+
+      <!-- API-first -->
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="md:order-2">
+          <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
+            <Icon name="plug" size={28} class="text-accent" />
+          </div>
+          <h2 class="text-3xl font-bold mb-4">API-first: build what you want</h2>
+          <p class="text-gray-600 mb-4">
+            ShopVirge is headless: the backend serves data via a REST API, 
+            and you choose your own frontend. Use our templates, build your own React/Next.js app, 
+            or connect to existing systems.
+          </p>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Shop-scoped endpoints: /shops/{'{shop_id}'}/products, /orders, /categories</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Pydantic-validated request/response schemas</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Webhooks for order notifications</li>
+            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> S3 image uploads and downloads</li>
+          </ul>
+        </div>
+        <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
+          <Icon name="terminal" size={96} class="text-accent/30" />
+        </div>
+      </div>
+
     </div>
   </section>
 
