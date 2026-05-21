@@ -11,6 +11,32 @@ const base = import.meta.env.BASE_URL;
 const isEn = lang === 'en';
 const nlBase = `${base}nl/`;
 const enBase = `${base}en/`;
+
+// Build lang-switch URL: swap /en/↔/nl/ and translate known slugs
+const currentPath = Astro.url.pathname;
+const slugMap: Record<string, string> = {
+  'features': 'functies',
+  'functies': 'features',
+  'pricing': 'prijzen',
+  'prijzen': 'pricing',
+};
+function switchLangUrl(path: string, toLang: 'nl' | 'en'): string {
+  // Replace /en/ with /nl/ or vice versa
+  let switched = toLang === 'nl'
+    ? path.replace(/^\/en\//, '/nl/')
+    : path.replace(/^\/nl\//, '/en/');
+  // Translate known page slugs
+  for (const [from, to] of Object.entries(slugMap)) {
+    switched = switched.replace(`/${from}/`, `/${to}/`);
+    // Also handle trailing segment without trailing slash
+    if (switched.endsWith(`/${from}`)) {
+      switched = switched.slice(0, -from.length) + to;
+    }
+  }
+  return switched;
+}
+const nlUrl = switchLangUrl(currentPath, 'nl');
+const enUrl = switchLangUrl(currentPath, 'en');
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -59,12 +85,12 @@ const enBase = `${base}en/`;
               </svg>
             </button>
             <div id="lang-dropdown" class="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden opacity-0 invisible transition-all duration-200 origin-top-right scale-95">
-              <a href={nlBase} class={`flex items-center gap-3 px-4 py-3 text-sm hover:bg-brand/5 transition-colors ${!isEn ? 'bg-brand/5 text-brand font-semibold' : 'text-gray-700'}`}>
+              <a href={nlUrl} class={`flex items-center gap-3 px-4 py-3 text-sm hover:bg-brand/5 transition-colors ${!isEn ? 'bg-brand/5 text-brand font-semibold' : 'text-gray-700'}`}>
                 <span class="text-lg">🇳🇱</span>
                 <span>Nederlands</span>
                 {!isEn && <svg class="w-4 h-4 ml-auto text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>}
               </a>
-              <a href={enBase} class={`flex items-center gap-3 px-4 py-3 text-sm hover:bg-brand/5 transition-colors ${isEn ? 'bg-brand/5 text-brand font-semibold' : 'text-gray-700'}`}>
+              <a href={enUrl} class={`flex items-center gap-3 px-4 py-3 text-sm hover:bg-brand/5 transition-colors ${isEn ? 'bg-brand/5 text-brand font-semibold' : 'text-gray-700'}`}>
                 <span class="text-lg">🇬🇧</span>
                 <span>English</span>
                 {isEn && <svg class="w-4 h-4 ml-auto text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>}
@@ -96,10 +122,10 @@ const enBase = `${base}en/`;
         <div class="border-t border-gray-100 pt-3">
           <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">{isEn ? 'Language' : 'Taal'}</p>
           <div class="flex gap-2">
-            <a href={nlBase} class={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${!isEn ? 'bg-brand/10 text-brand' : 'text-gray-600 hover:bg-gray-50'}`}>
+            <a href={nlUrl} class={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${!isEn ? 'bg-brand/10 text-brand' : 'text-gray-600 hover:bg-gray-50'}`}>
               🇳🇱 NL
             </a>
-            <a href={enBase} class={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${isEn ? 'bg-brand/10 text-brand' : 'text-gray-600 hover:bg-gray-50'}`}>
+            <a href={enUrl} class={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${isEn ? 'bg-brand/10 text-brand' : 'text-gray-600 hover:bg-gray-50'}`}>
               🇬🇧 EN
             </a>
           </div>
