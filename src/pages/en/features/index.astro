@@ -18,18 +18,22 @@ const base = import.meta.env.BASE_URL;
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
 
+      <!-- Multilingual -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="globe" size={28} class="text-brand" />
           </div>
           <h2 class="text-3xl font-bold mb-4">Automatic multilingual</h2>
-          <p class="text-gray-600 mb-4">Your entire site — products, text, pages — gets translated automatically in the languages you choose.</p>
+          <p class="text-gray-600 mb-4">
+            Translation has never been easier. Your entire site gets translated automatically 
+            in the languages you choose: products, categories, pages and metadata.
+          </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Dutch, English, German, French, Spanish and more</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> SEO-optimized translations per language</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Manual adjustments always possible</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Automatic language detection for visitors</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Dutch, English, German, French, Spanish and more</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> SEO and GEO-optimized translations per language</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Manual adjustments always possible</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Automatic language detection for visitors</li>
           </ul>
         </div>
         <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
@@ -37,18 +41,23 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
 
+      <!-- Quick launch -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="md:order-2">
           <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="zap" size={28} class="text-accent" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">Live in under an hour</h2>
-          <p class="text-gray-600 mb-4">From concept to fully live site in less than an hour. No technical knowledge needed.</p>
+          <h2 class="text-3xl font-bold mb-4">Go live fast, no hassle</h2>
+          <p class="text-gray-600 mb-4">
+            From concept to fully live site in less than an hour. 
+            Upload your products manually, or import them directly from an Excel file.
+          </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Step-by-step guidance</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Drag-and-drop product uploads</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Automatic sitemap and SEO</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Publish with one click</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Step-by-step guidance</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Product import from Excel or CSV</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Drag-and-drop image uploads</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Automatic sitemap, SEO and GEO tags</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Publish with one click</li>
           </ul>
         </div>
         <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
@@ -56,18 +65,23 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
 
+      <!-- Payments via Stripe -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="credit-card" size={28} class="text-brand" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">Payment platforms built-in</h2>
-          <p class="text-gray-600 mb-4">Accept payments via iDEAL, PayPal, credit card and more — all integrated, no plugins.</p>
+          <h2 class="text-3xl font-bold mb-4">Payments via Stripe</h2>
+          <p class="text-gray-600 mb-4">
+            Stripe is fully integrated. Accept all major payment methods 
+            without extra plugins or custom work. We help you set up Stripe.
+          </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> iDEAL, Bancontact, PayPal</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Credit card (Visa, Mastercard, Amex)</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Klarna and buy-now-pay-later</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Automatic invoices and receipts</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> iDEAL and Bancontact</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Credit card (Visa, Mastercard, Amex)</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> PayPal</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Automatic invoices and receipts</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Webhook notifications on every order</li>
           </ul>
         </div>
         <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
@@ -75,18 +89,22 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
 
+      <!-- Mobile -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="md:order-2">
           <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="smartphone" size={28} class="text-accent" />
           </div>
           <h2 class="text-3xl font-bold mb-4">Mobile-first design</h2>
-          <p class="text-gray-600 mb-4">Every site looks perfect on phone, tablet and desktop. Optimized for speed and conversion.</p>
+          <p class="text-gray-600 mb-4">
+            Every site looks perfect on phone, tablet and desktop. 
+            Optimized for speed and conversion.
+          </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Responsive on every screen size</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Super fast (&lt; 1s load time)</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Touch-optimized navigation</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> PWA-ready</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Responsive on every screen size</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Super fast (&lt; 1s load time)</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Touch-optimized navigation</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Works offline as an app on your phone</li>
           </ul>
         </div>
         <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
@@ -94,18 +112,22 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
 
+      <!-- Design -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="palette" size={28} class="text-brand" />
           </div>
           <h2 class="text-3xl font-bold mb-4">No design skills needed</h2>
-          <p class="text-gray-600 mb-4">Professional-looking websites out of the box. Choose from templates and customize with your brand.</p>
+          <p class="text-gray-600 mb-4">
+            Professional-looking websites out of the box. 
+            Choose from ready-made templates and customize with your own brand colors.
+          </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> 20+ professional templates</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Custom colors, fonts and logo</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Custom CSS possible</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Dark mode support</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> 20+ professional templates</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Custom colors, fonts and logo</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Custom CSS supported</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Dark mode support</li>
           </ul>
         </div>
         <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
@@ -113,18 +135,23 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
 
+      <!-- Analytics & Google -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="md:order-2">
           <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="bar-chart-3" size={28} class="text-accent" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">Analytics built-in</h2>
-          <p class="text-gray-600 mb-4">Track visitors, conversions and product performance with built-in dashboards.</p>
+          <h2 class="text-3xl font-bold mb-4">Analytics &amp; Google integration</h2>
+          <p class="text-gray-600 mb-4">
+            Track visitors, conversions and product performance. 
+            Google Analytics is supported in all plans, including GA4, Tag Manager and Search Console.
+          </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Real-time visitor statistics</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Conversion tracking</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Bestseller and trend reports</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> GDPR-compliant (no cookies)</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Google Analytics 4 (GA4)</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Google Tag Manager</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Google Search Console</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Conversion tracking and e-commerce events</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> GDPR-compliant cookie settings</li>
           </ul>
         </div>
         <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
@@ -138,42 +165,44 @@ const base = import.meta.env.BASE_URL;
           <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="code-2" size={28} class="text-brand" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">Open-source headless backend</h2>
+          <h2 class="text-3xl font-bold mb-4">Open-source backend</h2>
           <p class="text-gray-600 mb-4">
-            Unique in the market: the ShopVirge backend is fully open source. Built with FastAPI and PostgreSQL, 
-            with a documented REST API. No vendor lock-in. Your data and code are always yours.
+            Unique in the market: the ShopVirge backend is fully open source. 
+            No vendor lock-in. Your data and code are always yours. 
+            And you don't need to host anything yourself: we handle the infrastructure.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> FastAPI REST API with Swagger/ReDoc documentation</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Multi-tenant architecture (multiple shops per installation)</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> AWS Cognito SSO authentication</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Built-in multilingual translations per product and category</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Stripe integration for payments</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> <a href="https://shopvirge.readthedocs.io" class="text-brand hover:underline" target="_blank">Full documentation on ReadTheDocs</a></li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Full source code available on GitHub</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Multiple shops per installation (multi-tenant)</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Secure login via SSO</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Built-in multilingual translations per product and category</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Stripe integration for payments</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> <a href="https://shopvirge.readthedocs.io" class="text-brand hover:underline" target="_blank">Full documentation on ReadTheDocs</a></li>
           </ul>
         </div>
-        <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
-          <Icon name="github" size={96} class="text-brand/30" />
+        <div class="bg-brand/5 rounded-2xl overflow-hidden">
+          <img src={`${base}assets/screenshots/Product.png`} alt="ShopVirge backend dashboard" class="w-full h-auto" 
+            onerror="this.parentElement.innerHTML='<div class=\\'p-12 flex items-center justify-center\\'><svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'96\\' height=\\'96\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1\\' class=\\'text-brand/30\\'><path d=\\'M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4\\'/><path d=\\'M9 18c-4.51 2-5-2-7-2\\'/></svg></div>'" />
         </div>
       </div>
 
-      <!-- API-first -->
+      <!-- Use our frontend or build your own -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="md:order-2">
           <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="plug" size={28} class="text-accent" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">API-first: build what you want</h2>
+          <h2 class="text-3xl font-bold mb-4">Use our frontend, or build your own shop</h2>
           <p class="text-gray-600 mb-4">
-            ShopVirge is headless: the backend serves data via a REST API, 
-            and you choose your own frontend. Use our templates, build your own React/Next.js app, 
-            or connect to existing systems.
+            ShopVirge comes with a ready-to-use shop frontend out of the box. 
+            But you can also build your own frontend and connect it via the API. 
+            Ideal if you already have a website or have specific requirements.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Shop-scoped endpoints: /shops/{'{shop_id}'}/products, /orders, /categories</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Pydantic-validated request/response schemas</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Webhooks for order notifications</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> S3 image uploads and downloads</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Ready-to-use shop frontend included</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Or build your own app and connect via the REST API</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Webhooks on orders and status changes</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Image uploads and management</li>
           </ul>
         </div>
         <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
@@ -187,19 +216,19 @@ const base = import.meta.env.BASE_URL;
           <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="cpu" size={28} class="text-brand" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">MCP-ready: AI agents for your PIM</h2>
+          <h2 class="text-3xl font-bold mb-4">MCP-ready: AI agents for your product management</h2>
           <p class="text-gray-600 mb-4">
             ShopVirge is one of the first e-commerce platforms with native MCP support (Model Context Protocol). 
             Everything you can do via the API can now be driven by AI agents. 
-            Generate product descriptions, update translations, manage categories and optimize price lists, 
-            all from tools like Claude, ChatGPT or your own agent framework.
+            Generate product descriptions, update translations, manage categories and optimize price lists. 
+            All from tools like Claude, ChatGPT or your own agent framework.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Create, update and translate products via MCP</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Manage categories and tags with AI agents</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Automatically optimize price lists and attributes</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Compatible with Claude Desktop, Cursor, VS Code and more</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Works with any MCP-compatible agent framework</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Create, update and translate products via MCP</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Manage categories and tags with AI agents</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Automatically optimize price lists and attributes</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Compatible with Claude Desktop, Cursor, VS Code and more</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Works with any MCP-compatible agent framework</li>
           </ul>
         </div>
         <div class="bg-brand/5 rounded-2xl p-8 text-center">
@@ -218,12 +247,13 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
+  <!-- CTA -->
   <section class="section-alt py-20">
     <div class="max-w-3xl mx-auto px-4 text-center">
       <h2 class="text-3xl font-bold mb-4">Ready to get started?</h2>
       <p class="text-gray-600 mb-8">Launch your multilingual webshop or portfolio today.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={`${base}en/contact/`} class="btn-primary">Get in touch →</a>
+        <a href={`${base}en/contact/?type=trial`} class="btn-primary">Start free trial →</a>
         <a href={`${base}en/pricing/`} class="btn-secondary">View pricing</a>
       </div>
     </div>

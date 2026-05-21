@@ -26,14 +26,14 @@ const base = import.meta.env.BASE_URL;
           </div>
           <h2 class="text-3xl font-bold mb-4">Automatisch meertalig</h2>
           <p class="text-gray-600 mb-4">
-            Vertalen was nog nooit zo makkelijk. Jouw hele site — producten, tekst, pagina's — 
-            wordt automatisch vertaald in de talen die jij kiest.
+            Vertalen was nog nooit zo makkelijk. Jouw hele site wordt automatisch vertaald 
+            in de talen die jij kiest: producten, categorieën, pagina's en metadata.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Nederlands, Engels, Duits, Frans, Spaans en meer</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> SEO-geoptimaliseerde vertalingen per taal</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Handmatige aanpassingen altijd mogelijk</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Automatische taaldetectie voor bezoekers</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Nederlands, Engels, Duits, Frans, Spaans en meer</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> SEO- en GEO-geoptimaliseerde vertalingen per taal</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Handmatige aanpassingen altijd mogelijk</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Automatische taaldetectie voor bezoekers</li>
           </ul>
         </div>
         <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
@@ -47,16 +47,17 @@ const base = import.meta.env.BASE_URL;
           <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="zap" size={28} class="text-accent" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">Live in één uur</h2>
+          <h2 class="text-3xl font-bold mb-4">Snel live, zonder gedoe</h2>
           <p class="text-gray-600 mb-4">
             Van concept tot volledig live site in minder dan een uur. 
-            Geen technische kennis nodig — upload je producten en de rest gaat vanzelf.
+            Upload je producten handmatig, of importeer ze direct vanuit een Excel-bestand.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Stap-voor-stap begeleiding</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Drag-and-drop product uploads</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Automatische sitemap en SEO</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Publiceer met één klik</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Stap-voor-stap begeleiding</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Productimport vanuit Excel of CSV</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Drag-and-drop afbeelding uploads</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Automatische sitemap, SEO en GEO-tags</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Publiceer met één klik</li>
           </ul>
         </div>
         <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
@@ -64,22 +65,23 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
 
-      <!-- Betalingen -->
+      <!-- Betalingen via Stripe -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="credit-card" size={28} class="text-brand" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">Betaalplatforms ingebakken</h2>
+          <h2 class="text-3xl font-bold mb-4">Betalingen via Stripe</h2>
           <p class="text-gray-600 mb-4">
-            Accepteer betalingen via iDEAL, PayPal, creditcard en meer — 
-            allemaal geïntegreerd, zonder extra plugins.
+            Stripe is volledig geïntegreerd. Accepteer alle gangbare betaalmethoden 
+            zonder extra plugins of maatwerk. Wij helpen je met de Stripe-configuratie.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> iDEAL, Bancontact, PayPal</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Creditcard (Visa, Mastercard, Amex)</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Klarna en achteraf betalen</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Automatische facturen en bonnetjes</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> iDEAL en Bancontact</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Creditcard (Visa, Mastercard, Amex)</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> PayPal</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Automatische facturen en bonnetjes</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Webhook-notificaties bij elke bestelling</li>
           </ul>
         </div>
         <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
@@ -99,10 +101,10 @@ const base = import.meta.env.BASE_URL;
             Geoptimaliseerd voor snelheid en conversie.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Responsive op elk schermformaat</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Supersnel (&lt; 1s laadtijd)</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Touch-geoptimaliseerde navigatie</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> PWA-ready</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Responsive op elk schermformaat</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Supersnel (&lt; 1s laadtijd)</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Touch-geoptimaliseerde navigatie</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Werkt ook offline als app op je telefoon</li>
           </ul>
         </div>
         <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
@@ -122,10 +124,10 @@ const base = import.meta.env.BASE_URL;
             Kies uit kant-en-klare templates en pas ze aan met je eigen merk-kleuren.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> 20+ professionele templates</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Eigen kleuren, fonts en logo</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Custom CSS mogelijk</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Dark mode ondersteuning</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> 20+ professionele templates</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Eigen kleuren, fonts en logo</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Custom CSS mogelijk</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Dark mode ondersteuning</li>
           </ul>
         </div>
         <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
@@ -133,22 +135,23 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
 
-      <!-- Analytics -->
+      <!-- Analytics & Google -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="md:order-2">
           <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="bar-chart-3" size={28} class="text-accent" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">Analytics ingebouwd</h2>
+          <h2 class="text-3xl font-bold mb-4">Analytics &amp; Google-integratie</h2>
           <p class="text-gray-600 mb-4">
-            Volg bezoekers, conversies en productprestaties met 
-            ingebouwde dashboards. Geen externe tools nodig.
+            Volg bezoekers, conversies en productprestaties. 
+            Google Analytics wordt ondersteund in alle abonnementen, inclusief GA4, Tag Manager en Search Console.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Realtime bezoekersstatistieken</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Conversie-tracking</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Bestseller- en trendrapportages</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> GDPR-compliant (geen cookies)</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Google Analytics 4 (GA4)</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Google Tag Manager</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Google Search Console</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Conversie-tracking en e-commerce events</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> GDPR-compliant cookie-instellingen</li>
           </ul>
         </div>
         <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
@@ -162,42 +165,44 @@ const base = import.meta.env.BASE_URL;
           <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="code-2" size={28} class="text-brand" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">Open-source headless backend</h2>
+          <h2 class="text-3xl font-bold mb-4">Open-source backend</h2>
           <p class="text-gray-600 mb-4">
-            Uniek in de markt: de ShopVirge backend is volledig open source. Gebouwd met FastAPI en PostgreSQL, 
-            met een gedocumenteerde REST API. Geen vendor lock-in. Je data en je code zijn altijd van jou.
+            Uniek in de markt: de ShopVirge backend is volledig open source. 
+            Geen vendor lock-in. Je data en je code zijn altijd van jou. 
+            En je hoeft zelf niks te hosten: wij regelen de infrastructuur.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> FastAPI REST API met Swagger/ReDoc documentatie</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Multi-tenant architectuur (meerdere shops per installatie)</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> AWS Cognito SSO-authenticatie</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Ingebouwde meertalige vertalingen per product en categorie</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Stripe-integratie voor betalingen</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> <a href="https://shopvirge.readthedocs.io" class="text-brand hover:underline" target="_blank">Volledige documentatie op ReadTheDocs</a></li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Volledige broncode beschikbaar op GitHub</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Meerdere shops per installatie (multi-tenant)</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Veilige login via SSO</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Meertalige vertalingen ingebouwd per product en categorie</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Stripe-integratie voor betalingen</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> <a href="https://shopvirge.readthedocs.io" class="text-brand hover:underline" target="_blank">Volledige documentatie op ReadTheDocs</a></li>
           </ul>
         </div>
-        <div class="bg-brand/5 rounded-2xl p-12 flex items-center justify-center">
-          <Icon name="github" size={96} class="text-brand/30" />
+        <div class="bg-brand/5 rounded-2xl overflow-hidden">
+          <img src={`${base}assets/screenshots/Product.png`} alt="ShopVirge backend dashboard" class="w-full h-auto" 
+            onerror="this.parentElement.innerHTML='<div class=\\'p-12 flex items-center justify-center\\'><svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'96\\' height=\\'96\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1\\' class=\\'text-brand/30\\'><path d=\\'M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4\\'/><path d=\\'M9 18c-4.51 2-5-2-7-2\\'/></svg></div>'" />
         </div>
       </div>
 
-      <!-- API-first -->
+      <!-- Koppel je eigen shop of gebruik onze frontend -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="md:order-2">
           <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="plug" size={28} class="text-accent" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">API-first: bouw wat je wilt</h2>
+          <h2 class="text-3xl font-bold mb-4">Gebruik onze frontend, of bouw je eigen shop</h2>
           <p class="text-gray-600 mb-4">
-            ShopVirge is headless: de backend levert data via een REST API, 
-            en jij kiest zelf je frontend. Gebruik onze templates, bouw je eigen React/Next.js app, 
-            of koppel aan bestaande systemen.
+            ShopVirge levert standaard een kant-en-klare webshop die je direct kunt gebruiken. 
+            Maar je kunt ook je eigen frontend bouwen en via de API koppelen. 
+            Ideaal als je al een website hebt of specifieke wensen hebt.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Shop-scoped endpoints: /shops/{'{shop_id}'}/products, /orders, /categories</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Pydantic-gevalideerde request/response schemas</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Webhooks voor ordernotificaties</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> S3 image uploads en downloads</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Kant-en-klare shopfrontend inbegrepen</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Of bouw je eigen app en koppel via de REST API</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Webhooks bij bestellingen en statuswijzigingen</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Afbeeldingen uploaden en beheren</li>
           </ul>
         </div>
         <div class="bg-accent/10 rounded-2xl p-12 flex items-center justify-center md:order-1">
@@ -211,19 +216,19 @@ const base = import.meta.env.BASE_URL;
           <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center mb-6">
             <Icon name="cpu" size={28} class="text-brand" />
           </div>
-          <h2 class="text-3xl font-bold mb-4">MCP-ready: AI-agents voor je PIM</h2>
+          <h2 class="text-3xl font-bold mb-4">MCP-ready: AI-agents voor je productbeheer</h2>
           <p class="text-gray-600 mb-4">
             ShopVirge is een van de eerste e-commerce platforms met native MCP-ondersteuning (Model Context Protocol). 
             Alles wat je via de API kunt doen, kan nu ook door AI-agents worden aangestuurd. 
-            Denk aan productbeschrijvingen genereren, vertalingen bijwerken, categorieën beheren en prijslijsten optimaliseren, 
-            allemaal vanuit tools zoals Claude, ChatGPT of je eigen agent-framework.
+            Denk aan productbeschrijvingen genereren, vertalingen bijwerken, categorieën beheren en prijslijsten optimaliseren. 
+            Allemaal vanuit tools zoals Claude, ChatGPT of je eigen agent-framework.
           </p>
           <ul class="space-y-2 text-gray-600">
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Producten aanmaken, bijwerken en vertalen via MCP</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Categorieën en tags beheren met AI-agents</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Prijslijsten en attributen automatisch optimaliseren</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Compatibel met Claude Desktop, Cursor, VS Code en meer</li>
-            <li class="flex items-start gap-2"><span class="text-brand mt-1">✓</span> Werkt met elk MCP-compatibel agent-framework</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Producten aanmaken, bijwerken en vertalen via MCP</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Categorieën en tags beheren met AI-agents</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Prijslijsten en attributen automatisch optimaliseren</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Compatibel met Claude Desktop, Cursor, VS Code en meer</li>
+            <li class="flex items-center gap-2"><span class="text-brand">✓</span> Werkt met elk MCP-compatibel agent-framework</li>
           </ul>
         </div>
         <div class="bg-brand/5 rounded-2xl p-8 text-center">
@@ -248,7 +253,7 @@ const base = import.meta.env.BASE_URL;
       <h2 class="text-3xl font-bold mb-4">Klaar om te beginnen?</h2>
       <p class="text-gray-600 mb-8">Start vandaag nog met je meertalige webshop of portfolio.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={`${base}nl/contact/`} class="btn-primary">Neem contact op →</a>
+        <a href={`${base}nl/contact/?type=trial`} class="btn-primary">Start gratis trial →</a>
         <a href={`${base}nl/prijzen/`} class="btn-secondary">Bekijk prijzen</a>
       </div>
     </div>
