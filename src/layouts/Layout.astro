@@ -19,21 +19,34 @@ const slugMap: Record<string, string> = {
   'functies': 'features',
   'pricing': 'prijzen',
   'prijzen': 'pricing',
+  // Blog post slugs NL→EN
+  'ai-productbeschrijvingen-webshop-2026': 'ai-product-descriptions-webshop-2026',
+  'ai-revolutie-ecommerce-2026': 'ai-revolution-ecommerce-2026',
+  'meertalige-webshop-5-fouten': 'multilingual-webshop-5-mistakes',
+  'shopify-alternatieven-europa-2026': 'shopify-alternatives-europe-2026',
+  'social-commerce-revolutie-europa-2026': 'social-commerce-revolution-europe-2026',
+  'tiktok-shop-nederland-2026': 'tiktok-shop-netherlands-2026',
+  // Blog post slugs EN→NL
+  'ai-product-descriptions-webshop-2026': 'ai-productbeschrijvingen-webshop-2026',
+  'ai-revolution-ecommerce-2026': 'ai-revolutie-ecommerce-2026',
+  'multilingual-webshop-5-mistakes': 'meertalige-webshop-5-fouten',
+  'shopify-alternatives-europe-2026': 'shopify-alternatieven-europa-2026',
+  'social-commerce-revolution-europe-2026': 'social-commerce-revolutie-europa-2026',
+  'tiktok-shop-netherlands-2026': 'tiktok-shop-nederland-2026',
 };
 function switchLangUrl(path: string, toLang: 'nl' | 'en'): string {
   // Replace /en/ with /nl/ or vice versa
   let switched = toLang === 'nl'
     ? path.replace(/^\/en\//, '/nl/')
     : path.replace(/^\/nl\//, '/en/');
-  // Translate known page slugs
-  for (const [from, to] of Object.entries(slugMap)) {
-    switched = switched.replace(`/${from}/`, `/${to}/`);
-    // Also handle trailing segment without trailing slash
-    if (switched.endsWith(`/${from}`)) {
-      switched = switched.slice(0, -from.length) + to;
+  // Extract all path segments and translate known slugs
+  const parts = switched.split('/');
+  for (let i = 0; i < parts.length; i++) {
+    if (slugMap[parts[i]]) {
+      parts[i] = slugMap[parts[i]];
     }
   }
-  return switched;
+  return parts.join('/');
 }
 const nlUrl = switchLangUrl(currentPath, 'nl');
 const enUrl = switchLangUrl(currentPath, 'en');
