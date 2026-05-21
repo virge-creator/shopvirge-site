@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Icon from '../../../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
 ---
 <Layout title="Prijzen — Eenvoudig en transparant" lang="nl">
@@ -7,58 +8,127 @@ const base = import.meta.env.BASE_URL;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Prijzen</h1>
-        <p class="text-xl text-white/80">
-          Geen verrassingen. Transparante prijzen voor elk type project.
-        </p>
+        <p class="text-xl text-white/80">Drie abonnementen, transparante prijzen. Kies wat bij je past.</p>
       </div>
     </div>
   </section>
 
-  <!-- Pricing cards -->
   <section class="py-20 md:py-28">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-8">
-        
-        <!-- Webshop -->
-        <div class="card border-2 border-brand relative">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-            <span class="inline-block px-4 py-1.5 bg-brand text-white text-sm font-semibold rounded-full">Populair</span>
-          </div>
-          <div class="text-center pt-4 mb-8">
-            <h3 class="text-2xl font-bold mb-2">Webshop</h3>
-            <p class="text-gray-600">Verkoop producten online in meerdere talen</p>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Small -->
+        <div class="card">
+          <div class="text-center mb-8 pt-4">
+            <h3 class="text-2xl font-bold mb-1">Small</h3>
+            <p class="text-gray-500 text-sm mb-4">Zelf aan de slag</p>
+            <div class="mb-2">
+              <span class="text-4xl font-extrabold text-gray-900">€50</span>
+              <span class="text-gray-500">/maand</span>
+            </div>
+            <p class="text-sm text-gray-400">Geen opstartkosten</p>
           </div>
           <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Onbeperkte producten</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Automatisch vertalen (NL/EN + meer)</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> iDEAL, PayPal, creditcard</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> 1 taal</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Max 100 producten</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Stripe betalingen (iDEAL, kaarten)</li>
             <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Mobiel-first design</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Analytics dashboard</li>
             <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SEO geoptimaliseerd</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL-certificaat inbegrepen</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Eigen domein</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL &amp; eigen domein</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Open-source backend toegang</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> MCP-ready API</li>
+            <li class="flex items-center gap-2 text-sm text-gray-400"><span>✗</span> Content ondersteuning</li>
+            <li class="flex items-center gap-2 text-sm text-gray-400"><span>✗</span> Stripe setup hulp</li>
+            <li class="flex items-center gap-2 text-sm text-gray-400"><span>✗</span> Discord community</li>
+          </ul>
+          <a href={`${base}nl/contact/`} class="btn-secondary w-full text-center block">Start nu →</a>
+        </div>
+
+        <!-- Medium -->
+        <div class="card border-2 border-brand relative">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+            <span class="inline-block px-4 py-1.5 bg-brand text-white text-sm font-semibold rounded-full">Meest gekozen</span>
+          </div>
+          <div class="text-center mb-8 pt-4">
+            <h3 class="text-2xl font-bold mb-1">Medium</h3>
+            <p class="text-gray-500 text-sm mb-4">Wij helpen je op weg</p>
+            <div class="mb-2">
+              <span class="text-4xl font-extrabold text-gray-900">€75</span>
+              <span class="text-gray-500">/maand</span>
+            </div>
+            <p class="text-sm text-gray-400">€1.000 eenmalige opstartkosten</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> <strong>3 talen</strong></li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Max 300 producten</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Stripe betalingen (iDEAL, kaarten)</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Mobiel-first design</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SEO geoptimaliseerd</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL &amp; eigen domein</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Open-source backend toegang</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> MCP-ready API</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Initiële productimport vanuit Excel</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Productdata check &amp; validatie</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Toegang tot Discord community</li>
           </ul>
           <a href={`${base}nl/contact/`} class="btn-primary w-full text-center block">Start nu →</a>
         </div>
 
-        <!-- Portfolio -->
+        <!-- Large -->
         <div class="card">
           <div class="text-center mb-8 pt-4">
-            <h3 class="text-2xl font-bold mb-2">Portfolio</h3>
-            <p class="text-gray-600">Toon je werk aan de wereld</p>
+            <h3 class="text-2xl font-bold mb-1">Large</h3>
+            <p class="text-gray-500 text-sm mb-4">Full-service, wij regelen alles</p>
+            <div class="mb-2">
+              <span class="text-4xl font-extrabold text-gray-900">€100</span>
+              <span class="text-gray-500">/maand</span>
+            </div>
+            <p class="text-sm text-gray-400">Opstartkosten op aanvraag</p>
           </div>
           <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Onbeperkte projecten</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Automatisch vertalen (NL/EN + meer)</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Contactformulier</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> <strong>3 talen</strong></li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> <strong>Onbeperkt producten</strong></li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Stripe betalingen (iDEAL, kaarten)</li>
             <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Mobiel-first design</li>
             <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SEO geoptimaliseerd</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL-certificaat inbegrepen</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Eigen domein</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Gallerij met lightbox</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL &amp; eigen domein</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Open-source backend toegang</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> MCP-ready API</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Wij maken al je content</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Volledige Stripe setup &amp; configuratie</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Toegang tot Discord community</li>
           </ul>
-          <a href={`${base}nl/contact/`} class="btn-secondary w-full text-center block">Vraag offerte aan →</a>
+          <a href={`${base}nl/contact/`} class="btn-primary w-full text-center block">Neem contact op →</a>
         </div>
+
+      </div>
+
+      <!-- Vergelijkingstabel -->
+      <div class="mt-20 overflow-x-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Vergelijk abonnementen</h2>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-4 pr-4 font-semibold text-gray-900">Functie</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-900">Small</th>
+              <th class="text-center py-4 px-4 font-semibold text-brand">Medium</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-900">Large</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="py-3 pr-4 text-gray-600">Maandprijs</td><td class="text-center py-3 px-4">€50</td><td class="text-center py-3 px-4 font-medium">€75</td><td class="text-center py-3 px-4">€100</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Opstartkosten</td><td class="text-center py-3 px-4">Gratis</td><td class="text-center py-3 px-4 font-medium">€1.000</td><td class="text-center py-3 px-4">Op aanvraag</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Talen</td><td class="text-center py-3 px-4">1</td><td class="text-center py-3 px-4 font-medium">3</td><td class="text-center py-3 px-4">3</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Max producten</td><td class="text-center py-3 px-4">100</td><td class="text-center py-3 px-4 font-medium">300</td><td class="text-center py-3 px-4">Onbeperkt</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Stripe betalingen</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Open-source backend</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">MCP API toegang</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Productimport vanuit Excel</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Content creatie</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Stripe setup hulp</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Discord community</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+          </tbody>
+        </table>
       </div>
 
       <!-- FAQ -->
@@ -66,31 +136,38 @@ const base = import.meta.env.BASE_URL;
         <h2 class="text-3xl font-bold text-center mb-12">Veelgestelde vragen</h2>
         <div class="space-y-6 max-w-3xl mx-auto">
           <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="font-bold text-lg mb-2">Zijn er opstartkosten?</h3>
-            <p class="text-gray-600">Nee, je betaalt alleen het maandelijkse abonnement. Geen verborgen kosten.</p>
+            <h3 class="font-bold text-lg mb-2">Wat zit er in de opstartkosten?</h3>
+            <p class="text-gray-600">Bij Medium: wij controleren je productdata in Excel, valideren alles en doen de initiële import in je shop. Bij Large: wij regelen alles inclusief contentcreatie, productfoto-advies en volledige Stripe-configuratie.</p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">Kan ik later upgraden?</h3>
+            <p class="text-gray-600">Ja. Je kunt op elk moment upgraden van Small naar Medium of Large. Wij helpen je met de migratie van producten en het toevoegen van talen.</p>
           </div>
           <div class="bg-white rounded-xl p-6 shadow-sm">
             <h3 class="font-bold text-lg mb-2">Kan ik op elk moment opzeggen?</h3>
-            <p class="text-gray-600">Ja, je zit nergens aan vast. Maandelijks opzegbaar.</p>
+            <p class="text-gray-600">Ja, geen contractverplichting. Maandelijks opzegbaar. Je data blijft toegankelijk via de open-source backend.</p>
           </div>
           <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="font-bold text-lg mb-2">Hoeveel talen kan ik toevoegen?</h3>
-            <p class="text-gray-600">Standaard NL/EN. Extra talen (DE, FR, ES, etc.) kunnen worden toegevoegd op aanvraag.</p>
+            <h3 class="font-bold text-lg mb-2">Welke talen worden ondersteund?</h3>
+            <p class="text-gray-600">Nederlands, Engels, Duits, Frans, Spaans en meer. Jij kiest welke talen je activeert voor je shop.</p>
           </div>
           <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="font-bold text-lg mb-2">Krijg ik hulp bij het opzetten?</h3>
-            <p class="text-gray-600">Absoluut. We begeleiden je stap voor stap bij de lancering van je site.</p>
+            <h3 class="font-bold text-lg mb-2">Wat is MCP-toegang?</h3>
+            <p class="text-gray-600">Alle abonnementen geven toegang tot onze MCP-ready API, waarmee AI-agents (Claude, ChatGPT, Cursor) direct je producten, vertalingen en categorieën kunnen beheren. Dit is uniek aan ShopVirge.</p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">Wat is de Discord community?</h3>
+            <p class="text-gray-600">Direct contact met ons team en andere ShopVirge-ondernemers. Stel vragen, deel ideeën en blijf op de hoogte van nieuwe features.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="section-alt py-16">
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold mb-4">Niet zeker welk pakket bij je past?</h2>
-      <p class="text-gray-600 mb-6">Neem contact op en we helpen je de juiste keuze maken.</p>
+      <h2 class="text-2xl font-bold mb-4">Niet zeker welk abonnement past?</h2>
+      <p class="text-gray-600 mb-6">Neem contact op en we helpen je de juiste keuze te maken.</p>
       <a href={`${base}nl/contact/`} class="btn-primary">Neem contact op →</a>
     </div>
   </section>

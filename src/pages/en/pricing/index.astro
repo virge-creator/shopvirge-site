@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Icon from '../../../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
 ---
 <Layout title="Pricing — Simple and transparent" lang="en">
@@ -7,71 +8,156 @@ const base = import.meta.env.BASE_URL;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Pricing</h1>
-        <p class="text-xl text-white/80">No surprises. Transparent pricing for every type of project.</p>
+        <p class="text-xl text-white/80">Three plans, transparent pricing. Pick the one that fits your business.</p>
       </div>
     </div>
   </section>
 
   <section class="py-20 md:py-28">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="card border-2 border-brand relative">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-            <span class="inline-block px-4 py-1.5 bg-brand text-white text-sm font-semibold rounded-full">Popular</span>
-          </div>
-          <div class="text-center pt-4 mb-8">
-            <h3 class="text-2xl font-bold mb-2">Webshop</h3>
-            <p class="text-gray-600">Sell products online in multiple languages</p>
-          </div>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Unlimited products</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Automatic translation (NL/EN + more)</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> iDEAL, PayPal, credit card</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Mobile-first design</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Analytics dashboard</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SEO optimized</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL certificate included</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Custom domain</li>
-          </ul>
-          <a href={`${base}en/contact/`} class="btn-primary w-full text-center block">Start now →</a>
-        </div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Small -->
         <div class="card">
           <div class="text-center mb-8 pt-4">
-            <h3 class="text-2xl font-bold mb-2">Portfolio</h3>
-            <p class="text-gray-600">Showcase your work to the world</p>
+            <h3 class="text-2xl font-bold mb-1">Small</h3>
+            <p class="text-gray-500 text-sm mb-4">Get started on your own</p>
+            <div class="mb-2">
+              <span class="text-4xl font-extrabold text-gray-900">€50</span>
+              <span class="text-gray-500">/month</span>
+            </div>
+            <p class="text-sm text-gray-400">No onboarding fee</p>
           </div>
           <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Unlimited projects</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Automatic translation (NL/EN + more)</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Contact form</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> 1 language</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Max 100 products</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Stripe payments (iDEAL, cards)</li>
             <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Mobile-first design</li>
             <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SEO optimized</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL certificate included</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Custom domain</li>
-            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Gallery with lightbox</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL &amp; custom domain</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Open-source backend access</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> MCP-ready API</li>
+            <li class="flex items-center gap-2 text-sm text-gray-400"><span>✗</span> Content support</li>
+            <li class="flex items-center gap-2 text-sm text-gray-400"><span>✗</span> Stripe setup assistance</li>
+            <li class="flex items-center gap-2 text-sm text-gray-400"><span>✗</span> Discord community</li>
           </ul>
-          <a href={`${base}en/contact/`} class="btn-secondary w-full text-center block">Request quote →</a>
+          <a href={`${base}en/contact/`} class="btn-secondary w-full text-center block">Get started →</a>
         </div>
+
+        <!-- Medium -->
+        <div class="card border-2 border-brand relative">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+            <span class="inline-block px-4 py-1.5 bg-brand text-white text-sm font-semibold rounded-full">Most popular</span>
+          </div>
+          <div class="text-center mb-8 pt-4">
+            <h3 class="text-2xl font-bold mb-1">Medium</h3>
+            <p class="text-gray-500 text-sm mb-4">We get you up and running</p>
+            <div class="mb-2">
+              <span class="text-4xl font-extrabold text-gray-900">€75</span>
+              <span class="text-gray-500">/month</span>
+            </div>
+            <p class="text-sm text-gray-400">€1.000 one-time onboarding fee</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> <strong>3 languages</strong></li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Max 300 products</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Stripe payments (iDEAL, cards)</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Mobile-first design</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SEO optimized</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL &amp; custom domain</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Open-source backend access</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> MCP-ready API</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Initial product import from Excel</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Product data review &amp; validation</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Discord community access</li>
+          </ul>
+          <a href={`${base}en/contact/`} class="btn-primary w-full text-center block">Get started →</a>
+        </div>
+
+        <!-- Large -->
+        <div class="card">
+          <div class="text-center mb-8 pt-4">
+            <h3 class="text-2xl font-bold mb-1">Large</h3>
+            <p class="text-gray-500 text-sm mb-4">Full-service, we handle everything</p>
+            <div class="mb-2">
+              <span class="text-4xl font-extrabold text-gray-900">€100</span>
+              <span class="text-gray-500">/month</span>
+            </div>
+            <p class="text-sm text-gray-400">Onboarding fee on request</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> <strong>3 languages</strong></li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> <strong>Unlimited products</strong></li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Stripe payments (iDEAL, cards)</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Mobile-first design</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SEO optimized</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> SSL &amp; custom domain</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> Open-source backend access</li>
+            <li class="flex items-center gap-2 text-sm"><span class="text-brand">✓</span> MCP-ready API</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> We create all your content</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Full Stripe setup &amp; configuration</li>
+            <li class="flex items-center gap-2 text-sm font-medium"><span class="text-brand">✓</span> Discord community access</li>
+          </ul>
+          <a href={`${base}en/contact/`} class="btn-primary w-full text-center block">Contact us →</a>
+        </div>
+
       </div>
 
+      <!-- Comparison table -->
+      <div class="mt-20 overflow-x-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Compare plans</h2>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-4 pr-4 font-semibold text-gray-900">Feature</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-900">Small</th>
+              <th class="text-center py-4 px-4 font-semibold text-brand">Medium</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-900">Large</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="py-3 pr-4 text-gray-600">Monthly price</td><td class="text-center py-3 px-4">€50</td><td class="text-center py-3 px-4 font-medium">€75</td><td class="text-center py-3 px-4">€100</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Onboarding fee</td><td class="text-center py-3 px-4">Free</td><td class="text-center py-3 px-4 font-medium">€1.000</td><td class="text-center py-3 px-4">On request</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Languages</td><td class="text-center py-3 px-4">1</td><td class="text-center py-3 px-4 font-medium">3</td><td class="text-center py-3 px-4">3</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Max products</td><td class="text-center py-3 px-4">100</td><td class="text-center py-3 px-4 font-medium">300</td><td class="text-center py-3 px-4">Unlimited</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Stripe payments</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Open-source backend</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">MCP API access</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Product import from Excel</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Content creation</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Stripe setup assistance</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+            <tr><td class="py-3 pr-4 text-gray-600">Discord community</td><td class="text-center py-3 px-4 text-gray-300">✗</td><td class="text-center py-3 px-4 text-brand">✓</td><td class="text-center py-3 px-4 text-brand">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FAQ -->
       <div class="mt-20">
         <h2 class="text-3xl font-bold text-center mb-12">Frequently asked questions</h2>
         <div class="space-y-6 max-w-3xl mx-auto">
           <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="font-bold text-lg mb-2">Are there setup costs?</h3>
-            <p class="text-gray-600">No, you only pay the monthly subscription. No hidden fees.</p>
+            <h3 class="font-bold text-lg mb-2">What's included in the onboarding fee?</h3>
+            <p class="text-gray-600">For Medium: we review your product data in Excel, validate it, and do the initial import into your shop. For Large: we handle everything including content creation, product photography guidance, and full Stripe configuration.</p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">Can I upgrade later?</h3>
+            <p class="text-gray-600">Yes. You can upgrade from Small to Medium or Large at any time. We'll help you migrate your products and add languages.</p>
           </div>
           <div class="bg-white rounded-xl p-6 shadow-sm">
             <h3 class="font-bold text-lg mb-2">Can I cancel anytime?</h3>
-            <p class="text-gray-600">Yes, no lock-in. Cancel monthly.</p>
+            <p class="text-gray-600">Yes, no lock-in. Cancel monthly. Your data stays accessible via the open-source backend.</p>
           </div>
           <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="font-bold text-lg mb-2">How many languages can I add?</h3>
-            <p class="text-gray-600">NL/EN by default. Additional languages (DE, FR, ES, etc.) can be added on request.</p>
+            <h3 class="font-bold text-lg mb-2">Which languages are supported?</h3>
+            <p class="text-gray-600">Dutch, English, German, French, Spanish and more. You choose which languages to activate for your shop.</p>
           </div>
           <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="font-bold text-lg mb-2">Do I get help setting up?</h3>
-            <p class="text-gray-600">Absolutely. We guide you step by step through the launch of your site.</p>
+            <h3 class="font-bold text-lg mb-2">What is MCP access?</h3>
+            <p class="text-gray-600">All plans include access to our MCP-ready API, so AI agents (Claude, ChatGPT, Cursor) can manage your products, translations and categories directly. This is unique to ShopVirge.</p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">What's in the Discord community?</h3>
+            <p class="text-gray-600">Direct access to our team and other ShopVirge merchants. Get help, share ideas, and stay up to date with new features.</p>
           </div>
         </div>
       </div>
@@ -81,7 +167,7 @@ const base = import.meta.env.BASE_URL;
   <section class="section-alt py-16">
     <div class="max-w-3xl mx-auto px-4 text-center">
       <h2 class="text-2xl font-bold mb-4">Not sure which plan fits?</h2>
-      <p class="text-gray-600 mb-6">Get in touch and we'll help you choose.</p>
+      <p class="text-gray-600 mb-6">Get in touch and we'll help you choose the right plan for your business.</p>
       <a href={`${base}en/contact/`} class="btn-primary">Contact us →</a>
     </div>
   </section>
