@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Icon from '../../../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
 ---
 <Layout title="Contact — Get in touch" lang="en">
@@ -7,7 +8,9 @@ const base = import.meta.env.BASE_URL;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Contact</h1>
-        <p class="text-xl text-white/80">Ready to start? Send us a message and we'll help you within 24 hours.</p>
+        <p class="text-xl text-white/80">
+          Start a free trial, request a demo, or ask us anything. We'll respond within 24 hours.
+        </p>
       </div>
     </div>
   </section>
@@ -16,16 +19,75 @@ const base = import.meta.env.BASE_URL;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 gap-12 items-start">
         <div>
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">Send a message</h2>
+          <!-- Type selector tabs -->
+          <div class="flex gap-2 mb-8" id="contact-tabs">
+            <button data-tab="trial" class="tab-btn active px-4 py-2 rounded-full text-sm font-semibold border-2 border-brand bg-brand text-white transition-all">
+              Free trial
+            </button>
+            <button data-tab="demo" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold border-2 border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-all">
+              Request demo
+            </button>
+            <button data-tab="general" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold border-2 border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-all">
+              General inquiry
+            </button>
+          </div>
+
+          <!-- Trial info box -->
+          <div id="info-trial" class="info-box bg-brand/5 border border-brand/20 rounded-xl p-5 mb-6">
+            <h3 class="font-bold text-brand mb-2 flex items-center gap-2">
+              <Icon name="rocket" size={18} class="text-brand" /> Free trial — 14 days
+            </h3>
+            <p class="text-sm text-gray-600 mb-3">
+              Try ShopVirge free for 14 days. You get access to the full platform including:
+            </p>
+            <ul class="text-sm text-gray-600 space-y-1">
+              <li class="flex items-center gap-2"><span class="text-brand">✓</span> Your own shop environment</li>
+              <li class="flex items-center gap-2"><span class="text-brand">✓</span> Up to 25 test products</li>
+              <li class="flex items-center gap-2"><span class="text-brand">✓</span> 1 language (more after upgrade)</li>
+              <li class="flex items-center gap-2"><span class="text-brand">✓</span> Full API &amp; MCP access</li>
+              <li class="flex items-center gap-2"><span class="text-brand">✓</span> No credit card required</li>
+            </ul>
+          </div>
+
+          <!-- Demo info box -->
+          <div id="info-demo" class="info-box bg-amber-50 border border-amber-200 rounded-xl p-5 mb-6 hidden">
+            <h3 class="font-bold text-amber-700 mb-2 flex items-center gap-2">
+              <Icon name="monitor-play" size={18} class="text-amber-600" /> Personal demo
+            </h3>
+            <p class="text-sm text-gray-600">
+              We'll schedule a 30-minute video call to show you the platform, 
+              answer your questions, and help you pick the right plan for your business.
+            </p>
+          </div>
+
+          <!-- General info box -->
+          <div id="info-general" class="info-box bg-gray-50 border border-gray-200 rounded-xl p-5 mb-6 hidden">
+            <h3 class="font-bold text-gray-700 mb-2 flex items-center gap-2">
+              <Icon name="message-circle" size={18} class="text-gray-500" /> Ask us anything
+            </h3>
+            <p class="text-sm text-gray-600">
+              Got a question about the platform, pricing, or whether ShopVirge is the right fit? 
+              We're happy to help.
+            </p>
+          </div>
+
           <form action="https://formspree.io/f/mkokrkdl" method="POST" class="space-y-4">
-            <input type="hidden" name="_subject" value="New contact message - ShopVirge" />
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-              <input type="text" name="name" required 
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+            <input type="hidden" name="_subject" id="form-subject" value="New trial request - ShopVirge" />
+            <input type="hidden" name="type" id="form-type" value="trial" />
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                <input type="text" name="name" required 
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Company</label>
+                <input type="text" name="company"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+              </div>
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
               <input type="email" name="email" required 
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
             </div>
@@ -34,24 +96,38 @@ const base = import.meta.env.BASE_URL;
               <input type="tel" name="phone"
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
             </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">What are you looking for?</label>
-              <select name="type" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none bg-white">
-                <option value="">Choose an option...</option>
-                <option value="webshop">Webshop</option>
-                <option value="portfolio">Portfolio site</option>
-                <option value="both">Both</option>
-                <option value="other">Other</option>
+
+            <!-- Trial-specific field -->
+            <div id="field-trial" class="trial-field">
+              <label class="block text-sm font-medium text-gray-700 mb-1">What do you sell? *</label>
+              <textarea name="trial_description" rows="3" id="trial-textarea"
+                placeholder="E.g. handmade jewelry, organic cosmetics, vintage clothing..."
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none resize-none"></textarea>
+              <p class="text-xs text-gray-400 mt-1">This helps us pre-configure your shop environment.</p>
+            </div>
+
+            <!-- Trial: estimated products -->
+            <div id="field-products" class="trial-field">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Estimated number of products?</label>
+              <select name="estimated_products" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none bg-white">
+                <option value="1-25">1 – 25 products</option>
+                <option value="25-100">25 – 100 products</option>
+                <option value="100-300">100 – 300 products</option>
+                <option value="300+">300+ products</option>
               </select>
             </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-              <textarea name="message" rows="5" required
+
+            <!-- General message field -->
+            <div id="field-message" class="general-field hidden">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Message *</label>
+              <textarea name="message" rows="5" id="message-textarea"
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none resize-none"></textarea>
             </div>
-            <button type="submit" class="btn-primary w-full">Send message →</button>
+
+            <button type="submit" id="submit-btn" class="btn-primary w-full">Start free trial →</button>
           </form>
         </div>
+
         <div class="space-y-8">
           <div>
             <h3 class="text-lg font-bold mb-4">Get in touch directly</h3>
@@ -87,3 +163,72 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 </Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const infoBoxes = document.querySelectorAll('.info-box');
+    const trialFields = document.querySelectorAll('.trial-field');
+    const generalFields = document.querySelectorAll('.general-field');
+    const formType = document.getElementById('form-type') as HTMLInputElement;
+    const formSubject = document.getElementById('form-subject') as HTMLInputElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const trialTextarea = document.getElementById('trial-textarea') as HTMLTextAreaElement;
+    const messageTextarea = document.getElementById('message-textarea') as HTMLTextAreaElement;
+
+    const subjects: Record<string, string> = {
+      trial: 'New trial request - ShopVirge',
+      demo: 'Demo request - ShopVirge',
+      general: 'Contact message - ShopVirge'
+    };
+    const buttons: Record<string, string> = {
+      trial: 'Start free trial →',
+      demo: 'Request demo →',
+      general: 'Send message →'
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const initialTab = params.get('type') || 'trial';
+
+    function activate(tab: string) {
+      tabs.forEach(t => {
+        t.classList.remove('active', 'bg-brand', 'text-white', 'border-brand');
+        t.classList.add('border-gray-200', 'text-gray-600');
+      });
+      const active = document.querySelector(`[data-tab="${tab}"]`);
+      if (active) {
+        active.classList.add('active', 'bg-brand', 'text-white', 'border-brand');
+        active.classList.remove('border-gray-200', 'text-gray-600');
+      }
+
+      infoBoxes.forEach(b => b.classList.add('hidden'));
+      document.getElementById(`info-${tab}`)?.classList.remove('hidden');
+
+      const isTrial = tab === 'trial';
+      const isGeneral = tab === 'general';
+      trialFields.forEach(f => f.classList.toggle('hidden', !isTrial));
+      generalFields.forEach(f => f.classList.toggle('hidden', isTrial));
+
+      if (isTrial) {
+        trialTextarea?.setAttribute('required', '');
+        messageTextarea?.removeAttribute('required');
+      } else if (isGeneral) {
+        messageTextarea?.setAttribute('required', '');
+        trialTextarea?.removeAttribute('required');
+      } else {
+        trialTextarea?.removeAttribute('required');
+        messageTextarea?.removeAttribute('required');
+      }
+
+      formType.value = tab;
+      formSubject.value = subjects[tab] || subjects.general;
+      submitBtn.textContent = buttons[tab] || buttons.general;
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => {
+      activate((t as HTMLElement).dataset.tab || 'trial');
+    }));
+
+    activate(initialTab);
+  });
+</script>
