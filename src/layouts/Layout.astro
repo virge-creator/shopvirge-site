@@ -113,11 +113,8 @@ const enUrl = switchLangUrl(currentPath, 'en');
             </div>
           </div>
 
-          <a href={isEn ? `${enBase}contact/?type=demo` : `${nlBase}contact/?type=demo`} class="inline-flex items-center justify-center px-5 py-2 rounded-full border-2 border-gray-200 bg-white text-sm font-semibold text-gray-800 hover:border-brand hover:text-brand transition-colors">
+          <a href={isEn ? `${enBase}contact/?type=demo` : `${nlBase}contact/?type=demo`} data-open-demo class="btn-primary text-sm !px-5 !py-2">
             {isEn ? 'Get a demo' : 'Demo aanvragen'}
-          </a>
-          <a href={isEn ? `${enBase}contact/` : `${nlBase}contact/`} class="btn-primary text-sm !px-5 !py-2">
-            {isEn ? 'Get Started' : 'Start nu'}
           </a>
         </nav>
 
@@ -137,14 +134,9 @@ const enUrl = switchLangUrl(currentPath, 'en');
         <a href={isEn ? `${enBase}pricing/` : `${nlBase}prijzen/`} class="block text-sm font-medium text-gray-700">{isEn ? 'Pricing' : 'Prijzen'}</a>
         <a href={isEn ? `${enBase}blog/` : `${nlBase}blog/`} class="block text-sm font-medium text-gray-700">Blog</a>
         <a href={isEn ? `${enBase}contact/` : `${nlBase}contact/`} class="block text-sm font-medium text-gray-700">Contact</a>
-        <div class="flex gap-2 pt-2">
-          <a href={isEn ? `${enBase}contact/?type=demo` : `${nlBase}contact/?type=demo`} class="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-full border-2 border-gray-200 bg-white text-sm font-semibold text-gray-800">
-            {isEn ? 'Get a demo' : 'Demo'}
-          </a>
-          <a href={isEn ? `${enBase}contact/` : `${nlBase}contact/`} class="flex-1 btn-primary text-sm !px-4 !py-2">
-            {isEn ? 'Get Started' : 'Start nu'}
-          </a>
-        </div>
+        <a href={isEn ? `${enBase}contact/?type=demo` : `${nlBase}contact/?type=demo`} data-open-demo class="block btn-primary text-sm !px-4 !py-2 mt-2 text-center">
+          {isEn ? 'Get a demo' : 'Demo aanvragen'}
+        </a>
         <div class="border-t border-gray-100 pt-3">
           <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">{isEn ? 'Language' : 'Taal'}</p>
           <div class="flex gap-2">
@@ -201,6 +193,64 @@ const enUrl = switchLangUrl(currentPath, 'en');
     </div>
   </footer>
 
+  <!-- Demo request modal -->
+  <dialog id="demo-modal" class="demo-modal">
+    <div class="demo-modal-inner">
+      <button id="demo-close" type="button" class="demo-close" aria-label={isEn ? 'Close' : 'Sluiten'}>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div class="mb-6">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-text-heading mb-2 tracking-tight">
+          {isEn ? 'Request a demo' : 'Demo aanvragen'}
+        </h2>
+        <p class="text-text-light">
+          {isEn
+            ? 'A 30-minute video call. We show you the platform and answer your questions.'
+            : 'Een videocall van 30 minuten. We laten je het platform zien en beantwoorden je vragen.'}
+        </p>
+      </div>
+
+      <form action="https://formspree.io/f/mkokrkdl" method="POST" class="space-y-4">
+        <input type="hidden" name="_subject" value={isEn ? 'Demo request - ShopVirge' : 'Demo aanvraag - ShopVirge'} />
+        <input type="hidden" name="type" value="demo" />
+        <input type="hidden" name="source" value="header-modal" />
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">{isEn ? 'Name' : 'Naam'} *</label>
+            <input type="text" name="name" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">{isEn ? 'Company' : 'Bedrijfsnaam'}</label>
+            <input type="text" name="company" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">{isEn ? 'Email' : 'E-mail'} *</label>
+          <input type="email" name="email" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">{isEn ? 'Phone' : 'Telefoon'}</label>
+          <input type="tel" name="phone" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">{isEn ? 'What would you like to see?' : 'Wat wil je graag zien?'}</label>
+          <textarea name="message" rows="3" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none resize-none"></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary w-full">
+          {isEn ? 'Request demo →' : 'Demo aanvragen →'}
+        </button>
+      </form>
+    </div>
+  </dialog>
+
   <script>
     // Mobile menu
     const btn = document.getElementById('mobile-menu-btn');
@@ -236,6 +286,22 @@ const enUrl = switchLangUrl(currentPath, 'en');
         langDropdown?.classList.remove('opacity-100', 'visible', 'scale-100');
         if (langChevron) langChevron.style.transform = '';
       }
+    });
+
+    // Demo modal
+    const demoModal = document.getElementById('demo-modal') as HTMLDialogElement | null;
+    const demoClose = document.getElementById('demo-close');
+    document.querySelectorAll('[data-open-demo]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        if (!demoModal) return;
+        e.preventDefault();
+        demoModal.showModal();
+        (demoModal.querySelector('input[name="name"]') as HTMLInputElement | null)?.focus();
+      });
+    });
+    demoClose?.addEventListener('click', () => demoModal?.close());
+    demoModal?.addEventListener('click', (e) => {
+      if (e.target === demoModal) demoModal.close();
     });
   </script>
 </body>
