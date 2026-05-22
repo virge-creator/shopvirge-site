@@ -21,13 +21,13 @@ const base = import.meta.env.BASE_URL;
         <div>
           <!-- Type selector tabs -->
           <div class="flex gap-2 mb-8" id="contact-tabs">
-            <button data-tab="trial" class="tab-btn active px-4 py-2 rounded-full text-sm font-semibold border-2 border-brand bg-brand text-white transition-all">
+            <button data-tab="trial" class="tab-btn active">
               Free trial
             </button>
-            <button data-tab="demo" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold border-2 border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-all">
+            <button data-tab="demo" class="tab-btn">
               Request demo
             </button>
-            <button data-tab="general" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold border-2 border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-all">
+            <button data-tab="general" class="tab-btn">
               General inquiry
             </button>
           </div>
@@ -191,15 +191,8 @@ const base = import.meta.env.BASE_URL;
     const initialTab = params.get('type') || 'trial';
 
     function activate(tab: string) {
-      tabs.forEach(t => {
-        t.classList.remove('active', 'bg-brand', 'text-white', 'border-brand');
-        t.classList.add('border-gray-200', 'text-gray-600');
-      });
-      const active = document.querySelector(`[data-tab="${tab}"]`);
-      if (active) {
-        active.classList.add('active', 'bg-brand', 'text-white', 'border-brand');
-        active.classList.remove('border-gray-200', 'text-gray-600');
-      }
+      tabs.forEach(t => t.classList.remove('active'));
+      document.querySelector(`[data-tab="${tab}"]`)?.classList.add('active');
 
       infoBoxes.forEach(b => b.classList.add('hidden'));
       document.getElementById(`info-${tab}`)?.classList.remove('hidden');

@@ -43,6 +43,30 @@ body {
   @apply bg-surface;
 }
 
+/* Tab pill buttons (contact page form selector) */
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 2px solid #e5e7eb;
+  background: white;
+  color: #4b5563;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+.tab-btn:not(.active):hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+.tab-btn.active {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: white;
+}
+
 /* Long-form content typography (blog posts, about page, etc.) */
 .prose {
   color: var(--color-text);
