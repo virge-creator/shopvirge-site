@@ -1,0 +1,58 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Icon from '../../../components/Icon.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="About us — Our vision" description="Open source, headless and multilingual. The vision behind ShopVirge." lang="en">
+  <section class="hero text-white py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Our vision</h1>
+        <p class="text-xl text-white/80">
+          An open source, headless shop platform that lets you launch a professional store in minutes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-text-heading prose-headings:font-bold
+        prose-p:text-text prose-p:leading-relaxed
+        prose-a:text-brand prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-text-heading">
+        <h2>What we're building</h2>
+        <p>
+          ShopVirge is an <strong>open source, headless shop system</strong>. The backend, API and MCP layer
+          handle the heavy lifting — products, translations, orders and payments — so you can spin up a shop
+          quickly without being locked into a single frontend or vendor.
+        </p>
+
+        <h2>Where we are today</h2>
+        <p>
+          We're still in an early stage. There is <strong>no freely available frontend yet</strong> that you
+          can deploy on your own. We are already running the platform in production with a handful of
+          customers, and we work closely with them to get the first public release right.
+        </p>
+        <p>
+          Want to use it today? <a href={`${base}en/contact/`}>Get in touch</a> — we'll see if we can set
+          your shop up on our hosted environment.
+        </p>
+
+        <h2>What's coming</h2>
+        <ul>
+          <li><strong>Mobile app</strong> — available soon, so you can manage your shop, orders and stock on the go.</li>
+          <li><strong>Public frontend</strong> — an open source storefront you can self-host and customize.</li>
+          <li><strong>More integrations</strong> — additional payment providers, shipping carriers and marketing tools.</li>
+        </ul>
+      </div>
+
+      <div class="mt-12 p-8 bg-brand/5 rounded-2xl text-center">
+        <h3 class="text-xl font-bold text-text-heading mb-2">Want to join in?</h3>
+        <p class="text-text-light mb-4">We love talking to founders and developers who want to get in early.</p>
+        <a href={`${base}en/contact/`} class="btn-primary">Get in touch →</a>
+      </div>
+    </div>
+  </section>
+</Layout>
