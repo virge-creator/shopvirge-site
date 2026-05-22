@@ -213,7 +213,7 @@ const enUrl = switchLangUrl(currentPath, 'en');
         </p>
       </div>
 
-      <form action="https://formspree.io/f/mkokrkdl" method="POST" class="space-y-4">
+      <form id="demo-form" action="https://formspree.io/f/mkokrkdl" method="POST" class="space-y-4">
         <input type="hidden" name="_subject" value={isEn ? 'Demo request - ShopVirge' : 'Demo aanvraag - ShopVirge'} />
         <input type="hidden" name="type" value="demo" />
         <input type="hidden" name="source" value="header-modal" />
@@ -229,15 +229,23 @@ const enUrl = switchLangUrl(currentPath, 'en');
           </div>
         </div>
 
+        <p class="text-xs text-text-light -mb-2">
+          {isEn ? 'Provide an email or phone number so we can reach you.' : 'Geef een e-mailadres of telefoonnummer zodat we contact kunnen opnemen.'}
+        </p>
+
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">{isEn ? 'Email' : 'E-mail'} *</label>
-          <input type="email" name="email" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+          <label class="block text-sm font-medium text-gray-700 mb-1">{isEn ? 'Email' : 'E-mail'}</label>
+          <input type="email" name="email" data-contact-field class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
         </div>
 
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">{isEn ? 'Phone' : 'Telefoon'}</label>
-          <input type="tel" name="phone" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+          <input type="tel" name="phone" data-contact-field class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
         </div>
+
+        <p id="demo-contact-error" class="hidden text-sm text-danger">
+          {isEn ? 'Please enter your email or phone number.' : 'Vul je e-mailadres of telefoonnummer in.'}
+        </p>
 
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">{isEn ? 'What would you like to see?' : 'Wat wil je graag zien?'}</label>
@@ -291,6 +299,8 @@ const enUrl = switchLangUrl(currentPath, 'en');
     // Demo modal
     const demoModal = document.getElementById('demo-modal') as HTMLDialogElement | null;
     const demoClose = document.getElementById('demo-close');
+    const demoForm = document.getElementById('demo-form') as HTMLFormElement | null;
+    const demoError = document.getElementById('demo-contact-error');
     document.querySelectorAll('[data-open-demo]').forEach((el) => {
       el.addEventListener('click', (e) => {
         if (!demoModal) return;
@@ -302,6 +312,17 @@ const enUrl = switchLangUrl(currentPath, 'en');
     demoClose?.addEventListener('click', () => demoModal?.close());
     demoModal?.addEventListener('click', (e) => {
       if (e.target === demoModal) demoModal.close();
+    });
+    demoForm?.addEventListener('submit', (e) => {
+      const email = (demoForm.querySelector('input[name="email"]') as HTMLInputElement | null)?.value.trim() || '';
+      const phone = (demoForm.querySelector('input[name="phone"]') as HTMLInputElement | null)?.value.trim() || '';
+      if (!email && !phone) {
+        e.preventDefault();
+        demoError?.classList.remove('hidden');
+        (demoForm.querySelector('input[name="email"]') as HTMLInputElement | null)?.focus();
+      } else {
+        demoError?.classList.add('hidden');
+      }
     });
   </script>
 </body>

@@ -67,16 +67,57 @@ body {
   color: white;
 }
 
+/* Demo CTA glow — gentle pulse around the header Get a demo button */
+[data-open-demo] {
+  position: relative;
+  overflow: hidden;
+  animation: demo-pulse 2.6s ease-in-out infinite;
+  box-shadow: 0 8px 20px -6px rgb(11 100 221 / 0.45);
+}
+[data-open-demo]:hover {
+  animation-play-state: paused;
+  box-shadow: 0 14px 32px -8px rgb(11 100 221 / 0.65), 0 0 0 4px rgb(11 100 221 / 0.18);
+  transform: translateY(-1px);
+}
+[data-open-demo]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(110deg, transparent 0%, rgb(255 255 255 / 0.45) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  animation: demo-shine 5s ease-in-out infinite;
+}
+@keyframes demo-pulse {
+  0%, 100% { box-shadow: 0 8px 20px -6px rgb(11 100 221 / 0.45), 0 0 0 0 rgb(11 100 221 / 0.5); }
+  50%      { box-shadow: 0 12px 26px -6px rgb(11 100 221 / 0.55), 0 0 0 10px rgb(11 100 221 / 0); }
+}
+@keyframes demo-shine {
+  0%, 70%, 100% { left: -60%; }
+  85%           { left: 110%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-open-demo],
+  [data-open-demo]::after { animation: none; }
+}
+
 /* Demo request modal */
 .demo-modal {
-  width: 100%;
-  max-width: 36rem;
+  width: auto;
+  max-width: min(36rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
   padding: 0;
   border: 0;
   border-radius: 1.25rem;
   background: white;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.3);
   color: var(--color-text);
+  inset: 0;
+  margin: auto;
+  overflow: hidden;
 }
 .demo-modal::backdrop {
   background: rgba(17, 28, 44, 0.55);
@@ -92,6 +133,8 @@ body {
 .demo-modal-inner {
   position: relative;
   padding: 2rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
 }
 @media (min-width: 640px) {
   .demo-modal-inner { padding: 2.5rem; }
