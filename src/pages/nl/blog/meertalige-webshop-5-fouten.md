@@ -8,7 +8,7 @@ tags: ["Meertalig", "Tips", "Webshop"]
 image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop"
 ---
 
-Europa is een goudmijn voor online ondernemers. Met 450 miljoen consumenten in de EU alleen al, is de potentiële markt enorm. Maar een webshop in meerdere talen aanbieden brengt uitdagingen met zich mee. Dit zijn de vijf meest gemaakte fouten — en hoe je ze vermijdt.
+Europa is een goudmijn voor online ondernemers. Met 450 miljoen consumenten in de EU alleen al, is de potentiële markt enorm. Maar een webshop in meerdere talen aanbieden brengt uitdagingen met zich mee. Dit zijn de vijf meest gemaakte fouten, en hoe je ze vermijdt.
 
 ## 1. Letterlijk vertalen zonder lokalisatie
 
@@ -24,7 +24,7 @@ Nederlandse klanten betalen met iDEAL. Duitsers met PayPal of Sofort. Fransen me
 
 ## 3. SEO vergeten per taalversie
 
-Veel ondernemers vertalen hun webshop maar vergeten de meta-beschrijvingen, alt-teksten en URL-structuur aan te passen. Google ziet elke taalversie als een aparte pagina — en die heeft eigen SEO nodig.
+Veel ondernemers vertalen hun webshop maar vergeten de meta-beschrijvingen, alt-teksten en URL-structuur aan te passen. Google ziet elke taalversie als een aparte pagina, en die heeft eigen SEO nodig.
 
 **De oplossing:**
 - Gebruik hreflang-tags om Google te vertellen welke versie voor welk land is
@@ -33,7 +33,7 @@ Veel ondernemers vertalen hun webshop maar vergeten de meta-beschrijvingen, alt-
 
 ## 4. Geen lokale klantenservice
 
-Als een Duitse klant een vraag heeft en alleen Nederlands kan communiceren, heb je een probleem. Klantenservice in de lokale taal is niet optioneel — het is essentieel.
+Als een Duitse klant een vraag heeft en alleen Nederlands kan communiceren, heb je een probleem. Klantenservice in de lokale taal is niet optioneel, het is essentieel.
 
 **De oplossing:** Start met een meertalige FAQ-pagina. Gebruik AI-chatbots die meerdere talen ondersteunen. En zorg dat je e-mailresponses in de taal van de klant zijn.
 

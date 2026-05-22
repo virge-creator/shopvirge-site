@@ -14,7 +14,7 @@ Shopify domineert de wereldwijde e-commerce markt. Met meer dan 4 miljoen websho
 
 ### Transactiekosten
 
-Shopify rekent transactiekosten bovenop de kosten van je betaalprovider — tenzij je Shopify Payments gebruikt. In Europa is Shopify Payments niet overal beschikbaar, wat betekent dat je dubbel betaalt.
+Shopify rekent transactiekosten bovenop de kosten van je betaalprovider, tenzij je Shopify Payments gebruikt. In Europa is Shopify Payments niet overal beschikbaar, wat betekent dat je dubbel betaalt.
 
 ### GDPR-compliance
 

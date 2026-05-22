@@ -3,12 +3,13 @@ import Layout from '../../../layouts/Layout.astro';
 import Icon from '../../../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
 ---
-<Layout title="Over ons — Onze visie" description="Open source, headless en meertalig. Dit is de visie achter ShopVirge." lang="nl">
-  <section class="hero text-white py-20 md:py-28">
+<Layout title="Over ons: Onze visie" description="Open source, headless en meertalig. Dit is de visie achter ShopVirge." lang="nl">
+  <section class="hero text-white py-24 md:py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Onze visie</h1>
-        <p class="text-xl text-white/80">
+        <p class="text-sm font-semibold uppercase tracking-widest text-white/60 mb-4">Over ShopVirge</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-[1.1] tracking-tight">Onze visie</h1>
+        <p class="text-xl md:text-2xl text-white/85 leading-relaxed max-w-2xl">
           Een open source, headless webshopplatform waarmee je in een paar minuten een professionele shop opzet.
         </p>
       </div>
@@ -16,16 +17,12 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <section class="py-20 md:py-28">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="prose prose-lg max-w-none
-        prose-headings:text-text-heading prose-headings:font-bold
-        prose-p:text-text prose-p:leading-relaxed
-        prose-a:text-brand prose-a:no-underline hover:prose-a:underline
-        prose-strong:text-text-heading">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6">
+      <div class="prose prose-lg">
         <h2>Wat we bouwen</h2>
         <p>
           ShopVirge is een <strong>open source, headless webshopsysteem</strong>. De backend, API en MCP-laag
-          regelen het zware werk — producten, vertalingen, orders en betalingen — zodat jij je shop snel
+          regelen het zware werk (producten, vertalingen, orders en betalingen), zodat jij je shop snel
           kunt opzetten zonder vast te zitten aan één frontend of één leverancier.
         </p>
 
@@ -36,15 +33,15 @@ const base = import.meta.env.BASE_URL;
           en we werken nauw met ze samen om de eerste publieke release goed te krijgen.
         </p>
         <p>
-          Wil je het nu al gebruiken? Neem dan <a href={`${base}nl/contact/`}>contact</a> met ons op —
+          Wil je het nu al gebruiken? Neem dan <a href={`${base}nl/contact/`}>contact</a> met ons op;
           dan kijken we samen of we je shop kunnen opzetten op onze hosted omgeving.
         </p>
 
         <h2>Wat eraan komt</h2>
         <ul>
-          <li><strong>Mobiele app</strong> — binnenkort beschikbaar, zodat je je shop, orders en voorraad onderweg beheert.</li>
-          <li><strong>Publieke frontend</strong> — een open source storefront die je zelf kunt hosten en aanpassen.</li>
-          <li><strong>Meer integraties</strong> — meer betaalproviders, verzenddiensten en marketingtools.</li>
+          <li><strong>Mobiele app</strong>: binnenkort beschikbaar, zodat je je shop, orders en voorraad onderweg beheert.</li>
+          <li><strong>Publieke frontend</strong>: een open source storefront die je zelf kunt hosten en aanpassen.</li>
+          <li><strong>Meer integraties</strong>: meer betaalproviders, verzenddiensten en marketingtools.</li>
         </ul>
       </div>
 

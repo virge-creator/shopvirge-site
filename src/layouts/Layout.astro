@@ -6,7 +6,7 @@ interface Props {
   description?: string;
   lang?: string;
 }
-const { title, description = "ShopVirge — Launch your multilingual online shop or portfolio in minutes.", lang = "nl" } = Astro.props;
+const { title, description = "ShopVirge - Launch your multilingual online shop or portfolio in minutes.", lang = "nl" } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const isEn = lang === 'en';
 const nlBase = `${base}nl/`;

@@ -14,7 +14,7 @@ Shopify dominates the global e-commerce market. With over 4 million webshops wor
 
 ### Transaction Fees
 
-Shopify charges transaction fees on top of your payment provider's costs — unless you use Shopify Payments. In Europe, Shopify Payments isn't available everywhere, meaning you pay double.
+Shopify charges transaction fees on top of your payment provider's costs, unless you use Shopify Payments. In Europe, Shopify Payments isn't available everywhere, meaning you pay double.
 
 ### GDPR Compliance
 

@@ -8,7 +8,7 @@ tags: ["Multilingual", "Tips", "Webshop"]
 image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop"
 ---
 
-Europe is a goldmine for online entrepreneurs. With 450 million consumers in the EU alone, the potential market is enormous. But offering a webshop in multiple languages comes with challenges. These are the five most common mistakes — and how to avoid them.
+Europe is a goldmine for online entrepreneurs. With 450 million consumers in the EU alone, the potential market is enormous. But offering a webshop in multiple languages comes with challenges. These are the five most common mistakes, and how to avoid them.
 
 ## 1. Translating Literally Without Localization
 
@@ -24,7 +24,7 @@ Dutch customers pay with iDEAL. Germans with PayPal or Sofort. French with Carte
 
 ## 3. Forgetting SEO Per Language Version
 
-Many entrepreneurs translate their webshop but forget to adapt meta descriptions, alt texts, and URL structure. Google sees each language version as a separate page — and each one needs its own SEO.
+Many entrepreneurs translate their webshop but forget to adapt meta descriptions, alt texts, and URL structure. Google sees each language version as a separate page, and each one needs its own SEO.
 
 **The solution:**
 - Use hreflang tags to tell Google which version is for which country
@@ -33,7 +33,7 @@ Many entrepreneurs translate their webshop but forget to adapt meta descriptions
 
 ## 4. No Local Customer Service
 
-If a German customer has a question and can only communicate in Dutch, you have a problem. Customer service in the local language isn't optional — it's essential.
+If a German customer has a question and can only communicate in Dutch, you have a problem. Customer service in the local language isn't optional, it's essential.
 
 **The solution:** Start with a multilingual FAQ page. Use AI chatbots that support multiple languages. And make sure your email responses are in the customer's language.
 
