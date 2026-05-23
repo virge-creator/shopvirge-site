@@ -178,6 +178,7 @@ const enUrl = switchLangUrl(currentPath, 'en');
             <li><a href={isEn ? `${enBase}about/` : `${nlBase}over-ons/`} class="hover:text-white transition-colors">{isEn ? 'About us' : 'Over ons'}</a></li>
             <li><a href={isEn ? `${enBase}blog/` : `${nlBase}blog/`} class="hover:text-white transition-colors">Blog</a></li>
             <li><a href={isEn ? `${enBase}contact/` : `${nlBase}contact/`} class="hover:text-white transition-colors">Contact</a></li>
+            <li><a href={isEn ? `${enBase}privacy/` : `${nlBase}privacy/`} class="hover:text-white transition-colors">{isEn ? 'Privacy' : 'Privacy'}</a></li>
           </ul>
         </div>
         <div>
@@ -189,8 +190,12 @@ const enUrl = switchLangUrl(currentPath, 'en');
           </address>
         </div>
       </div>
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-500">
-        &copy; {new Date().getFullYear()} ShopVirge. All rights reserved.
+      <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm text-gray-500">
+        <span>&copy; {new Date().getFullYear()} ShopVirge. {isEn ? 'All rights reserved.' : 'Alle rechten voorbehouden.'}</span>
+        <span class="hidden sm:inline text-gray-700">·</span>
+        <a href="https://virge.io" target="_blank" rel="noopener" class="hover:text-white transition-colors">
+          {isEn ? 'Powered by ' : 'Mogelijk gemaakt door '}<span class="font-semibold text-gray-300">Virge</span>
+        </a>
       </div>
     </div>
   </footer>

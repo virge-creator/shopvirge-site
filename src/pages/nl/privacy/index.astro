@@ -1,0 +1,78 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Privacy: Wat we wel (en niet) met je gegevens doen" description="ShopVirge bewaart alleen wat je zelf deelt. We verkopen geen gegevens en we plaatsen geen cookies." lang="nl">
+  <section class="hero text-white py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl">
+        <p class="text-sm font-semibold uppercase tracking-widest text-white/60 mb-4">Privacy</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-[1.1] tracking-tight">Wat we wel (en niet) met je gegevens doen</h1>
+        <p class="text-xl md:text-2xl text-white/85 leading-relaxed max-w-3xl">
+          Kort en duidelijk. Geen juridisch jargon, geen dark patterns.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl prose prose-lg">
+        <h2>Wat we bewaren</h2>
+        <p>
+          We bewaren alleen gegevens die je <strong>zelf actief met ons deelt</strong>. Dat betekent:
+        </p>
+        <ul>
+          <li>Wat je invult in het contactformulier (naam, e-mail, telefoon, bericht, en wat je verder typt).</li>
+          <li>Account- en productgegevens die je in je ShopVirge-shop invoert, als je klant bent.</li>
+        </ul>
+        <p>
+          Dat is de hele lijst. We verzamelen geen analytics over bezoekers, we maken geen browser-fingerprint, en
+          we verrijken je gegevens niet met externe bronnen.
+        </p>
+
+        <h2>Wat we niet doen</h2>
+        <ul>
+          <li><strong>We verkopen geen gegevens.</strong> Niet aan adverteerders, niet aan databrokers, niet aan wie dan ook.</li>
+          <li><strong>We plaatsen geen tracking-cookies.</strong> Deze site zet geen cookies in je browser; er is geen cookiebanner omdat er niets is om toestemming voor te geven.</li>
+          <li><strong>We draaien geen externe trackers.</strong> Geen Google Analytics, geen Facebook-pixel, geen session replay.</li>
+        </ul>
+
+        <h2>Hoe we gebruiken wat je deelt</h2>
+        <p>
+          Als je het contactformulier invult of een demo aanvraagt, komt dat bericht bij ons team binnen zodat we
+          kunnen reageren. We bewaren het alleen zolang als nodig is voor dat gesprek en eventuele opvolging.
+        </p>
+        <p>
+          Als je klant wordt, gebruiken we de gegevens in je shop (producten, vertalingen, bestellingen) puur om
+          je shop te laten draaien. Je kunt op elk moment alles exporteren, en je kunt ons vragen om alles te
+          verwijderen.
+        </p>
+
+        <h2>Externe partijen waar we wél van afhankelijk zijn</h2>
+        <ul>
+          <li><strong>Formspree</strong> levert contactformulier-berichten bij ons af.</li>
+          <li><strong>Google Maps</strong> toont de kaart op onze contactpagina. De kaart laadt alleen als je die pagina bezoekt.</li>
+          <li><strong>GitHub Pages</strong> host deze website.</li>
+        </ul>
+        <p>
+          Elk van deze partijen ziet alleen wat strikt nodig is om hun werk te doen (een formulier-inzending, een
+          kaarttile-verzoek, een paginabezoek). Geen van hen krijgt een profiel van wie je bent of wat je verder
+          op het web doet.
+        </p>
+
+        <h2>Jouw rechten</h2>
+        <p>
+          Onder de AVG kun je op elk moment opvragen welke gegevens we van je hebben, ze laten corrigeren, of ze
+          laten verwijderen. <a href={`${base}nl/contact/`}>Neem contact op</a> en we regelen het.
+        </p>
+
+        <h2>Wijzigingen</h2>
+        <p>
+          Als we ooit iets veranderen in hoe we met gegevens omgaan, werken we deze pagina eerst bij. Er is geen
+          aparte cookie- of trackingverklaring omdat we beide niet doen.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

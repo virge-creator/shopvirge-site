@@ -1,0 +1,76 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Privacy: What we do (and don't do) with your data" description="ShopVirge only stores what you share. We don't sell your data and we don't set cookies." lang="en">
+  <section class="hero text-white py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl">
+        <p class="text-sm font-semibold uppercase tracking-widest text-white/60 mb-4">Privacy</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-[1.1] tracking-tight">What we do (and don't do) with your data</h1>
+        <p class="text-xl md:text-2xl text-white/85 leading-relaxed max-w-3xl">
+          Short and to the point. No legalese, no dark patterns.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl prose prose-lg">
+        <h2>What we store</h2>
+        <p>
+          We only store information that <strong>you actively share with us</strong>. That means:
+        </p>
+        <ul>
+          <li>Contact form submissions (name, email, phone, message, anything else you type in).</li>
+          <li>Account and product data you enter into your ShopVirge shop, if you are a customer.</li>
+        </ul>
+        <p>
+          That's the entire list. We don't collect analytics on visitors, we don't fingerprint your browser, and
+          we don't enrich your data with third-party sources.
+        </p>
+
+        <h2>What we don't do</h2>
+        <ul>
+          <li><strong>We don't sell your data.</strong> Not to advertisers, not to brokers, not to anyone.</li>
+          <li><strong>We don't set tracking cookies.</strong> This site doesn't drop cookies in your browser; there's no consent banner because there is nothing to consent to.</li>
+          <li><strong>We don't run third-party trackers.</strong> No Google Analytics, no Facebook pixel, no session replay.</li>
+        </ul>
+
+        <h2>How we use what you share</h2>
+        <p>
+          When you fill in the contact form or request a demo, the message is delivered to our team so we can reply
+          to you. We keep it only as long as we need it for that conversation and any follow-up.
+        </p>
+        <p>
+          If you become a customer, the data inside your shop (products, translations, orders) is used to operate
+          your shop and nothing else. You can export everything at any time, and you can ask us to delete it.
+        </p>
+
+        <h2>Third parties we do rely on</h2>
+        <ul>
+          <li><strong>Formspree</strong> handles delivery of contact form submissions to our inbox.</li>
+          <li><strong>Google Maps</strong> embeds the map on our contact page. The map only loads when you visit that page.</li>
+          <li><strong>GitHub Pages</strong> hosts this website.</li>
+        </ul>
+        <p>
+          Each of these sees what is strictly needed to do their job (a form submission, a map tile request, a page
+          request). None of them get a profile of who you are or what you do across the rest of the web.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>
+          Under the GDPR you can ask us at any time what data we hold about you, ask us to correct it, or ask us to
+          delete it. <a href={`${base}en/contact/`}>Get in touch</a> and we'll take care of it.
+        </p>
+
+        <h2>Changes to this statement</h2>
+        <p>
+          If we ever change how we handle data, we update this page first. There is no separate cookie or tracking
+          policy because we don't do either.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
