@@ -6,7 +6,7 @@ const base = import.meta.env.BASE_URL;
 <Layout title={frontmatter.title} description={frontmatter.description} lang="nl">
   <article>
     <header class="bg-surface border-b border-gray-100">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 pt-10 pb-14 md:pt-14 md:pb-20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-10 pb-14 md:pt-14 md:pb-20">
         <a href={`${base}nl/blog/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:underline mb-10">
           ← Terug naar blog
         </a>
@@ -56,7 +56,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     )}
 
-    <div class="max-w-2xl mx-auto px-4 sm:px-6 pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 pb-20">
       <div class="prose prose-lg">
         <slot />
       </div>
