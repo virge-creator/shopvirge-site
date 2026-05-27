@@ -5,9 +5,11 @@ interface Props {
   title: string;
   description?: string;
   lang?: string;
+  image?: string;
 }
-const { title, description = "ShopVirge - Launch your multilingual online shop or portfolio in minutes.", lang = "nl" } = Astro.props;
+const { title, description = lang === 'en' ? "ShopVirge — your multilingual webshop in minutes. Automatic translations, Stripe payments and mobile-first design. From €50/month." : "ShopVirge — je meertalige webshop in enkele minuten. Automatische vertalingen, Stripe betalingen en mobiel-first design. Vanaf €50/maand.", lang = "nl", image } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
 const isEn = lang === 'en';
 const nlBase = `${base}nl/`;
 const enBase = `${base}en/`;
@@ -52,6 +54,10 @@ function switchLangUrl(path: string, toLang: 'nl' | 'en'): string {
 }
 const nlUrl = switchLangUrl(currentPath, 'nl');
 const enUrl = switchLangUrl(currentPath, 'en');
+const canonicalUrl = `${siteUrl}${currentPath}`;
+const fullNlUrl = `${siteUrl}${nlUrl}`;
+const fullEnUrl = `${siteUrl}${enUrl}`;
+const ogImage = image || `${siteUrl}${base}images/logo.png`;
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -61,11 +67,48 @@ const enUrl = switchLangUrl(currentPath, 'en');
   <meta name="description" content={description} />
   <title>{title} | ShopVirge</title>
   <link rel="icon" type="image/png" href={`${base}images/logo.png`} />
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="alternate" hreflang="nl" href={fullNlUrl} />
+  <link rel="alternate" hreflang="en" href={fullEnUrl} />
+  <link rel="alternate" hreflang="x-default" href={fullNlUrl} />
+  <!-- Open Graph -->
+  <meta property="og:title" content={`${title} | ShopVirge`} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'nl_NL'} />
+  <meta property="og:site_name" content="ShopVirge" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`${title} | ShopVirge`} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="alternate" hreflang="nl" href="https://shopvirge.com/nl/" />
-  <link rel="alternate" hreflang="en" href="https://shopvirge.com/en/" />
+  <!-- Organization structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ShopVirge",
+    "url": siteUrl,
+    "logo": `${siteUrl}${base}images/logo.png`,
+    "description": "Open-source multilingual webshop platform with automatic translations, Stripe payments and MCP-ready API.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Julianastraat 63",
+      "addressLocality": "Stramproy",
+      "postalCode": "6039 AH",
+      "addressCountry": "NL"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+31-495-794-123",
+      "email": "support@shopvirge.com",
+      "contactType": "customer service"
+    }
+  })} />
 </head>
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
@@ -73,7 +116,7 @@ const enUrl = switchLangUrl(currentPath, 'en');
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <a href={isEn ? enBase : nlBase} class="flex items-center gap-2">
-          <img src={`${base}images/logo.png`} alt="ShopVirge" class="h-9" />
+          <img src={`${base}images/logo.png`} alt="ShopVirge logo — meertalig webshop platform" class="h-9" />
         </a>
         
         <nav class="hidden md:flex items-center gap-8">
@@ -163,7 +206,7 @@ const enUrl = switchLangUrl(currentPath, 'en');
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-3 gap-8">
         <div>
-          <img src={`${base}images/logo.png`} alt="ShopVirge" class="h-8 mb-4 brightness-200" />
+          <img src={`${base}images/logo.png`} alt="ShopVirge logo" class="h-8 mb-4 brightness-200" />
           <p class="text-gray-400 text-sm">
             {isEn 
               ? 'Launch your multilingual online shop or portfolio in minutes.' 

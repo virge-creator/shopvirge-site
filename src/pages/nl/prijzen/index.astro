@@ -2,8 +2,59 @@
 import Layout from '../../../layouts/Layout.astro';
 import Icon from '../../../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
+const productsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Product",
+        "name": "ShopVirge Small",
+        "description": "Meertalige webshop — 1 taal, max 100 producten, Stripe betalingen, MCP-ready API",
+        "offers": { "@type": "Offer", "price": "50.00", "priceCurrency": "EUR", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "50.00", "priceCurrency": "EUR", "billingDuration": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" } } }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Product",
+        "name": "ShopVirge Medium",
+        "description": "Meertalige webshop — 3 talen, max 300 producten, Excel import, automatische SEO-optimalisaties",
+        "offers": { "@type": "Offer", "price": "75.00", "priceCurrency": "EUR", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "75.00", "priceCurrency": "EUR", "billingDuration": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" } } }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Product",
+        "name": "ShopVirge Large",
+        "description": "Meertalige webshop — 3 talen, onbeperkt producten, full-service, content creatie",
+        "offers": { "@type": "Offer", "price": "100.00", "priceCurrency": "EUR", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "100.00", "priceCurrency": "EUR", "billingDuration": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" } } }
+      }
+    }
+  ]
+};
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Wat zit er in de opstartkosten?", "acceptedAnswer": { "@type": "Answer", "text": "Bij Medium: wij controleren je productdata in Excel, valideren alles en doen de initiële import in je shop. Bij Large: wij regelen alles inclusief contentcreatie, productfoto-advies en volledige Stripe-configuratie." } },
+    { "@type": "Question", "name": "Kan ik later upgraden?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Je kunt op elk moment upgraden van Small naar Medium of Large. Wij helpen je met de migratie van producten en het toevoegen van talen." } },
+    { "@type": "Question", "name": "Kan ik op elk moment opzeggen?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, geen contractverplichting. Maandelijks opzegbaar. Bij opzegging ontvang je een volledige export van je producten, categorieën en vertalingen zodat je altijd eigenaar blijft van je data." } },
+    { "@type": "Question", "name": "Welke talen worden ondersteund?", "acceptedAnswer": { "@type": "Answer", "text": "Nederlands, Engels, Duits, Frans, Spaans en meer. Jij kiest welke talen je activeert voor je shop." } },
+    { "@type": "Question", "name": "Wat is MCP-toegang?", "acceptedAnswer": { "@type": "Answer", "text": "Alle abonnementen geven toegang tot onze MCP-ready API, waarmee AI-agents (Claude, ChatGPT, Cursor) direct je producten, vertalingen en categorieën kunnen beheren." } },
+    { "@type": "Question", "name": "Wat is de Discord community?", "acceptedAnswer": { "@type": "Answer", "text": "Direct contact met ons team en andere ShopVirge-ondernemers. Stel vragen, deel ideeën en blijf op de hoogte van nieuwe features." } }
+  ]
+};
 ---
-<Layout title="Prijzen - Eenvoudig en transparant" lang="nl">
+<Layout title="Prijzen - Eenvoudig en transparant" description="ShopVirge prijzen: Small €50/mnd, Medium €75/mnd, Large €100/mnd. Transparante abonnementen voor je meertalige webshop. Geen verrassingen." lang="nl">
+  <script type="application/ld+json" set:html={JSON.stringify(productsSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <section class="hero text-white py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
