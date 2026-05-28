@@ -2,8 +2,59 @@
 import Layout from '../../../layouts/Layout.astro';
 import Icon from '../../../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
+const productsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Product",
+        "name": "ShopVirge Small",
+        "description": "Multilingual webshop — 1 language, max 100 products, Stripe payments, MCP-ready API",
+        "offers": { "@type": "Offer", "price": "50.00", "priceCurrency": "EUR", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "50.00", "priceCurrency": "EUR", "billingDuration": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" } } }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Product",
+        "name": "ShopVirge Medium",
+        "description": "Multilingual webshop — 3 languages, max 300 products, Excel import, automatic SEO optimizations",
+        "offers": { "@type": "Offer", "price": "75.00", "priceCurrency": "EUR", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "75.00", "priceCurrency": "EUR", "billingDuration": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" } } }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Product",
+        "name": "ShopVirge Large",
+        "description": "Multilingual webshop — 3 languages, unlimited products, full-service, content creation",
+        "offers": { "@type": "Offer", "price": "100.00", "priceCurrency": "EUR", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "100.00", "priceCurrency": "EUR", "billingDuration": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" } } }
+      }
+    }
+  ]
+};
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What's included in the onboarding fee?", "acceptedAnswer": { "@type": "Answer", "text": "For Medium: we review your product data in Excel, validate it, and do the initial import into your shop. For Large: we handle everything including content creation, product photography guidance, and full Stripe configuration." } },
+    { "@type": "Question", "name": "Can I upgrade later?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can upgrade from Small to Medium or Large at any time. We'll help you migrate your products and add languages." } },
+    { "@type": "Question", "name": "Can I cancel anytime?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, no lock-in. Cancel monthly. Upon cancellation you receive a full export of your products, categories and translations so you always remain the owner of your data." } },
+    { "@type": "Question", "name": "Which languages are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Dutch, English, German, French, Spanish and more. You choose which languages to activate for your shop." } },
+    { "@type": "Question", "name": "What is MCP access?", "acceptedAnswer": { "@type": "Answer", "text": "All plans include access to our MCP-ready API, so AI agents (Claude, ChatGPT, Cursor) can manage your products, translations and categories directly." } },
+    { "@type": "Question", "name": "What's in the Discord community?", "acceptedAnswer": { "@type": "Answer", "text": "Direct access to our team and other ShopVirge merchants. Get help, share ideas, and stay up to date with new features." } }
+  ]
+};
 ---
-<Layout title="Pricing - Simple and transparent" lang="en">
+<Layout title="Pricing - Simple and transparent" description="ShopVirge pricing: Small €50/mo, Medium €75/mo, Large €100/mo. Transparent plans for your multilingual webshop. No surprises." lang="en">
+  <script type="application/ld+json" set:html={JSON.stringify(productsSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <section class="hero text-white py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">

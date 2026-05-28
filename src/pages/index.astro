@@ -1,12 +1,19 @@
 ---
 const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
 ---
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="refresh" content="0;url=nl/" />
-  <title>ShopVirge - Redirecting...</title>
+  <title>ShopVirge — Meertalige webshops in enkele minuten</title>
+  <meta name="description" content="ShopVirge — je meertalige webshop in enkele minuten. Automatische vertalingen, Stripe betalingen en mobiel-first design. Vanaf €50/maand." />
+  <link rel="canonical" href={`${siteUrl}/nl/`} />
+  <link rel="alternate" hreflang="nl" href={`${siteUrl}/nl/`} />
+  <link rel="alternate" hreflang="en" href={`${siteUrl}/en/`} />
+  <link rel="alternate" hreflang="x-default" href={`${siteUrl}/nl/`} />
   <script define:vars={{ base }}>
     const lang = (navigator.language || '').toLowerCase();
     if (lang.startsWith('en')) {

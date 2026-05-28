@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shopvirge.com/sitemap-index.xml

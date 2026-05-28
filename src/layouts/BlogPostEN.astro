@@ -2,11 +2,25 @@
 import Layout from './Layout.astro';
 const { frontmatter } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
 const imgSrc = frontmatter.image
   ? (frontmatter.image.startsWith('http') ? frontmatter.image : `${base}${frontmatter.image}`)
   : null;
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": frontmatter.title,
+  "description": frontmatter.description,
+  "datePublished": frontmatter.date,
+  "author": { "@type": "Person", "name": frontmatter.author || "ShopVirge Editorial" },
+  "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
+  "image": frontmatter.image || `${siteUrl}${base}images/logo.png`,
+  "url": `${siteUrl}${Astro.url.pathname}`,
+  "inLanguage": "en",
+};
 ---
-<Layout title={frontmatter.title} description={frontmatter.description} lang="en">
+<Layout title={frontmatter.title} description={frontmatter.description} image={frontmatter.image} lang="en">
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
   <article>
     <header class={`relative isolate overflow-hidden ${imgSrc ? 'text-white' : 'bg-surface border-b border-gray-100'}`}>
       {imgSrc && (
