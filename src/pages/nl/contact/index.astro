@@ -20,12 +20,15 @@ const base = import.meta.env.BASE_URL;
       <div class="grid md:grid-cols-2 gap-12 items-start">
         <div>
           <!-- Type selector tabs -->
-          <div class="flex gap-2 mb-8" id="contact-tabs">
+          <div class="flex flex-wrap gap-2 mb-8" id="contact-tabs">
             <button data-tab="trial" class="tab-btn active">
               Gratis trial
             </button>
             <button data-tab="demo" class="tab-btn">
               Demo aanvragen
+            </button>
+            <button data-tab="migration-scan" class="tab-btn">
+              Migratie-scan
             </button>
             <button data-tab="general" class="tab-btn">
               Algemene vraag
@@ -57,6 +60,17 @@ const base = import.meta.env.BASE_URL;
             <p class="text-sm text-gray-600">
               We plannen een 30-minuten videocall waarin we je het platform laten zien, 
               je vragen beantwoorden en samen kijken welk abonnement past bij jouw situatie.
+            </p>
+          </div>
+
+          <!-- Migration scan info box -->
+          <div id="info-migration-scan" class="info-box bg-emerald-50 border border-emerald-200 rounded-xl p-5 mb-6 hidden">
+            <h3 class="font-bold text-emerald-700 mb-2 flex items-center gap-2">
+              <Icon name="route" size={18} class="text-emerald-600" /> Gratis migratie-scan
+            </h3>
+            <p class="text-sm text-gray-600">
+              Zit je vast op Magento, Shopify of WooCommerce? We berekenen je exacte TCO-besparing en
+              leveren een SEO-veilig migratieplan. Vertel ons hieronder je huidige platform en je shop-URL.
             </p>
           </div>
 
@@ -179,11 +193,13 @@ const base = import.meta.env.BASE_URL;
     const subjects: Record<string, string> = {
       trial: 'Nieuwe trial aanvraag - ShopVirge',
       demo: 'Demo aanvraag - ShopVirge',
+      'migration-scan': 'Migratie-scan aanvraag - ShopVirge',
       general: 'Contactbericht - ShopVirge'
     };
     const buttons: Record<string, string> = {
       trial: 'Start gratis trial →',
       demo: 'Demo aanvragen →',
+      'migration-scan': 'Vraag migratie-scan aan →',
       general: 'Verstuur bericht →'
     };
 
@@ -200,13 +216,14 @@ const base = import.meta.env.BASE_URL;
 
       const isTrial = tab === 'trial';
       const isGeneral = tab === 'general';
+      const isMigration = tab === 'migration-scan';
       trialFields.forEach(f => f.classList.toggle('hidden', !isTrial));
       generalFields.forEach(f => f.classList.toggle('hidden', isTrial));
 
       if (isTrial) {
         trialTextarea?.setAttribute('required', '');
         messageTextarea?.removeAttribute('required');
-      } else if (isGeneral) {
+      } else if (isGeneral || isMigration) {
         messageTextarea?.setAttribute('required', '');
         trialTextarea?.removeAttribute('required');
       } else {

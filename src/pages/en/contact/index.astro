@@ -20,12 +20,15 @@ const base = import.meta.env.BASE_URL;
       <div class="grid md:grid-cols-2 gap-12 items-start">
         <div>
           <!-- Type selector tabs -->
-          <div class="flex gap-2 mb-8" id="contact-tabs">
+          <div class="flex flex-wrap gap-2 mb-8" id="contact-tabs">
             <button data-tab="trial" class="tab-btn active">
               Free trial
             </button>
             <button data-tab="demo" class="tab-btn">
               Request demo
+            </button>
+            <button data-tab="migration-scan" class="tab-btn">
+              Migration scan
             </button>
             <button data-tab="general" class="tab-btn">
               General inquiry
@@ -57,6 +60,17 @@ const base = import.meta.env.BASE_URL;
             <p class="text-sm text-gray-600">
               We'll schedule a 30-minute video call to show you the platform, 
               answer your questions, and help you pick the right plan for your business.
+            </p>
+          </div>
+
+          <!-- Migration scan info box -->
+          <div id="info-migration-scan" class="info-box bg-emerald-50 border border-emerald-200 rounded-xl p-5 mb-6 hidden">
+            <h3 class="font-bold text-emerald-700 mb-2 flex items-center gap-2">
+              <Icon name="route" size={18} class="text-emerald-600" /> Free migration scan
+            </h3>
+            <p class="text-sm text-gray-600">
+              Stuck on Magento, Shopify or WooCommerce? We'll calculate your exact TCO savings and deliver
+              an SEO-safe migration plan. Tell us your current platform and store URL below.
             </p>
           </div>
 
@@ -179,11 +193,13 @@ const base = import.meta.env.BASE_URL;
     const subjects: Record<string, string> = {
       trial: 'New trial request - ShopVirge',
       demo: 'Demo request - ShopVirge',
+      'migration-scan': 'Migration scan request - ShopVirge',
       general: 'Contact message - ShopVirge'
     };
     const buttons: Record<string, string> = {
       trial: 'Start free trial →',
       demo: 'Request demo →',
+      'migration-scan': 'Request migration scan →',
       general: 'Send message →'
     };
 
@@ -199,13 +215,14 @@ const base = import.meta.env.BASE_URL;
 
       const isTrial = tab === 'trial';
       const isGeneral = tab === 'general';
+      const isMigration = tab === 'migration-scan';
       trialFields.forEach(f => f.classList.toggle('hidden', !isTrial));
       generalFields.forEach(f => f.classList.toggle('hidden', isTrial));
 
       if (isTrial) {
         trialTextarea?.setAttribute('required', '');
         messageTextarea?.removeAttribute('required');
-      } else if (isGeneral) {
+      } else if (isGeneral || isMigration) {
         messageTextarea?.setAttribute('required', '');
         trialTextarea?.removeAttribute('required');
       } else {
