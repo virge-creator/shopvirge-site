@@ -113,6 +113,16 @@ const ogImage = image || `${siteUrl}${base}images/logo.png`;
       "contactType": "customer service"
     }
   })} />
+  <!-- Google tag (gtag.js) -->
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-28TWH2DFQF"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-28TWH2DFQF');
+  </script>
+  <!-- lemlist visitor tracking -->
+  <script is:inline type="text/javascript" src="https://app.lemlist.com/api/visitors/tracking?k=vRslB%2Bd5PWgp5ciD6glfqRX3KoULBl4ObXVF92gzdkA%3D&t=tea_Xd7WQ6rX5hYMWPur9"></script>
 </head>
 <body class="min-h-screen flex flex-col">
   <!-- Header -->
