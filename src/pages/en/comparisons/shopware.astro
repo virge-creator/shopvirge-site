@@ -1,0 +1,302 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
+
+// Three pain points from the Shopware deep dive (June 2026)
+const painPoints = [
+  {
+    n: 1,
+    title: 'Forced Shopware 5 → 6 migration (post-EOL)',
+    severity: 'Critical',
+    sevClass: 'bg-danger/10 text-danger',
+    problem: 'Shopware 5 reached end-of-life in July 2024 (security-only since July 2023). Thousands of merchants are still on Shopware 5 because migrating to 6 is essentially a full rebuild: different architecture (Symfony/Vue.js), different plugin ecosystem, different theme system. Migration costs €10,000 to €50,000+ via agencies. Many feel abandoned: they bought perpetual licenses for 5, and now face a subscription model for 6.',
+    evidence: 'Shopware 5 EOL passed July 2024; migration quotes of €10K–€50K+; Trustpilot reviews cite a "forced subscription model" after a perpetual license purchase.',
+    opp: 'ShopVirge offers Shopware 5 merchants an affordable migration path. CSV/Excel import makes catalog migration simple. €50–100/mo versus €10K+ migration plus a new subscription. No forced platform rebuilds.',
+  },
+  {
+    n: 2,
+    title: 'Shopware 6.7 breaking changes (Vue.js 3 / Vite)',
+    severity: 'High',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Shopware 6.7 (May 2026) switches from Webpack to Vite and from Vue.js 2 to Vue.js 3. It is a breaking change that requires all plugins and custom themes to be adapted. Merchants who just migrated to 6 now face another round of expensive development. Plugins that aren\'t updated become incompatible. The update cycle feels relentless: you barely stabilize before the next breaking release.',
+    evidence: 'Shopware 6.7 release notes confirm Webpack removal and the Vue.js 3 requirement; the developer community reports plugin incompatibilities.',
+    opp: 'ShopVirge updates don\'t break your store. Platform maintenance is included in every tier. There is no plugin ecosystem to break, because features are built in.',
+  },
+  {
+    n: 3,
+    title: 'Hidden cost explosion (hosting + plugins + agency)',
+    severity: 'High',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'The license fee (Rise: €600/mo, Evolve/Beyond: custom) is just the beginning. Shopware 6 is resource-hungry, so specialized hosting costs €100–500/mo. Essential features require paid plugins (€50–500 each). Most merchants need an agency for setup, customization and maintenance (€10K–50K+ initial, €1K–5K/mo ongoing). Total first-year cost for a mid-size shop easily exceeds €30K–80K.',
+    evidence: 'Qualimero analysis: hosting €100+/mo, agency setup €10K–50K+; Trustpilot reviews cite unexpected costs; G2 confirms the high initial investment.',
+    opp: 'ShopVirge: €50–100/mo all-in. Hosting included. No plugin marketplace. No agency required for standard operations. Transparent pricing: what you see is what you pay.',
+  },
+];
+
+// Forced-change timeline
+const timeline = [
+  { date: 'July 2023', label: 'Shopware 5: security fixes only', sub: 'No more new features', sev: 'High', sevClass: 'bg-warning/20 text-yellow-700', dot: 'bg-warning' },
+  { date: 'July 2024', label: 'Shopware 5 end-of-life', sub: 'Migration to 6 = full rebuild (€10K–50K+)', sev: 'Critical', sevClass: 'bg-danger/10 text-danger', dot: 'bg-danger' },
+  { date: 'May 2026', label: 'Shopware 6.7 breaking changes', sub: 'Webpack → Vite, Vue 2 → Vue 3: plugins & themes break', sev: 'High', sevClass: 'bg-warning/20 text-yellow-700', dot: 'bg-danger' },
+];
+
+// First-year cost: Shopware vs ShopVirge (scaled to 80k)
+const fyMax = 80000;
+const firstYear = [
+  { name: 'Shopware — high', value: 80000, label: '€80,000', color: 'bg-danger' },
+  { name: 'Shopware — low', value: 30000, label: '€30,000', color: 'bg-danger/70' },
+  { name: 'ShopVirge (all-in)', value: 1200, label: '€1,200', color: 'bg-success' },
+];
+
+// Cost drivers
+const drivers = [
+  { label: 'License (Rise)', value: '€600', unit: '/month' },
+  { label: 'Specialized hosting', value: '€100–500', unit: '/month' },
+  { label: 'Plugins', value: '€50–500', unit: 'each' },
+  { label: 'Agency (ongoing)', value: '€1K–5K', unit: '/month' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Shopware vs ShopVirge — the complete deep dive",
+  "description": "An in-depth analysis of Shopware's pain points: forced Shopware 5 → 6 migration (€10K–50K+), 6.7 breaking changes and a €30K–80K first-year TCO. Plus an affordable migration path to ShopVirge.",
+  "datePublished": "2026-06-08",
+  "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
+  "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
+  "inLanguage": "en",
+  "url": `${siteUrl}${base}en/comparisons/shopware/`,
+};
+---
+<Layout
+  title="Shopware vs ShopVirge — the complete deep dive"
+  description="An in-depth analysis of Shopware's pain points: forced Shopware 5 → 6 migration (€10K–50K+), 6.7 breaking changes and a €30K–80K first-year TCO. Plus an affordable migration path to ShopVirge."
+  lang="en">
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Hero -->
+  <section class="hero text-white py-20 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <a href={`${base}en/comparisons/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white mb-8">← All comparisons</a>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 uppercase tracking-wide">Deep dive</span>
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-danger/30 border border-white/10">Abandoning the SMB</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">Shopware vs ShopVirge</h1>
+        <p class="text-xl text-white/80">
+          The dominant platform in the DACH region with 100,000+ shops, yet a Trustpilot score of 1.5/5.
+          Merchants are caught between an aging Shopware 5 and a Shopware 6 that demands expensive agency
+          work. The SMBs Shopware is leaving behind deserve a simpler, more affordable alternative.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg">
+      <h2>The problem in one sentence</h2>
+      <p>
+        Shopware dominates e-commerce in the DACH region (Germany, Austria, Switzerland) with
+        <strong>100,000+ active shops</strong>. But the transition from Shopware 5 to 6 has been painful, and
+        6.7 introduces another round of breaking changes. <strong>Trustpilot rates Shopware at 1.5/5</strong>,
+        mainly due to support frustration, hidden costs and forced migrations.
+      </p>
+      <p>
+        Merchants are caught between an aging Shopware 5 (end-of-life since July 2024) and a Shopware 6 that
+        requires expensive agency work. That opens the door for a simpler, more affordable alternative,
+        especially for the SMB segment Shopware is trading for enterprise.
+      </p>
+    </div>
+  </section>
+
+  <!-- Hero stat band -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">1.5 / 5</div>
+          <p class="text-sm text-text-light mt-1">Trustpilot score</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">€10K–50K+</div>
+          <p class="text-sm text-text-light mt-1">5 → 6 migration (full rebuild)</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">€30K–80K</div>
+          <p class="text-sm text-text-light mt-1">first-year cost for a mid-size shop</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forced-change timeline -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">A relentless update cycle</h2>
+      <p class="text-text-light mb-10 max-w-2xl">You barely stabilize before the next forced migration arrives. Three moments that hurt Shopware merchants:</p>
+      <div class="relative pl-6 border-l-2 border-danger/30 space-y-8">
+        {timeline.map((t) => (
+          <div class="relative">
+            <span class={`absolute -left-[31px] top-1 w-4 h-4 rounded-full ${t.dot} ring-4 ring-white`}></span>
+            <div class="bg-white rounded-2xl shadow-md p-5">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="text-sm font-bold text-danger tabular-nums">{t.date}</span>
+                <span class={`text-xs font-semibold px-2 py-0.5 rounded-full ${t.sevClass}`}>{t.sev}</span>
+              </div>
+              <p class="font-bold text-text-heading">{t.label}</p>
+              <p class="text-sm text-text-light">{t.sub}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-10 text-center">The three pain points dissected</h2>
+      <div class="space-y-8">
+        {painPoints.map((p) => (
+          <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="w-9 h-9 rounded-full bg-brand text-white flex items-center justify-center font-bold shrink-0">{p.n}</span>
+                <h3 class="text-xl font-bold text-text-heading flex-1">{p.title}</h3>
+                <span class={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${p.sevClass}`}>{p.severity}</span>
+              </div>
+              <p class="text-text mb-5">{p.problem}</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="bg-surface rounded-xl p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-text-light mb-1.5">Evidence</p>
+                  <p class="text-sm text-text">{p.evidence}</p>
+                </div>
+                <div class="bg-brand/5 rounded-xl p-4 border border-brand/10">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand mb-1.5">The ShopVirge answer</p>
+                  <p class="text-sm text-text">{p.opp}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- First-year cost chart -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">First-year cost: Shopware vs ShopVirge</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        License plus hosting plus plugins plus agency, summed across the first year for a mid-size shop,
+        against the all-in ShopVirge rate. The bars share the same axis.
+      </p>
+      <div class="space-y-5 bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        {firstYear.map((f) => (
+          <div>
+            <div class="flex justify-between items-baseline mb-1.5">
+              <span class="font-semibold text-text-heading">{f.name}</span>
+              <span class="text-sm font-semibold text-text-light tabular-nums">{f.label}</span>
+            </div>
+            <div class="h-8 w-full bg-gray-100 rounded-lg overflow-hidden">
+              <div class={`h-full ${f.color} rounded-lg`} style={`width: ${Math.max((f.value / fyMax) * 100, 0.8)}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text-light mt-4">
+        A real case: <strong>from €30,000/yr Shopware to €1,200/yr ShopVirge</strong>. That's
+        <strong>25 to 65× lower</strong> in the first year, hosting and maintenance included.
+      </p>
+    </div>
+  </section>
+
+  <!-- Cost drivers -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Where does the money go?</h2>
+      <p class="text-text-light mb-10 max-w-2xl">The four cost drivers on top of the Shopware license, every one of them included with ShopVirge.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {drivers.map((d) => (
+          <div class="bg-white rounded-2xl shadow-md p-6">
+            <p class="text-sm font-semibold text-text-heading mb-1">{d.label}</p>
+            <div class="text-2xl font-extrabold text-danger tabular-nums">{d.value}</div>
+            <p class="text-xs text-text-light">{d.unit}</p>
+            <p class="text-xs text-success font-semibold mt-3">→ With ShopVirge: included</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-year TCO table -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">3-year Total Cost of Ownership</h2>
+      <p class="text-text-light mb-8 max-w-2xl">An honest tally over three years for a mid-size shop. Figures indicative, based on the source data (June 2026).</p>
+      <div class="overflow-x-auto rounded-2xl shadow-md bg-white">
+        <table class="w-full text-sm min-w-[560px]">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-4 px-5 font-semibold text-gray-900">Cost item</th>
+              <th class="text-right py-4 px-5 font-semibold text-danger">Shopware (mid-size)</th>
+              <th class="text-right py-4 px-5 font-semibold text-brand bg-brand/5">ShopVirge</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="py-3 px-5 text-gray-600">One-time migration / onboarding</td><td class="text-right py-3 px-5 tabular-nums">€10K–50K+</td><td class="text-right py-3 px-5 tabular-nums bg-brand/5 font-medium">€1,000</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">License (Rise)</td><td class="text-right py-3 px-5 tabular-nums">€600/mo</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">included</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Specialized hosting</td><td class="text-right py-3 px-5 tabular-nums">€100–500/mo</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">included</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Plugins</td><td class="text-right py-3 px-5 tabular-nums">€50–500 each</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">included</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Agency (ongoing)</td><td class="text-right py-3 px-5 tabular-nums">€1K–5K/mo</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">not needed</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">First-year cost</td><td class="text-right py-3 px-5 tabular-nums">€30K–80K</td><td class="text-right py-3 px-5 tabular-nums bg-brand/5 font-medium">€1,200</td></tr>
+            <tr class="border-t-2 border-gray-200"><td class="py-4 px-5 font-bold text-text-heading">3-year total</td><td class="text-right py-4 px-5 font-bold text-danger tabular-nums">€70K–220K+</td><td class="text-right py-4 px-5 font-bold text-brand tabular-nums bg-brand/5">±€4,600</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-text-light mt-4">Even in the most favorable Shopware scenario, three years costs more than €70,000. ShopVirge stays under €5,000, including migration, hosting and maintenance.</p>
+    </div>
+  </section>
+
+  <!-- Migration path -->
+  <section class="py-16 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">The migration path: Shopware → ShopVirge</h2>
+      <p class="text-text-light mb-10 max-w-2xl">No full rebuild and no agency hours. Four steps, included with the Medium tier (€1,000 onboarding).</p>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">01</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Catalog export</h3>
+          <p class="text-sm text-text-light">We export your products, categories and variants out of Shopware 5 or 6 into validated CSV/Excel.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">02</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Structured import</h3>
+          <p class="text-sm text-text-light">Import into ShopVirge with validation. No rebuild, no plugin ecosystem to set up all over again.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">03</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Features are on</h3>
+          <p class="text-sm text-text-light">Multilingual, SEO, discounts and refunds via Stripe are built in. No paid plugins required.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">04</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Live &amp; managed</h3>
+          <p class="text-sm text-text-light">Hosting, updates and maintenance are on us, for one flat all-in rate. The next breaking release won't break your store.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Shopware 5 license expiring? Migrate without agency costs</h2>
+      <p class="text-text-light mb-6">Request a free migration scan. We'll calculate your exact savings and deliver a migration plan with no rebuild.</p>
+      <a href={`${base}en/contact/?type=migration-scan`} class="btn-primary">Book a migration scan →</a>
+    </div>
+  </section>
+</Layout>

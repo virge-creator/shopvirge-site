@@ -1,0 +1,302 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
+
+// Three pain points from the Shopware deep dive (June 2026)
+const painPoints = [
+  {
+    n: 1,
+    title: 'Gedwongen migratie Shopware 5 → 6 (post-EOL)',
+    severity: 'Kritiek',
+    sevClass: 'bg-danger/10 text-danger',
+    problem: 'Shopware 5 bereikte end-of-life in juli 2024 (sinds juli 2023 alleen nog security-fixes). Duizenden merchants zitten nog op Shopware 5, want migreren naar 6 is in feite een volledige herbouw: andere architectuur (Symfony/Vue.js), ander plugin-ecosysteem, ander thema-systeem. Migratie kost €10.000 tot €50.000+ via agencies. Velen voelen zich in de steek gelaten: ze kochten een eeuwigdurende licentie voor 5, en krijgen nu een abonnementsmodel voor 6.',
+    evidence: 'Shopware 5 EOL juli 2024; migratie-offertes van €10K–€50K+; Trustpilot-reviews noemen het "gedwongen abonnementsmodel" na aankoop van een eeuwigdurende licentie.',
+    opp: 'ShopVirge biedt Shopware 5-merchants een betaalbaar migratiepad. CSV/Excel-import maakt de catalogusmigratie simpel. €50–100/mnd tegenover €10K+ migratie plus nieuw abonnement. Geen gedwongen platform-herbouw.',
+  },
+  {
+    n: 2,
+    title: 'Shopware 6.7 breaking changes (Vue.js 3 / Vite)',
+    severity: 'Hoog',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Shopware 6.7 (mei 2026) stapt over van Webpack naar Vite en van Vue.js 2 naar Vue.js 3. Een breaking change die alle plugins en custom thema\'s opnieuw moet laten aanpassen. Merchants die net naar 6 migreerden, staan alweer voor duur ontwikkelwerk. Niet-bijgewerkte plugins worden incompatibel. De updatecyclus voelt meedogenloos: je bent amper stabiel of de volgende breaking release staat klaar.',
+    evidence: 'Shopware 6.7 release notes bevestigen het verwijderen van Webpack en de Vue.js 3-vereiste; de developer-community meldt plugin-incompatibiliteiten.',
+    opp: 'ShopVirge-updates breken je shop niet. Platform-onderhoud zit in alle tiers. Geen plugin-ecosysteem dat kan breken, want functies zijn ingebouwd.',
+  },
+  {
+    n: 3,
+    title: 'Verborgen kostenexplosie (hosting + plugins + agency)',
+    severity: 'Hoog',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'De licentie (Rise: €600/mnd, Evolve/Beyond: op aanvraag) is pas het begin. Shopware 6 is resource-hongerig, dus gespecialiseerde hosting kost €100–500/mnd. Essentiële functies vereisen betaalde plugins (€50–500 per stuk). De meeste merchants hebben een agency nodig voor setup, maatwerk en onderhoud (€10K–50K+ initieel, €1K–5K/mnd doorlopend). De totale eerstejaarskosten voor een mid-size shop overstijgen al snel €30K–80K.',
+    evidence: 'Qualimero-analyse: hosting €100+/mnd, agency-setup €10K–50K+; Trustpilot-reviews noemen onverwachte kosten; G2 bevestigt de hoge initiële investering.',
+    opp: 'ShopVirge: €50–100/mnd all-in. Hosting inbegrepen. Geen plugin-marktplaats. Geen agency nodig voor de standaardoperatie. Transparante prijs: wat je ziet, is wat je betaalt.',
+  },
+];
+
+// Forced-change timeline
+const timeline = [
+  { date: 'Juli 2023', label: 'Shopware 5: alleen nog security-fixes', sub: 'Geen nieuwe features meer', sev: 'Hoog', sevClass: 'bg-warning/20 text-yellow-700', dot: 'bg-warning' },
+  { date: 'Juli 2024', label: 'Shopware 5 end-of-life', sub: 'Migratie naar 6 = volledige herbouw (€10K–50K+)', sev: 'Kritiek', sevClass: 'bg-danger/10 text-danger', dot: 'bg-danger' },
+  { date: 'Mei 2026', label: 'Shopware 6.7 breaking changes', sub: 'Webpack → Vite, Vue 2 → Vue 3: plugins & thema\'s breken', sev: 'Hoog', sevClass: 'bg-warning/20 text-yellow-700', dot: 'bg-danger' },
+];
+
+// First-year cost: Shopware vs ShopVirge (scaled to 80k)
+const fyMax = 80000;
+const firstYear = [
+  { name: 'Shopware — hoog', value: 80000, label: '€80.000', color: 'bg-danger' },
+  { name: 'Shopware — laag', value: 30000, label: '€30.000', color: 'bg-danger/70' },
+  { name: 'ShopVirge (all-in)', value: 1200, label: '€1.200', color: 'bg-success' },
+];
+
+// Cost drivers
+const drivers = [
+  { label: 'Licentie (Rise)', value: '€600', unit: '/maand' },
+  { label: 'Gespecialiseerde hosting', value: '€100–500', unit: '/maand' },
+  { label: 'Plugins', value: '€50–500', unit: 'per stuk' },
+  { label: 'Agency (doorlopend)', value: '€1K–5K', unit: '/maand' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Shopware vs ShopVirge — de complete deep dive",
+  "description": "Diepgaande analyse van Shopware's pijnpunten: gedwongen migratie Shopware 5 → 6 (€10K–50K+), 6.7 breaking changes en een eerstejaars-TCO van €30K–80K. Plus een betaalbaar migratiepad naar ShopVirge.",
+  "datePublished": "2026-06-08",
+  "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
+  "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
+  "inLanguage": "nl",
+  "url": `${siteUrl}${base}nl/vergelijkingen/shopware/`,
+};
+---
+<Layout
+  title="Shopware vs ShopVirge — de complete deep dive"
+  description="Diepgaande analyse van Shopware's pijnpunten: gedwongen migratie Shopware 5 → 6 (€10K–50K+), 6.7 breaking changes en een eerstejaars-TCO van €30K–80K. Plus een betaalbaar migratiepad naar ShopVirge."
+  lang="nl">
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Hero -->
+  <section class="hero text-white py-20 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <a href={`${base}nl/vergelijkingen/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white mb-8">← Alle vergelijkingen</a>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 uppercase tracking-wide">Deep dive</span>
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-danger/30 border border-white/10">SMB in de steek gelaten</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">Shopware vs ShopVirge</h1>
+        <p class="text-xl text-white/80">
+          Marktleider in de DACH-regio met 100.000+ shops, maar een Trustpilot-score van 1,5/5. Merchants
+          zitten klem tussen een verouderde Shopware 5 en een Shopware 6 die dure agency-uren vraagt. Juist
+          de SMB die Shopware loslaat, verdient een eenvoudiger en betaalbaarder alternatief.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg">
+      <h2>Het probleem in één zin</h2>
+      <p>
+        Shopware domineert e-commerce in de DACH-regio (Duitsland, Oostenrijk, Zwitserland) met
+        <strong>100.000+ actieve shops</strong>. Maar de overgang van Shopware 5 naar 6 verliep pijnlijk, en
+        6.7 brengt alweer een ronde breaking changes. <strong>Trustpilot geeft Shopware 1,5/5 sterren</strong>,
+        vooral door supportfrustratie, verborgen kosten en gedwongen migraties.
+      </p>
+      <p>
+        Merchants zitten klem tussen een aflopende Shopware 5 (end-of-life sinds juli 2024) en een Shopware 6
+        die duur agency-werk vereist. Dat creëert ruimte voor een simpeler, betaalbaarder alternatief,
+        juist voor het SMB-segment dat Shopware inruilt voor enterprise.
+      </p>
+    </div>
+  </section>
+
+  <!-- Hero stat band -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">1,5 / 5</div>
+          <p class="text-sm text-text-light mt-1">Trustpilot-score</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">€10K–50K+</div>
+          <p class="text-sm text-text-light mt-1">migratie 5 → 6 (volledige herbouw)</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">€30K–80K</div>
+          <p class="text-sm text-text-light mt-1">eerstejaarskosten mid-size shop</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forced-change timeline -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Een meedogenloze updatecyclus</h2>
+      <p class="text-text-light mb-10 max-w-2xl">Je bent amper stabiel of de volgende verplichte migratie staat klaar. Drie momenten die Shopware-merchants pijn doen:</p>
+      <div class="relative pl-6 border-l-2 border-danger/30 space-y-8">
+        {timeline.map((t) => (
+          <div class="relative">
+            <span class={`absolute -left-[31px] top-1 w-4 h-4 rounded-full ${t.dot} ring-4 ring-white`}></span>
+            <div class="bg-white rounded-2xl shadow-md p-5">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="text-sm font-bold text-danger tabular-nums">{t.date}</span>
+                <span class={`text-xs font-semibold px-2 py-0.5 rounded-full ${t.sevClass}`}>{t.sev}</span>
+              </div>
+              <p class="font-bold text-text-heading">{t.label}</p>
+              <p class="text-sm text-text-light">{t.sub}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-10 text-center">De drie pijnpunten ontleed</h2>
+      <div class="space-y-8">
+        {painPoints.map((p) => (
+          <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="w-9 h-9 rounded-full bg-brand text-white flex items-center justify-center font-bold shrink-0">{p.n}</span>
+                <h3 class="text-xl font-bold text-text-heading flex-1">{p.title}</h3>
+                <span class={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${p.sevClass}`}>{p.severity}</span>
+              </div>
+              <p class="text-text mb-5">{p.problem}</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="bg-surface rounded-xl p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-text-light mb-1.5">Bewijs</p>
+                  <p class="text-sm text-text">{p.evidence}</p>
+                </div>
+                <div class="bg-brand/5 rounded-xl p-4 border border-brand/10">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand mb-1.5">De ShopVirge-oplossing</p>
+                  <p class="text-sm text-text">{p.opp}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- First-year cost chart -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Eerstejaarskosten: Shopware vs ShopVirge</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        Licentie plus hosting plus plugins plus agency, opgeteld over het eerste jaar voor een mid-size shop,
+        afgezet tegen het all-in ShopVirge-tarief. De balken staan op dezelfde as.
+      </p>
+      <div class="space-y-5 bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        {firstYear.map((f) => (
+          <div>
+            <div class="flex justify-between items-baseline mb-1.5">
+              <span class="font-semibold text-text-heading">{f.name}</span>
+              <span class="text-sm font-semibold text-text-light tabular-nums">{f.label}</span>
+            </div>
+            <div class="h-8 w-full bg-gray-100 rounded-lg overflow-hidden">
+              <div class={`h-full ${f.color} rounded-lg`} style={`width: ${Math.max((f.value / fyMax) * 100, 0.8)}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text-light mt-4">
+        Een echte case: <strong>van €30.000/jaar Shopware naar €1.200/jaar ShopVirge</strong>. Dat is
+        <strong>25 tot 65× lager</strong> in het eerste jaar, inclusief hosting en onderhoud.
+      </p>
+    </div>
+  </section>
+
+  <!-- Cost drivers -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Waar gaat dat geld naartoe?</h2>
+      <p class="text-text-light mb-10 max-w-2xl">De vier kostendrijvers boven op de Shopware-licentie, stuk voor stuk inbegrepen bij ShopVirge.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {drivers.map((d) => (
+          <div class="bg-white rounded-2xl shadow-md p-6">
+            <p class="text-sm font-semibold text-text-heading mb-1">{d.label}</p>
+            <div class="text-2xl font-extrabold text-danger tabular-nums">{d.value}</div>
+            <p class="text-xs text-text-light">{d.unit}</p>
+            <p class="text-xs text-success font-semibold mt-3">→ Bij ShopVirge: inbegrepen</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-year TCO table -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">3-jaars Total Cost of Ownership</h2>
+      <p class="text-text-light mb-8 max-w-2xl">Een eerlijke optelsom over drie jaar voor een mid-size shop. Bedragen indicatief op basis van de bron-cijfers (juni 2026).</p>
+      <div class="overflow-x-auto rounded-2xl shadow-md bg-white">
+        <table class="w-full text-sm min-w-[560px]">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-4 px-5 font-semibold text-gray-900">Kostenpost</th>
+              <th class="text-right py-4 px-5 font-semibold text-danger">Shopware (mid-size)</th>
+              <th class="text-right py-4 px-5 font-semibold text-brand bg-brand/5">ShopVirge</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="py-3 px-5 text-gray-600">Eenmalige migratie / onboarding</td><td class="text-right py-3 px-5 tabular-nums">€10K–50K+</td><td class="text-right py-3 px-5 tabular-nums bg-brand/5 font-medium">€1.000</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Licentie (Rise)</td><td class="text-right py-3 px-5 tabular-nums">€600/mnd</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">inbegrepen</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Gespecialiseerde hosting</td><td class="text-right py-3 px-5 tabular-nums">€100–500/mnd</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">inbegrepen</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Plugins</td><td class="text-right py-3 px-5 tabular-nums">€50–500 elk</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">inbegrepen</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Agency (doorlopend)</td><td class="text-right py-3 px-5 tabular-nums">€1K–5K/mnd</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">niet nodig</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Eerstejaarskosten</td><td class="text-right py-3 px-5 tabular-nums">€30K–80K</td><td class="text-right py-3 px-5 tabular-nums bg-brand/5 font-medium">€1.200</td></tr>
+            <tr class="border-t-2 border-gray-200"><td class="py-4 px-5 font-bold text-text-heading">3-jaars totaal</td><td class="text-right py-4 px-5 font-bold text-danger tabular-nums">€70K–220K+</td><td class="text-right py-4 px-5 font-bold text-brand tabular-nums bg-brand/5">±€4.600</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-text-light mt-4">Zelfs in het gunstigste Shopware-scenario kost drie jaar méér dan €70.000. ShopVirge blijft onder de €5.000, inclusief migratie, hosting en onderhoud.</p>
+    </div>
+  </section>
+
+  <!-- Migration path -->
+  <section class="py-16 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Het migratiepad: Shopware → ShopVirge</h2>
+      <p class="text-text-light mb-10 max-w-2xl">Geen volledige herbouw en geen agency-uren. Vier stappen, inbegrepen bij de Medium-tier (€1.000 onboarding).</p>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">01</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Catalogus-export</h3>
+          <p class="text-sm text-text-light">We exporteren je producten, categorieën en varianten uit Shopware 5 of 6 naar gevalideerde CSV/Excel.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">02</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Gestructureerde import</h3>
+          <p class="text-sm text-text-light">Import in ShopVirge met validatie. Geen herbouw, geen plugin-ecosysteem dat je opnieuw moet opzetten.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">03</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Functies staan aan</h3>
+          <p class="text-sm text-text-light">Meertaligheid, SEO, kortingen en refunds via Stripe zitten er standaard in. Geen betaalde plugins nodig.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">04</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Live &amp; managed</h3>
+          <p class="text-sm text-text-light">Hosting, updates en onderhoud doen wij, voor één vast all-in tarief. De volgende breaking release breekt jouw shop niet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Verloopt je Shopware 5-licentie? Migreer zonder agency-kosten</h2>
+      <p class="text-text-light mb-6">Vraag een gratis migratie-scan aan. We berekenen je exacte besparing en leveren een migratieplan zonder herbouw.</p>
+      <a href={`${base}nl/contact/?type=migration-scan`} class="btn-primary">Plan een migratie-scan →</a>
+    </div>
+  </section>
+</Layout>
