@@ -1,0 +1,287 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
+
+// Three pain points from the Saleor deep dive (June 2026)
+const painPoints = [
+  {
+    n: 1,
+    title: 'No usable storefront out of the box',
+    severity: 'Critical',
+    sevClass: 'bg-danger/10 text-danger',
+    problem: 'Saleor is headless-only with no production-ready storefront. The reference storefront (React/Next.js) is a demo, not a production template. You have to build your own frontend from scratch or hire an agency. Going from "Saleor installed" to "accepting orders" takes weeks to months of frontend work.',
+    evidence: 'r/django: "Saleor is the most advanced among open source projects, but it is also too complicated to understand". The docs explicitly state "headless and API only"; the reference storefront is marked as a demo.',
+    opp: 'ShopVirge includes a production-ready frontend by default. Install and start selling the same day. Still headless-capable for teams that want a custom frontend, but you don\'t NEED one to launch.',
+  },
+  {
+    n: 2,
+    title: 'GraphQL-only API barrier',
+    severity: 'High',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Saleor uses GraphQL exclusively, with no REST fallback. Powerful for complex queries, but with a steep learning curve. Most e-commerce developers, agencies and integration tools are built around REST. That shrinks the talent pool, raises development costs, and makes simple integrations (ERP, PIM, 3PL) needlessly complex.',
+    evidence: 'Saleor docs: "GraphQL only, not afterthought API design"; developers report a complexity barrier; most integrations (Zapier, Make, standard ERPs) expect REST endpoints.',
+    opp: 'ShopVirge provides a standard REST API, universally understood and easy to integrate with any tool. A lower barrier for developers, agencies and third-party integrations.',
+  },
+  {
+    n: 3,
+    title: 'Missing core commerce features (refunds, promotions)',
+    severity: 'High',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Saleor lacks a fully functional refund system out of the box, a critical commerce feature. Promotion and discount logic is basic. Multi-language exists but requires significant configuration. The gap between "API available" and "feature works end-to-end" is surprisingly wide, and merchants discover it only after committing.',
+    evidence: 'Reddit: "there is no fully functioned refund system"; GitHub issues show ongoing requests for basic commerce functionality; some features require Saleor Cloud (vendor lock-in for an "open-source" platform).',
+    opp: 'ShopVirge: refunds via Stripe built in. Discount logic, multilingual content and SEO tools are all included. No feature gaps hiding behind "coming soon" or "Cloud only".',
+  },
+];
+
+// Time-to-launch: "installed" to "accepting orders" (days). Source phrasing: weeks to months.
+const launchMax = 90;
+const launch = [
+  { name: 'Saleor — build your own frontend', value: 90, label: '30–90 days', color: 'bg-danger' },
+  { name: 'Saleor — via an agency', value: 60, label: '20–60 days', color: 'bg-warning' },
+  { name: 'ShopVirge — frontend included', value: 1, label: 'Same day', color: 'bg-success' },
+];
+
+// Feature comparison: Saleor CE vs Saleor Cloud vs ShopVirge
+const featureRows = [
+  { label: 'Production-ready storefront', ce: 'demo only', cloud: 'still headless', sv: 'included' },
+  { label: 'API model', ce: 'GraphQL-only', cloud: 'GraphQL-only', sv: 'REST' },
+  { label: 'Refund system', ce: 'not full', cloud: 'partial / Cloud', sv: 'via Stripe' },
+  { label: 'Discounts & promotions', ce: 'basic', cloud: 'basic', sv: 'included' },
+  { label: 'Multilingual', ce: 'config-heavy', cloud: 'config-heavy', sv: 'native' },
+  { label: 'SEO tools', ce: 'build your own', cloud: 'build your own', sv: 'included' },
+  { label: 'Self-host', ce: 'yes', cloud: 'no', sv: 'yes' },
+  { label: 'Transparent pricing', ce: 'free (self-host)', cloud: 'opaque / costly', sv: '€50–100/mo' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Saleor vs ShopVirge — the complete deep dive",
+  "description": "An in-depth analysis of Saleor's pain points: no usable storefront out of the box, a GraphQL-only API and missing core features like refunds. The same open-source DNA as ShopVirge, without the overhead.",
+  "datePublished": "2026-06-08",
+  "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
+  "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
+  "inLanguage": "en",
+  "url": `${siteUrl}${base}en/comparisons/saleor/`,
+};
+---
+<Layout
+  title="Saleor vs ShopVirge — the complete deep dive"
+  description="An in-depth analysis of Saleor's pain points: no usable storefront out of the box, a GraphQL-only API and missing core features like refunds. The same open-source DNA as ShopVirge, without the overhead."
+  lang="en">
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Hero -->
+  <section class="hero text-white py-20 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <a href={`${base}en/comparisons/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white mb-8">← All comparisons</a>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 uppercase tracking-wide">Deep dive</span>
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-danger/30 border border-white/10">Headless without a net</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">Saleor vs ShopVirge</h1>
+        <p class="text-xl text-white/80">
+          Saleor is one of the most powerful open-source commerce platforms around. But it's developer-first
+          to the bone: no usable storefront, GraphQL-only, and feature gaps. The same open-source DNA as
+          ShopVirge, without the overhead.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg">
+      <h2>The problem in one sentence</h2>
+      <p>
+        Saleor is an open-source, headless commerce platform built on Python/Django with a GraphQL-only API.
+        It powers brands like <strong>Lush and Breitling</strong> and has <strong>22,000+ GitHub stars</strong>.
+        But its developer-first approach creates serious barriers for non-technical merchants, and even for
+        dev teams without GraphQL expertise. There's no usable storefront, no built-in refund system, and you
+        need significant engineering to go live.
+      </p>
+      <p>
+        That's exactly where ShopVirge steps in: <strong>the same open-source freedom, but with a usable
+        frontend included and simpler operations.</strong> Below are the three pain points, each with the
+        evidence and what ShopVirge puts in their place.
+      </p>
+    </div>
+  </section>
+
+  <!-- Hero stat band -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-text-heading tabular-nums">22K+</div>
+          <p class="text-sm text-text-light mt-1">GitHub stars (strong community)</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">0</div>
+          <p class="text-sm text-text-light mt-1">production-ready storefronts included</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">weeks–months</div>
+          <p class="text-sm text-text-light mt-1">from install to accepting orders</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Time-to-launch chart -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">From "installed" to "accepting orders"</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        With Saleor the work starts after the install: you build or buy an entire frontend before you earn
+        your first euro. With ShopVirge that frontend is already there.
+      </p>
+      <div class="space-y-5 bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        {launch.map((l) => (
+          <div>
+            <div class="flex justify-between items-baseline mb-1.5">
+              <span class="font-semibold text-text-heading">{l.name}</span>
+              <span class="text-sm font-semibold text-text-light tabular-nums">{l.label}</span>
+            </div>
+            <div class="h-8 w-full bg-gray-100 rounded-lg overflow-hidden">
+              <div class={`h-full ${l.color} rounded-lg`} style={`width: ${Math.max((l.value / launchMax) * 100, 1.5)}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text-light mt-4">The source phrasing is "weeks to months"; the day figures are an indicative translation of that. ShopVirge stays headless-capable, but you don't need your own frontend to start.</p>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-10 text-center">The three pain points dissected</h2>
+      <div class="space-y-8">
+        {painPoints.map((p) => (
+          <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="w-9 h-9 rounded-full bg-brand text-white flex items-center justify-center font-bold shrink-0">{p.n}</span>
+                <h3 class="text-xl font-bold text-text-heading flex-1">{p.title}</h3>
+                <span class={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${p.sevClass}`}>{p.severity}</span>
+              </div>
+              <p class="text-text mb-5">{p.problem}</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="bg-surface rounded-xl p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-text-light mb-1.5">Evidence</p>
+                  <p class="text-sm text-text">{p.evidence}</p>
+                </div>
+                <div class="bg-brand/5 rounded-xl p-4 border border-brand/10">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand mb-1.5">The ShopVirge answer</p>
+                  <p class="text-sm text-text">{p.opp}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature comparison table -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Saleor CE vs Saleor Cloud vs ShopVirge</h2>
+      <p class="text-text-light mb-8 max-w-2xl">Where's the gap between "API available" and "works end-to-end"? An honest feature comparison.</p>
+      <div class="overflow-x-auto rounded-2xl shadow-md bg-white">
+        <table class="w-full text-sm min-w-[640px]">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-4 px-5 font-semibold text-gray-900">Feature</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-700">Saleor CE</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-700">Saleor Cloud</th>
+              <th class="text-center py-4 px-4 font-semibold text-brand bg-brand/5">ShopVirge</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {featureRows.map((r) => (
+              <tr>
+                <td class="py-3 px-5 text-gray-600 font-medium whitespace-nowrap">{r.label}</td>
+                <td class="text-center py-3 px-4 text-gray-600">{r.ce}</td>
+                <td class="text-center py-3 px-4 text-gray-600">{r.cloud}</td>
+                <td class="text-center py-3 px-4 font-semibold text-brand bg-brand/5">{r.sv}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-text-light mt-3">CE = Community Edition (self-hosted). Saleor Cloud cells are indicative: pricing is not publicly transparent and some features are Cloud-only, which creates lock-in for an "open-source" platform.</p>
+    </div>
+  </section>
+
+  <!-- GraphQL vs REST -->
+  <section class="pb-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8">GraphQL-only vs a plain REST API</h2>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-danger">
+          <h3 class="font-bold text-text-heading mb-4">Saleor: GraphQL-only</h3>
+          <ul class="space-y-2.5 text-sm text-text">
+            <li class="flex gap-2"><span class="text-danger">✗</span> No REST fallback, everything via GraphQL</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Steep learning curve, smaller talent pool</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Zapier, Make and ERPs expect REST</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> ERP/PIM/3PL integrations needlessly complex</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Harder to debug than REST</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-success">
+          <h3 class="font-bold text-text-heading mb-4">ShopVirge: standard REST</h3>
+          <ul class="space-y-2.5 text-sm text-text">
+            <li class="flex gap-2"><span class="text-success">✓</span> Universally understood REST endpoints</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Any developer or agency can work with it</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Works out of the box with Zapier, Make, ERPs</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Plus an MCP-ready API for AI agents</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Lower barrier, lower development cost</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Migration path -->
+  <section class="py-16 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Keep open source, drop the overhead</h2>
+      <p class="text-text-light mb-10 max-w-2xl">You don't have to give up your open-source freedom to launch more easily. Four steps from Saleor to ShopVirge.</p>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">01</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Catalog export</h3>
+          <p class="text-sm text-text-light">We pull your products, categories and variants out of Saleor via its GraphQL API and move them, validated, into ShopVirge.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">02</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Frontend included</h3>
+          <p class="text-sm text-text-light">No frontend to build: ShopVirge ships a production-ready storefront. Still want headless? The REST API is ready.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">03</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Turn on the core features</h3>
+          <p class="text-sm text-text-light">Refunds via Stripe, discount logic, multilingual and SEO are on from day one. No more feature gaps.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">04</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Live &amp; managed</h3>
+          <p class="text-sm text-text-light">Hosting, updates and maintenance are on us. Open-source backend, no GraphQL specialist needed for daily operations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Open source, without the engineering overhead</h2>
+      <p class="text-text-light mb-6">Request a free migration scan. We'll map your Saleor setup and show how fast you can be live with ShopVirge.</p>
+      <a href={`${base}en/contact/?type=migration-scan`} class="btn-primary">Book a migration scan →</a>
+    </div>
+  </section>
+</Layout>

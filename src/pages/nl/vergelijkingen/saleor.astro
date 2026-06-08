@@ -1,0 +1,287 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
+
+// Three pain points from the Saleor deep dive (June 2026)
+const painPoints = [
+  {
+    n: 1,
+    title: 'Geen bruikbare storefront out of the box',
+    severity: 'Kritiek',
+    sevClass: 'bg-danger/10 text-danger',
+    problem: 'Saleor is headless-only zonder productieklare storefront. De referentie-storefront (React/Next.js) is een demo, geen productietemplate. Je moet je frontend vanaf nul bouwen of een agency inhuren. Van "Saleor geïnstalleerd" naar "orders accepteren" kost weken tot maanden frontend-werk.',
+    evidence: 'r/django: "Saleor is the most advanced among open source projects, but it is also too complicated to understand". De docs stellen expliciet "headless and API only"; de referentie-storefront is gemarkeerd als demo.',
+    opp: 'ShopVirge levert standaard een productieklare frontend. Installeer en verkoop dezelfde dag. Nog steeds headless-capabel voor teams die een custom frontend willen, maar je hébt er geen nodig om te lanceren.',
+  },
+  {
+    n: 2,
+    title: 'GraphQL-only API-barrière',
+    severity: 'Hoog',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Saleor gebruikt uitsluitend GraphQL, geen REST-fallback. Krachtig voor complexe queries, maar met een steile leercurve. De meeste e-commerce developers, agencies en integratietools draaien op REST. Dat verkleint de talentpool, verhoogt de ontwikkelkosten en maakt simpele koppelingen (ERP, PIM, 3PL) onnodig complex.',
+    evidence: 'Saleor docs: "GraphQL only, not afterthought API design"; developers melden een complexiteitsbarrière; de meeste integraties (Zapier, Make, standaard-ERP\'s) verwachten REST-endpoints.',
+    opp: 'ShopVirge biedt een standaard REST API, universeel begrepen en makkelijk te koppelen aan elke tool. Lagere drempel voor developers, agencies en third-party integraties.',
+  },
+  {
+    n: 3,
+    title: 'Ontbrekende kernfuncties (refunds, promoties)',
+    severity: 'Hoog',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Saleor mist out of the box een volledig werkend refund-systeem, een kritieke commerce-functie. De kortings- en promotielogica is basaal. Meertaligheid bestaat, maar vereist flinke configuratie. Het gat tussen "API beschikbaar" en "functie werkt end-to-end" is verrassend breed, en merchants ontdekken die gaten pas ná hun keuze.',
+    evidence: 'Reddit: "there is no fully functioned refund system"; GitHub issues tonen lopende verzoeken voor basale commerce-functionaliteit; sommige features vereisen Saleor Cloud (vendor lock-in voor een "open-source" platform).',
+    opp: 'ShopVirge: refunds via Stripe ingebouwd. Kortingslogica, meertalige content en SEO-tools zitten er allemaal in. Geen feature-gaten verstopt achter "coming soon" of "alleen in Cloud".',
+  },
+];
+
+// Time-to-launch: "installed" to "accepting orders" (days). Source phrasing: weeks to months.
+const launchMax = 90;
+const launch = [
+  { name: 'Saleor — eigen frontend bouwen', value: 90, label: '30–90 dagen', color: 'bg-danger' },
+  { name: 'Saleor — via een agency', value: 60, label: '20–60 dagen', color: 'bg-warning' },
+  { name: 'ShopVirge — frontend inbegrepen', value: 1, label: 'Dezelfde dag', color: 'bg-success' },
+];
+
+// Feature comparison: Saleor CE vs Saleor Cloud vs ShopVirge
+const featureRows = [
+  { label: 'Productieklare storefront', ce: 'demo only', cloud: 'nog steeds headless', sv: 'inbegrepen' },
+  { label: 'API-model', ce: 'GraphQL-only', cloud: 'GraphQL-only', sv: 'REST' },
+  { label: 'Refund-systeem', ce: 'niet volledig', cloud: 'deels / Cloud', sv: 'via Stripe' },
+  { label: 'Kortingen & promoties', ce: 'basaal', cloud: 'basaal', sv: 'inbegrepen' },
+  { label: 'Meertaligheid', ce: 'veel config', cloud: 'veel config', sv: 'native' },
+  { label: 'SEO-tools', ce: 'zelf bouwen', cloud: 'zelf bouwen', sv: 'inbegrepen' },
+  { label: 'Self-host', ce: 'ja', cloud: 'nee', sv: 'ja' },
+  { label: 'Transparante prijs', ce: 'gratis (self-host)', cloud: 'opaak / duur', sv: '€50–100/mnd' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Saleor vs ShopVirge — de complete deep dive",
+  "description": "Diepgaande analyse van Saleor's pijnpunten: geen bruikbare storefront out of the box, GraphQL-only API en ontbrekende kernfuncties zoals refunds. Dezelfde open-source DNA als ShopVirge, maar zonder de overhead.",
+  "datePublished": "2026-06-08",
+  "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
+  "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
+  "inLanguage": "nl",
+  "url": `${siteUrl}${base}nl/vergelijkingen/saleor/`,
+};
+---
+<Layout
+  title="Saleor vs ShopVirge — de complete deep dive"
+  description="Diepgaande analyse van Saleor's pijnpunten: geen bruikbare storefront out of the box, GraphQL-only API en ontbrekende kernfuncties zoals refunds. Dezelfde open-source DNA als ShopVirge, maar zonder de overhead."
+  lang="nl">
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Hero -->
+  <section class="hero text-white py-20 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <a href={`${base}nl/vergelijkingen/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white mb-8">← Alle vergelijkingen</a>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 uppercase tracking-wide">Deep dive</span>
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-danger/30 border border-white/10">Headless zonder vangnet</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">Saleor vs ShopVirge</h1>
+        <p class="text-xl text-white/80">
+          Saleor is een van de krachtigste open-source commerce-platforms die er zijn. Maar het is
+          developer-first tot op het bot: geen bruikbare storefront, GraphQL-only en feature-gaten. Dezelfde
+          open-source DNA als ShopVirge, maar zonder de overhead.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg">
+      <h2>Het probleem in één zin</h2>
+      <p>
+        Saleor is een open-source, headless commerce-platform op Python/Django met een GraphQL-only API. Het
+        draait merken als <strong>Lush en Breitling</strong> en heeft <strong>22.000+ GitHub-sterren</strong>.
+        Maar de developer-first aanpak werpt forse drempels op voor niet-technische merchants, en zelfs voor
+        dev-teams zonder GraphQL-ervaring. Er is geen bruikbare storefront, geen ingebouwd refund-systeem, en
+        je hebt serieuze engineering nodig om live te gaan.
+      </p>
+      <p>
+        En dat is precies waar ShopVirge instapt: <strong>dezelfde open-source vrijheid, maar met een
+        bruikbare frontend inbegrepen en simpelere operatie.</strong> Hieronder de drie pijnpunten, telkens
+        met het bewijs en met wat ShopVirge ertegenover zet.
+      </p>
+    </div>
+  </section>
+
+  <!-- Hero stat band -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-text-heading tabular-nums">22K+</div>
+          <p class="text-sm text-text-light mt-1">GitHub-sterren (sterke community)</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">0</div>
+          <p class="text-sm text-text-light mt-1">productieklare storefronts inbegrepen</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">weken–maanden</div>
+          <p class="text-sm text-text-light mt-1">van installatie tot orders accepteren</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Time-to-launch chart -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Van "geïnstalleerd" naar "orders accepteren"</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        Bij Saleor begint het werk pas ná de installatie: je bouwt of koopt een hele frontend voordat je je
+        eerste euro verdient. Bij ShopVirge zit die frontend er al in.
+      </p>
+      <div class="space-y-5 bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        {launch.map((l) => (
+          <div>
+            <div class="flex justify-between items-baseline mb-1.5">
+              <span class="font-semibold text-text-heading">{l.name}</span>
+              <span class="text-sm font-semibold text-text-light tabular-nums">{l.label}</span>
+            </div>
+            <div class="h-8 w-full bg-gray-100 rounded-lg overflow-hidden">
+              <div class={`h-full ${l.color} rounded-lg`} style={`width: ${Math.max((l.value / launchMax) * 100, 1.5)}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text-light mt-4">Bronformulering is "weken tot maanden"; de dagcijfers zijn een indicatieve vertaling daarvan. ShopVirge is headless-capabel gebleven, maar je hébt geen eigen frontend nodig om te starten.</p>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-10 text-center">De drie pijnpunten ontleed</h2>
+      <div class="space-y-8">
+        {painPoints.map((p) => (
+          <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="w-9 h-9 rounded-full bg-brand text-white flex items-center justify-center font-bold shrink-0">{p.n}</span>
+                <h3 class="text-xl font-bold text-text-heading flex-1">{p.title}</h3>
+                <span class={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${p.sevClass}`}>{p.severity}</span>
+              </div>
+              <p class="text-text mb-5">{p.problem}</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="bg-surface rounded-xl p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-text-light mb-1.5">Bewijs</p>
+                  <p class="text-sm text-text">{p.evidence}</p>
+                </div>
+                <div class="bg-brand/5 rounded-xl p-4 border border-brand/10">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand mb-1.5">De ShopVirge-oplossing</p>
+                  <p class="text-sm text-text">{p.opp}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature comparison table -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Saleor CE vs Saleor Cloud vs ShopVirge</h2>
+      <p class="text-text-light mb-8 max-w-2xl">Waar zit het verschil tussen "API beschikbaar" en "werkt end-to-end"? Een eerlijke functievergelijking.</p>
+      <div class="overflow-x-auto rounded-2xl shadow-md bg-white">
+        <table class="w-full text-sm min-w-[640px]">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-4 px-5 font-semibold text-gray-900">Functie</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-700">Saleor CE</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-700">Saleor Cloud</th>
+              <th class="text-center py-4 px-4 font-semibold text-brand bg-brand/5">ShopVirge</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {featureRows.map((r) => (
+              <tr>
+                <td class="py-3 px-5 text-gray-600 font-medium whitespace-nowrap">{r.label}</td>
+                <td class="text-center py-3 px-4 text-gray-600">{r.ce}</td>
+                <td class="text-center py-3 px-4 text-gray-600">{r.cloud}</td>
+                <td class="text-center py-3 px-4 font-semibold text-brand bg-brand/5">{r.sv}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-text-light mt-3">CE = Community Edition (self-hosted). Saleor Cloud-cellen indicatief: prijzen zijn niet publiek transparant en sommige functies zijn Cloud-only, wat lock-in oplevert voor een "open-source" platform.</p>
+    </div>
+  </section>
+
+  <!-- GraphQL vs REST -->
+  <section class="pb-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8">GraphQL-only vs een gewone REST API</h2>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-danger">
+          <h3 class="font-bold text-text-heading mb-4">Saleor: GraphQL-only</h3>
+          <ul class="space-y-2.5 text-sm text-text">
+            <li class="flex gap-2"><span class="text-danger">✗</span> Geen REST-fallback, alles via GraphQL</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Steile leercurve, kleinere talentpool</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Zapier, Make en ERP's verwachten REST</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> ERP/PIM/3PL-koppelingen onnodig complex</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Debuggen lastiger dan bij REST</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-success">
+          <h3 class="font-bold text-text-heading mb-4">ShopVirge: standaard REST</h3>
+          <ul class="space-y-2.5 text-sm text-text">
+            <li class="flex gap-2"><span class="text-success">✓</span> Universeel begrepen REST-endpoints</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Elke developer en agency kan ermee werken</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Werkt direct met Zapier, Make en ERP's</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Plus een MCP-ready API voor AI-agents</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Lagere drempel, lagere ontwikkelkosten</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Migration path -->
+  <section class="py-16 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Open source houden, de overhead lozen</h2>
+      <p class="text-text-light mb-10 max-w-2xl">Je hoeft je open-source vrijheid niet op te geven om makkelijker te lanceren. In vier stappen van Saleor naar ShopVirge.</p>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">01</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Catalogus-export</h3>
+          <p class="text-sm text-text-light">We halen je producten, categorieën en varianten uit Saleor via de GraphQL-API en zetten ze gevalideerd over naar ShopVirge.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">02</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Frontend inbegrepen</h3>
+          <p class="text-sm text-text-light">Geen frontend bouwen: ShopVirge levert een productieklare storefront. Wil je toch headless? De REST API staat klaar.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">03</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Kernfuncties activeren</h3>
+          <p class="text-sm text-text-light">Refunds via Stripe, kortingslogica, meertaligheid en SEO staan meteen aan. Geen feature-gaten meer.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">04</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Live &amp; managed</h3>
+          <p class="text-sm text-text-light">Hosting, updates en onderhoud doen wij. Open-source backend, geen GraphQL-specialist nodig voor de dagelijkse operatie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Open source, zonder de engineering-overhead</h2>
+      <p class="text-text-light mb-6">Vraag een gratis migratie-scan aan. We brengen je Saleor-setup in kaart en laten zien hoe snel je live bent met ShopVirge.</p>
+      <a href={`${base}nl/contact/?type=migration-scan`} class="btn-primary">Plan een migratie-scan →</a>
+    </div>
+  </section>
+</Layout>
