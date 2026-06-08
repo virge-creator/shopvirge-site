@@ -1,0 +1,270 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
+
+// Three pain points from the Magento deep dive analysis (June 2026)
+const painPoints = [
+  {
+    n: 1,
+    title: 'Legacy-migratie angst',
+    severity: 'Kritiek',
+    sevClass: 'bg-danger/10 text-danger',
+    problem: 'Magento 1-merchants én Magento 2-shops op oudere versies staan onder end-of-life druk. Migreren is duur ($50K–$200K bij agencies) en riskant.',
+    evidence: 'Migratie-offertes van $50K–$200K; merchants verlamd door kosten en risico.',
+    opp: 'Betaalbaar migratiepad. Importeer je catalogus via CSV/Excel. €1.000 onboarding voor de Medium-tier.',
+  },
+  {
+    n: 2,
+    title: 'SEO URL-structuur lock-in',
+    severity: 'Hoog',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Magento\'s URL-structuur is diep custom. Merchants vrezen dat élke platformwissel hun jarenlang opgebouwde SEO-posities vernietigt.',
+    evidence: 'Merchants noemen SEO als #1 blokkade om Magento te verlaten.',
+    opp: 'Flexibele URL-structuur + redirect-ondersteuning. SEO-migratiehulp inbegrepen.',
+  },
+  {
+    n: 3,
+    title: 'Hoge onderhoudskosten',
+    severity: 'Hoog',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Magento vereist dure developers ($150–250/uur), dedicated hosting ($500–2.000/mnd) en constant security-patchen.',
+    evidence: 'TCO van $50K–100K/jaar voor mid-size Magento-shops.',
+    opp: 'Managed hosting inbegrepen. Geen dev-team nodig voor de dagelijkse operatie.',
+  },
+];
+
+// Annual TCO bars (scaled to 100k)
+const tcoMax = 100000;
+const tco = [
+  { name: 'Magento — hoog', value: 100000, label: '$100.000', color: 'bg-danger' },
+  { name: 'Magento — laag', value: 50000, label: '$50.000', color: 'bg-danger/70' },
+  { name: 'ShopVirge Medium', value: 900, label: '€900', color: 'bg-success' },
+];
+
+// Cost drivers
+const drivers = [
+  { label: 'Developers', value: '$150–250', unit: '/uur', icon: 'code' },
+  { label: 'Dedicated hosting', value: '$500–2.000', unit: '/maand', icon: 'server' },
+  { label: 'Security patching', value: 'doorlopend', unit: 'verplicht', icon: 'shield' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Magento vs ShopVirge — de complete deep dive",
+  "description": "Diepgaande analyse van Magento's pijnpunten: migratiekosten van $50K–$200K, TCO van $50K–100K/jaar en SEO lock-in — en hoe ShopVirge dit oplost.",
+  "datePublished": "2026-06-08",
+  "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
+  "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
+  "inLanguage": "nl",
+  "url": `${siteUrl}${base}nl/vergelijkingen/magento/`,
+};
+---
+<Layout
+  title="Magento vs ShopVirge — de complete deep dive"
+  description="Diepgaande analyse van Magento's pijnpunten: migratiekosten van $50K–$200K, TCO van $50K–100K/jaar en SEO lock-in. Plus een betaalbaar, SEO-veilig migratiepad naar ShopVirge."
+  lang="nl">
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Hero -->
+  <section class="hero text-white py-20 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <a href={`${base}nl/vergelijkingen/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white mb-8">← Alle vergelijkingen</a>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 uppercase tracking-wide">Deep dive</span>
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-danger/30 border border-white/10">Legacy-val</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">Magento vs ShopVirge</h1>
+        <p class="text-xl text-white/80">
+          Te duur om te blijven, te riskant om te vertrekken. We ontleden de drie pijnpunten die
+          Magento-merchants gevangen houden — met cijfers — en laten zien hoe het ook kan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg">
+      <h2>De legacy-val in één zin</h2>
+      <p>
+        Magento-merchants zitten klem in een klassieke legacy-val: <strong>te duur om te blijven, te
+        riskant om te vertrekken</strong>. Met migratiekosten van $50K–$200K en de angst om SEO-rankings
+        te verliezen, zijn velen verlamd. Een betaalbaar, SEO-vriendelijk migratiepad is de sleutel die
+        deze deur opent.
+      </p>
+      <p>
+        Hieronder lopen we de drie pijnpunten langs die in juni 2026 het vaakst terugkwamen in discussies
+        van Magento-eigenaren — telkens met het bewijs, en telkens met wat ShopVirge er concreet tegenover
+        zet.
+      </p>
+    </div>
+  </section>
+
+  <!-- Hero stat band -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">$50K–200K</div>
+          <p class="text-sm text-text-light mt-1">migratiekosten bij agencies</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">$50K–100K</div>
+          <p class="text-sm text-text-light mt-1">jaarlijkse TCO mid-size shop</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">83%</div>
+          <p class="text-sm text-text-light mt-1">datamigraties faalt of gaat over budget</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Annual TCO chart -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Jaarlijkse kosten: Magento vs ShopVirge</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        De terugkerende eigendomskosten (TCO) van een mid-size Magento-shop versus het ShopVirge
+        Medium-abonnement. Let op de schaal — de balken staan op dezelfde as.
+      </p>
+      <div class="space-y-5 bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        {tco.map((t) => (
+          <div>
+            <div class="flex justify-between items-baseline mb-1.5">
+              <span class="font-semibold text-text-heading">{t.name}</span>
+              <span class="text-sm font-semibold text-text-light tabular-nums">{t.label}</span>
+            </div>
+            <div class="h-8 w-full bg-gray-100 rounded-lg overflow-hidden">
+              <div class={`h-full ${t.color} rounded-lg`} style={`width: ${Math.max((t.value / tcoMax) * 100, 0.8)}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text-light mt-4">
+        ShopVirge Medium kost €75/maand (€900/jaar) inclusief hosting, onderhoud en updates. Een
+        mid-size Magento-shop betaalt <strong>50 tot 110× zoveel</strong> per jaar — en dan is de
+        eenmalige migratie nog niet meegerekend.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-10 text-center">De drie pijnpunten ontleed</h2>
+      <div class="space-y-8">
+        {painPoints.map((p) => (
+          <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="w-9 h-9 rounded-full bg-brand text-white flex items-center justify-center font-bold shrink-0">{p.n}</span>
+                <h3 class="text-xl font-bold text-text-heading flex-1">{p.title}</h3>
+                <span class={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${p.sevClass}`}>{p.severity}</span>
+              </div>
+              <p class="text-text mb-5">{p.problem}</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="bg-surface rounded-xl p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-text-light mb-1.5">Bewijs van Reddit</p>
+                  <p class="text-sm text-text">{p.evidence}</p>
+                </div>
+                <div class="bg-brand/5 rounded-xl p-4 border border-brand/10">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand mb-1.5">De ShopVirge-oplossing</p>
+                  <p class="text-sm text-text">{p.opp}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cost drivers -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Waar gaat dat geld naartoe?</h2>
+      <p class="text-text-light mb-10 max-w-2xl">De drie kostendrijvers achter Magento's $50K–100K/jaar — stuk voor stuk inbegrepen bij ShopVirge.</p>
+      <div class="grid sm:grid-cols-3 gap-4">
+        {drivers.map((d) => (
+          <div class="bg-white rounded-2xl shadow-md p-6">
+            <p class="text-sm font-semibold text-text-heading mb-1">{d.label}</p>
+            <div class="text-2xl font-extrabold text-danger tabular-nums">{d.value}</div>
+            <p class="text-xs text-text-light">{d.unit}</p>
+            <p class="text-xs text-success font-semibold mt-3">→ Bij ShopVirge: inbegrepen</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-year TCO table -->
+  <section class="pb-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">3-jaars Total Cost of Ownership</h2>
+      <p class="text-text-light mb-8 max-w-2xl">Een eerlijke optelsom over drie jaar voor een mid-size shop. Bedragen indicatief op basis van agency-offertes en marktcijfers (juni 2026).</p>
+      <div class="overflow-x-auto rounded-2xl shadow-md bg-white">
+        <table class="w-full text-sm min-w-[560px]">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-4 px-5 font-semibold text-gray-900">Kostenpost</th>
+              <th class="text-right py-4 px-5 font-semibold text-danger">Magento (mid-size)</th>
+              <th class="text-right py-4 px-5 font-semibold text-brand bg-brand/5">ShopVirge Medium</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="py-3 px-5 text-gray-600">Eenmalige migratie / onboarding</td><td class="text-right py-3 px-5 tabular-nums">$50K–200K</td><td class="text-right py-3 px-5 tabular-nums bg-brand/5 font-medium">€1.000</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Developers</td><td class="text-right py-3 px-5 tabular-nums">$150–250/uur</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">inbegrepen</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Hosting</td><td class="text-right py-3 px-5 tabular-nums">$500–2.000/mnd</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">inbegrepen</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Security patching</td><td class="text-right py-3 px-5">doorlopend</td><td class="text-right py-3 px-5 bg-brand/5 font-medium">automatisch</td></tr>
+            <tr><td class="py-3 px-5 text-gray-600">Jaarlijkse TCO</td><td class="text-right py-3 px-5 tabular-nums">$50K–100K</td><td class="text-right py-3 px-5 tabular-nums bg-brand/5 font-medium">€900</td></tr>
+            <tr class="border-t-2 border-gray-200"><td class="py-4 px-5 font-bold text-text-heading">3-jaars totaal</td><td class="text-right py-4 px-5 font-bold text-danger tabular-nums">$200K–500K</td><td class="text-right py-4 px-5 font-bold text-brand tabular-nums bg-brand/5">±€3.700</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-text-light mt-4">Zelfs in het gunstigste Magento-scenario kost drie jaar méér dan $200.000. ShopVirge blijft onder de €4.000 — inclusief migratie.</p>
+    </div>
+  </section>
+
+  <!-- Migration path -->
+  <section class="py-16 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Het migratiepad: Magento → ShopVirge</h2>
+      <p class="text-text-light mb-10 max-w-2xl">Vier stappen, zonder SEO-verlies en zonder dev-team. Inbegrepen bij de Medium-tier (€1.000 onboarding).</p>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">01</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Catalogus-export</h3>
+          <p class="text-sm text-text-light">We exporteren je producten, categorieën en varianten uit Magento naar gevalideerde CSV/Excel — met data-check vooraf.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">02</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Gestructureerde import</h3>
+          <p class="text-sm text-text-light">Import in ShopVirge met validatie, zodat je niet in de 83% van migraties valt die faalt of over budget gaat.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">03</div>
+          <h3 class="font-bold text-text-heading mb-1.5">SEO &amp; redirects</h3>
+          <p class="text-sm text-text-light">Flexibele URL-structuur plus een 1-op-1 redirect-mapping van je oude Magento-URL's. Je rankings verhuizen mee.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">04</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Live &amp; managed</h3>
+          <p class="text-sm text-text-light">Hosting, updates en security-patches doen wij. Jij beheert producten zelf — of via onze MCP-ready API.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Ontsnap aan Magento zonder je SEO te verliezen</h2>
+      <p class="text-text-light mb-6">Vraag een gratis migratie-scan aan. We berekenen jouw exacte TCO-besparing en het SEO-veilige migratieplan.</p>
+      <a href={`${base}nl/contact/`} class="btn-primary">Plan een migratie-scan →</a>
+    </div>
+  </section>
+</Layout>

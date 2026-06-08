@@ -1,0 +1,225 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+
+// Platforms in the comparison. `slug` set => deep dive live, null => coming soon.
+const platforms = [
+  {
+    name: 'Magento',
+    slug: 'magento',
+    type: 'Adobe Commerce / open-source',
+    tagline: 'The legacy trap: too expensive to stay, too risky to leave.',
+    pain: 'Migration quotes of $50K–$200K and SEO-loss fears keep thousands of stores paralyzed.',
+    stat: '$50K–100K',
+    statLabel: 'annual TCO for a mid-size store',
+  },
+  {
+    name: 'Shopify',
+    slug: 'shopify',
+    type: 'SaaS (closed source)',
+    tagline: 'Building on rented land: one policy change and you are helpless.',
+    pain: 'Scripts deprecation, forced checkout upgrades and app-stacking that turns $29 into $300+/mo.',
+    stat: '10×',
+    statLabel: 'higher costs than expected from required apps',
+  },
+  {
+    name: 'WooCommerce',
+    slug: 'woocommerce',
+    type: 'WordPress plugin',
+    tagline: 'Hostage to WordPress\'s decline and endless plugin conflicts.',
+    pain: 'WordPress shrank for 6 straight quarters; plugin conflicts silently erode your conversion.',
+    stat: '15–30%',
+    statLabel: 'conversion loss from undetected plugin conflicts',
+  },
+  {
+    name: 'Saleor',
+    slug: null,
+    type: 'Headless / GraphQL (open-source)',
+    tagline: 'Powerful and API-first — but you get nowhere without a developer team.',
+    pain: 'No ready-made storefront, no admin content tooling: everything is a developer build.',
+    stat: '100%',
+    statLabel: 'developer-dependent for frontend & management',
+  },
+  {
+    name: 'Shopware',
+    slug: null,
+    type: 'Open-source / commercial (DE)',
+    tagline: 'Strong in B2B, but complex and expensive to keep running.',
+    pain: 'Steep learning curve, pricey plans and continuous maintenance by specialists.',
+    stat: '€€€',
+    statLabel: 'high TCO from hosting + specialists',
+  },
+];
+
+// Master comparison matrix
+const rows = [
+  { label: 'Type', shopvirge: 'Open-source SaaS', shopify: 'Closed SaaS', magento: 'Enterprise', woo: 'WP plugin', saleor: 'Headless', shopware: 'Open-source' },
+  { label: 'Monthly price', shopvirge: '€50–100', shopify: '$29–2,300+', magento: '€4,000+/mo*', woo: '€0 + plugins', saleor: 'Hosting + dev', shopware: '€600+/mo' },
+  { label: 'Transaction fees', shopvirge: '0%', shopify: '0.5–2%**', magento: '0%', woo: '0%', saleor: '0%', shopware: '0%' },
+  { label: 'Native multilingual', shopvirge: 'yes', shopify: 'apps', magento: 'yes', woo: 'plugins', saleor: 'yes (DIY)', shopware: 'yes' },
+  { label: 'Self-host option', shopvirge: 'yes', shopify: 'no', magento: 'yes', woo: 'yes', saleor: 'yes', shopware: 'yes' },
+  { label: 'Lock-in risk', shopvirge: 'low', shopify: 'high', magento: 'high', woo: 'medium', saleor: 'medium', shopware: 'medium' },
+  { label: 'Own devs required', shopvirge: 'no', shopify: 'sometimes', magento: 'yes', woo: 'sometimes', saleor: 'yes', shopware: 'yes' },
+  { label: 'MCP-ready API', shopvirge: 'yes', shopify: 'no', magento: 'no', woo: 'no', saleor: 'no', shopware: 'no' },
+];
+
+// Exit / migration cost to LEAVE a platform (illustrative, agency quotes)
+const exitCosts = [
+  { name: 'Magento', low: 50000, high: 200000, color: 'bg-danger' },
+  { name: 'Shopify Plus', low: 15000, high: 50000, color: 'bg-warning' },
+  { name: 'WooCommerce', low: 5000, high: 25000, color: 'bg-warning' },
+  { name: 'ShopVirge onboarding', low: 1000, high: 1000, color: 'bg-success' },
+];
+const exitMax = 200000;
+
+const cell = (v: string) => v;
+---
+<Layout
+  title="Comparisons — ShopVirge vs Shopify, Magento, WooCommerce, Saleor & Shopware"
+  description="An honest comparison of ShopVirge with Shopify, Magento, WooCommerce, Saleor and Shopware. Based on real merchant pain points: lock-in, transaction fees, migration costs and TCO."
+  lang="en">
+
+  <!-- Hero -->
+  <section class="hero text-white py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="uppercase tracking-wider text-white/70 text-sm font-semibold mb-4">Comparisons</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">ShopVirge vs the rest</h1>
+        <p class="text-xl text-white/80">
+          No marketing spin — just the real pain points merchants face on Shopify, Magento,
+          WooCommerce, Saleor and Shopware, and how ShopVirge solves them with open-source,
+          transparent pricing and zero lock-in.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg">
+      <p>
+        We analysed thousands of merchant discussions on Reddit (June 2026). The picture is consistent:
+        <strong>merchants feel trapped</strong>. Shopify is killing Scripts and forcing checkout upgrades.
+        BigCommerce broke its "no transaction fees" promise. WooCommerce is chained to the declining
+        WordPress market. And Magento stores are squeezed between sky-high maintenance costs and terrifying
+        migration bills.
+      </p>
+      <p>
+        Each comparison below is built around those pain points — with numbers. Further down you'll find a
+        <strong>deep dive</strong> per platform that goes much further. The first one, on Magento, is
+        already online.
+      </p>
+    </div>
+  </section>
+
+  <!-- Master comparison table -->
+  <section class="pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-3">The comparison at a glance</h2>
+      <p class="text-center text-text-light mb-10 max-w-2xl mx-auto">Eight criteria that separate "building on rented land" from owning your own platform.</p>
+      <div class="overflow-x-auto rounded-2xl shadow-md bg-white">
+        <table class="w-full text-sm min-w-[820px]">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-4 px-4 font-semibold text-gray-900">Criterion</th>
+              <th class="text-center py-4 px-4 font-bold text-brand bg-brand/5">ShopVirge</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-700">Shopify</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-700">Magento</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-700">WooCommerce</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-700">Saleor</th>
+              <th class="text-center py-4 px-4 font-semibold text-gray-700">Shopware</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {rows.map((r) => (
+              <tr>
+                <td class="py-3 px-4 text-gray-600 font-medium whitespace-nowrap">{r.label}</td>
+                <td class="text-center py-3 px-4 font-semibold text-brand bg-brand/5">{cell(r.shopvirge)}</td>
+                <td class="text-center py-3 px-4 text-gray-600">{cell(r.shopify)}</td>
+                <td class="text-center py-3 px-4 text-gray-600">{cell(r.magento)}</td>
+                <td class="text-center py-3 px-4 text-gray-600">{cell(r.woo)}</td>
+                <td class="text-center py-3 px-4 text-gray-600">{cell(r.saleor)}</td>
+                <td class="text-center py-3 px-4 text-gray-600">{cell(r.shopware)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-text-light mt-3">* Adobe Commerce licence + hosting + maintenance, indicative. ** Shopify charges an extra 0.5–2% when you do not use Shopify Payments.</p>
+    </div>
+  </section>
+
+  <!-- Exit cost chart -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">What does it cost to leave?</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        The biggest reason merchants stay stuck isn't the monthly price — it's the migration bill.
+        Agency quotes to leave an existing platform (June 2026):
+      </p>
+      <div class="space-y-6">
+        {exitCosts.map((e) => (
+          <div>
+            <div class="flex justify-between items-baseline mb-1.5">
+              <span class="font-semibold text-text-heading">{e.name}</span>
+              <span class="text-sm text-text-light tabular-nums">
+                {e.low === e.high ? `€${e.low.toLocaleString('en-US')}` : `$${e.low.toLocaleString('en-US')} – $${e.high.toLocaleString('en-US')}`}
+              </span>
+            </div>
+            <div class="h-7 w-full bg-gray-100 rounded-full overflow-hidden">
+              <div class={`h-full ${e.color} rounded-full flex items-center justify-end pr-3`} style={`width: ${Math.max((e.high / exitMax) * 100, 4)}%`}>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text-light mt-6">
+        Industry research shows that <strong>83% of all data-migration projects fail or exceed budget</strong>.
+        ShopVirge imports your catalog in a structured way via CSV/Excel — onboarding for the Medium tier costs €1,000.
+      </p>
+    </div>
+  </section>
+
+  <!-- Platform cards / deep dives -->
+  <section class="py-16 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-3">Deep dives per platform</h2>
+      <p class="text-center text-text-light mb-12 max-w-2xl mx-auto">
+        Each deep dive dissects the pain points with numbers, charts and a concrete migration path to ShopVirge.
+      </p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {platforms.map((p) => (
+          <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xl font-bold text-text-heading">vs {p.name}</h3>
+              {p.slug
+                ? <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-success/10 text-success">Deep dive live</span>
+                : <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">Coming soon</span>}
+            </div>
+            <p class="text-xs text-text-light uppercase tracking-wide mb-3">{p.type}</p>
+            <p class="text-text font-medium mb-3">{p.tagline}</p>
+            <p class="text-sm text-text-light mb-5">{p.pain}</p>
+            <div class="mt-auto">
+              <div class="flex items-baseline gap-2 mb-4">
+                <span class="text-2xl font-extrabold text-brand tabular-nums">{p.stat}</span>
+                <span class="text-xs text-text-light">{p.statLabel}</span>
+              </div>
+              {p.slug
+                ? <a href={`${base}en/comparisons/${p.slug}/`} class="btn-primary w-full text-center !py-2.5">Read the deep dive →</a>
+                : <button disabled class="w-full text-center py-2.5 rounded-full border-2 border-gray-200 text-gray-400 font-semibold cursor-not-allowed">In progress</button>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Stuck on another platform?</h2>
+      <p class="text-text-light mb-6">We'll map out your situation and show what moving to ShopVirge actually delivers — no sales pitch.</p>
+      <a href={`${base}en/contact/`} class="btn-primary">Book a free consultation →</a>
+    </div>
+  </section>
+</Layout>

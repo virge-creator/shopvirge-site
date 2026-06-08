@@ -1,0 +1,292 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
+
+// Three pain points from the WooCommerce / WordPress deep dive (June 2026)
+const painPoints = [
+  {
+    n: 1,
+    title: 'WordPress market share decline',
+    severity: 'Critical',
+    sevClass: 'bg-danger/10 text-danger',
+    problem: 'WordPress has declined for 6 consecutive quarters (43.6% → 41.9% CMS market share). WooCommerce is hostage to WordPress\'s trajectory. The ecosystem is fragmenting.',
+    evidence: '6 quarters of consecutive decline; 43.6% → 41.9% CMS market share.',
+    opp: 'Independent platform — not tied to any CMS\'s fortunes.',
+  },
+  {
+    n: 2,
+    title: 'WordPress 7.0 breaking changes',
+    severity: 'High',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'WP 7.0 brings significant architecture changes. WooCommerce stores face plugin compatibility nightmares. Every major WP release is a risk event.',
+    evidence: 'Merchants pre-emptively seeking alternatives before the WP 7.0 launch.',
+    opp: 'Controlled release cycle. Updates don\'t break your store.',
+  },
+  {
+    n: 3,
+    title: 'Silent conversion erosion',
+    severity: 'High',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Plugin conflicts silently break checkout flows, forms and tracking. Merchants don\'t realize they\'re losing sales until they audit months later.',
+    evidence: 'Merchants discovering 15–30% conversion drops from undetected plugin conflicts.',
+    opp: 'Integrated stack — no plugin conflicts. Monitoring built in.',
+  },
+];
+
+// WordPress CMS market share over 6 quarters. Endpoints (43.6 → 41.9) are reported;
+// intermediate quarters are an interpolated illustration of the trend.
+const shareAxisMin = 40;
+const shareAxisMax = 44;
+const share = [
+  { q: 'Q1', v: 43.6 },
+  { q: 'Q2', v: 43.3 },
+  { q: 'Q3', v: 43.0 },
+  { q: 'Q4', v: 42.6 },
+  { q: 'Q5', v: 42.2 },
+  { q: 'Q6', v: 41.9 },
+];
+const pct = (v: number) => ((v - shareAxisMin) / (shareAxisMax - shareAxisMin)) * 100;
+
+// Silent conversion erosion: revenue lost on a sample €500k/yr store
+const sampleRevenue = 500000;
+const erosion = [
+  { label: 'Best case (−15%)', value: 0.15, color: 'bg-warning' },
+  { label: 'Worst case (−30%)', value: 0.30, color: 'bg-danger' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "WooCommerce vs ShopVirge — the complete deep dive",
+  "description": "An in-depth analysis of WooCommerce's pain points: 6 quarters of WordPress decline (43.6% → 41.9%), WP 7.0 breaking changes and 15–30% silent conversion erosion. Plus a migration path to ShopVirge.",
+  "datePublished": "2026-06-08",
+  "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
+  "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
+  "inLanguage": "en",
+  "url": `${siteUrl}${base}en/comparisons/woocommerce/`,
+};
+---
+<Layout
+  title="WooCommerce vs ShopVirge — the complete deep dive"
+  description="An in-depth analysis of WooCommerce's pain points: 6 quarters of WordPress decline (43.6% → 41.9%), WP 7.0 breaking changes and 15–30% silent conversion erosion. Plus a safe migration path to ShopVirge."
+  lang="en">
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Hero -->
+  <section class="hero text-white py-20 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <a href={`${base}en/comparisons/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white mb-8">← All comparisons</a>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 uppercase tracking-wide">Deep dive</span>
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-danger/30 border border-white/10">Hostage to WordPress</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">WooCommerce vs ShopVirge</h1>
+        <p class="text-xl text-white/80">
+          Built on "freedom", now trapped by complexity. WooCommerce's fate is tied to WordPress — and
+          WordPress is shrinking. We dissect the three pain points, with numbers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg">
+      <h2>The problem in one sentence</h2>
+      <p>
+        WooCommerce's fate is tied to WordPress, and <strong>WordPress is shrinking</strong>. Six
+        consecutive quarters of market-share decline, upcoming breaking changes in WordPress 7.0 and the
+        ever-present plugin conflict problem make WooCommerce increasingly risky. Merchants who built on
+        "freedom" now feel trapped by complexity.
+      </p>
+      <p>
+        Below are the three pain points that surfaced most often among WooCommerce owners in June 2026 —
+        each with the evidence, and each with what ShopVirge concretely puts in its place.
+      </p>
+    </div>
+  </section>
+
+  <!-- Hero stat band -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">6 quarters</div>
+          <p class="text-sm text-text-light mt-1">of uninterrupted WordPress share decline</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">43.6 → 41.9%</div>
+          <p class="text-sm text-text-light mt-1">CMS market share lost</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">15–30%</div>
+          <p class="text-sm text-text-light mt-1">conversion drop from plugin conflicts</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Market share decline chart -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">WordPress market share: 6 quarters down</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        WordPress's CMS market share fell for six straight quarters. WooCommerce inevitably shares in that
+        decline — fewer developers, less momentum, a fragmenting ecosystem.
+      </p>
+      <div class="bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        <div class="space-y-3">
+          {share.map((s) => (
+            <div class="flex items-center gap-4">
+              <span class="w-14 text-sm font-medium text-text-light shrink-0">{s.q}</span>
+              <div class="h-7 flex-1 bg-gray-100 rounded-lg overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-brand-dark to-danger rounded-lg" style={`width: ${pct(s.v)}%`}></div>
+              </div>
+              <span class="w-16 text-right text-sm font-semibold text-text-heading tabular-nums shrink-0">{s.v.toFixed(1)}%</span>
+            </div>
+          ))}
+        </div>
+        <p class="text-xs text-text-light mt-5">Axis runs from 40% to 44% to make the trend visible. Start and end points (43.6% → 41.9%) are reported; intermediate quarters illustrate the trend.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-10 text-center">The three pain points dissected</h2>
+      <div class="space-y-8">
+        {painPoints.map((p) => (
+          <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="w-9 h-9 rounded-full bg-brand text-white flex items-center justify-center font-bold shrink-0">{p.n}</span>
+                <h3 class="text-xl font-bold text-text-heading flex-1">{p.title}</h3>
+                <span class={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${p.sevClass}`}>{p.severity}</span>
+              </div>
+              <p class="text-text mb-5">{p.problem}</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="bg-surface rounded-xl p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-text-light mb-1.5">Evidence from Reddit</p>
+                  <p class="text-sm text-text">{p.evidence}</p>
+                </div>
+                <div class="bg-brand/5 rounded-xl p-4 border border-brand/10">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand mb-1.5">The ShopVirge answer</p>
+                  <p class="text-sm text-text">{p.opp}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Silent conversion erosion impact -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">The hidden price of silent conversion erosion</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        A 15–30% conversion loss sounds abstract — until you project it onto real revenue. A sample store
+        with <strong>€500,000 annual revenue</strong> quietly leaking through plugin conflicts:
+      </p>
+      <div class="space-y-6 bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        {erosion.map((e) => (
+          <div>
+            <div class="flex justify-between items-baseline mb-1.5">
+              <span class="font-semibold text-text-heading">{e.label}</span>
+              <span class="text-sm font-semibold text-danger tabular-nums">−€{(sampleRevenue * e.value).toLocaleString('en-US')}/year</span>
+            </div>
+            <div class="h-8 w-full bg-gray-100 rounded-lg overflow-hidden">
+              <div class={`h-full ${e.color} rounded-lg`} style={`width: ${e.value * 100}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text-light mt-4">
+        That's <strong>€75,000 to €150,000 per year</strong> draining away unseen — until you run an audit
+        months later. With ShopVirge everything sits in one integrated stack with monitoring built in, so
+        there are no plugins quietly breaking each other.
+      </p>
+    </div>
+  </section>
+
+  <!-- Fragmented vs integrated stack -->
+  <section class="pb-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8">Fragmented stack vs integrated stack</h2>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-danger">
+          <h3 class="font-bold text-text-heading mb-4">WooCommerce</h3>
+          <ul class="space-y-2.5 text-sm text-text">
+            <li class="flex gap-2"><span class="text-danger">✗</span> WordPress core + theme + separate plugins</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Every plugin is a potential conflict point</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Updates can break your store</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Conversion leaks go unnoticed for months</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Fate tied to WordPress's market share</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-success">
+          <h3 class="font-bold text-text-heading mb-4">ShopVirge</h3>
+          <ul class="space-y-2.5 text-sm text-text">
+            <li class="flex gap-2"><span class="text-success">✓</span> One integrated stack, no plugin jungle</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Checkout, SEO and multilingual native</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Controlled updates that break nothing</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Monitoring built in — leaks get caught</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Independent platform, its own course</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Migration path: 5 steps -->
+  <section class="py-16 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">WooCommerce → ShopVirge in 5 steps</h2>
+      <p class="text-text-light mb-10 max-w-2xl">With no SEO loss and no plugin maintenance. Included with the Medium tier (€1,000 onboarding).</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">01</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Catalog export</h3>
+          <p class="text-sm text-text-light">We export your products, categories and variants out of WooCommerce into validated CSV/Excel.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">02</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Plugin audit</h3>
+          <p class="text-sm text-text-light">We map which plugin features you actually use — and which are native in ShopVirge.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">03</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Structured import</h3>
+          <p class="text-sm text-text-light">Import into ShopVirge with validation — no more 15–30% conversion leak from hidden conflicts.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">04</div>
+          <h3 class="font-bold text-text-heading mb-1.5">SEO &amp; redirects</h3>
+          <p class="text-sm text-text-light">1-to-1 redirect mapping of your old WooCommerce URLs. No 20–40% traffic loss on the move.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">05</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Live &amp; managed</h3>
+          <p class="text-sm text-text-light">Hosting, updates and monitoring are on us. No more WP 7.0 nightmare on the next release.</p>
+        </div>
+        <div class="bg-brand/5 rounded-2xl p-6 border border-brand/10 flex flex-col justify-center">
+          <p class="text-sm font-semibold text-brand mb-1">End result</p>
+          <p class="text-sm text-text">An independent, integrated store that doesn't ride along with WordPress's decline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Leave WordPress before 7.0 breaks your store</h2>
+      <p class="text-text-light mb-6">Request a free migration scan. We'll find your hidden conversion leaks and deliver an SEO-safe migration plan.</p>
+      <a href={`${base}en/contact/`} class="btn-primary">Book a migration scan →</a>
+    </div>
+  </section>
+</Layout>

@@ -23,6 +23,8 @@ const slugMap: Record<string, string> = {
   'prijzen': 'pricing',
   'about': 'over-ons',
   'over-ons': 'about',
+  'vergelijkingen': 'comparisons',
+  'comparisons': 'vergelijkingen',
   // Blog post slugs NL→EN
   'ai-productbeschrijvingen-webshop-2026': 'ai-product-descriptions-webshop-2026',
   'ai-revolutie-ecommerce-2026': 'ai-revolution-ecommerce-2026',
@@ -219,6 +221,7 @@ const ogImage = image || `${siteUrl}${base}images/logo.png`;
             <li><a href={isEn ? `${enBase}features/` : `${nlBase}functies/`} class="hover:text-white transition-colors">{isEn ? 'Features' : 'Functies'}</a></li>
             <li><a href={isEn ? `${enBase}pricing/` : `${nlBase}prijzen/`} class="hover:text-white transition-colors">{isEn ? 'Pricing' : 'Prijzen'}</a></li>
             <li><a href={isEn ? `${enBase}about/` : `${nlBase}over-ons/`} class="hover:text-white transition-colors">{isEn ? 'About us' : 'Over ons'}</a></li>
+            <li><a href={isEn ? `${enBase}comparisons/` : `${nlBase}vergelijkingen/`} class="hover:text-white transition-colors">{isEn ? 'Comparisons' : 'Vergelijkingen'}</a></li>
             <li><a href={isEn ? `${enBase}blog/` : `${nlBase}blog/`} class="hover:text-white transition-colors">Blog</a></li>
             <li><a href={isEn ? `${enBase}contact/` : `${nlBase}contact/`} class="hover:text-white transition-colors">Contact</a></li>
             <li><a href={isEn ? `${enBase}privacy/` : `${nlBase}privacy/`} class="hover:text-white transition-colors">{isEn ? 'Privacy' : 'Privacy'}</a></li>

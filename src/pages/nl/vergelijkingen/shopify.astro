@@ -1,0 +1,274 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
+
+// Three pain points from the Shopify deep dive (June 2026)
+const painPoints = [
+  {
+    n: 1,
+    title: 'Scripts-deprecation deadline (30 juni)',
+    severity: 'Kritiek',
+    sevClass: 'bg-danger/10 text-danger',
+    problem: 'Shopify schrapt Scripts op 30 juni 2026. Merchants staan voor $15K–$50K migratiekosten naar Shopify Functions. Complexe kortingslogica breekt, zonder 1-op-1-pariteit. Duizenden shops in paniek.',
+    evidence: '$15K–$50K migratie-offertes; merchants melden 60% functieverlies in Functions vs Scripts.',
+    opp: 'Nul migratiekosten — ShopVirge-kortingslogica is ingebouwd en wordt niet wegbezuinigd door een platformbesluit.',
+  },
+  {
+    n: 2,
+    title: 'Gedwongen checkout-upgrade non-Plus (26 aug)',
+    severity: 'Kritiek',
+    sevClass: 'bg-danger/10 text-danger',
+    problem: 'Shopify forceert op 26 augustus alle non-Plus shops naar de nieuwe checkout-extensibility. Custom checkout-scripts, post-purchase upsells en tracking pixels breken in stilte.',
+    evidence: 'Merchants ontdekken kapotte post-purchase flows en verloren conversie-tracking.',
+    opp: 'Volledige checkout-controle met open-source backend — geen gedwongen migraties.',
+  },
+  {
+    n: 3,
+    title: 'Platform-storing (3 juni — 2 uur wereldwijd)',
+    severity: 'Hoog',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Shopify lag op 3 juni 2 uur wereldwijd plat. Merchants verloren omzet zonder enig verhaal. Geen SLA, geen credits, geen transparantie.',
+    evidence: '2 uur wereldwijde storing; merchants melden $10K+ aan gemiste omzet.',
+    opp: 'Self-hosted optie betekent dat jij de uptime beheert. Multi-cloud deployment mogelijk.',
+  },
+];
+
+// Two forced deadlines (timeline)
+const deadlines = [
+  { date: '30 juni 2026', label: 'Scripts uitgeschakeld', sub: '$15K–$50K migratie · 60% functieverlies', color: 'bg-danger' },
+  { date: '26 aug 2026', label: 'Checkout auto-upgrade (non-Plus)', sub: 'Custom scripts & pixels breken in stilte', color: 'bg-danger' },
+];
+
+// App-stacking: advertised plan vs real monthly cost
+const stackMax = 300;
+const appStack = [
+  { name: 'Geadverteerd basisplan', value: 29, label: '$29', color: 'bg-success' },
+  { name: 'Realiteit met essentiële apps', value: 300, label: '$300+', color: 'bg-danger' },
+];
+
+// Plus tier vs ShopVirge (monthly)
+const plusMax = 2300;
+const plusCmp = [
+  { name: 'Shopify Plus', value: 2300, label: '$2.300+/mnd', color: 'bg-danger' },
+  { name: 'ShopVirge Large', value: 100, label: '€100/mnd', color: 'bg-success' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Shopify vs ShopVirge — de complete deep dive",
+  "description": "Diepgaande analyse van Shopify's pijnpunten: Scripts-deprecation (30 juni, $15K–$50K, 60% functieverlies), gedwongen checkout-upgrade (26 aug) en de 2-uur storing — plus app-stacking en lock-in.",
+  "datePublished": "2026-06-08",
+  "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
+  "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
+  "inLanguage": "nl",
+  "url": `${siteUrl}${base}nl/vergelijkingen/shopify/`,
+};
+---
+<Layout
+  title="Shopify vs ShopVirge — de complete deep dive"
+  description="Diepgaande analyse van Shopify's pijnpunten: Scripts-deprecation (30 juni, $15K–$50K), gedwongen checkout-upgrade (26 aug), app-stacking ($29 → $300+) en lock-in. Plus een migratiepad zonder kosten naar ShopVirge."
+  lang="nl">
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Hero -->
+  <section class="hero text-white py-20 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <a href={`${base}nl/vergelijkingen/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white mb-8">← Alle vergelijkingen</a>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 uppercase tracking-wide">Deep dive</span>
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-danger/30 border border-white/10">Bouwen op gehuurde grond</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">Shopify vs ShopVirge</h1>
+        <p class="text-xl text-white/80">
+          Shopify domineert e-commerce, maar ligt onder vuur van zijn eigen merchants. Scripts-deprecation,
+          gedwongen checkout-upgrades en stijgende kosten jagen zelfs Plus-merken naar alternatieven. De
+          deadline van 30 juni opent een urgent venster.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg">
+      <h2>Het probleem in één zin</h2>
+      <p>
+        Shopify domineert e-commerce, maar staat onder vuur van zijn eigen merchants. Scripts-deprecation,
+        gedwongen checkout-upgrades, stijgende kosten en verslechterende support duwen zelfs Plus-merken
+        richting alternatieven. <strong>De Scripts-deadline van 30 juni creëert een urgent venster.</strong>
+      </p>
+      <p>
+        Hieronder de drie pijnpunten die in juni 2026 het vaakst opdoken bij Shopify-eigenaren — telkens
+        met het bewijs, en telkens met wat ShopVirge er concreet tegenover zet.
+      </p>
+    </div>
+  </section>
+
+  <!-- Hero stat band -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">$15K–50K</div>
+          <p class="text-sm text-text-light mt-1">Scripts-migratie naar Functions</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">60%</div>
+          <p class="text-sm text-text-light mt-1">functieverlies Functions vs Scripts</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">2 uur</div>
+          <p class="text-sm text-text-light mt-1">wereldwijde storing, $10K+ gemist</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forced deadline timeline -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Twee gedwongen deadlines, één zomer</h2>
+      <p class="text-text-light mb-10 max-w-2xl">In nog geen twee maanden tijd dwingt Shopify twee ingrijpende migraties af — beide kunnen je shop stilletjes breken.</p>
+      <div class="relative pl-6 border-l-2 border-danger/30 space-y-8">
+        {deadlines.map((d) => (
+          <div class="relative">
+            <span class={`absolute -left-[31px] top-1 w-4 h-4 rounded-full ${d.color} ring-4 ring-white`}></span>
+            <div class="bg-white rounded-2xl shadow-md p-5">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="text-sm font-bold text-danger tabular-nums">{d.date}</span>
+                <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-danger/10 text-danger">Kritiek</span>
+              </div>
+              <p class="font-bold text-text-heading">{d.label}</p>
+              <p class="text-sm text-text-light">{d.sub}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-10 text-center">De drie pijnpunten ontleed</h2>
+      <div class="space-y-8">
+        {painPoints.map((p) => (
+          <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="w-9 h-9 rounded-full bg-brand text-white flex items-center justify-center font-bold shrink-0">{p.n}</span>
+                <h3 class="text-xl font-bold text-text-heading flex-1">{p.title}</h3>
+                <span class={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${p.sevClass}`}>{p.severity}</span>
+              </div>
+              <p class="text-text mb-5">{p.problem}</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="bg-surface rounded-xl p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-text-light mb-1.5">Bewijs van Reddit</p>
+                  <p class="text-sm text-text">{p.evidence}</p>
+                </div>
+                <div class="bg-brand/5 rounded-xl p-4 border border-brand/10">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand mb-1.5">De ShopVirge-oplossing</p>
+                  <p class="text-sm text-text">{p.opp}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- App-stacking chart -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">De $29-belofte versus de realiteit</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        Nieuwe merchants ontdekken de échte kosten van Shopify pas ná de launch. Het $29-plan wordt
+        $300+/maand zodra je de verplichte apps voor reviews, SEO, e-mail en subscriptions optelt — een
+        <strong>10× hogere</strong> rekening dan verwacht.
+      </p>
+      <div class="space-y-5 bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        {appStack.map((a) => (
+          <div>
+            <div class="flex justify-between items-baseline mb-1.5">
+              <span class="font-semibold text-text-heading">{a.name}</span>
+              <span class="text-sm font-semibold text-text-light tabular-nums">{a.label}</span>
+            </div>
+            <div class="h-8 w-full bg-gray-100 rounded-lg overflow-hidden">
+              <div class={`h-full ${a.color} rounded-lg`} style={`width: ${Math.max((a.value / stackMax) * 100, 4)}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text-light mt-4">Illustratief, op basis van de gerapporteerde 10×-kostenstijging. Drijvers: reviews-, SEO-, e-mail- en subscription-apps. Bij ShopVirge zitten meertaligheid, SEO en productbeheer in de prijs — geen app-stacking.</p>
+    </div>
+  </section>
+
+  <!-- Plus tier lock-in -->
+  <section class="pb-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Groeien wordt afgestraft</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        Nader je $2M/jaar omzet, dan dwingt Shopify je naar Plus: minimaal $2.300/maand. Veel merchants
+        vinden dat de features die 3–5× prijssprong niet rechtvaardigen. ShopVirge rekent vlakke tarieven,
+        los van je omzet.
+      </p>
+      <div class="space-y-5 bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        {plusCmp.map((c) => (
+          <div>
+            <div class="flex justify-between items-baseline mb-1.5">
+              <span class="font-semibold text-text-heading">{c.name}</span>
+              <span class="text-sm font-semibold text-text-light tabular-nums">{c.label}</span>
+            </div>
+            <div class="h-8 w-full bg-gray-100 rounded-lg overflow-hidden">
+              <div class={`h-full ${c.color} rounded-lg`} style={`width: ${Math.max((c.value / plusMax) * 100, 1.2)}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text-light mt-4">Plus kost zo'n <strong>23× meer per maand</strong> dan ShopVirge Large — plus 0,5–2% transactiekosten als je géén Shopify Payments gebruikt. Een $8M/jaar merk verkende daarom publiekelijk een exit.</p>
+    </div>
+  </section>
+
+  <!-- Why now / migration -->
+  <section class="py-16 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">Waarom 30 juni je wake-up call is</h2>
+      <p class="text-text-light mb-10 max-w-2xl">Als je tóch moet migreren door Scripts, migreer dan één keer goed — naar een platform dat je niet opnieuw onder druk zet. In vier stappen.</p>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">01</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Catalogus-export</h3>
+          <p class="text-sm text-text-light">We exporteren producten, varianten en collecties uit Shopify naar gevalideerde CSV/Excel.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">02</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Kortingslogica overzetten</h3>
+          <p class="text-sm text-text-light">Geen Functions-herbouw: je kortingsregels zijn native in ShopVirge en breken niet bij een deadline.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">03</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Checkout &amp; SEO</h3>
+          <p class="text-sm text-text-light">Volledige checkout-controle plus 1-op-1 redirect-mapping van je oude Shopify-URL's.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">04</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Live &amp; in eigen beheer</h3>
+          <p class="text-sm text-text-light">Open-source backend, self-host mogelijk, MCP-ready API. Geen gedwongen upgrades meer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Migreer één keer — en stop met bouwen op gehuurde grond</h2>
+      <p class="text-text-light mb-6">Vraag een gratis migratie-scan aan. We berekenen je werkelijke Shopify-TCO en het migratieplan zonder Functions-herbouw.</p>
+      <a href={`${base}nl/contact/`} class="btn-primary">Plan een migratie-scan →</a>
+    </div>
+  </section>
+</Layout>

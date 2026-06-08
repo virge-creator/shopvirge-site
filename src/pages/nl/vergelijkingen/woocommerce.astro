@@ -1,0 +1,292 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const siteUrl = 'https://shopvirge.com';
+
+// Three pain points from the WooCommerce / WordPress deep dive (June 2026)
+const painPoints = [
+  {
+    n: 1,
+    title: 'Dalend WordPress-marktaandeel',
+    severity: 'Kritiek',
+    sevClass: 'bg-danger/10 text-danger',
+    problem: 'WordPress kromp 6 kwartalen op rij (43,6% → 41,9% CMS-marktaandeel). WooCommerce is gegijzeld door de koers van WordPress. Het ecosysteem versplintert.',
+    evidence: '6 opeenvolgende kwartalen daling; 43,6% → 41,9% CMS-marktaandeel.',
+    opp: 'Onafhankelijk platform — niet gebonden aan het lot van welk CMS dan ook.',
+  },
+  {
+    n: 2,
+    title: 'WordPress 7.0 breaking changes',
+    severity: 'Hoog',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'WP 7.0 brengt forse architectuurwijzigingen. WooCommerce-shops staan een plugin-compatibiliteitsnachtmerrie te wachten. Elke grote WP-release is een risicomoment.',
+    evidence: 'Merchants zoeken preventief naar alternatieven vóór de lancering van WP 7.0.',
+    opp: 'Gecontroleerde release-cyclus. Updates breken je shop niet.',
+  },
+  {
+    n: 3,
+    title: 'Stille conversie-erosie',
+    severity: 'Hoog',
+    sevClass: 'bg-warning/20 text-yellow-700',
+    problem: 'Plugin-conflicten breken stilletjes checkout-flows, formulieren en tracking. Merchants merken pas maanden later bij een audit dat ze omzet missen.',
+    evidence: 'Merchants ontdekken 15–30% conversiedaling door onopgemerkte plugin-conflicten.',
+    opp: 'Geïntegreerde stack — geen plugin-conflicten. Monitoring ingebouwd.',
+  },
+];
+
+// WordPress CMS market share over 6 quarters. Endpoints (43.6 → 41.9) are reported;
+// intermediate quarters are an interpolated illustration of the trend.
+const shareAxisMin = 40;
+const shareAxisMax = 44;
+const share = [
+  { q: 'Kw 1', v: 43.6 },
+  { q: 'Kw 2', v: 43.3 },
+  { q: 'Kw 3', v: 43.0 },
+  { q: 'Kw 4', v: 42.6 },
+  { q: 'Kw 5', v: 42.2 },
+  { q: 'Kw 6', v: 41.9 },
+];
+const pct = (v: number) => ((v - shareAxisMin) / (shareAxisMax - shareAxisMin)) * 100;
+
+// Silent conversion erosion: revenue lost on a sample €500k/yr store
+const sampleRevenue = 500000;
+const erosion = [
+  { label: 'Best case (−15%)', value: 0.15, color: 'bg-warning' },
+  { label: 'Worst case (−30%)', value: 0.30, color: 'bg-danger' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "WooCommerce vs ShopVirge — de complete deep dive",
+  "description": "Diepgaande analyse van WooCommerce's pijnpunten: 6 kwartalen WordPress-daling (43,6% → 41,9%), WP 7.0 breaking changes en 15–30% stille conversie-erosie. Plus een migratiepad naar ShopVirge.",
+  "datePublished": "2026-06-08",
+  "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
+  "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
+  "inLanguage": "nl",
+  "url": `${siteUrl}${base}nl/vergelijkingen/woocommerce/`,
+};
+---
+<Layout
+  title="WooCommerce vs ShopVirge — de complete deep dive"
+  description="Diepgaande analyse van WooCommerce's pijnpunten: 6 kwartalen WordPress-daling (43,6% → 41,9%), WP 7.0 breaking changes en 15–30% stille conversie-erosie. Plus een veilig migratiepad naar ShopVirge."
+  lang="nl">
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <!-- Hero -->
+  <section class="hero text-white py-20 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <a href={`${base}nl/vergelijkingen/`} class="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white mb-8">← Alle vergelijkingen</a>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 uppercase tracking-wide">Deep dive</span>
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-danger/30 border border-white/10">Gegijzeld door WordPress</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">WooCommerce vs ShopVirge</h1>
+        <p class="text-xl text-white/80">
+          Gebouwd op "vrijheid", nu gevangen door complexiteit. Het lot van WooCommerce hangt aan dat van
+          WordPress — en WordPress krimpt. We ontleden de drie pijnpunten, met cijfers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg">
+      <h2>Het probleem in één zin</h2>
+      <p>
+        Het lot van WooCommerce is verbonden met WordPress, en <strong>WordPress krimpt</strong>. Zes
+        opeenvolgende kwartalen marktaandeelverlies, aankomende breaking changes in WordPress 7.0 en het
+        eeuwige plugin-conflictprobleem maken WooCommerce steeds risicovoller. Merchants die ooit voor de
+        "vrijheid" kozen, voelen zich nu gevangen door complexiteit.
+      </p>
+      <p>
+        Hieronder de drie pijnpunten die in juni 2026 het vaakst opdoken bij WooCommerce-eigenaren —
+        telkens met het bewijs, en telkens met wat ShopVirge er concreet tegenover zet.
+      </p>
+    </div>
+  </section>
+
+  <!-- Hero stat band -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">6 kwartalen</div>
+          <p class="text-sm text-text-light mt-1">WordPress-marktaandeel daalt onafgebroken</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">43,6 → 41,9%</div>
+          <p class="text-sm text-text-light mt-1">CMS-marktaandeel verloren</p>
+        </div>
+        <div class="bg-surface rounded-2xl p-6 text-center">
+          <div class="text-3xl font-extrabold text-danger tabular-nums">15–30%</div>
+          <p class="text-sm text-text-light mt-1">conversiedaling door plugin-conflicten</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Market share decline chart -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">WordPress-marktaandeel: 6 kwartalen omlaag</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        Het CMS-marktaandeel van WordPress zakte zes kwartalen op rij. WooCommerce deelt onvermijdelijk in
+        die neergang — minder ontwikkelaars, minder momentum, een versplinterend ecosysteem.
+      </p>
+      <div class="bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        <div class="space-y-3">
+          {share.map((s) => (
+            <div class="flex items-center gap-4">
+              <span class="w-14 text-sm font-medium text-text-light shrink-0">{s.q}</span>
+              <div class="h-7 flex-1 bg-gray-100 rounded-lg overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-brand-dark to-danger rounded-lg" style={`width: ${pct(s.v)}%`}></div>
+              </div>
+              <span class="w-16 text-right text-sm font-semibold text-text-heading tabular-nums shrink-0">{s.v.toFixed(1)}%</span>
+            </div>
+          ))}
+        </div>
+        <p class="text-xs text-text-light mt-5">As loopt van 40% tot 44% om het verloop zichtbaar te maken. Begin- en eindpunt (43,6% → 41,9%) zijn gerapporteerd; tussenliggende kwartalen illustreren de trend.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="pb-4">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-10 text-center">De drie pijnpunten ontleed</h2>
+      <div class="space-y-8">
+        {painPoints.map((p) => (
+          <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="w-9 h-9 rounded-full bg-brand text-white flex items-center justify-center font-bold shrink-0">{p.n}</span>
+                <h3 class="text-xl font-bold text-text-heading flex-1">{p.title}</h3>
+                <span class={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${p.sevClass}`}>{p.severity}</span>
+              </div>
+              <p class="text-text mb-5">{p.problem}</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="bg-surface rounded-xl p-4">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-text-light mb-1.5">Bewijs van Reddit</p>
+                  <p class="text-sm text-text">{p.evidence}</p>
+                </div>
+                <div class="bg-brand/5 rounded-xl p-4 border border-brand/10">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-brand mb-1.5">De ShopVirge-oplossing</p>
+                  <p class="text-sm text-text">{p.opp}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Silent conversion erosion impact -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">De verborgen prijs van stille conversie-erosie</h2>
+      <p class="text-text-light mb-10 max-w-2xl">
+        15–30% conversieverlies klinkt abstract — totdat je het op echte omzet projecteert. Een
+        voorbeeldshop met <strong>€500.000 jaaromzet</strong> die door plugin-conflicten stilletjes lekt:
+      </p>
+      <div class="space-y-6 bg-white rounded-2xl shadow-md p-6 sm:p-8">
+        {erosion.map((e) => (
+          <div>
+            <div class="flex justify-between items-baseline mb-1.5">
+              <span class="font-semibold text-text-heading">{e.label}</span>
+              <span class="text-sm font-semibold text-danger tabular-nums">−€{(sampleRevenue * e.value).toLocaleString('nl-NL')}/jaar</span>
+            </div>
+            <div class="h-8 w-full bg-gray-100 rounded-lg overflow-hidden">
+              <div class={`h-full ${e.color} rounded-lg`} style={`width: ${e.value * 100}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text-light mt-4">
+        Dat is <strong>€75.000 tot €150.000 per jaar</strong> die je niet ziet wegvloeien — tot je
+        maanden later een audit doet. Bij ShopVirge zit alles in één geïntegreerde stack, met monitoring
+        ingebouwd, dus er zijn geen plugins die elkaar in stilte slopen.
+      </p>
+    </div>
+  </section>
+
+  <!-- Fragmented vs integrated stack -->
+  <section class="pb-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8">Versplinterde stack vs geïntegreerde stack</h2>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-danger">
+          <h3 class="font-bold text-text-heading mb-4">WooCommerce</h3>
+          <ul class="space-y-2.5 text-sm text-text">
+            <li class="flex gap-2"><span class="text-danger">✗</span> WordPress-core + thema + losse plugins</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Elke plugin is een potentieel conflictpunt</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Updates kunnen je shop breken</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Conversielekken blijven maanden onopgemerkt</li>
+            <li class="flex gap-2"><span class="text-danger">✗</span> Lot gekoppeld aan WordPress' marktaandeel</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-success">
+          <h3 class="font-bold text-text-heading mb-4">ShopVirge</h3>
+          <ul class="space-y-2.5 text-sm text-text">
+            <li class="flex gap-2"><span class="text-success">✓</span> Eén geïntegreerde stack, geen plugin-jungle</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Checkout, SEO en meertaligheid native</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Gecontroleerde updates die niets breken</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Monitoring ingebouwd — lekken worden gezien</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Onafhankelijk platform, eigen koers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Migration path: 5 steps -->
+  <section class="py-16 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-3">WooCommerce → ShopVirge in 5 stappen</h2>
+      <p class="text-text-light mb-10 max-w-2xl">Zonder SEO-verlies en zonder plugin-onderhoud. Inbegrepen bij de Medium-tier (€1.000 onboarding).</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">01</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Catalogus-export</h3>
+          <p class="text-sm text-text-light">We exporteren je producten, categorieën en varianten uit WooCommerce naar gevalideerde CSV/Excel.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">02</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Plugin-audit</h3>
+          <p class="text-sm text-text-light">We brengen in kaart welke plugin-functies je écht gebruikt — en welke native in ShopVirge zitten.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">03</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Gestructureerde import</h3>
+          <p class="text-sm text-text-light">Import in ShopVirge met validatie — geen 15–30% conversielek meer door verborgen conflicten.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">04</div>
+          <h3 class="font-bold text-text-heading mb-1.5">SEO &amp; redirects</h3>
+          <p class="text-sm text-text-light">1-op-1 redirect-mapping van je oude WooCommerce-URL's. Geen 20–40% verkeersverlies bij de overstap.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+          <div class="text-brand font-extrabold text-lg mb-1">05</div>
+          <h3 class="font-bold text-text-heading mb-1.5">Live &amp; managed</h3>
+          <p class="text-sm text-text-light">Hosting, updates en monitoring doen wij. Geen WP 7.0-nachtmerrie meer bij de volgende release.</p>
+        </div>
+        <div class="bg-brand/5 rounded-2xl p-6 border border-brand/10 flex flex-col justify-center">
+          <p class="text-sm font-semibold text-brand mb-1">Eindresultaat</p>
+          <p class="text-sm text-text">Een onafhankelijke, geïntegreerde shop die niet meebeweegt met de neergang van WordPress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Stap van WordPress af voordat 7.0 je shop breekt</h2>
+      <p class="text-text-light mb-6">Vraag een gratis migratie-scan aan. We sporen je verborgen conversielekken op en leveren een SEO-veilig migratieplan.</p>
+      <a href={`${base}nl/contact/`} class="btn-primary">Plan een migratie-scan →</a>
+    </div>
+  </section>
+</Layout>
