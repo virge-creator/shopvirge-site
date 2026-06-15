@@ -218,25 +218,30 @@ const ogImage = image || `${siteUrl}${base}images/logo.png`;
   <!-- Footer -->
   <footer class="bg-surface-dark text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-4 gap-8">
         <div>
           <img src={`${base}images/logo.png`} alt="ShopVirge logo" class="h-8 mb-4 brightness-200" />
           <p class="text-gray-400 text-sm">
-            {isEn 
-              ? 'Launch your multilingual online shop or product-portfolio in minutes.' 
+            {isEn
+              ? 'Launch your multilingual online shop or product-portfolio in minutes.'
               : 'Lanceer je meertalige webshop of product-portfolio in enkele minuten.'}
           </p>
         </div>
         <div>
-          <h4 class="font-semibold mb-3">{isEn ? 'Quick Links' : 'Snelle links'}</h4>
+          <h4 class="font-semibold mb-3">{isEn ? 'Quick Links' : 'Snelle Links'}</h4>
           <ul class="space-y-2 text-sm text-gray-400">
             <li><a href={isEn ? `${enBase}features/` : `${nlBase}functies/`} class="hover:text-white transition-colors">{isEn ? 'Features' : 'Functies'}</a></li>
             <li><a href={isEn ? `${enBase}pricing/` : `${nlBase}prijzen/`} class="hover:text-white transition-colors">{isEn ? 'Pricing' : 'Prijzen'}</a></li>
-            <li><a href={isEn ? `${enBase}about/` : `${nlBase}over-ons/`} class="hover:text-white transition-colors">{isEn ? 'About us' : 'Over ons'}</a></li>
             <li><a href={isEn ? `${enBase}comparisons/` : `${nlBase}vergelijkingen/`} class="hover:text-white transition-colors">{isEn ? 'Comparisons' : 'Vergelijkingen'}</a></li>
             <li><a href={isEn ? `${enBase}blog/` : `${nlBase}blog/`} class="hover:text-white transition-colors">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Info</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href={isEn ? `${enBase}about/` : `${nlBase}over-ons/`} class="hover:text-white transition-colors">{isEn ? 'About us' : 'Over ons'}</a></li>
             <li><a href={isEn ? `${enBase}contact/` : `${nlBase}contact/`} class="hover:text-white transition-colors">Contact</a></li>
-            <li><a href={isEn ? `${enBase}privacy/` : `${nlBase}privacy/`} class="hover:text-white transition-colors">{isEn ? 'Privacy' : 'Privacy'}</a></li>
+            <li><a href={isEn ? `${enBase}privacy/` : `${nlBase}privacy/`} class="hover:text-white transition-colors">Privacy</a></li>
           </ul>
         </div>
         <div>
