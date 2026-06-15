@@ -7,12 +7,12 @@ const siteUrl = 'https://shopvirge.com';
 const painPoints = [
   {
     n: 1,
-    title: 'Scripts-deprecation deadline (30 juni)',
+    title: 'Scripts-deprecation deadline (30 juni 2026)',
     severity: 'Kritiek',
     sevClass: 'bg-danger/10 text-danger',
     problem: 'Shopify schrapt Scripts op 30 juni 2026. Merchants staan voor $15K–$50K migratiekosten naar Shopify Functions. Complexe kortingslogica breekt, zonder 1-op-1-pariteit. Duizenden shops in paniek.',
     evidence: '$15K–$50K migratie-offertes; merchants melden 60% functieverlies in Functions vs Scripts.',
-    opp: 'Nul migratiekosten — ShopVirge-kortingslogica is ingebouwd en wordt niet wegbezuinigd door een platformbesluit.',
+    opp: 'Nul migratiekosten: ShopVirge-kortingslogica is ingebouwd en wordt niet wegbezuinigd door een platformbesluit.',
   },
   {
     n: 2,
@@ -21,11 +21,11 @@ const painPoints = [
     sevClass: 'bg-danger/10 text-danger',
     problem: 'Shopify forceert op 26 augustus alle non-Plus shops naar de nieuwe checkout-extensibility. Custom checkout-scripts, post-purchase upsells en tracking pixels breken in stilte.',
     evidence: 'Merchants ontdekken kapotte post-purchase flows en verloren conversie-tracking.',
-    opp: 'Volledige checkout-controle met open-source backend — geen gedwongen migraties.',
+    opp: 'Volledige checkout-controle met open-source backend, geen gedwongen migraties.',
   },
   {
     n: 3,
-    title: 'Platform-storing (3 juni — 2 uur wereldwijd)',
+    title: 'Platform-storing (3 juni, 2 uur wereldwijd)',
     severity: 'Hoog',
     sevClass: 'bg-warning/20 text-yellow-700',
     problem: 'Shopify lag op 3 juni 2 uur wereldwijd plat. Merchants verloren omzet zonder enig verhaal. Geen SLA, geen credits, geen transparantie.',
@@ -57,8 +57,8 @@ const plusCmp = [
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Shopify vs ShopVirge — de complete deep dive",
-  "description": "Diepgaande analyse van Shopify's pijnpunten: Scripts-deprecation (30 juni, $15K–$50K, 60% functieverlies), gedwongen checkout-upgrade (26 aug) en de 2-uur storing — plus app-stacking en lock-in.",
+  "headline": "Shopify vs ShopVirge: de complete deep dive",
+  "description": "Diepgaande analyse van Shopify's pijnpunten: Scripts-deprecation (30 juni 2026, $15K–$50K, 60% functieverlies), gedwongen checkout-upgrade (26 aug) en de 2-uur storing, plus app-stacking en lock-in.",
   "datePublished": "2026-06-08",
   "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
   "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
@@ -67,8 +67,8 @@ const articleSchema = {
 };
 ---
 <Layout
-  title="Shopify vs ShopVirge — de complete deep dive"
-  description="Diepgaande analyse van Shopify's pijnpunten: Scripts-deprecation (30 juni, $15K–$50K), gedwongen checkout-upgrade (26 aug), app-stacking ($29 → $300+) en lock-in. Plus een migratiepad zonder kosten naar ShopVirge."
+  title="Shopify vs ShopVirge: de complete deep dive"
+  description="Diepgaande analyse van Shopify's pijnpunten: Scripts-deprecation (30 juni 2026, $15K–$50K), gedwongen checkout-upgrade (26 aug), app-stacking ($29 → $300+) en lock-in. Plus een migratiepad zonder kosten naar ShopVirge."
   lang="nl">
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 
@@ -85,7 +85,7 @@ const articleSchema = {
         <p class="text-xl text-white/80">
           Shopify domineert e-commerce, maar ligt onder vuur van zijn eigen merchants. Scripts-deprecation,
           gedwongen checkout-upgrades en stijgende kosten jagen zelfs Plus-merken naar alternatieven. De
-          deadline van 30 juni opent een urgent venster.
+          deadline van 30 juni 2026 opent een urgent venster.
         </p>
       </div>
     </div>
@@ -98,10 +98,10 @@ const articleSchema = {
       <p>
         Shopify domineert e-commerce, maar staat onder vuur van zijn eigen merchants. Scripts-deprecation,
         gedwongen checkout-upgrades, stijgende kosten en verslechterende support duwen zelfs Plus-merken
-        richting alternatieven. <strong>De Scripts-deadline van 30 juni creëert een urgent venster.</strong>
+        richting alternatieven. <strong>De Scripts-deadline van 30 juni 2026 creëert een urgent venster.</strong>
       </p>
       <p>
-        Hieronder de drie pijnpunten die in juni 2026 het vaakst opdoken bij Shopify-eigenaren — telkens
+        Hieronder de drie pijnpunten die in juni 2026 het vaakst opdoken bij Shopify-eigenaren, telkens
         met het bewijs, en telkens met wat ShopVirge er concreet tegenover zet.
       </p>
     </div>
@@ -131,7 +131,7 @@ const articleSchema = {
   <section class="py-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-3">Twee gedwongen deadlines, één zomer</h2>
-      <p class="text-text-light mb-10 max-w-2xl">In nog geen twee maanden tijd dwingt Shopify twee ingrijpende migraties af — beide kunnen je shop stilletjes breken.</p>
+      <p class="text-text-light mb-10 max-w-2xl">In nog geen twee maanden tijd dwingt Shopify twee ingrijpende migraties af, beide kunnen je shop stilletjes breken.</p>
       <div class="relative pl-6 border-l-2 border-danger/30 space-y-8">
         {deadlines.map((d) => (
           <div class="relative">
@@ -187,7 +187,7 @@ const articleSchema = {
       <h2 class="text-3xl font-bold mb-3">De $29-belofte versus de realiteit</h2>
       <p class="text-text-light mb-10 max-w-2xl">
         Nieuwe merchants ontdekken de échte kosten van Shopify pas ná de launch. Het $29-plan wordt
-        $300+/maand zodra je de verplichte apps voor reviews, SEO, e-mail en subscriptions optelt — een
+        $300+/maand zodra je de verplichte apps voor reviews, SEO, e-mail en subscriptions optelt, een
         <strong>10× hogere</strong> rekening dan verwacht.
       </p>
       <div class="space-y-5 bg-white rounded-2xl shadow-md p-6 sm:p-8">
@@ -203,7 +203,7 @@ const articleSchema = {
           </div>
         ))}
       </div>
-      <p class="text-sm text-text-light mt-4">Illustratief, op basis van de gerapporteerde 10×-kostenstijging. Drijvers: reviews-, SEO-, e-mail- en subscription-apps. Bij ShopVirge zitten meertaligheid, SEO en productbeheer in de prijs — geen app-stacking.</p>
+      <p class="text-sm text-text-light mt-4">Illustratief, op basis van de gerapporteerde 10×-kostenstijging. Drijvers: reviews-, SEO-, e-mail- en subscription-apps. Bij ShopVirge zitten meertaligheid, SEO en productbeheer in de prijs, geen app-stacking.</p>
     </div>
   </section>
 
@@ -229,15 +229,15 @@ const articleSchema = {
           </div>
         ))}
       </div>
-      <p class="text-sm text-text-light mt-4">Plus kost zo'n <strong>23× meer per maand</strong> dan ShopVirge Large — plus 0,5–2% transactiekosten als je géén Shopify Payments gebruikt. Een $8M/jaar merk verkende daarom publiekelijk een exit.</p>
+      <p class="text-sm text-text-light mt-4">Plus kost zo'n <strong>23× meer per maand</strong> dan ShopVirge Large, plus 0,5–2% transactiekosten als je géén Shopify Payments gebruikt. Een $8M/jaar merk verkende daarom publiekelijk een exit.</p>
     </div>
   </section>
 
   <!-- Why now / migration -->
   <section class="py-16 bg-surface">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-3">Waarom 30 juni je wake-up call is</h2>
-      <p class="text-text-light mb-10 max-w-2xl">Als je tóch moet migreren door Scripts, migreer dan één keer goed — naar een platform dat je niet opnieuw onder druk zet. In vier stappen.</p>
+      <h2 class="text-3xl font-bold mb-3">Waarom 30 juni 2026 je wake-up call is</h2>
+      <p class="text-text-light mb-10 max-w-2xl">Als je tóch moet migreren door Scripts, migreer dan één keer goed, naar een platform dat je niet opnieuw onder druk zet. In vier stappen.</p>
       <div class="grid sm:grid-cols-2 gap-5">
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">01</div>
@@ -266,7 +266,7 @@ const articleSchema = {
   <!-- CTA -->
   <section class="py-16">
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold mb-4">Migreer één keer — en stop met bouwen op gehuurde grond</h2>
+      <h2 class="text-2xl font-bold mb-4">Migreer één keer, en stop met bouwen op gehuurde grond</h2>
       <p class="text-text-light mb-6">Vraag een gratis migratie-scan aan. We berekenen je werkelijke Shopify-TCO en het migratieplan zonder Functions-herbouw.</p>
       <a href={`${base}nl/contact/?type=migration-scan`} class="btn-primary">Plan een migratie-scan →</a>
     </div>

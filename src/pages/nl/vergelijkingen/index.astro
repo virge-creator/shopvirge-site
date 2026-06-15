@@ -12,7 +12,7 @@ const platforms = [
     tagline: 'De legacy-val: te duur om te blijven, te riskant om te vertrekken.',
     pain: 'Migratiekosten van $50K–$200K en SEO-verliesangst houden duizenden shops gegijzeld.',
     stat: '$50K–100K',
-    statLabel: 'jaarlijkse TCO mid-size shop',
+    statLabel: 'jaarlijkse total cost of ownership (mid-size shop)',
   },
   {
     name: 'Shopify',
@@ -36,7 +36,7 @@ const platforms = [
     name: 'Saleor',
     slug: 'saleor',
     type: 'Headless / GraphQL (open-source)',
-    tagline: 'Krachtig en API-first — maar zonder developer-team kom je nergens.',
+    tagline: 'Krachtig en API-first, maar zonder developer-team kom je nergens.',
     pain: 'Geen kant-en-klare storefront, geen admin-content tools: alles is bouwwerk voor developers.',
     stat: '100%',
     statLabel: 'developer-afhankelijk voor frontend & beheer',
@@ -48,7 +48,7 @@ const platforms = [
     tagline: 'Sterk in B2B, maar complex en duur om draaiende te houden.',
     pain: 'Steile leercurve, dure plannen en doorlopend onderhoud door specialisten.',
     stat: '€€€',
-    statLabel: 'hoge TCO door hosting + specialisten',
+    statLabel: 'hoge total cost of ownership (hosting + specialisten)',
   },
 ];
 
@@ -69,15 +69,15 @@ const exitCosts = [
   { name: 'Magento', low: 50000, high: 200000, color: 'bg-danger' },
   { name: 'Shopify Plus', low: 15000, high: 50000, color: 'bg-warning' },
   { name: 'WooCommerce', low: 5000, high: 25000, color: 'bg-warning' },
-  { name: 'ShopVirge onboarding', low: 1000, high: 1000, color: 'bg-success' },
+  { name: 'ShopVirge onboarding', low: 1000, high: 1000, color: 'bg-success', note: 'instappen, geen exit-kosten' },
 ];
 const exitMax = 200000;
 
 const cell = (v: string) => v;
 ---
 <Layout
-  title="Vergelijkingen — ShopVirge vs Shopify, Magento, WooCommerce, Saleor & Shopware"
-  description="Eerlijke vergelijking van ShopVirge met Shopify, Magento, WooCommerce, Saleor en Shopware. Gebaseerd op echte pijnpunten van merchants: lock-in, transactiekosten, migratiekosten en TCO."
+  title="Vergelijkingen: ShopVirge vs Shopify, Magento, WooCommerce, Saleor & Shopware"
+  description="Eerlijke vergelijking van ShopVirge met Shopify, Magento, WooCommerce, Saleor en Shopware. Gebaseerd op echte pijnpunten van merchants: lock-in, transactiekosten, migratiekosten en total cost of ownership (TCO)."
   lang="nl">
 
   <!-- Hero -->
@@ -88,7 +88,7 @@ const cell = (v: string) => v;
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">ShopVirge tegenover de rest</h1>
         <p class="text-xl text-white/80">
           Geen marketingpraatjes, maar de echte pijnpunten van merchants op Shopify, Magento,
-          WooCommerce, Saleor en Shopware — en hoe ShopVirge ze oplost met open-source, transparante
+          WooCommerce, Saleor en Shopware, en hoe ShopVirge ze oplost met open-source, transparante
           prijzen en geen lock-in.
         </p>
       </div>
@@ -106,7 +106,7 @@ const cell = (v: string) => v;
         en angstaanjagende migratierekeningen.
       </p>
       <p>
-        Elke vergelijking hieronder is opgebouwd rond die pijnpunten — met cijfers. Onderaan vind je per
+        Elke vergelijking hieronder is opgebouwd rond die pijnpunten, met cijfers. Onderaan vind je per
         platform een <strong>deep dive</strong> die nog veel verder gaat. De eerste, over Magento, staat
         al online.
       </p>
@@ -155,7 +155,7 @@ const cell = (v: string) => v;
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-3">Wat kost het om te vertrekken?</h2>
       <p class="text-text-light mb-10 max-w-2xl">
-        De grootste reden dat merchants vastzitten is niet de maandprijs — het is de migratierekening.
+        De grootste reden dat merchants vastzitten is niet de maandprijs, het is de migratierekening.
         Agency-offertes om een bestaand platform te verlaten (juni 2026):
       </p>
       <div class="space-y-6">
@@ -171,12 +171,14 @@ const cell = (v: string) => v;
               <div class={`h-full ${e.color} rounded-full flex items-center justify-end pr-3`} style={`width: ${Math.max((e.high / exitMax) * 100, 4)}%`}>
               </div>
             </div>
+            {e.note && <p class="text-xs font-semibold text-success mt-1.5">→ {e.note}</p>}
           </div>
         ))}
       </div>
-      <p class="text-sm text-text-light mt-6">
+      <p class="text-base text-text mt-6">
+        De eerste drie balken laten zien wat het kost om die platforms te <strong>verlaten</strong>. De groene balk is het omgekeerde: wat het kost om <strong>in te stappen</strong> bij ShopVirge.
         Brancheonderzoek laat zien dat <strong>83% van alle datamigratie-projecten faalt of het budget overschrijdt</strong>.
-        ShopVirge importeert je catalogus gestructureerd via CSV/Excel — onboarding voor de Medium-tier kost €1.000.
+        ShopVirge importeert je catalogus gestructureerd via CSV/Excel; onboarding voor de Medium-tier kost €1.000.
       </p>
     </div>
   </section>
@@ -193,9 +195,7 @@ const cell = (v: string) => v;
           <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col">
             <div class="flex items-center justify-between mb-3">
               <h3 class="text-xl font-bold text-text-heading">vs {p.name}</h3>
-              {p.slug
-                ? <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-success/10 text-success">Deep dive online</span>
-                : <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">Binnenkort</span>}
+              {!p.slug && <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">Binnenkort</span>}
             </div>
             <p class="text-xs text-text-light uppercase tracking-wide mb-3">{p.type}</p>
             <p class="text-text font-medium mb-3">{p.tagline}</p>
@@ -219,7 +219,7 @@ const cell = (v: string) => v;
   <section class="py-16">
     <div class="max-w-3xl mx-auto px-4 text-center">
       <h2 class="text-2xl font-bold mb-4">Zit je vast op een ander platform?</h2>
-      <p class="text-text-light mb-6">We brengen je situatie in kaart en laten zien wat een overstap naar ShopVirge concreet oplevert — zonder verkooppraatjes.</p>
+      <p class="text-text-light mb-6">We brengen je situatie in kaart en laten zien wat een overstap naar ShopVirge concreet oplevert, zonder verkooppraatjes.</p>
       <a href={`${base}nl/contact/`} class="btn-primary">Plan een gratis adviesgesprek →</a>
     </div>
   </section>

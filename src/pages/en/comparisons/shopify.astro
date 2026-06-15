@@ -7,12 +7,12 @@ const siteUrl = 'https://shopvirge.com';
 const painPoints = [
   {
     n: 1,
-    title: 'Scripts deprecation deadline (June 30)',
+    title: 'Scripts deprecation deadline (June 30, 2026)',
     severity: 'Critical',
     sevClass: 'bg-danger/10 text-danger',
     problem: 'Shopify is killing Scripts on June 30, 2026. Merchants face $15K–$50K migration costs to Shopify Functions. Complex discount logic breaks, with no 1:1 parity. Thousands of stores scrambling.',
     evidence: '$15K–$50K migration quotes; merchants reporting 60% functionality loss in Functions vs Scripts.',
-    opp: 'Zero migration cost — ShopVirge discount logic is built-in and won\'t be deprecated by a platform decision.',
+    opp: 'Zero migration cost: ShopVirge discount logic is built-in and won\'t be deprecated by a platform decision.',
   },
   {
     n: 2,
@@ -21,11 +21,11 @@ const painPoints = [
     sevClass: 'bg-danger/10 text-danger',
     problem: 'Shopify is force-upgrading all non-Plus stores to the new checkout extensibility on August 26. Custom checkout scripts, post-purchase upsells and tracking pixels will break silently.',
     evidence: 'Merchants discovering broken post-purchase flows and lost conversion tracking.',
-    opp: 'Full checkout control with an open-source backend — no forced migrations.',
+    opp: 'Full checkout control with an open-source backend, no forced migrations.',
   },
   {
     n: 3,
-    title: 'Platform outage (June 3 — 2hr global)',
+    title: 'Platform outage (June 3, 2hr global)',
     severity: 'High',
     sevClass: 'bg-warning/20 text-yellow-700',
     problem: 'Shopify went down globally for 2 hours on June 3. Merchants lost sales with zero recourse. No SLA, no credits, no transparency.',
@@ -57,8 +57,8 @@ const plusCmp = [
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Shopify vs ShopVirge — the complete deep dive",
-  "description": "An in-depth analysis of Shopify's pain points: Scripts deprecation (June 30, $15K–$50K, 60% functionality loss), forced checkout upgrade (Aug 26) and the 2-hour outage — plus app-stacking and lock-in.",
+  "headline": "Shopify vs ShopVirge: the complete deep dive",
+  "description": "An in-depth analysis of Shopify's pain points: Scripts deprecation (June 30, 2026, $15K–$50K, 60% functionality loss), forced checkout upgrade (Aug 26) and the 2-hour outage, plus app-stacking and lock-in.",
   "datePublished": "2026-06-08",
   "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
   "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
@@ -67,8 +67,8 @@ const articleSchema = {
 };
 ---
 <Layout
-  title="Shopify vs ShopVirge — the complete deep dive"
-  description="An in-depth analysis of Shopify's pain points: Scripts deprecation (June 30, $15K–$50K), forced checkout upgrade (Aug 26), app-stacking ($29 → $300+) and lock-in. Plus a zero-cost migration path to ShopVirge."
+  title="Shopify vs ShopVirge: the complete deep dive"
+  description="An in-depth analysis of Shopify's pain points: Scripts deprecation (June 30, 2026, $15K–$50K), forced checkout upgrade (Aug 26), app-stacking ($29 → $300+) and lock-in. Plus a zero-cost migration path to ShopVirge."
   lang="en">
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 
@@ -85,7 +85,7 @@ const articleSchema = {
         <p class="text-xl text-white/80">
           Shopify dominates e-commerce but is under fire from its own merchants. Scripts deprecation,
           forced checkout upgrades and rising costs are pushing even Plus-level brands to explore
-          alternatives. The June 30 deadline creates an urgent window.
+          alternatives. The June 30, 2026 deadline creates an urgent window.
         </p>
       </div>
     </div>
@@ -98,10 +98,10 @@ const articleSchema = {
       <p>
         Shopify dominates e-commerce but is under fire from its own merchants. Scripts deprecation, forced
         checkout upgrades, rising costs and degrading support are pushing even Plus-level brands toward
-        alternatives. <strong>The June 30 Scripts deadline creates an urgent window of opportunity.</strong>
+        alternatives. <strong>The June 30, 2026 Scripts deadline creates an urgent window of opportunity.</strong>
       </p>
       <p>
-        Below are the three pain points that surfaced most often among Shopify owners in June 2026 — each
+        Below are the three pain points that surfaced most often among Shopify owners in June 2026, each
         with the evidence, and each with what ShopVirge concretely puts in its place.
       </p>
     </div>
@@ -131,7 +131,7 @@ const articleSchema = {
   <section class="py-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-3">Two forced deadlines, one summer</h2>
-      <p class="text-text-light mb-10 max-w-2xl">In under two months Shopify forces two disruptive migrations — both can silently break your store.</p>
+      <p class="text-text-light mb-10 max-w-2xl">In under two months Shopify forces two disruptive migrations, both can silently break your store.</p>
       <div class="relative pl-6 border-l-2 border-danger/30 space-y-8">
         {deadlines.map((d) => (
           <div class="relative">
@@ -187,7 +187,7 @@ const articleSchema = {
       <h2 class="text-3xl font-bold mb-3">The $29 promise versus reality</h2>
       <p class="text-text-light mb-10 max-w-2xl">
         New merchants discover Shopify's real cost only after launch. The $29 plan becomes $300+/month once
-        you stack the required apps for reviews, SEO, email and subscriptions — a <strong>10× higher</strong>
+        you stack the required apps for reviews, SEO, email and subscriptions, a <strong>10× higher</strong>
         bill than expected.
       </p>
       <div class="space-y-5 bg-white rounded-2xl shadow-md p-6 sm:p-8">
@@ -203,7 +203,7 @@ const articleSchema = {
           </div>
         ))}
       </div>
-      <p class="text-sm text-text-light mt-4">Illustrative, based on the reported 10× cost increase. Drivers: reviews, SEO, email and subscription apps. With ShopVirge, multilingual, SEO and product management are in the price — no app-stacking.</p>
+      <p class="text-sm text-text-light mt-4">Illustrative, based on the reported 10× cost increase. Drivers: reviews, SEO, email and subscription apps. With ShopVirge, multilingual, SEO and product management are in the price, no app-stacking.</p>
     </div>
   </section>
 
@@ -229,15 +229,15 @@ const articleSchema = {
           </div>
         ))}
       </div>
-      <p class="text-sm text-text-light mt-4">Plus costs around <strong>23× more per month</strong> than ShopVirge Large — plus 0.5–2% transaction fees if you don't use Shopify Payments. An $8M/yr brand publicly explored an exit for exactly this reason.</p>
+      <p class="text-sm text-text-light mt-4">Plus costs around <strong>23× more per month</strong> than ShopVirge Large, plus 0.5–2% transaction fees if you don't use Shopify Payments. An $8M/yr brand publicly explored an exit for exactly this reason.</p>
     </div>
   </section>
 
   <!-- Why now / migration -->
   <section class="py-16 bg-surface">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-3">Why June 30 is your wake-up call</h2>
-      <p class="text-text-light mb-10 max-w-2xl">If Scripts forces you to migrate anyway, migrate once — to a platform that won't pressure you again. In four steps.</p>
+      <h2 class="text-3xl font-bold mb-3">Why June 30, 2026 is your wake-up call</h2>
+      <p class="text-text-light mb-10 max-w-2xl">If Scripts forces you to migrate anyway, migrate once, to a platform that won't pressure you again. In four steps.</p>
       <div class="grid sm:grid-cols-2 gap-5">
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">01</div>
@@ -266,7 +266,7 @@ const articleSchema = {
   <!-- CTA -->
   <section class="py-16">
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold mb-4">Migrate once — and stop building on rented land</h2>
+      <h2 class="text-2xl font-bold mb-4">Migrate once, and stop building on rented land</h2>
       <p class="text-text-light mb-6">Request a free migration scan. We'll calculate your real Shopify TCO and a migration plan without a Functions rebuild.</p>
       <a href={`${base}en/contact/?type=migration-scan`} class="btn-primary">Book a migration scan →</a>
     </div>

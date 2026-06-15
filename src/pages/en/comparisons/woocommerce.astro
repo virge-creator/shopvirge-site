@@ -12,7 +12,7 @@ const painPoints = [
     sevClass: 'bg-danger/10 text-danger',
     problem: 'WordPress has declined for 6 consecutive quarters (43.6% → 41.9% CMS market share). WooCommerce is hostage to WordPress\'s trajectory. The ecosystem is fragmenting.',
     evidence: '6 quarters of consecutive decline; 43.6% → 41.9% CMS market share.',
-    opp: 'Independent platform — not tied to any CMS\'s fortunes.',
+    opp: 'Independent platform, not tied to any CMS\'s fortunes.',
   },
   {
     n: 2,
@@ -30,13 +30,13 @@ const painPoints = [
     sevClass: 'bg-warning/20 text-yellow-700',
     problem: 'Plugin conflicts silently break checkout flows, forms and tracking. Merchants don\'t realize they\'re losing sales until they audit months later.',
     evidence: 'Merchants discovering 15–30% conversion drops from undetected plugin conflicts.',
-    opp: 'Integrated stack — no plugin conflicts. Monitoring built in.',
+    opp: 'Integrated stack with no plugin conflicts. Monitoring built in.',
   },
 ];
 
 // WordPress CMS market share over 6 quarters. Endpoints (43.6 → 41.9) are reported;
 // intermediate quarters are an interpolated illustration of the trend.
-const shareAxisMin = 40;
+const shareAxisMin = 41;
 const shareAxisMax = 44;
 const share = [
   { q: 'Q1', v: 43.6 },
@@ -46,7 +46,20 @@ const share = [
   { q: 'Q5', v: 42.2 },
   { q: 'Q6', v: 41.9 },
 ];
-const pct = (v: number) => ((v - shareAxisMin) / (shareAxisMax - shareAxisMin)) * 100;
+// Line-chart geometry. A line on a clearly-labelled, zoomed y-axis shows the trend
+// without the visual exaggeration a truncated bar chart would create.
+const chartW = 640;
+const chartH = 260;
+const padL = 46;
+const padR = 16;
+const padT = 18;
+const padB = 30;
+const plotW = chartW - padL - padR;
+const plotH = chartH - padT - padB;
+const sx = (i: number) => padL + (i / (share.length - 1)) * plotW;
+const sy = (v: number) => padT + (1 - (v - shareAxisMin) / (shareAxisMax - shareAxisMin)) * plotH;
+const gridLines = [44, 43, 42, 41];
+const linePoints = share.map((s, i) => `${sx(i).toFixed(1)},${sy(s.v).toFixed(1)}`).join(' ');
 
 // Silent conversion erosion: revenue lost on a sample €500k/yr store
 const sampleRevenue = 500000;
@@ -58,7 +71,7 @@ const erosion = [
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "WooCommerce vs ShopVirge — the complete deep dive",
+  "headline": "WooCommerce vs ShopVirge: the complete deep dive",
   "description": "An in-depth analysis of WooCommerce's pain points: 6 quarters of WordPress decline (43.6% → 41.9%), WP 7.0 breaking changes and 15–30% silent conversion erosion. Plus a migration path to ShopVirge.",
   "datePublished": "2026-06-08",
   "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
@@ -68,7 +81,7 @@ const articleSchema = {
 };
 ---
 <Layout
-  title="WooCommerce vs ShopVirge — the complete deep dive"
+  title="WooCommerce vs ShopVirge: the complete deep dive"
   description="An in-depth analysis of WooCommerce's pain points: 6 quarters of WordPress decline (43.6% → 41.9%), WP 7.0 breaking changes and 15–30% silent conversion erosion. Plus a safe migration path to ShopVirge."
   lang="en">
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
@@ -84,7 +97,7 @@ const articleSchema = {
         </div>
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">WooCommerce vs ShopVirge</h1>
         <p class="text-xl text-white/80">
-          Built on "freedom", now trapped by complexity. WooCommerce's fate is tied to WordPress — and
+          Built on "freedom", now trapped by complexity. WooCommerce's fate is tied to WordPress, and
           WordPress is shrinking. We dissect the three pain points, with numbers.
         </p>
       </div>
@@ -102,7 +115,7 @@ const articleSchema = {
         "freedom" now feel trapped by complexity.
       </p>
       <p>
-        Below are the three pain points that surfaced most often among WooCommerce owners in June 2026 —
+        Below are the three pain points that surfaced most often among WooCommerce owners in June 2026,
         each with the evidence, and each with what ShopVirge concretely puts in its place.
       </p>
     </div>
@@ -134,21 +147,26 @@ const articleSchema = {
       <h2 class="text-3xl font-bold mb-3">WordPress market share: 6 quarters down</h2>
       <p class="text-text-light mb-10 max-w-2xl">
         WordPress's CMS market share fell for six straight quarters. WooCommerce inevitably shares in that
-        decline — fewer developers, less momentum, a fragmenting ecosystem.
+        decline: fewer developers, less momentum, a fragmenting ecosystem.
       </p>
       <div class="bg-white rounded-2xl shadow-md p-6 sm:p-8">
-        <div class="space-y-3">
-          {share.map((s) => (
-            <div class="flex items-center gap-4">
-              <span class="w-14 text-sm font-medium text-text-light shrink-0">{s.q}</span>
-              <div class="h-7 flex-1 bg-gray-100 rounded-lg overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-brand-dark to-danger rounded-lg" style={`width: ${pct(s.v)}%`}></div>
-              </div>
-              <span class="w-16 text-right text-sm font-semibold text-text-heading tabular-nums shrink-0">{s.v.toFixed(1)}%</span>
-            </div>
+        <svg viewBox={`0 0 ${chartW} ${chartH}`} class="w-full h-auto" role="img" aria-label="WordPress CMS market share fell from 43.6% to 41.9% over six quarters">
+          {gridLines.map((g) => (
+            <g>
+              <line x1={padL} y1={sy(g)} x2={chartW - padR} y2={sy(g)} stroke="#e5e7eb" stroke-width="1" />
+              <text x={padL - 8} y={sy(g) + 4} text-anchor="end" font-size="12" class="fill-text-light">{g}%</text>
+            </g>
           ))}
-        </div>
-        <p class="text-xs text-text-light mt-5">Axis runs from 40% to 44% to make the trend visible. Start and end points (43.6% → 41.9%) are reported; intermediate quarters illustrate the trend.</p>
+          <polyline points={linePoints} fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="stroke-danger" />
+          {share.map((s, i) => (
+            <g>
+              <circle cx={sx(i)} cy={sy(s.v)} r="4.5" class="fill-danger" />
+              <text x={sx(i)} y={sy(s.v) - 11} text-anchor="middle" font-size="11" font-weight="700" class="fill-text-heading">{s.v.toFixed(1)}%</text>
+              <text x={sx(i)} y={chartH - 9} text-anchor="middle" font-size="12" class="fill-text-light">{s.q}</text>
+            </g>
+          ))}
+        </svg>
+        <p class="text-xs text-text-light mt-5">The y-axis is zoomed to 41–44% to show the trend; it does not start at zero. Endpoints (43.6% → 41.9%) are reported; intermediate quarters illustrate the trend.</p>
       </div>
     </div>
   </section>
@@ -189,7 +207,7 @@ const articleSchema = {
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-3">The hidden price of silent conversion erosion</h2>
       <p class="text-text-light mb-10 max-w-2xl">
-        A 15–30% conversion loss sounds abstract — until you project it onto real revenue. A sample store
+        A 15–30% conversion loss sounds abstract, until you project it onto real revenue. A sample store
         with <strong>€500,000 annual revenue</strong> quietly leaking through plugin conflicts:
       </p>
       <div class="space-y-6 bg-white rounded-2xl shadow-md p-6 sm:p-8">
@@ -206,7 +224,7 @@ const articleSchema = {
         ))}
       </div>
       <p class="text-sm text-text-light mt-4">
-        That's <strong>€75,000 to €150,000 per year</strong> draining away unseen — until you run an audit
+        That's <strong>€75,000 to €150,000 per year</strong> draining away unseen, until you run an audit
         months later. With ShopVirge everything sits in one integrated stack with monitoring built in, so
         there are no plugins quietly breaking each other.
       </p>
@@ -234,7 +252,7 @@ const articleSchema = {
             <li class="flex gap-2"><span class="text-success">✓</span> One integrated stack, no plugin jungle</li>
             <li class="flex gap-2"><span class="text-success">✓</span> Checkout, SEO and multilingual native</li>
             <li class="flex gap-2"><span class="text-success">✓</span> Controlled updates that break nothing</li>
-            <li class="flex gap-2"><span class="text-success">✓</span> Monitoring built in — leaks get caught</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Monitoring built in, leaks get caught</li>
             <li class="flex gap-2"><span class="text-success">✓</span> Independent platform, its own course</li>
           </ul>
         </div>
@@ -256,12 +274,12 @@ const articleSchema = {
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">02</div>
           <h3 class="font-bold text-text-heading mb-1.5">Plugin audit</h3>
-          <p class="text-sm text-text-light">We map which plugin features you actually use — and which are native in ShopVirge.</p>
+          <p class="text-sm text-text-light">We map which plugin features you actually use, and which are native in ShopVirge.</p>
         </div>
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">03</div>
           <h3 class="font-bold text-text-heading mb-1.5">Structured import</h3>
-          <p class="text-sm text-text-light">Import into ShopVirge with validation — no more 15–30% conversion leak from hidden conflicts.</p>
+          <p class="text-sm text-text-light">Import into ShopVirge with validation, so there's no more 15–30% conversion leak from hidden conflicts.</p>
         </div>
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">04</div>

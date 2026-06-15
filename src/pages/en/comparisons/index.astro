@@ -11,7 +11,7 @@ const platforms = [
     tagline: 'The legacy trap: too expensive to stay, too risky to leave.',
     pain: 'Migration quotes of $50K–$200K and SEO-loss fears keep thousands of stores paralyzed.',
     stat: '$50K–100K',
-    statLabel: 'annual TCO for a mid-size store',
+    statLabel: 'annual total cost of ownership (mid-size store)',
   },
   {
     name: 'Shopify',
@@ -35,7 +35,7 @@ const platforms = [
     name: 'Saleor',
     slug: 'saleor',
     type: 'Headless / GraphQL (open-source)',
-    tagline: 'Powerful and API-first — but you get nowhere without a developer team.',
+    tagline: 'Powerful and API-first, but you get nowhere without a developer team.',
     pain: 'No ready-made storefront, no admin content tooling: everything is a developer build.',
     stat: '100%',
     statLabel: 'developer-dependent for frontend & management',
@@ -47,7 +47,7 @@ const platforms = [
     tagline: 'Strong in B2B, but complex and expensive to keep running.',
     pain: 'Steep learning curve, pricey plans and continuous maintenance by specialists.',
     stat: '€€€',
-    statLabel: 'high TCO from hosting + specialists',
+    statLabel: 'high total cost of ownership (hosting + specialists)',
   },
 ];
 
@@ -68,15 +68,15 @@ const exitCosts = [
   { name: 'Magento', low: 50000, high: 200000, color: 'bg-danger' },
   { name: 'Shopify Plus', low: 15000, high: 50000, color: 'bg-warning' },
   { name: 'WooCommerce', low: 5000, high: 25000, color: 'bg-warning' },
-  { name: 'ShopVirge onboarding', low: 1000, high: 1000, color: 'bg-success' },
+  { name: 'ShopVirge onboarding', low: 1000, high: 1000, color: 'bg-success', note: 'joining, no exit cost' },
 ];
 const exitMax = 200000;
 
 const cell = (v: string) => v;
 ---
 <Layout
-  title="Comparisons — ShopVirge vs Shopify, Magento, WooCommerce, Saleor & Shopware"
-  description="An honest comparison of ShopVirge with Shopify, Magento, WooCommerce, Saleor and Shopware. Based on real merchant pain points: lock-in, transaction fees, migration costs and TCO."
+  title="Comparisons: ShopVirge vs Shopify, Magento, WooCommerce, Saleor & Shopware"
+  description="An honest comparison of ShopVirge with Shopify, Magento, WooCommerce, Saleor and Shopware. Based on real merchant pain points: lock-in, transaction fees, migration costs and total cost of ownership (TCO)."
   lang="en">
 
   <!-- Hero -->
@@ -86,7 +86,7 @@ const cell = (v: string) => v;
         <p class="uppercase tracking-wider text-white/70 text-sm font-semibold mb-4">Comparisons</p>
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">ShopVirge vs the rest</h1>
         <p class="text-xl text-white/80">
-          No marketing spin — just the real pain points merchants face on Shopify, Magento,
+          No marketing spin, just the real pain points merchants face on Shopify, Magento,
           WooCommerce, Saleor and Shopware, and how ShopVirge solves them with open-source,
           transparent pricing and zero lock-in.
         </p>
@@ -105,7 +105,7 @@ const cell = (v: string) => v;
         migration bills.
       </p>
       <p>
-        Each comparison below is built around those pain points — with numbers. Further down you'll find a
+        Each comparison below is built around those pain points, with numbers. Further down you'll find a
         <strong>deep dive</strong> per platform that goes much further. The first one, on Magento, is
         already online.
       </p>
@@ -154,7 +154,7 @@ const cell = (v: string) => v;
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-3">What does it cost to leave?</h2>
       <p class="text-text-light mb-10 max-w-2xl">
-        The biggest reason merchants stay stuck isn't the monthly price — it's the migration bill.
+        The biggest reason merchants stay stuck isn't the monthly price, it's the migration bill.
         Agency quotes to leave an existing platform (June 2026):
       </p>
       <div class="space-y-6">
@@ -170,12 +170,14 @@ const cell = (v: string) => v;
               <div class={`h-full ${e.color} rounded-full flex items-center justify-end pr-3`} style={`width: ${Math.max((e.high / exitMax) * 100, 4)}%`}>
               </div>
             </div>
+            {e.note && <p class="text-xs font-semibold text-success mt-1.5">→ {e.note}</p>}
           </div>
         ))}
       </div>
-      <p class="text-sm text-text-light mt-6">
+      <p class="text-base text-text mt-6">
+        The first three bars are what it costs to <strong>leave</strong> those platforms. The green bar is the opposite: what it costs to <strong>join</strong> ShopVirge.
         Industry research shows that <strong>83% of all data-migration projects fail or exceed budget</strong>.
-        ShopVirge imports your catalog in a structured way via CSV/Excel — onboarding for the Medium tier costs €1,000.
+        ShopVirge imports your catalog in a structured way via CSV/Excel; onboarding for the Medium tier costs €1,000.
       </p>
     </div>
   </section>
@@ -192,9 +194,7 @@ const cell = (v: string) => v;
           <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col">
             <div class="flex items-center justify-between mb-3">
               <h3 class="text-xl font-bold text-text-heading">vs {p.name}</h3>
-              {p.slug
-                ? <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-success/10 text-success">Deep dive live</span>
-                : <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">Coming soon</span>}
+              {!p.slug && <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">Coming soon</span>}
             </div>
             <p class="text-xs text-text-light uppercase tracking-wide mb-3">{p.type}</p>
             <p class="text-text font-medium mb-3">{p.tagline}</p>
@@ -218,7 +218,7 @@ const cell = (v: string) => v;
   <section class="py-16">
     <div class="max-w-3xl mx-auto px-4 text-center">
       <h2 class="text-2xl font-bold mb-4">Stuck on another platform?</h2>
-      <p class="text-text-light mb-6">We'll map out your situation and show what moving to ShopVirge actually delivers — no sales pitch.</p>
+      <p class="text-text-light mb-6">We'll map out your situation and show what moving to ShopVirge actually delivers, no sales pitch.</p>
       <a href={`${base}en/contact/`} class="btn-primary">Book a free consultation →</a>
     </div>
   </section>

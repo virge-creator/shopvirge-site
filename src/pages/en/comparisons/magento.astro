@@ -37,8 +37,8 @@ const painPoints = [
 // Annual TCO bars (scaled to 100k)
 const tcoMax = 100000;
 const tco = [
-  { name: 'Magento — high', value: 100000, label: '$100,000', color: 'bg-danger' },
-  { name: 'Magento — low', value: 50000, label: '$50,000', color: 'bg-danger/70' },
+  { name: 'Magento (high)', value: 100000, label: '$100,000', color: 'bg-danger' },
+  { name: 'Magento (low)', value: 50000, label: '$50,000', color: 'bg-danger/70' },
   { name: 'ShopVirge Medium', value: 900, label: '€900', color: 'bg-success' },
 ];
 
@@ -52,8 +52,8 @@ const drivers = [
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Magento vs ShopVirge — the complete deep dive",
-  "description": "An in-depth analysis of Magento's pain points: $50K–$200K migration costs, $50K–100K/yr TCO and SEO lock-in — and how ShopVirge solves them.",
+  "headline": "Magento vs ShopVirge: the complete deep dive",
+  "description": "An in-depth analysis of Magento's pain points: $50K–$200K migration costs, $50K–100K/yr TCO and SEO lock-in, and how ShopVirge solves them.",
   "datePublished": "2026-06-08",
   "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
   "publisher": { "@type": "Organization", "name": "ShopVirge", "logo": { "@type": "ImageObject", "url": `${siteUrl}${base}images/logo.png` } },
@@ -62,7 +62,7 @@ const articleSchema = {
 };
 ---
 <Layout
-  title="Magento vs ShopVirge — the complete deep dive"
+  title="Magento vs ShopVirge: the complete deep dive"
   description="An in-depth analysis of Magento's pain points: $50K–$200K migration costs, $50K–100K/yr TCO and SEO lock-in. Plus an affordable, SEO-safe migration path to ShopVirge."
   lang="en">
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
@@ -79,7 +79,7 @@ const articleSchema = {
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">Magento vs ShopVirge</h1>
         <p class="text-xl text-white/80">
           Too expensive to stay, too risky to leave. We dissect the three pain points that keep
-          Magento merchants trapped — with numbers — and show that there's a better way.
+          Magento merchants trapped, with numbers, and show that there's a better way.
         </p>
       </div>
     </div>
@@ -96,7 +96,7 @@ const articleSchema = {
       </p>
       <p>
         Below we walk through the three pain points that came up most often in June 2026 across Magento
-        owner discussions — each with the evidence, and each with what ShopVirge concretely puts in its place.
+        owner discussions, each with the evidence, and each with what ShopVirge concretely puts in its place.
       </p>
     </div>
   </section>
@@ -127,7 +127,7 @@ const articleSchema = {
       <h2 class="text-3xl font-bold mb-3">Annual cost: Magento vs ShopVirge</h2>
       <p class="text-text-light mb-10 max-w-2xl">
         The recurring cost of ownership (TCO) of a mid-size Magento store versus the ShopVirge Medium
-        plan. Note the scale — the bars share the same axis.
+        plan. Both bars use the same scale.
       </p>
       <div class="space-y-5 bg-white rounded-2xl shadow-md p-6 sm:p-8">
         {tco.map((t) => (
@@ -144,7 +144,7 @@ const articleSchema = {
       </div>
       <p class="text-sm text-text-light mt-4">
         ShopVirge Medium costs €75/month (€900/year) including hosting, maintenance and updates. A
-        mid-size Magento store pays <strong>50 to 110× as much</strong> per year — before the one-time
+        mid-size Magento store pays <strong>50 to 110× as much</strong> per year, before the one-time
         migration is even counted.
       </p>
     </div>
@@ -185,7 +185,7 @@ const articleSchema = {
   <section class="py-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-3">Where does the money go?</h2>
-      <p class="text-text-light mb-10 max-w-2xl">The three cost drivers behind Magento's $50K–100K/yr — every one of them included with ShopVirge.</p>
+      <p class="text-text-light mb-10 max-w-2xl">The three cost drivers behind Magento's $50K–100K/yr, every one of them included with ShopVirge.</p>
       <div class="grid sm:grid-cols-3 gap-4">
         {drivers.map((d) => (
           <div class="bg-white rounded-2xl shadow-md p-6">
@@ -223,7 +223,7 @@ const articleSchema = {
           </tbody>
         </table>
       </div>
-      <p class="text-sm text-text-light mt-4">Even in the most favorable Magento scenario, three years costs more than $200,000. ShopVirge stays under €4,000 — migration included.</p>
+      <p class="text-sm text-text-light mt-4">Even in the most favorable Magento scenario, three years costs more than $200,000. ShopVirge stays under €4,000, migration included.</p>
     </div>
   </section>
 
@@ -231,12 +231,12 @@ const articleSchema = {
   <section class="py-16 bg-surface">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-3">The migration path: Magento → ShopVirge</h2>
-      <p class="text-text-light mb-10 max-w-2xl">Four steps, with no SEO loss and no dev team. Included with the Medium tier (€1,000 onboarding).</p>
+      <p class="text-text-light mb-10 max-w-2xl">Four steps, with no SEO loss and no dev team. Included with the Medium tier <span class="whitespace-nowrap">(€1,000 onboarding)</span>.</p>
       <div class="grid sm:grid-cols-2 gap-5">
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">01</div>
           <h3 class="font-bold text-text-heading mb-1.5">Catalog export</h3>
-          <p class="text-sm text-text-light">We export your products, categories and variants out of Magento into validated CSV/Excel — with a data check up front.</p>
+          <p class="text-sm text-text-light">We export your products, categories and variants out of Magento into validated CSV/Excel, with a data check up front.</p>
         </div>
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">02</div>
@@ -251,7 +251,7 @@ const articleSchema = {
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">04</div>
           <h3 class="font-bold text-text-heading mb-1.5">Live &amp; managed</h3>
-          <p class="text-sm text-text-light">Hosting, updates and security patches are on us. You manage products yourself — or via our MCP-ready API.</p>
+          <p class="text-sm text-text-light">Hosting, updates and security patches are on us. You manage products yourself, or via our MCP-ready API.</p>
         </div>
       </div>
     </div>

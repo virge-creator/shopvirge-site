@@ -7,7 +7,7 @@ interface Props {
   lang?: string;
   image?: string;
 }
-const { title, description = lang === 'en' ? "ShopVirge — your multilingual webshop in minutes. Automatic translations, Stripe payments and mobile-first design. From €50/month." : "ShopVirge — je meertalige webshop in enkele minuten. Automatische vertalingen, Stripe betalingen en mobiel-first design. Vanaf €50/maand.", lang = "nl", image } = Astro.props;
+const { title, description = lang === 'en' ? "ShopVirge: your multilingual webshop in minutes. Automatic translations, Stripe payments and mobile-first design. From €50/month." : "ShopVirge: je meertalige webshop in enkele minuten. Automatische vertalingen, Stripe betalingen en mobiel-first design. Vanaf €50/maand.", lang = "nl", image } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const siteUrl = 'https://shopvirge.com';
 const isEn = lang === 'en';
@@ -130,7 +130,7 @@ const ogImage = image || `${siteUrl}${base}images/logo.png`;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <a href={isEn ? enBase : nlBase} class="flex items-center gap-2">
-          <img src={`${base}images/logo.png`} alt="ShopVirge logo — meertalig webshop platform" class="h-9" />
+          <img src={`${base}images/logo.png`} alt="ShopVirge logo (meertalig webshop platform)" class="h-9" />
         </a>
         
         <nav class="hidden md:flex items-center gap-8">

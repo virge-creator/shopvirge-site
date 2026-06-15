@@ -44,8 +44,8 @@ const timeline = [
 // First-year cost: Shopware vs ShopVirge (scaled to 80k)
 const fyMax = 80000;
 const firstYear = [
-  { name: 'Shopware — hoog', value: 80000, label: '€80.000', color: 'bg-danger' },
-  { name: 'Shopware — laag', value: 30000, label: '€30.000', color: 'bg-danger/70' },
+  { name: 'Shopware (hoog)', value: 80000, label: '€80.000', color: 'bg-danger' },
+  { name: 'Shopware (laag)', value: 30000, label: '€30.000', color: 'bg-danger/70' },
   { name: 'ShopVirge (all-in)', value: 1200, label: '€1.200', color: 'bg-success' },
 ];
 
@@ -60,7 +60,7 @@ const drivers = [
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Shopware vs ShopVirge — de complete deep dive",
+  "headline": "Shopware vs ShopVirge: de complete deep dive",
   "description": "Diepgaande analyse van Shopware's pijnpunten: gedwongen migratie Shopware 5 → 6 (€10K–50K+), 6.7 breaking changes en een eerstejaars-TCO van €30K–80K. Plus een betaalbaar migratiepad naar ShopVirge.",
   "datePublished": "2026-06-08",
   "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
@@ -70,7 +70,7 @@ const articleSchema = {
 };
 ---
 <Layout
-  title="Shopware vs ShopVirge — de complete deep dive"
+  title="Shopware vs ShopVirge: de complete deep dive"
   description="Diepgaande analyse van Shopware's pijnpunten: gedwongen migratie Shopware 5 → 6 (€10K–50K+), 6.7 breaking changes en een eerstejaars-TCO van €30K–80K. Plus een betaalbaar migratiepad naar ShopVirge."
   lang="nl">
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />

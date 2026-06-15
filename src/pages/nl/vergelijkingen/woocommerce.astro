@@ -12,7 +12,7 @@ const painPoints = [
     sevClass: 'bg-danger/10 text-danger',
     problem: 'WordPress kromp 6 kwartalen op rij (43,6% → 41,9% CMS-marktaandeel). WooCommerce is gegijzeld door de koers van WordPress. Het ecosysteem versplintert.',
     evidence: '6 opeenvolgende kwartalen daling; 43,6% → 41,9% CMS-marktaandeel.',
-    opp: 'Onafhankelijk platform — niet gebonden aan het lot van welk CMS dan ook.',
+    opp: 'Onafhankelijk platform, niet gebonden aan het lot van welk CMS dan ook.',
   },
   {
     n: 2,
@@ -30,13 +30,13 @@ const painPoints = [
     sevClass: 'bg-warning/20 text-yellow-700',
     problem: 'Plugin-conflicten breken stilletjes checkout-flows, formulieren en tracking. Merchants merken pas maanden later bij een audit dat ze omzet missen.',
     evidence: 'Merchants ontdekken 15–30% conversiedaling door onopgemerkte plugin-conflicten.',
-    opp: 'Geïntegreerde stack — geen plugin-conflicten. Monitoring ingebouwd.',
+    opp: 'Geïntegreerde stack zonder plugin-conflicten. Monitoring ingebouwd.',
   },
 ];
 
 // WordPress CMS market share over 6 quarters. Endpoints (43.6 → 41.9) are reported;
 // intermediate quarters are an interpolated illustration of the trend.
-const shareAxisMin = 40;
+const shareAxisMin = 41;
 const shareAxisMax = 44;
 const share = [
   { q: 'Kw 1', v: 43.6 },
@@ -46,7 +46,21 @@ const share = [
   { q: 'Kw 5', v: 42.2 },
   { q: 'Kw 6', v: 41.9 },
 ];
-const pct = (v: number) => ((v - shareAxisMin) / (shareAxisMax - shareAxisMin)) * 100;
+// Geometrie lijngrafiek. Een lijn op een duidelijk gelabelde, ingezoomde y-as toont de
+// trend zonder de visuele overdrijving die een afgekapte staafgrafiek zou geven.
+const chartW = 640;
+const chartH = 260;
+const padL = 46;
+const padR = 16;
+const padT = 18;
+const padB = 30;
+const plotW = chartW - padL - padR;
+const plotH = chartH - padT - padB;
+const sx = (i: number) => padL + (i / (share.length - 1)) * plotW;
+const sy = (v: number) => padT + (1 - (v - shareAxisMin) / (shareAxisMax - shareAxisMin)) * plotH;
+const gridLines = [44, 43, 42, 41];
+const fmt = (v: number) => v.toFixed(1).replace('.', ',');
+const linePoints = share.map((s, i) => `${sx(i).toFixed(1)},${sy(s.v).toFixed(1)}`).join(' ');
 
 // Silent conversion erosion: revenue lost on a sample €500k/yr store
 const sampleRevenue = 500000;
@@ -58,7 +72,7 @@ const erosion = [
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "WooCommerce vs ShopVirge — de complete deep dive",
+  "headline": "WooCommerce vs ShopVirge: de complete deep dive",
   "description": "Diepgaande analyse van WooCommerce's pijnpunten: 6 kwartalen WordPress-daling (43,6% → 41,9%), WP 7.0 breaking changes en 15–30% stille conversie-erosie. Plus een migratiepad naar ShopVirge.",
   "datePublished": "2026-06-08",
   "author": { "@type": "Organization", "name": "ShopVirge Market Intelligence" },
@@ -68,7 +82,7 @@ const articleSchema = {
 };
 ---
 <Layout
-  title="WooCommerce vs ShopVirge — de complete deep dive"
+  title="WooCommerce vs ShopVirge: de complete deep dive"
   description="Diepgaande analyse van WooCommerce's pijnpunten: 6 kwartalen WordPress-daling (43,6% → 41,9%), WP 7.0 breaking changes en 15–30% stille conversie-erosie. Plus een veilig migratiepad naar ShopVirge."
   lang="nl">
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
@@ -85,7 +99,7 @@ const articleSchema = {
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-[1.1]">WooCommerce vs ShopVirge</h1>
         <p class="text-xl text-white/80">
           Gebouwd op "vrijheid", nu gevangen door complexiteit. Het lot van WooCommerce hangt aan dat van
-          WordPress — en WordPress krimpt. We ontleden de drie pijnpunten, met cijfers.
+          WordPress, en WordPress krimpt. We ontleden de drie pijnpunten, met cijfers.
         </p>
       </div>
     </div>
@@ -102,7 +116,7 @@ const articleSchema = {
         "vrijheid" kozen, voelen zich nu gevangen door complexiteit.
       </p>
       <p>
-        Hieronder de drie pijnpunten die in juni 2026 het vaakst opdoken bij WooCommerce-eigenaren —
+        Hieronder de drie pijnpunten die in juni 2026 het vaakst opdoken bij WooCommerce-eigenaren,
         telkens met het bewijs, en telkens met wat ShopVirge er concreet tegenover zet.
       </p>
     </div>
@@ -134,21 +148,26 @@ const articleSchema = {
       <h2 class="text-3xl font-bold mb-3">WordPress-marktaandeel: 6 kwartalen omlaag</h2>
       <p class="text-text-light mb-10 max-w-2xl">
         Het CMS-marktaandeel van WordPress zakte zes kwartalen op rij. WooCommerce deelt onvermijdelijk in
-        die neergang — minder ontwikkelaars, minder momentum, een versplinterend ecosysteem.
+        die neergang: minder ontwikkelaars, minder momentum, een versplinterend ecosysteem.
       </p>
       <div class="bg-white rounded-2xl shadow-md p-6 sm:p-8">
-        <div class="space-y-3">
-          {share.map((s) => (
-            <div class="flex items-center gap-4">
-              <span class="w-14 text-sm font-medium text-text-light shrink-0">{s.q}</span>
-              <div class="h-7 flex-1 bg-gray-100 rounded-lg overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-brand-dark to-danger rounded-lg" style={`width: ${pct(s.v)}%`}></div>
-              </div>
-              <span class="w-16 text-right text-sm font-semibold text-text-heading tabular-nums shrink-0">{s.v.toFixed(1)}%</span>
-            </div>
+        <svg viewBox={`0 0 ${chartW} ${chartH}`} class="w-full h-auto" role="img" aria-label="WordPress CMS-marktaandeel daalde van 43,6% naar 41,9% over zes kwartalen">
+          {gridLines.map((g) => (
+            <g>
+              <line x1={padL} y1={sy(g)} x2={chartW - padR} y2={sy(g)} stroke="#e5e7eb" stroke-width="1" />
+              <text x={padL - 8} y={sy(g) + 4} text-anchor="end" font-size="12" class="fill-text-light">{g}%</text>
+            </g>
           ))}
-        </div>
-        <p class="text-xs text-text-light mt-5">As loopt van 40% tot 44% om het verloop zichtbaar te maken. Begin- en eindpunt (43,6% → 41,9%) zijn gerapporteerd; tussenliggende kwartalen illustreren de trend.</p>
+          <polyline points={linePoints} fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="stroke-danger" />
+          {share.map((s, i) => (
+            <g>
+              <circle cx={sx(i)} cy={sy(s.v)} r="4.5" class="fill-danger" />
+              <text x={sx(i)} y={sy(s.v) - 11} text-anchor="middle" font-size="11" font-weight="700" class="fill-text-heading">{fmt(s.v)}%</text>
+              <text x={sx(i)} y={chartH - 9} text-anchor="middle" font-size="12" class="fill-text-light">{s.q}</text>
+            </g>
+          ))}
+        </svg>
+        <p class="text-xs text-text-light mt-5">De y-as is ingezoomd op 41–44% om de trend te tonen; hij begint niet bij nul. Begin- en eindpunt (43,6% → 41,9%) zijn gerapporteerd; tussenliggende kwartalen illustreren de trend.</p>
       </div>
     </div>
   </section>
@@ -189,7 +208,7 @@ const articleSchema = {
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-3">De verborgen prijs van stille conversie-erosie</h2>
       <p class="text-text-light mb-10 max-w-2xl">
-        15–30% conversieverlies klinkt abstract — totdat je het op echte omzet projecteert. Een
+        15–30% conversieverlies klinkt abstract, totdat je het op echte omzet projecteert. Een
         voorbeeldshop met <strong>€500.000 jaaromzet</strong> die door plugin-conflicten stilletjes lekt:
       </p>
       <div class="space-y-6 bg-white rounded-2xl shadow-md p-6 sm:p-8">
@@ -206,7 +225,7 @@ const articleSchema = {
         ))}
       </div>
       <p class="text-sm text-text-light mt-4">
-        Dat is <strong>€75.000 tot €150.000 per jaar</strong> die je niet ziet wegvloeien — tot je
+        Dat is <strong>€75.000 tot €150.000 per jaar</strong> die je niet ziet wegvloeien, tot je
         maanden later een audit doet. Bij ShopVirge zit alles in één geïntegreerde stack, met monitoring
         ingebouwd, dus er zijn geen plugins die elkaar in stilte slopen.
       </p>
@@ -234,7 +253,7 @@ const articleSchema = {
             <li class="flex gap-2"><span class="text-success">✓</span> Eén geïntegreerde stack, geen plugin-jungle</li>
             <li class="flex gap-2"><span class="text-success">✓</span> Checkout, SEO en meertaligheid native</li>
             <li class="flex gap-2"><span class="text-success">✓</span> Gecontroleerde updates die niets breken</li>
-            <li class="flex gap-2"><span class="text-success">✓</span> Monitoring ingebouwd — lekken worden gezien</li>
+            <li class="flex gap-2"><span class="text-success">✓</span> Monitoring ingebouwd, lekken worden gezien</li>
             <li class="flex gap-2"><span class="text-success">✓</span> Onafhankelijk platform, eigen koers</li>
           </ul>
         </div>
@@ -256,12 +275,12 @@ const articleSchema = {
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">02</div>
           <h3 class="font-bold text-text-heading mb-1.5">Plugin-audit</h3>
-          <p class="text-sm text-text-light">We brengen in kaart welke plugin-functies je écht gebruikt — en welke native in ShopVirge zitten.</p>
+          <p class="text-sm text-text-light">We brengen in kaart welke plugin-functies je écht gebruikt, en welke native in ShopVirge zitten.</p>
         </div>
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">03</div>
           <h3 class="font-bold text-text-heading mb-1.5">Gestructureerde import</h3>
-          <p class="text-sm text-text-light">Import in ShopVirge met validatie — geen 15–30% conversielek meer door verborgen conflicten.</p>
+          <p class="text-sm text-text-light">Import in ShopVirge met validatie, zonder 15–30% conversielek meer door verborgen conflicten.</p>
         </div>
         <div class="bg-white rounded-2xl shadow-sm p-6">
           <div class="text-brand font-extrabold text-lg mb-1">04</div>
