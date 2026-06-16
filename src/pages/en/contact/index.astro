@@ -165,12 +165,26 @@ const base = import.meta.env.BASE_URL;
               The Netherlands
             </address>
           </div>
-          <div class="brand-map h-80">
+          <div class="map-card h-80">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2486.0!2d5.65!3d51.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sJulianastraat+63%2C+6039+AH+Stramproy!5e0!3m2!1snl!2snl!4v1700000000000!5m2!1snl!2snl"
-              allowfullscreen="" loading="lazy"
+              class="map-card__frame"
+              src="https://maps.google.com/maps?q=Julianastraat%2063%2C%206039%20AH%20Stramproy&z=15&output=embed"
+              title="Map: ShopVirge, Julianastraat 63, Stramproy"
+              allowfullscreen loading="lazy"
               referrerpolicy="no-referrer-when-downgrade">
             </iframe>
+            <span class="map-card__badge"><span class="map-card__dot"></span> Visit us here</span>
+            <div class="map-card__info">
+              <div class="map-card__info-text">
+                <p class="map-card__info-title">ShopVirge</p>
+                <p class="map-card__info-sub">Julianastraat 63, Stramproy</p>
+              </div>
+              <a class="map-card__btn"
+                href="https://www.google.com/maps/dir/?api=1&destination=Julianastraat+63%2C+6039+AH+Stramproy"
+                target="_blank" rel="noopener">
+                <Icon name="navigation" size={15} class="text-white" /> Directions
+              </a>
+            </div>
           </div>
         </div>
       </div>

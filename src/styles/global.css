@@ -175,27 +175,114 @@ body {
           mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 85%);
 }
 
-/* Brand-tinted map */
-.brand-map {
+/* Location map card — full-colour map in a gradient ring, floating glass address card */
+.map-card {
   position: relative;
-  border-radius: 1rem;
-  overflow: hidden;
+  padding: 4px;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, var(--color-brand), var(--color-accent) 70%, var(--color-brand));
+  box-shadow: 0 22px 45px -20px rgba(17, 28, 44, 0.4);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
 }
-.brand-map iframe {
+.map-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 32px 60px -22px rgba(17, 28, 44, 0.5);
+}
+.map-card__frame {
   display: block;
   width: 100%;
   height: 100%;
   border: 0;
-  filter: grayscale(1) contrast(1.05) brightness(0.96);
+  border-radius: 1.25rem;
 }
-.brand-map::after {
-  content: "";
+/* "Live" pin badge, top-right */
+.map-card__badge {
   position: absolute;
-  inset: 0;
-  background: var(--color-brand);
-  mix-blend-mode: multiply;
-  opacity: 0.45;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  box-shadow: 0 6px 18px -8px rgba(17, 28, 44, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   pointer-events: none;
+}
+.map-card__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 0 var(--color-accent);
+  animation: map-pulse 2s ease-out infinite;
+}
+@keyframes map-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent); }
+  70% { box-shadow: 0 0 0 0.6rem transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+/* Floating glass address card, bottom */
+.map-card__info {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  box-shadow: 0 10px 28px -10px rgba(17, 28, 44, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.map-card__info-text {
+  min-width: 0;
+}
+.map-card__info-title {
+  font-weight: 700;
+  color: var(--color-text-heading);
+  line-height: 1.2;
+}
+.map-card__info-sub {
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.map-card__btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.7rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-brand);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.map-card__btn:hover {
+  background: var(--color-accent);
+  transform: translateX(2px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-card,
+  .map-card:hover,
+  .map-card__btn:hover { transform: none; }
+  .map-card__dot { animation: none; }
 }
 
 /* Long-form content typography (blog posts, about page, etc.) */
