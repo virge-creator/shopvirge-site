@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL;
 ---
-<Layout title="Privacy: What we do (and don't do) with your data" description="ShopVirge only stores what you share. We don't sell your data and we don't set cookies." lang="en">
+<Layout title="Privacy: What we do (and don't do) with your data" description="ShopVirge only stores what you share. We don't sell your data and we only use Google Analytics to measure visitor numbers." lang="en">
   <section class="hero text-white py-24 md:py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-5xl">
@@ -27,15 +27,23 @@ const base = import.meta.env.BASE_URL;
           <li>Account and product data you enter into your ShopVirge shop, if you are a customer.</li>
         </ul>
         <p>
-          That's the entire list. We don't collect analytics on visitors, we don't fingerprint your browser, and
-          we don't enrich your data with third-party sources.
+          On top of that, we use Google Analytics to measure, in aggregate, how many people visit the site and which
+          pages are popular. We don't fingerprint your browser and we don't enrich your data with third-party sources.
+        </p>
+
+        <h2>Analytics</h2>
+        <p>
+          We use <strong>Google Analytics</strong> to understand how many visitors we get and which pages work best.
+          To do this, Google sets a cookie and processes data such as your (anonymized) IP address, browser, and the
+          pages you view. We use this purely to improve the site, not to identify you personally or to track you for
+          advertising.
         </p>
 
         <h2>What we don't do</h2>
         <ul>
           <li><strong>We don't sell your data.</strong> Not to advertisers, not to brokers, not to anyone.</li>
-          <li><strong>We don't set tracking cookies.</strong> This site doesn't drop cookies in your browser; there's no consent banner because there is nothing to consent to.</li>
-          <li><strong>We don't run third-party trackers.</strong> No Google Analytics, no Facebook pixel, no session replay.</li>
+          <li><strong>We don't use analytics for advertising.</strong> We don't link your visit to ad profiles, and we run no Facebook pixel or session replay.</li>
+          <li><strong>We don't enrich your data.</strong> We don't combine what you share with outside data sources to build a profile of you.</li>
         </ul>
 
         <h2>How we use what you share</h2>
@@ -51,6 +59,7 @@ const base = import.meta.env.BASE_URL;
         <h2>Third parties we do rely on</h2>
         <ul>
           <li><strong>Formspree</strong> handles delivery of contact form submissions to our inbox.</li>
+          <li><strong>Google Analytics</strong> measures visitor numbers and which pages are popular.</li>
           <li><strong>Google Maps</strong> embeds the map on our contact page. The map only loads when you visit that page.</li>
           <li><strong>GitHub Pages</strong> hosts this website.</li>
         </ul>
@@ -67,8 +76,7 @@ const base = import.meta.env.BASE_URL;
 
         <h2>Changes to this statement</h2>
         <p>
-          If we ever change how we handle data, we update this page first. There is no separate cookie or tracking
-          policy because we don't do either.
+          If we ever change how we handle data, we update this page first.
         </p>
       </div>
     </div>

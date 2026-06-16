@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL;
 ---
-<Layout title="Privacy: Wat we wel (en niet) met je gegevens doen" description="ShopVirge bewaart alleen wat je zelf deelt. We verkopen geen gegevens en we plaatsen geen cookies." lang="nl">
+<Layout title="Privacy: Wat we wel (en niet) met je gegevens doen" description="ShopVirge bewaart alleen wat je zelf deelt. We verkopen geen gegevens en we gebruiken alleen Google Analytics om bezoekersaantallen te meten." lang="nl">
   <section class="hero text-white py-24 md:py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-5xl">
@@ -27,15 +27,23 @@ const base = import.meta.env.BASE_URL;
           <li>Account- en productgegevens die je in je ShopVirge-shop invoert, als je klant bent.</li>
         </ul>
         <p>
-          Dat is de hele lijst. We verzamelen geen analytics over bezoekers, we maken geen browser-fingerprint, en
-          we verrijken je gegevens niet met externe bronnen.
+          Daarnaast meten we met Google Analytics op geaggregeerd niveau hoeveel mensen de site bezoeken en welke
+          pagina's populair zijn. We maken geen browser-fingerprint en we verrijken je gegevens niet met externe bronnen.
+        </p>
+
+        <h2>Analytics</h2>
+        <p>
+          We gebruiken <strong>Google Analytics</strong> om te begrijpen hoeveel bezoekers we hebben en welke pagina's
+          het beste werken. Hiervoor plaatst Google een cookie en verwerkt het gegevens zoals je (geanonimiseerde)
+          IP-adres, browser en de pagina's die je bekijkt. We gebruiken dit puur om de site te verbeteren, niet om
+          jou persoonlijk te identificeren of te volgen voor advertenties.
         </p>
 
         <h2>Wat we niet doen</h2>
         <ul>
           <li><strong>We verkopen geen gegevens.</strong> Niet aan adverteerders, niet aan databrokers, niet aan wie dan ook.</li>
-          <li><strong>We plaatsen geen tracking-cookies.</strong> Deze site zet geen cookies in je browser; er is geen cookiebanner omdat er niets is om toestemming voor te geven.</li>
-          <li><strong>We draaien geen externe trackers.</strong> Geen Google Analytics, geen Facebook-pixel, geen session replay.</li>
+          <li><strong>We gebruiken analytics niet voor advertenties.</strong> We koppelen je bezoek niet aan advertentieprofielen en draaien geen Facebook-pixel of session replay.</li>
+          <li><strong>We verrijken je gegevens niet.</strong> We combineren wat je deelt niet met externe databronnen om een profiel van je te bouwen.</li>
         </ul>
 
         <h2>Hoe we gebruiken wat je deelt</h2>
@@ -52,6 +60,7 @@ const base = import.meta.env.BASE_URL;
         <h2>Externe partijen waar we wél van afhankelijk zijn</h2>
         <ul>
           <li><strong>Formspree</strong> levert contactformulier-berichten bij ons af.</li>
+          <li><strong>Google Analytics</strong> meet bezoekersaantallen en welke pagina's populair zijn.</li>
           <li><strong>Google Maps</strong> toont de kaart op onze contactpagina. De kaart laadt alleen als je die pagina bezoekt.</li>
           <li><strong>GitHub Pages</strong> host deze website.</li>
         </ul>
@@ -69,8 +78,7 @@ const base = import.meta.env.BASE_URL;
 
         <h2>Wijzigingen</h2>
         <p>
-          Als we ooit iets veranderen in hoe we met gegevens omgaan, werken we deze pagina eerst bij. Er is geen
-          aparte cookie- of trackingverklaring omdat we beide niet doen.
+          Als we ooit iets veranderen in hoe we met gegevens omgaan, werken we deze pagina eerst bij.
         </p>
       </div>
     </div>
