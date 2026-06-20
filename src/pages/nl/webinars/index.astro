@@ -1,0 +1,174 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Icon from '../../../components/Icon.astro';
+const base = import.meta.env.BASE_URL;
+
+// Webinars are held the first Wednesday of every month, in the afternoon.
+// Dates are computed at build time so the list never goes stale.
+function firstWednesday(year: number, month: number): Date {
+  const d = new Date(year, month, 1);
+  const offset = (3 - d.getDay() + 7) % 7; // 3 = Wednesday
+  d.setDate(1 + offset);
+  return d;
+}
+
+const topics = [
+  'Van idee naar live webshop in 30 minuten',
+  'Meertalig verkopen: automatische vertalingen in de praktijk',
+  'Migreren van Shopify of Magento zonder SEO-verlies',
+  'AI & MCP: je webshop koppelen aan AI-assistenten',
+  'Betalingen, BTW en verzending instellen met Stripe',
+  'SEO en vindbaarheid voor je meertalige webshop',
+];
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const upcoming: { date: Date; topic: string }[] = [];
+let y = today.getFullYear();
+let m = today.getMonth();
+while (upcoming.length < 4) {
+  const fw = firstWednesday(y, m);
+  if (fw >= today) {
+    upcoming.push({ date: fw, topic: topics[fw.getMonth() % topics.length] });
+  }
+  m++;
+  if (m > 11) { m = 0; y++; }
+}
+
+const dateFmt = new Intl.DateTimeFormat('nl-NL', {
+  weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+});
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const time = '15:00 – 16:00 (CET)';
+const webinarOptions = upcoming.map((w) => `${cap(dateFmt.format(w.date))} — ${w.topic}`);
+---
+<Layout
+  title="Webinars - Leer ShopVirge kennen"
+  description="Gratis maandelijkse ShopVirge-webinars. Elke eerste woensdag van de maand in de middag: live demo, praktische tips en je vragen beantwoord. Meld je gratis aan."
+  lang="nl">
+  <section class="hero text-white py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+          <Icon name="video" size={16} class="text-white" /> Gratis · Online · Maandelijks
+        </span>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Webinars</h1>
+        <p class="text-xl text-white/80">
+          Elke eerste woensdag van de maand, in de middag, laten we je live zien hoe je met
+          ShopVirge een meertalige webshop opzet en laat groeien. Gratis, online en met ruimte
+          voor al je vragen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <!-- Left: info + schedule -->
+        <div>
+          <h2 class="text-3xl font-extrabold mb-4">Wat kun je verwachten?</h2>
+          <p class="text-gray-600 mb-8">
+            Onze webinars duren ongeveer 45 minuten: een live demo van het platform, praktische
+            tips uit echte webshops en daarna alle tijd voor jouw vragen. Je hebt niets nodig
+            behalve een browser — de deelnamelink ontvang je per e-mail na aanmelding.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mb-12">
+            <div class="bg-brand/5 border border-brand/20 rounded-xl p-5">
+              <h3 class="font-bold text-brand mb-1 flex items-center gap-2">
+                <Icon name="calendar-days" size={18} class="text-brand" /> Wanneer
+              </h3>
+              <p class="text-sm text-gray-600">Eerste woensdag van de maand, {time}.</p>
+            </div>
+            <div class="bg-brand/5 border border-brand/20 rounded-xl p-5">
+              <h3 class="font-bold text-brand mb-1 flex items-center gap-2">
+                <Icon name="monitor-play" size={18} class="text-brand" /> Live demo
+              </h3>
+              <p class="text-sm text-gray-600">Zie het platform in actie, geen verkooppraatje.</p>
+            </div>
+            <div class="bg-brand/5 border border-brand/20 rounded-xl p-5">
+              <h3 class="font-bold text-brand mb-1 flex items-center gap-2">
+                <Icon name="messages-square" size={18} class="text-brand" /> Q&amp;A
+              </h3>
+              <p class="text-sm text-gray-600">Stel je vragen rechtstreeks aan ons team.</p>
+            </div>
+            <div class="bg-brand/5 border border-brand/20 rounded-xl p-5">
+              <h3 class="font-bold text-brand mb-1 flex items-center gap-2">
+                <Icon name="gift" size={18} class="text-brand" /> Gratis
+              </h3>
+              <p class="text-sm text-gray-600">Geen kosten, geen verplichtingen.</p>
+            </div>
+          </div>
+
+          <h2 class="text-2xl font-extrabold mb-6">Geplande webinars</h2>
+          <ul class="space-y-4">
+            {upcoming.map((w) => (
+              <li class="flex gap-4 items-start border border-gray-200 rounded-xl p-5 hover:border-brand/40 transition-colors">
+                <div class="shrink-0 text-center bg-brand/5 rounded-lg px-3 py-2 w-16">
+                  <span class="block text-2xl font-extrabold text-brand leading-none">{w.date.getDate()}</span>
+                  <span class="block text-xs uppercase tracking-wide text-gray-500 mt-1">
+                    {new Intl.DateTimeFormat('nl-NL', { month: 'short' }).format(w.date)}
+                  </span>
+                </div>
+                <div>
+                  <p class="font-semibold text-text-heading">{w.topic}</p>
+                  <p class="text-sm text-gray-500 mt-1">{cap(dateFmt.format(w.date))} · {time}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Right: signup form -->
+        <div class="lg:sticky lg:top-24">
+          <div class="card p-6 md:p-8">
+            <h2 class="text-2xl font-extrabold mb-2">Aanmelden</h2>
+            <p class="text-gray-600 mb-6 text-sm">
+              Kies een datum en meld je gratis aan. Je ontvangt de deelnamelink per e-mail.
+            </p>
+            <form action="https://formspree.io/f/mkokrkdl" method="POST" class="space-y-4">
+              <input type="hidden" name="_subject" value="Webinar aanmelding - ShopVirge" />
+              <input type="hidden" name="type" value="webinar" />
+              <input type="hidden" name="source" value="webinars-page" />
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Naam *</label>
+                  <input type="text" name="name" required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Bedrijfsnaam</label>
+                  <input type="text" name="company"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">E-mail *</label>
+                <input type="email" name="email" required
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Welk webinar? *</label>
+                <select name="webinar" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none bg-white">
+                  {webinarOptions.map((opt) => <option value={opt}>{opt}</option>)}
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Vraag vooraf (optioneel)</label>
+                <textarea name="message" rows="3"
+                  placeholder="Is er iets specifieks dat je graag behandeld ziet?"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none resize-none"></textarea>
+              </div>
+              <button type="submit" class="btn-primary w-full">Meld me aan →</button>
+              <p class="text-xs text-gray-400 text-center">
+                Liever een persoonlijke demo? <a href={`${base}nl/contact/?type=demo`} class="text-brand hover:underline">Vraag een demo aan</a>.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
