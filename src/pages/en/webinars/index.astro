@@ -3,12 +3,12 @@ import Layout from '../../../layouts/Layout.astro';
 import Icon from '../../../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
 
-// Webinars are held the second Wednesday of every month, in the afternoon.
+// Webinars are held the third Wednesday of every month, in the afternoon.
 // Dates are computed at build time so the list never goes stale.
-function secondWednesday(year: number, month: number): Date {
+function thirdWednesday(year: number, month: number): Date {
   const d = new Date(year, month, 1);
   const offset = (3 - d.getDay() + 7) % 7; // 3 = Wednesday → first Wednesday
-  d.setDate(1 + offset + 7); // + one week → second Wednesday
+  d.setDate(1 + offset + 14); // + two weeks → third Wednesday
   return d;
 }
 
@@ -18,8 +18,8 @@ const upcoming: Date[] = [];
 let y = today.getFullYear();
 let m = today.getMonth();
 while (upcoming.length < 4) {
-  const sw = secondWednesday(y, m);
-  if (sw >= today) upcoming.push(sw);
+  const tw = thirdWednesday(y, m);
+  if (tw >= today) upcoming.push(tw);
   m++;
   if (m > 11) { m = 0; y++; }
 }
@@ -29,7 +29,6 @@ const dateFmt = new Intl.DateTimeFormat('en-GB', {
 });
 const monthFmt = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' });
 const shortMonthFmt = new Intl.DateTimeFormat('en-GB', { month: 'short' });
-const time = '3:00 – 4:00 PM (Stramproy time)';
 const localeTag = 'en-GB';
 const webinarOptions = upcoming.map((d) => dateFmt.format(d));
 const weekdays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
@@ -53,6 +52,14 @@ const instants = upcoming.map((d) => ({
   end: amsterdamInstant(d, 16, 0),
 }));
 
+// Timezone abbreviation (CEST/CET) for Amsterdam, taken from the first session.
+function zoneAbbr(instantIso: string): string {
+  const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Amsterdam', timeZoneName: 'short' })
+    .formatToParts(new Date(instantIso));
+  return parts.find((p) => p.type === 'timeZoneName')?.value ?? 'CET';
+}
+const time = `3:00 – 4:00 PM ${instants.length ? zoneAbbr(instants[0].start) : 'CET'}`;
+
 // Build a Monday-first month grid; null cells pad the leading/trailing gaps.
 function monthGrid(year: number, month: number): (number | null)[] {
   const startDow = (new Date(year, month, 1).getDay() + 6) % 7; // Monday = 0
@@ -70,7 +77,7 @@ const calendars = upcoming.map((d) => ({
 ---
 <Layout
   title="Webinars - Get to know ShopVirge"
-  description="Free monthly ShopVirge webinars. Every second Wednesday of the month in the afternoon: live demo, practical tips and your questions answered. Sign up for free."
+  description="Free monthly ShopVirge webinars. Every third Wednesday of the month in the afternoon: live demo, practical tips and your questions answered. Sign up for free."
   lang="en">
   <section class="hero text-white py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +87,7 @@ const calendars = upcoming.map((d) => ({
         </span>
         <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Webinars</h1>
         <p class="text-xl text-white/80">
-          Every second Wednesday of the month, in the afternoon, we show you live how to build and
+          Every third Wednesday of the month, in the afternoon, we show you live how to build and
           grow a multilingual webshop with ShopVirge. Free, online and with plenty of room for
           your questions.
         </p>
@@ -105,7 +112,7 @@ const calendars = upcoming.map((d) => ({
               <h3 class="font-bold text-brand mb-1 flex items-center gap-2">
                 <Icon name="calendar-days" size={18} class="text-brand" /> When
               </h3>
-              <p class="text-sm text-gray-600">Second Wednesday of the month, {time}.</p>
+              <p class="text-sm text-gray-600">Third Wednesday of the month, {time}.</p>
             </div>
             <div class="bg-brand/5 border border-brand/20 rounded-xl p-5">
               <h3 class="font-bold text-brand mb-1 flex items-center gap-2">
@@ -219,7 +226,7 @@ const calendars = upcoming.map((d) => ({
       </div>
       <p class="text-sm text-gray-500 mt-4 flex items-center gap-2">
         <span class="inline-block w-3 h-3 rounded-full bg-brand"></span>
-        Webinar date · second Wednesday of the month, {time}
+        Webinar date · third Wednesday of the month, {time}
       </p>
     </div>
   </section>
