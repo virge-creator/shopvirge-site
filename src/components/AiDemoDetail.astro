@@ -52,13 +52,11 @@ const copy = {
   },
 }[lang][demo];
 const ui = en ? {
-  back: 'All AI demos',
   eyebrow: 'ShopVirge AI demo',
   recordingWord: 'Screen recording', shopWord: 'demo shop',
   fallback: 'Your browser does not support video playback.',
   cta: 'Request a demo',
 } : {
-  back: 'Alle AI-demo’s',
   eyebrow: 'ShopVirge AI-demo',
   recordingWord: 'Schermopname', shopWord: 'demoshop',
   fallback: 'Je browser ondersteunt het afspelen van video niet.',
@@ -183,10 +181,9 @@ const labels = en ? {
 <Layout title={copy.title} description={copy.description} lang={lang} image={`https://shopvirge.com${videoBase}${copy.video}-wide.webp`}>
   <section class="hero text-white py-12 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <a href={overview} class="inline-flex text-white/85 hover:text-white mb-8">← {ui.back}</a>
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-12 items-center">
         <div class="lg:col-span-5">
-          <span class="inline-flex items-center rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold mb-6">{ui.eyebrow}</span>
+          <span class="inline-flex items-center rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold mb-8">{ui.eyebrow}</span>
           <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">{copy.title}</h1>
           <p class="text-lg md:text-xl text-white/85 leading-relaxed">{copy.intro}</p>
           {note(4) && <p class="mt-3 text-sm text-white/70">{note(4)}</p>}
@@ -311,19 +308,6 @@ const labels = en ? {
         <h2 id="cta-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{details.ctaTitle}</h2>
         <p class="text-lg text-gray-600 mb-8">{details.ctaBody}</p>
         <a href={contact} class="btn-primary" data-open-demo>{ui.cta} →</a>
-      </div>
-    </section>
-
-    <section class="py-16 md:py-20" aria-labelledby="other-heading">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <a href={`${overview}${other}/`} class="group grid overflow-hidden rounded-2xl border border-brand/10 bg-white shadow-sm hover:shadow-lg transition-shadow sm:grid-cols-2">
-          <img src={`${videoBase}${other === 'photo' ? 'shop' : 'lego'}-wide.webp`} alt="" loading="lazy" class="w-full h-full min-h-52 object-cover bg-surface-dark" />
-          <div class="p-7 md:p-9 flex flex-col justify-center">
-            <h2 id="other-heading" class="text-2xl font-bold text-gray-900 mb-3">{details.otherTitle}</h2>
-            <p class="text-gray-600 mb-5">{details.otherBody}</p>
-            <span class="font-semibold text-brand group-hover:text-brand-dark">{copy.other} →</span>
-          </div>
-        </a>
       </div>
     </section>
   </main>
