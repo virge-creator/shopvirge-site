@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Props { lang: 'en' | 'nl' }
+const { lang } = Astro.props;
+const en = lang === 'en';
+const base = import.meta.env.BASE_URL;
+const videoBase = `${base}videos/ai-demos/`;
+const contact = `${base}${lang}/contact/?type=demo`;
+const socialImage = `https://shopvirge.com${videoBase}shop-wide.webp`;
+
+const copy = en ? {
+  title: 'AI product listing demos for your webshop',
+  description: 'Watch ShopVirge AI product demos: see a connected assistant create webshop listings and product descriptions from a photo or a list of item numbers.',
+  eyebrow: 'ShopVirge in action',
+  hero: 'Create webshop products with <span class="text-amber-400">an AI assistant</span>',
+  intro: 'Adding products to your webshop takes time. These two short AI product demos show a connected assistant turning a product photo or item numbers into product descriptions and listings in a ShopVirge demo shop.',
+  watch: 'Watch the demos',
+  discuss: 'Discuss your shop',
+  flowTitle: 'How the workflow works',
+  flowIntro: 'Give the assistant what you have. It helps fill in the details, then creates products in ShopVirge for you to review.',
+  steps: [
+    { title: 'You provide the basics', detail: 'A photo, a product code or a list of item numbers.' },
+    { title: 'The assistant prepares', detail: 'It gathers details and drafts the product information.' },
+    { title: 'ShopVirge creates products', detail: 'Listings and categories are added to the shop.' },
+    { title: 'You review the result', detail: 'See the products in your storefront and make changes as needed.' },
+  ],
+  examples: 'See it happen',
+  examplesIntro: 'Real screen recordings from a ShopVirge demo shop. The examples show what a connected assistant can do; the exact setup can be adapted to your catalogue.',
+  demos: [
+    {
+      id: 'photo', number: '01', label: 'From a photo',
+      title: 'Create a webshop listing from a product photo',
+      detail: 'A photo of a second-hand computer power supply is enough to start. The assistant identifies the item, prepares its details and adds it to the ShopVirge demo shop.',
+      result: 'Result: a new product with a description, image and category.',
+      video: 'shop',
+    },
+    {
+      id: 'lego', number: '02', label: 'From item numbers',
+      title: 'Add five products from their item numbers',
+      detail: 'The assistant receives five LEGO set numbers, looks up the relevant details and creates the products in the ShopVirge demo shop.',
+      result: 'Result: five products with images, details and categories.',
+      video: 'lego',
+    },
+  ],
+  videoLabel: 'Screen recording',
+  videoFallback: 'Your browser does not support video playback.',
+  ctaTitle: 'What could this look like for your products?',
+  ctaBody: 'Tell us how you manage your catalogue today. We can show you where ShopVirge and a connected assistant could save you time.',
+  ctaButton: 'Request a demo',
+} : {
+  title: 'AI-productdemo’s: producten toevoegen aan je webshop',
+  description: 'Bekijk hoe je met een gekoppelde AI-assistent producten aan een webshop toevoegt: van productfoto of artikelnummers naar productbeschrijvingen en vermeldingen.',
+  eyebrow: 'ShopVirge in actie',
+  hero: 'Producten toevoegen aan je webshop met <span class="text-amber-400">AI</span>',
+  intro: 'Producten toevoegen aan je webshop kost tijd. In deze twee korte AI-productdemo’s zie je hoe een gekoppelde assistent van een productfoto of artikelnummers productbeschrijvingen en vermeldingen maakt in een ShopVirge-demoshop.',
+  watch: 'Bekijk de demo’s',
+  discuss: 'Bespreek jouw shop',
+  flowTitle: 'Zo werkt het',
+  flowIntro: 'Geef de assistent de informatie die je hebt. Die helpt met de details en maakt producten aan in ShopVirge, zodat jij het resultaat kunt controleren.',
+  steps: [
+    { title: 'Jij geeft de basis', detail: 'Een foto, productcode of lijst met artikelnummers.' },
+    { title: 'De assistent bereidt voor', detail: 'Hij zoekt details op en stelt productinformatie samen.' },
+    { title: 'ShopVirge maakt producten', detail: 'Producten en categorieën verschijnen in de shop.' },
+    { title: 'Jij controleert het resultaat', detail: 'Bekijk de producten in je webshop en pas ze zo nodig aan.' },
+  ],
+  examples: 'Bekijk de voorbeelden',
+  examplesIntro: 'Echte schermopnames van een ShopVirge-demoshop. Ze laten zien wat mogelijk is met een gekoppelde assistent; de inrichting kan worden aangepast aan jouw assortiment.',
+  demos: [
+    {
+      id: 'photo', number: '01', label: 'Van een foto',
+      title: 'Van productfoto naar product in je webshop',
+      detail: 'Een foto van een tweedehands computervoeding is genoeg om te beginnen. De assistent herkent het artikel, bereidt de gegevens voor en voegt het toe aan de ShopVirge-demoshop.',
+      result: 'Resultaat: een nieuw product met beschrijving, afbeelding en categorie.',
+      video: 'shop',
+    },
+    {
+      id: 'lego', number: '02', label: 'Van artikelnummers',
+      title: 'Vijf producten toevoegen met artikelnummers',
+      detail: 'De assistent krijgt vijf LEGO-setnummers, zoekt de bijbehorende gegevens op en maakt de producten aan in de ShopVirge-demoshop.',
+      result: 'Resultaat: vijf producten met afbeeldingen, details en categorieën.',
+      video: 'lego',
+    },
+  ],
+  videoLabel: 'Schermopname',
+  videoFallback: 'Je browser ondersteunt het afspelen van video niet.',
+  ctaTitle: 'Hoe zou dit werken voor jouw producten?',
+  ctaBody: 'Vertel ons hoe je nu je assortiment beheert. We laten zien waar ShopVirge en een gekoppelde assistent je tijd kunnen besparen.',
+  ctaButton: 'Vraag een demo aan',
+};
+---
+<Layout title={copy.title} description={copy.description} lang={lang} image={socialImage}>
+  <section class="hero text-white py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold mb-6">{copy.eyebrow}</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" set:html={copy.hero} />
+        <p class="text-lg md:text-xl text-white/85 leading-relaxed max-w-2xl mb-9">{copy.intro}</p>
+        <div class="flex flex-wrap gap-3">
+          <a class="btn-primary bg-white text-brand hover:bg-gray-100" href="#examples">{copy.watch} ↓</a>
+          <a class="inline-flex items-center justify-center rounded-full border border-white/60 px-6 py-3 font-semibold text-white hover:bg-white/10 transition-colors" href={contact}>{copy.discuss} →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt py-20 md:py-24" aria-labelledby="flow-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <h2 id="flow-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{copy.flowTitle}</h2>
+        <p class="text-lg text-gray-600">{copy.flowIntro}</p>
+      </div>
+      <ol class="grid md:grid-cols-4 gap-4 md:gap-5" aria-label={copy.flowTitle}>
+        {copy.steps.map((step, index) => (
+          <li class="relative bg-white rounded-2xl border border-brand/10 shadow-sm p-6 min-h-52">
+            <span class="inline-flex w-12 h-12 items-center justify-center rounded-full bg-brand text-white font-bold text-lg mb-5">{index + 1}</span>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">{step.detail}</p>
+            {index < 3 && <span aria-hidden="true" class="hidden md:flex absolute -right-4 top-10 z-10 h-8 w-8 items-center justify-center rounded-full bg-brand-light text-white shadow-md text-lg">→</span>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="examples" class="py-20 md:py-28 scroll-mt-16" aria-labelledby="examples-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <span class="text-brand font-semibold tracking-wide uppercase text-sm">{copy.eyebrow}</span>
+        <h2 id="examples-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-4">{copy.examples}</h2>
+        <p class="text-lg text-gray-600 leading-relaxed">{copy.examplesIntro}</p>
+      </div>
+      <div class="space-y-20 md:space-y-28">
+        {copy.demos.map((demo, index) => (
+          <article id={demo.id} class={`grid lg:grid-cols-12 gap-8 lg:gap-12 items-center ${index === 1 ? 'lg:[&>div:first-child]:order-2' : ''}`} aria-labelledby={`${demo.id}-heading`}>
+            <div class="lg:col-span-4">
+              <span class="inline-flex items-center gap-2 text-brand font-semibold text-sm mb-4"><span class="bg-brand/10 rounded-full px-3 py-1">{demo.number}</span>{demo.label}</span>
+              <h3 id={`${demo.id}-heading`} class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{demo.title}</h3>
+              <p class="text-gray-600 leading-relaxed mb-5">{demo.detail}</p>
+              <p class="border-l-4 border-accent-secondary pl-4 text-gray-800 font-medium">{demo.result}</p>
+            </div>
+            <div class="lg:col-span-8 rounded-2xl bg-surface-dark p-2 sm:p-3 shadow-xl">
+              <div class="flex items-center gap-2 px-2 pb-3 pt-1 text-white/75 text-xs font-medium">
+                <span aria-hidden="true" class="inline-flex gap-1.5 mr-1"><span class="h-2 w-2 rounded-full bg-white/35"></span><span class="h-2 w-2 rounded-full bg-white/35"></span><span class="h-2 w-2 rounded-full bg-white/35"></span></span>
+                {copy.videoLabel} · ShopVirge
+              </div>
+              <video class="hidden sm:block w-full rounded-xl bg-black aspect-video" controls preload="none" playsinline poster={`${videoBase}${demo.video}-wide.webp`} aria-label={demo.title}>
+                <source src={`${videoBase}${demo.video}-wide.mp4`} type="video/mp4" />{copy.videoFallback}
+              </video>
+              <video class="sm:hidden w-full rounded-xl bg-black aspect-[9/16] max-h-[70vh] object-contain" controls preload="none" playsinline poster={`${videoBase}${demo.video}-vertical.webp`} aria-label={demo.title}>
+                <source src={`${videoBase}${demo.video}-vertical.mp4`} type="video/mp4" />{copy.videoFallback}
+              </video>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt py-20">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{copy.ctaTitle}</h2>
+      <p class="text-lg text-gray-600 mb-8">{copy.ctaBody}</p>
+      <a href={contact} class="btn-primary" data-open-demo>{copy.ctaButton} →</a>
+    </div>
+  </section>
+</Layout>

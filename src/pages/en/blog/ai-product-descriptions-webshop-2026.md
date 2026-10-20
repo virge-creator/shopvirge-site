@@ -25,6 +25,8 @@ In 2026, AI understands contextually what a product is, who buys it, and what it
 
 This is fundamentally different from "paste into ChatGPT and hope for the best." These are integrated workflows designed to fit into your existing webshop process.
 
+[Watch our AI product demos](/en/ai-demos/) to see a connected assistant prepare product details and create ShopVirge listings from a photo or item numbers in a demo shop.
+
 ## The ROI numbers that actually matter
 
 Let me skip the theory and get to what matters: the numbers.
