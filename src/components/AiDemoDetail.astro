@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from './Icon.astro';
+import ConcernStory from './ConcernStory.astro';
 
 interface Props { lang: 'en' | 'nl'; demo: 'photo' | 'lego' }
 const { lang, demo } = Astro.props;
@@ -200,7 +201,7 @@ const labels = en ? {
           </div>
           <a href={contact} class="mt-8 inline-flex items-center justify-center rounded-full border border-white/60 px-6 py-3 font-semibold text-white hover:bg-white/10 transition-colors" data-open-demo>{labels.discuss} →</a>
         </div>
-        <figure id="recording" class="lg:col-span-7 rounded-2xl bg-surface-dark p-2 sm:p-3 shadow-2xl scroll-mt-16">
+        <figure id="recording" data-story-node="see" class="lg:col-span-7 rounded-2xl bg-surface-dark p-2 sm:p-3 shadow-2xl scroll-mt-16">
           <video class="hidden sm:block w-full rounded-xl bg-black aspect-video" data-hero-video muted loop playsinline controls preload="metadata" poster={`${videoBase}${copy.video}-wide-result.webp`} aria-label={copy.title}>
             <source src={`${videoBase}${copy.video}-wide.mp4#t=${copy.video === 'lego' ? 13 : 10}`} type="video/mp4" />{ui.fallback}
           </video>
@@ -222,7 +223,7 @@ const labels = en ? {
           <p class="text-lg text-gray-600 leading-relaxed">{details.problemBody}</p>
         </div>
         <div class="grid gap-6 lg:grid-cols-12">
-          <div class="lg:col-span-5 rounded-2xl border border-gray-200 bg-surface p-7 md:p-8">
+          <div data-story-node="hand" class="lg:col-span-5 rounded-2xl border border-gray-200 bg-surface p-7 md:p-8">
             <div class="flex items-center justify-between gap-4 mb-2">
               <h3 class="text-xl font-bold text-gray-500">{labels.before}</h3>
             </div>
@@ -240,12 +241,12 @@ const labels = en ? {
             <h3 class="text-xl font-bold mb-2">{labels.after}</h3>
             <p class="text-sm text-white/70 mb-2">{labels.afterNote}</p>
             <p class="mb-5 inline-flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1 text-sm font-semibold text-amber-400"><Icon name="zap" size={16} />{labels.afterCost}</p>
-            <div class="ml-auto max-w-md rounded-2xl rounded-br-sm bg-white px-4 py-3 text-gray-900 shadow-lg">
+            <div data-story-node="ask" class="ml-auto max-w-md rounded-2xl rounded-br-sm bg-white px-4 py-3 text-gray-900 shadow-lg">
               {details.inputImage && <img src={`${imageBase}${details.inputImage}.webp`} alt="" class="mb-3 h-24 w-24 rounded-lg object-cover" />}
               <p class="text-sm leading-relaxed">“{details.prompt}”</p>
             </div>
             <p class="mt-8 mb-4 flex items-center gap-2 text-sm font-semibold text-amber-400"><Icon name="circle-check" size={18} />{labels.created}</p>
-            <ul class="flex flex-wrap gap-3">
+            <ul data-story-node="made" class="flex flex-wrap gap-3">
               {details.cards.map((card) => (
                 <li class="w-[calc(33.333%-0.5rem)] sm:w-[calc(20%-0.6rem)] min-w-24 max-w-44"><img src={`${imageBase}${card}.webp`} alt="" loading="lazy" class="w-full aspect-[300/520] object-cover object-top rounded-lg ring-1 ring-white/10" /></li>
               ))}
@@ -262,7 +263,7 @@ const labels = en ? {
           <h2 id="fit-heading" class="text-3xl font-bold text-gray-900 mt-3 mb-5">{details.useTitle}</h2>
           <p class="text-lg text-gray-600 leading-relaxed">{details.useBody}</p>
         </div>
-        <div class="rounded-2xl bg-white p-7 md:p-8 shadow-sm">
+        <div data-story-node="check" class="rounded-2xl bg-white p-7 md:p-8 shadow-sm">
           <h3 class="text-xl font-bold text-gray-900 mb-5">{labels.review}</h3>
           <ul class="space-y-4 text-gray-600">
             {details.review.map((item) => (
@@ -276,7 +277,7 @@ const labels = en ? {
     <section class="py-16 md:py-24" aria-labelledby="faq-heading">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 id="faq-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mb-10">{labels.faq}</h2>
-        <div class="space-y-4">
+        <div data-story-node="faq" class="space-y-4">
           {details.faq.map((item) => (
             <details class="group rounded-2xl border border-brand/10 bg-white p-6 shadow-sm">
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-gray-900 [&::-webkit-details-marker]:hidden">
@@ -291,7 +292,7 @@ const labels = en ? {
     </section>
 
     <section class="section-alt py-16 md:py-20" aria-labelledby="cta-heading">
-      <div class="max-w-3xl mx-auto px-4 text-center">
+      <div data-story-node="start" class="max-w-3xl mx-auto px-4 text-center">
         <h2 id="cta-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{details.ctaTitle}</h2>
         <p class="text-lg text-gray-600 mb-8">{details.ctaBody}</p>
         <a href={contact} class="btn-primary" data-open-demo>{ui.cta} →</a>
@@ -311,6 +312,7 @@ const labels = en ? {
       </div>
     </section>
   </main>
+  {demo === 'lego' && <ConcernStory lang={lang} />}
 </Layout>
 
 <script>
