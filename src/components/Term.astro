@@ -1,0 +1,11 @@
+---
+import { terms, type Lang } from '../data/mkb-concerns';
+
+interface Props { id: keyof typeof terms; lang: Lang }
+const { id, lang } = Astro.props;
+const popoverId = `term-${id}`;
+---
+<span class="relative inline-block">
+  <button type="button" data-term aria-expanded="false" aria-controls={popoverId} class="cursor-help underline decoration-dotted decoration-2 underline-offset-4"><slot /></button>
+  <span id={popoverId} role="note" hidden class="absolute left-0 top-full z-20 mt-2 w-64 max-w-[80vw] rounded-lg bg-white p-3 text-left text-sm font-normal normal-case leading-snug tracking-normal text-gray-700 shadow-xl ring-1 ring-gray-200">{terms[id][lang]}</span>
+</span>

@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from './Icon.astro';
-import ConcernStory from './ConcernStory.astro';
+import Term from './Term.astro';
+import { concerns } from '../data/mkb-concerns';
 
 interface Props { lang: 'en' | 'nl'; demo: 'photo' | 'lego' }
 const { lang, demo } = Astro.props;
@@ -11,6 +12,10 @@ const videoBase = `${base}videos/ai-demos/`;
 const imageBase = `${base}images/ai-demos/`;
 const overview = `${base}${lang}/ai-demos/`;
 const contact = `${base}${lang}/contact/?type=demo`;
+// Concern copy is written against the LEGO recording, so only that page uses it.
+const concernCopy = demo === 'lego' ? concerns : [];
+const note = (id: number) => concernCopy.find((c) => c.id === id && c.tier === 'inline')?.[lang].note;
+const concernFaq = concernCopy.filter((c) => c.tier === 'faq').map((c) => ({ q: c[lang].concern!, a: c[lang].answer! }));
 const other = demo === 'photo' ? 'lego' : 'photo';
 const copy = {
   en: {
@@ -49,13 +54,13 @@ const copy = {
 const ui = en ? {
   back: 'All AI demos',
   eyebrow: 'ShopVirge AI demo',
-  recording: 'Screen recording · ShopVirge demo shop',
+  recordingWord: 'Screen recording', shopWord: 'demo shop',
   fallback: 'Your browser does not support video playback.',
   cta: 'Request a demo',
 } : {
   back: 'Alle AI-demo’s',
   eyebrow: 'ShopVirge AI-demo',
-  recording: 'Schermopname · ShopVirge-demoshop',
+  recordingWord: 'Schermopname', shopWord: 'demoshop',
   fallback: 'Je browser ondersteunt het afspelen van video niet.',
   cta: 'Vraag een demo aan',
 };
@@ -75,7 +80,7 @@ const details = {
       faq: [
         { q: 'What if the assistant gets the model wrong?', a: 'You check every product before you sell it. The product is created in ShopVirge, so you can correct the name, specifications or description there.' },
         { q: 'Does my own photo end up on the product page?', a: 'Yes. In the recording the original photo and the drafted description appear together on the storefront page.' },
-        { q: 'Is the recording sped up?', a: 'The waiting time while the assistant works has been cut so the recording stays short. The steps and the result in the shop are as recorded.' },
+        { q: 'Is the recording sped up?', a: 'Yes, the recording is sped up so it stays short. The steps and the result in the shop are as recorded.' },
       ],
       ctaBody: 'Bring a few photos of items you sell. We will look at them with you and discuss a setup that fits your shop.',
       caption: 'A second-hand Cooler Master V650 power supply goes from a photo in the chat to a product page in the demo shop.',
@@ -97,7 +102,7 @@ const details = {
       faq: [
         { q: 'Does it import my Marktplaats or 2dehands listings?', a: 'Yes, we can set that up for your shop. In this recording the set numbers are typed into the assistant, but importing your existing Marktplaats or 2dehands listings is possible. Ask us about it in a demo.' },
         { q: 'Where do the details and images come from?', a: 'The assistant looks up information for each set number. Check that the images and details match the set you are selling.' },
-        { q: 'Is the recording sped up?', a: 'The waiting time while the assistant works has been cut so the recording stays short. The steps and the result in the shop are as recorded.' },
+        { q: 'Is the recording sped up?', a: 'Yes, the recording is sped up so it stays short. The steps and the result in the shop are as recorded.' },
       ],
       ctaBody: 'Bring a list of set or item numbers you sell. We will look at them with you and discuss a setup that fits your shop.',
       caption: 'A short list of set numbers becomes five second-hand LEGO products in the demo storefront.',
@@ -123,7 +128,7 @@ const details = {
       faq: [
         { q: 'Wat als de assistent het verkeerde model herkent?', a: 'Je controleert elk product voordat je het verkoopt. Het product staat in ShopVirge, dus je past de naam, specificaties of beschrijving daar aan.' },
         { q: 'Komt mijn eigen foto op de productpagina?', a: 'Ja. In de opname staan de oorspronkelijke foto en de opgestelde beschrijving samen op de productpagina.' },
-        { q: 'Is de opname versneld?', a: 'De wachttijd terwijl de assistent werkt is eruit geknipt, zodat de opname kort blijft. De stappen en het resultaat in de shop zijn zoals opgenomen.' },
+        { q: 'Is de opname versneld?', a: 'Ja, de opname is versneld, zodat hij kort blijft. De stappen en het resultaat in de shop zijn zoals opgenomen.' },
       ],
       ctaBody: 'Neem een paar foto’s mee van artikelen die je verkoopt. We bekijken ze samen en bespreken welke inrichting bij je shop past.',
       caption: 'Een tweedehands Cooler Master V650-voeding gaat van een foto in de chat naar een productpagina in de demoshop.',
@@ -145,7 +150,7 @@ const details = {
       faq: [
         { q: 'Importeert dit mijn advertenties van Marktplaats of 2dehands?', a: 'Ja, dat kunnen we voor je shop inrichten. In deze opname worden de setnummers aan de assistent gegeven, maar je bestaande advertenties van Marktplaats of 2dehands importeren is mogelijk. Vraag ernaar tijdens een demo.' },
         { q: 'Waar komen de gegevens en afbeeldingen vandaan?', a: 'De assistent zoekt informatie op bij elk setnummer. Controleer of de afbeeldingen en gegevens passen bij de set die je verkoopt.' },
-        { q: 'Is de opname versneld?', a: 'De wachttijd terwijl de assistent werkt is eruit geknipt, zodat de opname kort blijft. De stappen en het resultaat in de shop zijn zoals opgenomen.' },
+        { q: 'Is de opname versneld?', a: 'Ja, de opname is versneld, zodat hij kort blijft. De stappen en het resultaat in de shop zijn zoals opgenomen.' },
       ],
       ctaBody: 'Neem een lijst set- of artikelnummers mee die je verkoopt. We bekijken ze samen en bespreken welke inrichting bij je shop past.',
       caption: 'Een korte lijst setnummers wordt vijf tweedehands LEGO-producten in de demoshop.',
@@ -157,6 +162,10 @@ const details = {
     },
   },
 }[lang][demo];
+const faqItems = [...details.faq, ...concernFaq];
+// Two independent columns (first half, second half) so card heights in one never stretch the other, and the order still reads top to bottom on phones.
+const faqSplit = Math.ceil(faqItems.length / 2);
+const faqColumns = [faqItems.slice(0, faqSplit), faqItems.slice(faqSplit)];
 const labels = en ? {
   discuss: 'Discuss your shop', input: 'You send', output: 'You get',
   before: 'By hand', beforeNote: 'For every product, before it can go online:', after: 'With the assistant', afterNote: 'One message in the chat:', created: 'Created in the demo shop',
@@ -180,6 +189,7 @@ const labels = en ? {
           <span class="inline-flex items-center rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold mb-6">{ui.eyebrow}</span>
           <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">{copy.title}</h1>
           <p class="text-lg md:text-xl text-white/85 leading-relaxed">{copy.intro}</p>
+          {note(4) && <p class="mt-3 text-sm text-white/70">{note(4)}</p>}
           <div class="mt-8 flex items-center gap-4 sm:gap-6">
             <div class="min-w-0">
               <p class="text-xs font-semibold uppercase tracking-wide text-white/70 mb-2">{labels.input}</p>
@@ -201,14 +211,14 @@ const labels = en ? {
           </div>
           <a href={contact} class="mt-8 inline-flex items-center justify-center rounded-full border border-white/60 px-6 py-3 font-semibold text-white hover:bg-white/10 transition-colors" data-open-demo>{labels.discuss} →</a>
         </div>
-        <figure id="recording" data-story-node="see" class="lg:col-span-7 rounded-2xl bg-surface-dark p-2 sm:p-3 shadow-2xl scroll-mt-16">
+        <figure id="recording" class="lg:col-span-7 rounded-2xl bg-surface-dark p-2 sm:p-3 shadow-2xl scroll-mt-16">
           <video class="hidden sm:block w-full rounded-xl bg-black aspect-video" data-hero-video muted loop playsinline controls preload="metadata" poster={`${videoBase}${copy.video}-wide-result.webp`} aria-label={copy.title}>
             <source src={`${videoBase}${copy.video}-wide.mp4#t=${copy.video === 'lego' ? 13 : 10}`} type="video/mp4" />{ui.fallback}
           </video>
           <video class="sm:hidden w-full rounded-xl bg-black aspect-[9/16] max-h-[65vh] object-contain" muted loop playsinline controls preload="none" poster={`${videoBase}${copy.video}-vertical.webp`} aria-label={copy.title}>
             <source src={`${videoBase}${copy.video}-vertical.mp4`} type="video/mp4" />{ui.fallback}
           </video>
-          <figcaption class="px-2 pt-3 pb-1 text-white/70 text-xs font-medium">{ui.recording}</figcaption>
+          <figcaption class="px-2 pt-3 pb-1 text-white/70 text-xs font-medium"><Term id="recording" lang={lang}>{ui.recordingWord}</Term> · ShopVirge <Term id="demoShop" lang={lang}>{ui.shopWord}</Term>{note(1) && <span class="block mt-1 font-normal">{note(1)}</span>}</figcaption>
         </figure>
       </div>
     </div>
@@ -223,7 +233,7 @@ const labels = en ? {
           <p class="text-lg text-gray-600 leading-relaxed">{details.problemBody}</p>
         </div>
         <div class="grid gap-6 lg:grid-cols-12">
-          <div data-story-node="hand" class="lg:col-span-5 rounded-2xl border border-gray-200 bg-surface p-7 md:p-8">
+          <div class="lg:col-span-5 rounded-2xl border border-gray-200 bg-surface p-7 md:p-8">
             <div class="flex items-center justify-between gap-4 mb-2">
               <h3 class="text-xl font-bold text-gray-500">{labels.before}</h3>
             </div>
@@ -241,12 +251,12 @@ const labels = en ? {
             <h3 class="text-xl font-bold mb-2">{labels.after}</h3>
             <p class="text-sm text-white/70 mb-2">{labels.afterNote}</p>
             <p class="mb-5 inline-flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1 text-sm font-semibold text-amber-400"><Icon name="zap" size={16} />{labels.afterCost}</p>
-            <div data-story-node="ask" class="ml-auto max-w-md rounded-2xl rounded-br-sm bg-white px-4 py-3 text-gray-900 shadow-lg">
+            <div class="ml-auto max-w-md rounded-2xl rounded-br-sm bg-white px-4 py-3 text-gray-900 shadow-lg">
               {details.inputImage && <img src={`${imageBase}${details.inputImage}.webp`} alt="" class="mb-3 h-24 w-24 rounded-lg object-cover" />}
               <p class="text-sm leading-relaxed">“{details.prompt}”</p>
             </div>
             <p class="mt-8 mb-4 flex items-center gap-2 text-sm font-semibold text-amber-400"><Icon name="circle-check" size={18} />{labels.created}</p>
-            <ul data-story-node="made" class="flex flex-wrap gap-3">
+            <ul class="flex flex-wrap gap-3">
               {details.cards.map((card) => (
                 <li class="w-[calc(33.333%-0.5rem)] sm:w-[calc(20%-0.6rem)] min-w-24 max-w-44"><img src={`${imageBase}${card}.webp`} alt="" loading="lazy" class="w-full aspect-[300/520] object-cover object-top rounded-lg ring-1 ring-white/10" /></li>
               ))}
@@ -263,8 +273,9 @@ const labels = en ? {
           <h2 id="fit-heading" class="text-3xl font-bold text-gray-900 mt-3 mb-5">{details.useTitle}</h2>
           <p class="text-lg text-gray-600 leading-relaxed">{details.useBody}</p>
         </div>
-        <div data-story-node="check" class="rounded-2xl bg-white p-7 md:p-8 shadow-sm">
-          <h3 class="text-xl font-bold text-gray-900 mb-5">{labels.review}</h3>
+        <div class="rounded-2xl bg-white p-7 md:p-8 shadow-sm">
+          <h3 class="text-xl font-bold text-gray-900 mb-2">{labels.review}</h3>
+          {note(3) && <p class="mb-5 text-sm text-gray-500">{note(3)}</p>}
           <ul class="space-y-4 text-gray-600">
             {details.review.map((item) => (
               <li class="flex items-start gap-3"><span class="mt-1 text-accent-secondary"><Icon name="check" size={19} /></span>{item}</li>
@@ -275,24 +286,28 @@ const labels = en ? {
     </section>
 
     <section class="py-16 md:py-24" aria-labelledby="faq-heading">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 id="faq-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mb-10">{labels.faq}</h2>
-        <div data-story-node="faq" class="space-y-4">
-          {details.faq.map((item) => (
-            <details class="group rounded-2xl border border-brand/10 bg-white p-6 shadow-sm">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-gray-900 [&::-webkit-details-marker]:hidden">
-                {item.q}
-                <span class="shrink-0 text-brand transition-transform group-open:rotate-45" aria-hidden="true"><Icon name="plus" size={20} /></span>
-              </summary>
-              <p class="mt-4 text-gray-600 leading-relaxed">{item.a}</p>
-            </details>
+        <div class="flex flex-col gap-4 md:flex-row md:items-start">
+          {faqColumns.map((column) => (
+            <div class="flex flex-1 flex-col gap-4">
+              {column.map((item) => (
+                <details class="group rounded-2xl border border-brand/10 bg-white p-6 shadow-sm">
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-gray-900 [&::-webkit-details-marker]:hidden">
+                    {item.q}
+                    <span class="shrink-0 text-brand transition-transform group-open:rotate-45" aria-hidden="true"><Icon name="plus" size={20} /></span>
+                  </summary>
+                  <p class="mt-4 text-gray-600 leading-relaxed">{item.a}</p>
+                </details>
+              ))}
+            </div>
           ))}
         </div>
       </div>
     </section>
 
     <section class="section-alt py-16 md:py-20" aria-labelledby="cta-heading">
-      <div data-story-node="start" class="max-w-3xl mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto px-4 text-center">
         <h2 id="cta-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{details.ctaTitle}</h2>
         <p class="text-lg text-gray-600 mb-8">{details.ctaBody}</p>
         <a href={contact} class="btn-primary" data-open-demo>{ui.cta} →</a>
@@ -312,10 +327,27 @@ const labels = en ? {
       </div>
     </section>
   </main>
-  {demo === 'lego' && <ConcernStory lang={lang} />}
 </Layout>
 
 <script>
+  // Tap-to-open glosses for dotted-underline terms. Works on touch, closes on outside tap or Escape.
+  const terms = document.querySelectorAll<HTMLButtonElement>('[data-term]');
+  const close = (btn: HTMLButtonElement) => {
+    btn.setAttribute('aria-expanded', 'false');
+    document.getElementById(btn.getAttribute('aria-controls')!)!.hidden = true;
+  };
+  terms.forEach((btn) => btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    terms.forEach(close);
+    if (!open) {
+      btn.setAttribute('aria-expanded', 'true');
+      document.getElementById(btn.getAttribute('aria-controls')!)!.hidden = false;
+    }
+  }));
+  document.addEventListener('click', () => terms.forEach(close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') terms.forEach(close); });
+
   // Autoplay the short, muted recording on wide screens unless the visitor prefers reduced motion.
   const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
   if (video && !matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedia('(min-width: 640px)').matches) {
