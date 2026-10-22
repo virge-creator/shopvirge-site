@@ -18,6 +18,8 @@ Misschien wel de meest directe manier waarop AI tijd bespaart: productteksten. K
 
 Het resultaat: wat eerder uren kostte aan copywriting, doe je nu in minuten. De kwaliteit is niet perfect, je leest altijd zelf na, maar voor webshops met honderden of duizenden producten is dit een enorme tijdsbesparing. En omdat ShopVirge standaard meertalig is, schrijft en vertaalt dezelfde agent elke beschrijving in één keer naar het Engels, Duits, Frans en meer, in plaats van dat jij tussen tools zit te kopiëren en plakken.
 
+Wil je zien hoe dat werkt voor een assortiment? [Bekijk de ShopVirge AI-productdemo’s](/nl/ai-demos/): een gekoppelde assistent maakt in een demoshop producten aan op basis van een productfoto en een lijst artikelnummers.
+
 ## MCP-first: geef je catalogus en voorraad uit handen aan een AI-agent
 
 Hier breekt 2026 echt met het verleden. MCP (het Model Context Protocol) is een open standaard waarmee AI-assistenten rechtstreeks met je systemen kunnen praten. ShopVirge levert een MCP-ready API, zodat agents als **Claude**, **ChatGPT** en **Cursor** je producten, voorraadniveaus, vertalingen en categorieën direct kunnen lezen én bijwerken. Het platform is API-first en agent-first: alles wat een mens in de admin kan, kan een agent via MCP.

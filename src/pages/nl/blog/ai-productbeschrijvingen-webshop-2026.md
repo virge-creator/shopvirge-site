@@ -25,6 +25,8 @@ In 2026 begrijpt AI contextueel wat een product is, wie het koopt, en waar het v
 
 Dit is fundamenteel anders dan "plakken in ChatGPT en hopen op het beste". Dit zijn geïntegreerde workflows die passen in je bestaande webshop-proces.
 
+[Bekijk onze AI-productdemo’s](/nl/ai-demos/) om te zien hoe een gekoppelde assistent van een productfoto of artikelnummers productgegevens voorbereidt en producten aanmaakt in een ShopVirge-demoshop.
+
 ## De ROI-cijfers die ertoe doen
 
 Laat ik je niet vermoeien met theorie. Dit zijn de cijfers die ertoe doen als je overwegen staat:
