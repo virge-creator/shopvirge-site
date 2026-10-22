@@ -17,6 +17,8 @@ const enBase = `${base}en/`;
 // Build lang-switch URL: swap /en/↔/nl/ and translate known slugs
 const currentPath = Astro.url.pathname;
 const slugMap: Record<string, string> = {
+  'woocommerce': 'woocommerce', // same demo slug in EN and NL
+
   'features': 'functies',
   'functies': 'features',
   'pricing': 'prijzen',
