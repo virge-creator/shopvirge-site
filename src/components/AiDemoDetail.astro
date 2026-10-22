@@ -12,24 +12,25 @@ const videoBase = `${base}videos/ai-demos/`;
 const imageBase = `${base}images/ai-demos/`;
 const overview = `${base}${lang}/ai-demos/`;
 const contact = `${base}${lang}/contact/?type=demo`;
-// Concern copy is written against the LEGO recording, so only that page uses it.
-const concernCopy = demo === 'lego' ? concerns : [];
-const note = (id: number) => concernCopy.find((c) => c.id === id && c.tier === 'inline')?.[lang].note;
-const concernFaq = concernCopy.filter((c) => c.tier === 'faq').map((c) => ({ q: c[lang].concern!, a: c[lang].answer! }));
+const note = (id: number) => demo === 'lego' ? concerns.find((c) => c.id === id && c.tier === 'inline')?.[lang].note : undefined;
+const concernFaq = concerns.filter((c) => c.tier === 'faq').map((c) => {
+  const copy = demo === 'photo' ? c.photo?.[lang] ?? c[lang] : c[lang];
+  return { q: copy.concern!, a: copy.answer! };
+});
 const other = demo === 'photo' ? 'lego' : 'photo';
 const copy = {
   en: {
     photo: {
       title: 'Create a webshop product from a photo',
       description: 'Watch a connected AI assistant identify a second-hand computer power supply from a photo and create a product in a ShopVirge demo shop.',
-      intro: 'See how a single product photo becomes a listing in a ShopVirge demo shop.',
+      intro: 'See how the assistant creates a complete product in the ShopVirge demo shop from a single photo.',
       other: 'Watch the LEGO set number demo',
       video: 'shop',
     },
     lego: {
       title: 'Add LEGO sets from their set numbers',
       description: 'Watch a connected AI assistant look up five LEGO set numbers and create product listings in a ShopVirge demo shop.',
-      intro: 'See how five LEGO set numbers become products in a ShopVirge demo shop.',
+      intro: 'See how five LEGO set numbers become products in the ShopVirge demo shop in one go.',
       other: 'Watch the product photo demo',
       video: 'lego',
     },
@@ -38,14 +39,14 @@ const copy = {
     photo: {
       title: 'Van productfoto naar product in je webshop',
       description: 'Bekijk hoe een gekoppelde AI-assistent een tweedehands computervoeding herkent op een foto en een product aanmaakt in een ShopVirge-demoshop.',
-      intro: 'Bekijk hoe een productfoto een vermelding wordt in een ShopVirge-demoshop.',
+      intro: 'Bekijk hoe de assistent van één productfoto een volledig product in de ShopVirge-demoshop maakt.',
       other: 'Bekijk de LEGO-setnummerdemo',
       video: 'shop',
     },
     lego: {
       title: 'LEGO-sets toevoegen met setnummers',
       description: 'Bekijk hoe een gekoppelde AI-assistent vijf LEGO-setnummers opzoekt en producten aanmaakt in een ShopVirge-demoshop.',
-      intro: 'Bekijk hoe vijf LEGO-setnummers producten worden in een ShopVirge-demoshop.',
+      intro: 'Bekijk hoe vijf LEGO-setnummers in één keer producten worden in de ShopVirge-demoshop.',
       other: 'Bekijk de productfotodemo',
       video: 'lego',
     },
@@ -73,7 +74,7 @@ const details = {
       ctaTitle: 'How many items are waiting for a listing right now?',
           outputs: ['Product title', 'Description', 'Price incl. VAT', 'SKU', 'Category', 'Product photo'],
       before: ['Read the label and identify the exact model', 'Look up the specifications', 'Write a title and description', 'Pick or create a category', 'Decide on a price incl. VAT', 'Upload the photo and fill in the product form'],
-      problemTitle: 'You have the item. Writing the listing is the slow part.',
+      problemTitle: 'You already have the product photos and information, but still have to describe everything by hand.',
       problemBody: 'With second-hand stock every item is different. Looking up the exact model, writing a description and choosing a category takes far longer than taking the photo: easily 10 minutes per product, every time.',
       faq: [
         { q: 'What if the assistant gets the model wrong?', a: 'You check every product before you sell it. The product is created in ShopVirge, so you can correct the name, specifications or description there.' },
@@ -95,17 +96,19 @@ const details = {
           prompt: 'I want to add 5 LEGO kits to my shop: 42231, 42221, 31387, 11385, 11378', inputImage: '', numbers: ['42231', '42221', '31387', '11385', '11378'],
       cards: ['lego-42231', 'lego-42221', 'lego-31387', 'lego-11385', 'lego-11378'],
       before: ['Look up the set name and theme', 'Find a product image', 'Write a title and description', 'Pick a category', 'Decide on a price', 'Fill in the product form'],
-      problemTitle: 'You know the set numbers. Typing every listing is the slow part.',
+      problemTitle: 'You know the set numbers, but still have to describe the products by hand.',
       problemBody: 'A set number tells you exactly what you have. Entering the title, description, images and category by hand still takes around 10 minutes per set. For these five sets, that is almost an hour of typing.',
       faq: [
         { q: 'Does it import my Marktplaats or 2dehands listings?', a: 'Yes, we can set that up for your shop. In this recording the set numbers are typed into the assistant, but importing your existing Marktplaats or 2dehands listings is possible. Ask us about it in a demo.' },
-        { q: 'Where do the details and images come from?', a: 'The assistant looks up information for each set number. Check that the images and details match the set you are selling.' },
+        { q: 'Can you import products from our system?', a: 'Yes, we can import product data from files, such as Excel spreadsheets, or from another existing webshop. Bring an example to the demo so we can discuss what your shop needs.' },
+        { q: 'Can I use this assistant with other webshops?', a: 'We can adapt the assistant to your needs. Tell us which webshop you use and what you need during a demo.' },
+        { q: 'Where do the details and images come from?', a: 'The assistant looks up information for each set number through a search engine and APIs. Check that the details and images match the sets you sell.' },
         { q: 'Is the recording sped up?', a: 'Yes, the recording is sped up so it stays short. The steps and the result in the shop are as recorded.' },
       ],
       ctaBody: 'Bring a list of set or item numbers you sell. We will look at them with you and discuss a setup that fits your shop.',
       caption: 'A short list of set numbers becomes five second-hand LEGO products in the demo storefront.',
-      useTitle: 'A practical example for marketplace sellers',
-      useBody: 'If you sell LEGO sets on Marktplaats, 2dehands or 2ememain, their set numbers can also help you organise the same stock in your own ShopVirge catalogue. In this recording the numbers are typed into the assistant. Importing your existing marketplace listings is also possible; ask us about it.',
+      useTitle: 'One possible example for Marktplaats sellers',
+      useBody: 'If you sell LEGO sets on Marktplaats, 2dehands or 2ememain, their set numbers can also help you add the same stock to your own ShopVirge catalogue. In this recording the numbers are given to the assistant, but we can also import existing listings from those platforms.',
       review: ['Are the set number and product image the right match?', 'Is the set complete, and is its condition described correctly?', 'Do the price and category fit your stock?'],
       otherTitle: 'Only have a photo?',
       otherBody: 'See how the assistant starts with a photo of a second-hand power supply instead.',
@@ -121,7 +124,7 @@ const details = {
       ctaTitle: 'Hoeveel artikelen wachten nu nog op een producttekst?',
           outputs: ['Producttitel', 'Beschrijving', 'Prijs incl. btw', 'SKU', 'Categorie', 'Productfoto'],
       before: ['Het label lezen en het exacte model bepalen', 'De specificaties opzoeken', 'Een titel en beschrijving schrijven', 'Een categorie kiezen of aanmaken', 'Een prijs incl. btw bepalen', 'De foto uploaden en het productformulier invullen'],
-      problemTitle: 'Je hebt het artikel. De producttekst schrijven is het trage deel.',
+      problemTitle: 'Je hebt de productfoto’s en de informatie al, maar toch moet je alles handmatig beschrijven.',
       problemBody: 'Bij tweedehands voorraad is elk artikel anders. Het exacte model opzoeken, een beschrijving schrijven en een categorie kiezen kost veel meer tijd dan de foto maken: al snel 10 minuten per product, elke keer weer.',
       faq: [
         { q: 'Wat als de assistent het verkeerde model herkent?', a: 'Je controleert elk product voordat je het verkoopt. Het product staat in ShopVirge, dus je past de naam, specificaties of beschrijving daar aan.' },
@@ -143,17 +146,19 @@ const details = {
           prompt: 'I want to add 5 LEGO kits to my shop: 42231, 42221, 31387, 11385, 11378', inputImage: '', numbers: ['42231', '42221', '31387', '11385', '11378'],
       cards: ['lego-42231', 'lego-42221', 'lego-31387', 'lego-11385', 'lego-11378'],
       before: ['De setnaam en het thema opzoeken', 'Een productafbeelding zoeken', 'Een titel en beschrijving schrijven', 'Een categorie kiezen', 'Een prijs bepalen', 'Het productformulier invullen'],
-      problemTitle: 'Je kent de setnummers. Elke vermelding uittypen is het trage deel.',
+      problemTitle: 'Je kent de setnummers, maar moet de producten nog handmatig beschrijven.',
       problemBody: 'Een setnummer zegt precies wat je hebt. Toch kost het invoeren van titel, beschrijving, afbeeldingen en categorie zo’n 10 minuten per set. Voor deze vijf sets is dat bijna een uur typen.',
       faq: [
         { q: 'Importeert dit mijn advertenties van Marktplaats of 2dehands?', a: 'Ja, dat kunnen we voor je shop inrichten. In deze opname worden de setnummers aan de assistent gegeven, maar je bestaande advertenties van Marktplaats of 2dehands importeren is mogelijk. Vraag ernaar tijdens een demo.' },
-        { q: 'Waar komen de gegevens en afbeeldingen vandaan?', a: 'De assistent zoekt informatie op bij elk setnummer. Controleer of de afbeeldingen en gegevens passen bij de set die je verkoopt.' },
+        { q: 'Kunnen jullie ook producten uit ons systeem importeren?', a: 'Ja, we kunnen productgegevens importeren uit bestanden, zoals Excel-bestanden, of uit een andere bestaande webshop. Neem een voorbeeld mee naar de demo, dan bespreken we wat voor jouw shop nodig is.' },
+        { q: 'Kan ik deze assistent ook voor andere webshops gebruiken?', a: 'We kunnen de assistent aanpassen aan je wensen. Vertel ons tijdens een demo welke webshop je gebruikt en wat je nodig hebt.' },
+        { q: 'Waar komen de gegevens en afbeeldingen vandaan?', a: 'De assistent zoekt bij elk setnummer informatie op via een zoekmachine en API’s. Controleer of de gevonden gegevens en afbeeldingen passen bij de sets die je verkoopt.' },
         { q: 'Is de opname versneld?', a: 'Ja, de opname is versneld, zodat hij kort blijft. De stappen en het resultaat in de shop zijn zoals opgenomen.' },
       ],
       ctaBody: 'Neem een lijst set- of artikelnummers mee die je verkoopt. We bekijken ze samen en bespreken welke inrichting bij je shop past.',
       caption: 'Een korte lijst setnummers wordt vijf tweedehands LEGO-producten in de demoshop.',
-      useTitle: 'Een voorbeeld voor verkopers op marktplaatsen',
-      useBody: 'Verkoop je LEGO-sets op Marktplaats, 2dehands of 2ememain? Dan kunnen de setnummers ook helpen om dezelfde voorraad in je eigen ShopVirge-catalogus op te nemen. In deze opname worden de nummers aan de assistent gegeven. Je bestaande advertenties van die platforms importeren kan ook; vraag ernaar.',
+      useTitle: 'Een mogelijk voorbeeld voor verkopers op Marktplaats',
+      useBody: 'Verkoop je LEGO-sets op Marktplaats, 2dehands of 2ememain? Dan kunnen de setnummers ook helpen om dezelfde voorraad in je eigen ShopVirge-catalogus op te nemen. In deze opname worden de nummers aan de assistent gegeven, maar wij kunnen ook bestaande advertenties van die platforms importeren.',
       review: ['Passen het setnummer en de productafbeelding bij elkaar?', 'Is de set compleet en is de staat goed beschreven?', 'Kloppen de prijs en categorie voor jouw voorraad?'],
       otherTitle: 'Heb je alleen een foto?',
       otherBody: 'Bekijk hoe de assistent begint met een foto van een tweedehands computervoeding.',
