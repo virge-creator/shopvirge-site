@@ -3,8 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Icon from './Icon.astro';
 import Term from './Term.astro';
 import { concerns } from '../data/mkb-concerns';
+import { woocommerceDemo } from '../data/woocommerce-demo';
 
-interface Props { lang: 'en' | 'nl'; demo: 'photo' | 'lego' }
+interface Props { lang: 'en' | 'nl'; demo: 'photo' | 'lego' | 'woocommerce' }
 const { lang, demo } = Astro.props;
 const en = lang === 'en';
 const base = import.meta.env.BASE_URL;
@@ -12,14 +13,16 @@ const videoBase = `${base}videos/ai-demos/`;
 const imageBase = `${base}images/ai-demos/`;
 const overview = `${base}${lang}/ai-demos/`;
 const contact = `${base}${lang}/contact/?type=demo`;
-const note = (id: number) => demo === 'lego' ? concerns.find((c) => c.id === id && c.tier === 'inline')?.[lang].note : undefined;
-const concernFaq = concerns.filter((c) => c.tier === 'faq').map((c) => {
+const migrationNotes = woocommerceDemo[lang].notes as Record<number, string>;
+const note = (id: number) => demo === 'woocommerce' ? migrationNotes[id] : demo === 'lego' ? concerns.find((c) => c.id === id && c.tier === 'inline')?.[lang].note : undefined;
+const concernFaq = demo === 'woocommerce' ? woocommerceDemo[lang].concernFaq : concerns.filter((c) => c.tier === 'faq').map((c) => {
   const copy = demo === 'photo' ? c.photo?.[lang] ?? c[lang] : c[lang];
   return { q: copy.concern!, a: copy.answer! };
 });
 const other = demo === 'photo' ? 'lego' : 'photo';
 const copy = {
   en: {
+    woocommerce: woocommerceDemo.en.copy,
     photo: {
       title: 'Create a webshop product from a photo',
       description: 'Watch a connected AI assistant identify a second-hand computer power supply from a photo and create a product in a ShopVirge demo shop.',
@@ -36,6 +39,7 @@ const copy = {
     },
   },
   nl: {
+    woocommerce: woocommerceDemo.nl.copy,
     photo: {
       title: 'Van productfoto naar product in je webshop',
       description: 'Bekijk hoe een gekoppelde AI-assistent een tweedehands computervoeding herkent op een foto en een product aanmaakt in een ShopVirge-demoshop.',
@@ -65,6 +69,7 @@ const ui = en ? {
 };
 const details = {
   en: {
+    woocommerce: woocommerceDemo.en.details,
     photo: {
       input: 'A product photo', output: 'One new product',
       prompt: 'Can you add this second hand PSU to my store, you can fill out all the details yourself', inputImage: 'psu-photo', numbers: [],
@@ -115,6 +120,7 @@ const details = {
     },
   },
   nl: {
+    woocommerce: woocommerceDemo.nl.details,
     photo: {
       input: 'Een productfoto', output: 'Eén nieuw product',
       prompt: 'Can you add this second hand PSU to my store, you can fill out all the details yourself', inputImage: 'psu-photo', numbers: [],
@@ -182,6 +188,10 @@ const labels = en ? {
   problem: 'Herkenbaar?', fit: 'Jij houdt de regie',
   review: 'Wat je controleert voor de verkoop', faq: 'Vragen over deze demo',
 };
+if (demo === 'woocommerce') {
+  labels.afterNote = en ? 'Upload, review, then approve:' : 'Uploaden, controleren en akkoord geven:';
+  labels.afterCost = en ? 'You approve before the import' : 'Jij geeft akkoord vóór de import';
+}
 ---
 <Layout title={copy.title} description={copy.description} lang={lang} image={`https://shopvirge.com${videoBase}${copy.video}-wide.webp`}>
   <section class="hero text-white py-12 md:py-20">
@@ -189,13 +199,16 @@ const labels = en ? {
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-12 items-center">
         <div class="lg:col-span-5">
           <span class="inline-flex items-center rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold mb-8">{ui.eyebrow}</span>
+          {demo === 'woocommerce' && <p class="mb-4 text-sm font-semibold uppercase tracking-wide text-amber-300">{woocommerceDemo[lang].hook}</p>}
           <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">{copy.title}</h1>
           <p class="text-lg md:text-xl text-white/85 leading-relaxed">{copy.intro}</p>
           {note(4) && <p class="mt-3 text-sm text-white/70">{note(4)}</p>}
           <div class="mt-8 flex items-center gap-4 sm:gap-6">
             <div class="min-w-0">
               <p class="text-xs font-semibold uppercase tracking-wide text-white/70 mb-2">{labels.input}</p>
-              {details.inputImage
+              {demo === 'woocommerce'
+                ? <div class="max-w-28 rounded-xl bg-white px-3 py-4 text-surface-dark shadow-lg"><Icon name="file-spreadsheet" size={32} /><p class="mt-2 break-all font-mono text-xs">woocommerce-products.csv</p></div>
+                : details.inputImage
                 ? <figure><img src={`${imageBase}${details.inputImage}.webp`} alt="" class="h-24 w-24 rounded-xl object-cover ring-4 ring-white/20 shadow-lg" />{details.inputLabel && <figcaption class="mt-2 text-sm font-medium">{details.inputLabel}</figcaption>}</figure>
                 : <ul class="grid grid-cols-3 gap-1.5 w-max">{details.numbers.map((n) => <li class="rounded-md bg-white/15 px-2 py-1 font-mono text-sm">{n}</li>)}</ul>}
             </div>
@@ -215,7 +228,7 @@ const labels = en ? {
         </div>
         <figure id="recording" class="lg:col-span-7 rounded-2xl bg-surface-dark p-2 sm:p-3 shadow-2xl scroll-mt-16">
           <video class="hidden sm:block w-full rounded-xl bg-black aspect-video" data-hero-video muted loop playsinline controls preload="metadata" poster={`${videoBase}${copy.video}-wide-result.webp`} aria-label={copy.title}>
-            <source src={`${videoBase}${copy.video}-wide.mp4#t=${copy.video === 'lego' ? 13 : 10}`} type="video/mp4" />{ui.fallback}
+            <source src={`${videoBase}${copy.video}-wide.mp4#t=${copy.video === 'woocommerce' ? 0 : copy.video === 'lego' ? 13 : 10}`} type="video/mp4" />{ui.fallback}
           </video>
           <video class="sm:hidden w-full rounded-xl bg-black aspect-[9/16] max-h-[65vh] object-contain" muted loop playsinline controls preload="none" poster={`${videoBase}${copy.video}-vertical.webp`} aria-label={copy.title}>
             <source src={`${videoBase}${copy.video}-vertical.mp4`} type="video/mp4" />{ui.fallback}
@@ -233,6 +246,7 @@ const labels = en ? {
           <span class="text-accent font-semibold tracking-wide uppercase text-sm">{labels.problem}</span>
           <h2 id="problem-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-5">{details.problemTitle}</h2>
           <p class="text-lg text-gray-600 leading-relaxed">{details.problemBody}</p>
+          {demo === 'woocommerce' && <aside class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm leading-relaxed text-gray-700"><p>{woocommerceDemo[lang].news}</p><p class="mt-3 flex flex-wrap gap-x-4 gap-y-2"><a class="font-semibold underline" href="https://www.php.net/archive/2026.php">PHP · 21 October 2026</a><a class="font-semibold underline" href="https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w">CVE-2026-109618</a><a class="font-semibold underline" href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp">CVE-2026-109619</a></p></aside>}
         </div>
         <div class="grid gap-6 lg:grid-cols-12">
           <div class="lg:col-span-5 rounded-2xl border border-gray-200 bg-surface p-7 md:p-8">
@@ -240,7 +254,7 @@ const labels = en ? {
               <h3 class="text-xl font-bold text-gray-500">{labels.before}</h3>
             </div>
             <p class="text-sm text-gray-500 mb-2">{labels.beforeNote}</p>
-            <p class="mb-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-semibold text-accent"><Icon name="clock" size={16} />{details.beforeCost}</p>
+            {details.beforeCost && <p class="mb-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-semibold text-accent"><Icon name="clock" size={16} />{details.beforeCost}</p>}
             <ol class="space-y-3">
               {details.before.map((task, index) => (
                 <li class="flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-gray-600 shadow-sm">
@@ -256,6 +270,7 @@ const labels = en ? {
             <div class="ml-auto max-w-md rounded-2xl rounded-br-sm bg-white px-4 py-3 text-gray-900 shadow-lg">
               {details.inputImage && <img src={`${imageBase}${details.inputImage}.webp`} alt="" class="mb-3 h-24 w-24 rounded-lg object-cover" />}
               <p class="text-sm leading-relaxed">“{details.prompt}”</p>
+              {demo === 'woocommerce' && <p class="mt-3 border-t border-gray-200 pt-3 text-sm"><span class="font-semibold">{en ? 'After reviewing:' : 'Na controle:'}</span> “Import the preview.”</p>}
             </div>
             <p class="mt-8 mb-4 flex items-center gap-2 text-sm font-semibold text-amber-400"><Icon name="circle-check" size={18} />{labels.created}</p>
             <ul class="flex flex-wrap gap-3">
