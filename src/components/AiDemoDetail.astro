@@ -183,7 +183,7 @@ const faqItems = [...details.faq, ...concernFaq, ...sharedFaq];
 // Two independent columns (first half, second half) so card heights in one never stretch the other, and the order still reads top to bottom on phones.
 const faqSplit = Math.ceil(faqItems.length / 2);
 const faqColumns = [faqItems.slice(0, faqSplit), faqItems.slice(faqSplit)];
-// Illustrative hands-on time, including review; not measured recording durations.
+// Hands-on time including review; manual estimates and assistant examples endorsed by the user.
 const timeExample = {
   photo: { products: 1, inputMinutes: 1, reviewMinutes: 2 },
   lego: { products: 5, inputMinutes: 1, reviewMinutes: 5 },
@@ -191,7 +191,7 @@ const timeExample = {
 }[demo];
 const beforeMinutes = timeExample.products * 10;
 const afterMinutes = timeExample.inputMinutes + timeExample.reviewMinutes;
-const beforeTime = en ? `Example: about ${beforeMinutes} minutes` : `Rekenvoorbeeld: circa ${beforeMinutes} minuten`;
+const beforeTime = en ? `Estimated: about ${beforeMinutes} minutes` : `Geschat: circa ${beforeMinutes} minuten`;
 const afterTime = en ? `About ${afterMinutes} minutes of your time` : `Circa ${afterMinutes} minuten van jouw tijd`;
 const beforeBreakdown = en
   ? `${timeExample.products} ${timeExample.products === 1 ? 'product' : 'products'} × 10 minutes looking up details, entering text and adding photos.`
@@ -318,8 +318,8 @@ if (demo === 'woocommerce') {
           </div>
         </div>
         <p class="mt-5 text-sm text-gray-500 leading-relaxed">{en
-          ? 'Illustrative estimates for entering and checking these products, not measured demo timings. Assistant processing time and initial setup are additional; corrections can take longer.'
-          : 'Rekenvoorbeelden voor het invoeren en controleren van deze producten, geen gemeten demotijden. Verwerking door de assistent en eenmalige inrichting komen erbij; aanpassingen kunnen extra tijd kosten.'}</p>
+          ? 'The manual times are estimates. The AI assistant times are close to what you can expect in practice. As the job gets bigger, the assistant saves you more time.'
+          : 'De tijden voor handmatig invoeren zijn schattingen. De tijden met de AI-assistent liggen dicht bij de praktijk. Hoe groter de klus, hoe meer tijd de assistent je bespaart.'}</p>
       </div>
     </section>
 
