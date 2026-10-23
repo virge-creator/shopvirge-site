@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Icon from '../../../components/Icon.astro';
+import ReachOut from '../../../components/ReachOut.astro';
 const base = import.meta.env.BASE_URL;
 ---
 <Layout title="Contact - Get in touch" description="Get in touch with ShopVirge. Start a free trial, request a demo or ask your question. We respond within 24 hours." lang="en">
@@ -11,6 +12,7 @@ const base = import.meta.env.BASE_URL;
         <p class="text-xl text-white/80">
           Start a free trial, request a demo, or ask us anything. We'll respond within 24 hours.
         </p>
+        <ReachOut lang="en" variant="hero" />
       </div>
     </div>
   </section>
@@ -143,6 +145,7 @@ const base = import.meta.env.BASE_URL;
         </div>
 
         <div class="space-y-8">
+          <ReachOut lang="en" variant="cards" />
           <div>
             <h3 class="text-lg font-bold mb-4">Get in touch directly</h3>
             <div class="space-y-3 text-gray-600">
