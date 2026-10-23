@@ -54,8 +54,8 @@ export const woocommerceDemo = {
           "a": "This first version handles up to 20 rows in a small product CSV. Variants, multiple categories, category hierarchies and special tax mappings need review. Unsupported items are reported rather than silently changed. Bring an export so we can assess your catalog."
         },
         {
-          "q": "Who takes care of hosting, updates and security?",
-          "a": "We do. ShopVirge is a managed service: we host, update and secure the platform for you, so there are no plugins or server updates to keep up with. Keep your old shop patched until you have switched."
+          "q": "Does switching mean I never have to think about security again?",
+          "a": "Every webshop needs security updates. With ShopVirge, we handle hosting, updates and monitoring. Keep your current WooCommerce shop updated while preparing the move: ask your hosting provider whether the security fixes have been installed. Moving your products is a separate step."
         },
         {
           "q": "Is the recording sped up?",
@@ -72,6 +72,7 @@ export const woocommerceDemo = {
       "3": "Nothing is written until you approve the preview.",
       "4": "An existing export becomes five catalog products, without retyping."
     },
+    "news": "On 21 October 2026, websites were temporarily taken offline because of security flaws in PHP, the software behind WordPress and WooCommerce. NOS and BBC reported on the disruption. PHP released security updates that day. For your shop, the next step is simple: ask your hosting provider whether those updates have been installed.",
     "concernFaq": [
       {
         "q": "Do I need to write code or complicated instructions?",
@@ -80,6 +81,20 @@ export const woocommerceDemo = {
       {
         "q": "What happens if a product or photo fails?",
         "a": "The result reports created, skipped and failed items. A failed photo does not erase the product, and an access denial stops further writes. Check the report and correct missing items before switching your live shop."
+      }
+    ],
+    "newsSources": [
+      {
+        "href": "https://nos.nl/artikel/2636090-zoveel-sites-in-een-klap-plat-hoe-kan-dat-en-zijn-je-gegevens-veilig",
+        "label": "NOS: why websites went offline (Dutch)"
+      },
+      {
+        "href": "https://www.bbc.co.uk/news/articles/cmx23d0k57d3o",
+        "label": "BBC: the international impact"
+      },
+      {
+        "href": "https://www.php.net/archive/2026.php#2026-10-21-5",
+        "label": "PHP: the original security update"
       }
     ]
   },
@@ -137,8 +152,8 @@ export const woocommerceDemo = {
           "a": "Deze eerste versie verwerkt maximaal 20 regels in een klein productbestand. Varianten, meerdere categorieën, categoriehiërarchieën en bijzondere btw-koppelingen vragen om controle. Niet-ondersteunde artikelen worden gemeld in plaats van stilzwijgend aangepast. Neem een export mee, dan bekijken we jouw catalogus."
         },
         {
-          "q": "Wie zorgt voor hosting, updates en beveiliging?",
-          "a": "Dat doen wij. ShopVirge is een beheerde dienst: wij hosten, updaten en beveiligen het platform voor je, dus je hoeft geen plug-ins of serverupdates bij te houden. Houd je oude webshop bijgewerkt tot je bent overgestapt."
+          "q": "Hoef ik na de overstap nooit meer aan beveiliging te denken?",
+          "a": "Elke webshop heeft beveiligingsupdates nodig. Bij ShopVirge regelen wij de hosting, updates en monitoring. Blijf je huidige WooCommerce-shop bijwerken terwijl je de overstap voorbereidt: vraag je hostingpartij of de beveiligingsupdates zijn geïnstalleerd. Je producten verhuizen is een aparte stap."
         },
         {
           "q": "Is de opname versneld?",
@@ -155,6 +170,7 @@ export const woocommerceDemo = {
       "3": "Er wordt niets weggeschreven voordat jij het overzicht goedkeurt.",
       "4": "Een bestaande export wordt vijf producten, zonder alles opnieuw in te typen."
     },
+    "news": "Op 21 oktober 2026 gingen websites tijdelijk uit de lucht door beveiligingslekken in PHP, de software achter WordPress en WooCommerce. NOS en BBC berichtten over de problemen. PHP bracht die dag beveiligingsupdates uit. Voor jouw webshop is de volgende stap simpel: vraag je hostingpartij of die updates zijn geïnstalleerd.",
     "concernFaq": [
       {
         "q": "Moet ik code of ingewikkelde instructies schrijven?",
@@ -163,6 +179,20 @@ export const woocommerceDemo = {
       {
         "q": "Wat gebeurt er als een product of foto niet lukt?",
         "a": "Het resultaat meldt aangemaakte, overgeslagen en mislukte artikelen. Een mislukte foto wist het product niet; ontbrekende toegangsrechten stoppen verdere wijzigingen. Controleer het verslag en herstel ontbrekende onderdelen voordat je live overstapt."
+      }
+    ],
+    "newsSources": [
+      {
+        "href": "https://nos.nl/artikel/2636090-zoveel-sites-in-een-klap-plat-hoe-kan-dat-en-zijn-je-gegevens-veilig",
+        "label": "NOS: waarom websites uit de lucht gingen"
+      },
+      {
+        "href": "https://www.bbc.co.uk/news/articles/cmx23d0k57d3o",
+        "label": "BBC: de gevolgen wereldwijd (Engels)"
+      },
+      {
+        "href": "https://www.php.net/archive/2026.php#2026-10-21-5",
+        "label": "PHP: de oorspronkelijke beveiligingsupdate (Engels)"
       }
     ]
   }
