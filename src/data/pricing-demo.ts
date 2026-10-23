@@ -52,7 +52,12 @@ export const pricingDemo = {
       4: 'One sentence, four products, sale prices based on the market.',
     },
     concernFaq: [
-      { q: 'Do I need technical skills for this?', a: 'No. You write a normal sentence, like in the recording. We set up the connection to your ShopVirge shop and agree with you how the assistant should work out the price.' },
+      { q: 'Where does the assistant get its facts, and can I see what it did?', a: 'In this recording the market prices come from Tweakers, and the assistant lists the price it used next to every sale price. It is told not to invent facts: if a price is missing or uncertain it says so, as it does for the cached listing in the recording. You can follow each step in the chat, and every run is logged together with the tools it used.' },
+      { q: 'Do I need to know how to prompt or code?', a: 'No. You write a normal sentence, like in the recording. We connect the assistant to your shop and tune its instructions to your pricing rules, such as how far below the market you want to be.' },
+      { q: 'Does my data need to be in order first?', a: 'No. It works with the products already in your shop, so there is no data project first. Your regular prices stay as they are and the sale prices are added next to them.' },
+      { q: 'My team worries about mistakes, or about their jobs.', a: 'You stay in charge: right model, right benchmark, a price you can live with? The assistant takes over the looking up and the sums, not the decisions. It works as the account you are signed in with, so it can only do what that account may do. For staff who only need to look things up, there is a read-only assistant that cannot change anything.' },
+      { q: 'Where do I even start?', a: 'With a few products you would like to put on sale and the discount you have in mind. Bring them to a demo and we will look at them together.' },
+      { q: 'We don’t have the expertise in-house.', a: 'You don’t have to work it out alone: we look at your range with you, tune the assistant to your shop’s pricing rules, and discuss a setup that fits.' },
     ],
   },
   nl: {
@@ -103,7 +108,12 @@ export const pricingDemo = {
       4: 'Eén zin, vier producten, actieprijzen op basis van de markt.',
     },
     concernFaq: [
-      { q: 'Heb ik technische kennis nodig?', a: 'Nee. Je schrijft gewoon een zin, zoals in de opname. Wij richten de koppeling met je ShopVirge-webshop in en spreken met je af hoe de assistent de prijs moet berekenen.' },
+      { q: 'Waar haalt de assistent zijn gegevens vandaan, en kan ik zien wat hij deed?', a: 'In deze opname komen de marktprijzen van Tweakers, en de assistent noemt bij elke actieprijs de prijs die hij gebruikte. Hij hoort geen feiten te verzinnen: ontbreekt er een prijs of is hij onzeker, dan zegt hij dat, zoals bij de bewaarde vermelding in de opname. Je volgt elke stap in de chat en elke run wordt vastgelegd met de gebruikte tools.' },
+      { q: 'Moet ik kunnen prompten of programmeren?', a: 'Nee. Je schrijft een gewone zin, zoals in de opname. Wij koppelen de assistent aan je shop en stemmen zijn instructies af op jouw prijsregels, zoals hoe ver je onder de markt wilt zitten.' },
+      { q: 'Moet mijn data eerst op orde zijn?', a: 'Nee. Het werkt met de producten die al in je shop staan, dus er is geen datatraject vooraf. Je normale prijzen blijven staan en de actieprijzen komen ernaast.' },
+      { q: 'Mijn team is bang voor fouten, of voor hun baan.', a: 'Jij houdt de regie: klopt het model, de vergelijkingsprijs en een prijs waar je achter staat? De assistent neemt het opzoeken en rekenen over, niet de beslissingen. Hij werkt als het account waarmee je bent ingelogd, dus hij kan alleen wat dat account mag. Voor medewerkers die alleen iets willen opzoeken is er een assistent met alleen leesrechten die niets kan wijzigen.' },
+      { q: 'Waar begin ik eigenlijk?', a: 'Met een paar producten die je in de aanbieding wilt zetten en de korting die je in gedachten hebt. Neem ze mee naar een demo en we bekijken ze samen.' },
+      { q: 'We hebben de expertise niet in huis.', a: 'Je hoeft het niet alleen uit te zoeken: we bekijken je assortiment samen met je, stemmen de assistent af op de prijsregels van jouw shop en bespreken welke inrichting past.' },
     ],
   },
 };

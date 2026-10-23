@@ -261,7 +261,9 @@ if (demo === 'pricing') {
           <div class="mt-8 flex items-center gap-4 sm:gap-6">
             <div class="min-w-0">
               <p class="text-xs font-semibold uppercase tracking-wide text-white/70 mb-2">{labels.input}</p>
-              {demo === 'woocommerce'
+              {demo === 'pricing'
+                ? <div class="max-w-36 sm:max-w-44 rounded-xl rounded-bl-sm bg-white px-3 py-3 text-xs sm:text-sm leading-snug text-surface-dark shadow-lg">“{details.prompt}”</div>
+                : demo === 'woocommerce'
                 ? <div class="max-w-28 rounded-xl bg-white px-3 py-4 text-surface-dark shadow-lg"><Icon name="file-spreadsheet" size={32} /><p class="mt-2 break-all font-mono text-xs">woocommerce-products.csv</p></div>
                 : details.inputImage
                 ? <figure><img src={`${imageBase}${details.inputImage}.webp`} alt="" class="h-24 w-24 rounded-xl object-cover ring-4 ring-white/20 shadow-lg" />{details.inputLabel && <figcaption class="mt-2 text-sm font-medium">{details.inputLabel}</figcaption>}</figure>
