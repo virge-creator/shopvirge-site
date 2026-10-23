@@ -41,10 +41,10 @@ export const cases = [
       input: 'Start with a WooCommerce export',
     },
     nl: {
-      title: 'Neem je WooCommerce-producten mee',
+      title: 'Van WooCommerce naar ShopVirge',
       footerLabel: 'WooCommerce overstap',
-      description: 'Begin met je bestaande productexport. Controleer het overzicht en keur de import van vijf producten goed, inclusief teksten, prijzen, voorraad en foto’s.',
-      input: 'Begin met een WooCommerce-export',
+      description: 'Overstappen zonder alles opnieuw in te voeren? Bekijk hoe vijf artikelen worden overgezet, met teksten, prijzen, voorraad en foto’s. Jij kijkt alles na en geeft akkoord.',
+      input: 'Je productbestand uit WooCommerce',
     },
   },
 ];
