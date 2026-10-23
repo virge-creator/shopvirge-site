@@ -47,4 +47,20 @@ export const cases = [
       input: 'Je productbestand uit WooCommerce',
     },
   },
+  {
+    slug: 'pricing',
+    poster: 'anniversary-pricing-wide-result.webp',
+    en: {
+      title: 'A sale priced against the market',
+      footerLabel: 'Sale pricing',
+      description: 'One sentence puts four headphones on sale 10% below the Tweakers price. Your regular prices stay, crossed out next to the sale price.',
+      input: 'Start with one sentence',
+    },
+    nl: {
+      title: 'Een actie afgestemd op de markt',
+      footerLabel: 'Actieprijzen',
+      description: 'Eén zin zet vier koptelefoons 10% onder de Tweakers-prijs in de aanbieding. Je normale prijzen blijven staan, doorgestreept naast de actieprijs.',
+      input: 'Begin met één zin',
+    },
+  },
 ];
