@@ -262,7 +262,7 @@ if (demo === 'woocommerce') {
               <p>{woocommerceDemo[lang].news}</p>
               <ul class="space-y-2 text-right">
                 {woocommerceDemo[lang].newsSources.map(({ href, label }) => (
-                  <li><a class="font-semibold underline" href={href}>{label}</a></li>
+                  <li><a class="inline-flex items-center gap-1 font-semibold underline" href={href} target="_blank" rel="noopener noreferrer" aria-label={`${label} (${en ? 'opens in a new tab' : 'opent in een nieuw tabblad'})`}>{label}<span class="shrink-0" aria-hidden="true"><Icon name="external-link" size={14} /></span></a></li>
                 ))}
               </ul>
             </aside>
