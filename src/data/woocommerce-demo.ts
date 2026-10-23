@@ -3,18 +3,18 @@
 export const woocommerceDemo = {
   "en": {
     "copy": {
-      "title": "Move your WooCommerce catalog to ShopVirge",
-      "description": "Watch a WooCommerce product export become five ShopVirge products. Review descriptions, prices, stock and photos, then approve the import.",
-      "intro": "Keep your products. Leave the WordPress maintenance behind.",
+      "title": "Switch from WooCommerce the easy way",
+      "description": "Move from WooCommerce to ShopVirge without entering everything again. Watch five products move across with their descriptions, prices, stock and photos.",
+      "intro": "You have already entered your products. Switching shops should not mean doing it all again.",
       "video": "woocommerce",
       "other": ""
     },
     "details": {
-      "input": "One WooCommerce export",
-      "output": "Five products in ShopVirge",
+      "input": "Your WooCommerce product file",
+      "output": "Five products transferred",
       "inputImage": null,
       "inputFile": "woocommerce-products.csv",
-      "inputLabel": "Your existing catalog",
+      "inputLabel": "The products you already have",
       "outputs": null,
       "numbers": [],
       "cards": [
@@ -28,18 +28,18 @@ export const woocommerceDemo = {
       "beforeCost": "",
       "before": [
         "Export the product data from WooCommerce",
-        "Match categories, VAT, stock and product options",
-        "Enter the names, descriptions and prices again",
-        "Upload the photos and check each product"
+        "Work out where categories, VAT and product options belong",
+        "Copy each product’s name, description, price and stock",
+        "Add the photos and check everything"
       ],
       "problemTitle": "Spending more time maintaining your shop than selling?",
       "problemBody": "Plugin updates, hosting updates, security fixes. You opened a webshop to sell products, not to manage servers. ShopVirge is a managed service: we run and update the stack for you. And moving should not mean typing your entire catalog again. Start with the export you already have: let the connected AI assistant prepare the import, check the preview, and approve the move.",
       "useTitle": "You approve the products before anything is imported",
       "useBody": "This recording moves five simple products between two demo shops, including a sale item and a product with zero stock. The original product words are kept, with HTML formatting converted to readable paragraphs. Photos are copied into ShopVirge. Existing matching products are skipped, not overwritten.",
       "review": [
-        "Do the texts, categories, options and photos match your products?",
-        "Are the buyer prices, VAT, sale prices and stock correct?",
-        "Are customers, order history, redirects, payments and shipping arranged before the live switch?"
+        "Do the descriptions, categories, product options and photos belong to the right products?",
+        "Are prices including VAT, sale prices and stock correct?",
+        "Is the rest of the switch arranged, including customer details, order history, redirects from old links, payments and shipping?"
       ],
       "faq": [
         {
@@ -48,7 +48,7 @@ export const woocommerceDemo = {
         },
         {
           "q": "Will this work with my product range?",
-          "a": "Yes. We tailor the move to your assortment. Bring your WooCommerce product export so we can look at how you organise your products, including sizes, colours, categories and tax settings. Together we work out how these belong in your ShopVirge shop."
+          "a": "Yes. We tailor the move to the products you sell. Bring your WooCommerce product file so we can look at how you organise your range, including sizes, colours, categories and VAT. Together we make sure those details find the right place in your ShopVirge shop."
         },
         {
           "q": "Do I have to rewrite my product descriptions?",
@@ -83,35 +83,35 @@ export const woocommerceDemo = {
           "a": "Typing and processing are sped up, and waiting between steps is shortened. The export, preview, approval and resulting products are real actions recorded in demo shops. The time comparison describes your hands-on work: upload, ask, check and approve. The assistant does the repetitive copying, so the benefit grows with the job."
         }
       ],
-      "ctaTitle": "Ready to bring your products with you?",
-      "ctaBody": "Bring your WooCommerce product export. We will check what can move directly and what needs a separate step before you switch.",
-      "caption": "An actual WooCommerce export, reviewed and approved before five products are imported into ShopVirge."
+      "ctaTitle": "What do you need to make the switch?",
+      "ctaBody": "Bring a product file from WooCommerce. Together we will look at what can move straight across and what needs attention before you switch.",
+      "caption": "Five WooCommerce products, complete with descriptions and photos. Checked first, then transferred to ShopVirge with approval."
     },
-    "hook": "Your next update could be a new shop.",
+    "hook": "Switch without the hassle.",
     "notes": {
-      "1": "Recorded in demo shops. Sped up, with page loads and idle waiting trimmed.",
-      "3": "Nothing is written until you approve the preview.",
-      "4": "An existing export becomes five catalog products, without retyping."
+      "1": "Recorded in English in two demo shops. Typing and processing are sped up; waiting time is shortened.",
+      "3": "The products are only transferred after you approve.",
+      "4": "Start with your existing product file. Five products transferred without entering them again."
     },
-    "news": "On 21 October 2026, websites were temporarily taken offline because of security flaws in PHP, the software behind WordPress and WooCommerce. NOS and BBC reported on the disruption. PHP released security updates that day. For your shop, the next step is simple: ask your hosting provider whether those updates have been installed.",
+    "news": "On 21 October 2026, services including DigiD and RTL Nieuws were taken offline as a precaution after security flaws were found in PHP, the software that also runs WordPress and WooCommerce. Updates to fix the flaws were released that same day. Using WooCommerce? Switch to ShopVirge: a modern platform with a capable AI assistant.",
     "concernFaq": [
       {
-        "q": "Do I need to write code or complicated instructions?",
-        "a": "No. Start with WooCommerce’s built-in product export and a normal message, as shown in the recording. We set up the connection to your ShopVirge shop."
+        "q": "Do I need technical skills for this?",
+        "a": "No. Use WooCommerce’s export feature to get your product file, then explain in everyday language what you want to move. We set up the connection to your ShopVirge shop. The recording shows how it works."
       }
     ],
     "newsSources": [
       {
         "href": "https://nos.nl/artikel/2636090-zoveel-sites-in-een-klap-plat-hoe-kan-dat-en-zijn-je-gegevens-veilig",
-        "label": "NOS: why websites went offline (Dutch)"
+        "label": "NOS: what happened? (Dutch)"
       },
       {
         "href": "https://www.bbc.co.uk/news/articles/cmx23d0k57d3o",
-        "label": "BBC: the international impact"
+        "label": "BBC: websites outside the Netherlands went offline too"
       },
       {
         "href": "https://www.php.net/archive/2026.php#2026-10-21-5",
-        "label": "PHP: the original security update"
+        "label": "PHP: the security update announcement"
       }
     ]
   },

@@ -35,10 +35,10 @@ export const cases = [
     slug: 'woocommerce',
     poster: 'woocommerce-wide-result.webp',
     en: {
-      title: 'Move your WooCommerce catalog',
+      title: 'From WooCommerce to ShopVirge',
       footerLabel: 'WooCommerce migration',
-      description: 'Bring your existing product export. Review the preview and approve the import of five products, including their descriptions, prices, stock and photos.',
-      input: 'Start with a WooCommerce export',
+      description: 'Switch without entering everything again. Watch five products move across with their descriptions, prices, stock and photos. You check the details and approve.',
+      input: 'Your WooCommerce product file',
     },
     nl: {
       title: 'Van WooCommerce naar ShopVirge',
@@ -57,9 +57,9 @@ export const cases = [
       input: 'Start with one sentence',
     },
     nl: {
-      title: 'Een actie afgestemd op de markt',
-      footerLabel: 'Actieprijzen',
-      description: 'Eén zin zet vier koptelefoons 10% onder de Tweakers-prijs in de aanbieding. Je normale prijzen blijven staan, doorgestreept naast de actieprijs.',
+      title: 'Een sale afgestemd op de markt',
+      footerLabel: 'Saleprijzen',
+      description: 'Eén zin zet vier koptelefoons 10% onder de Tweakers-prijs in de sale. Je normale prijzen blijven staan, doorgestreept naast de saleprijs.',
       input: 'Begin met één zin',
     },
   },

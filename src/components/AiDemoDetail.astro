@@ -203,9 +203,9 @@ const beforeTime = en ? `Estimated: about ${beforeMinutes} minutes` : `Geschat: 
 const afterTime = en ? `About ${afterMinutes} minutes of your time` : `Circa ${afterMinutes} minuten van jouw tijd`;
 const beforeBreakdown = en
   ? `${timeExample.products} ${timeExample.products === 1 ? 'product' : 'products'} × ${manualPerProduct} minutes ${demo === 'pricing' ? 'looking up the market price, doing the sums and entering the sale price' : 'looking up details, entering text and adding photos'}.`
-  : `${timeExample.products} ${timeExample.products === 1 ? 'product' : 'producten'} × ${manualPerProduct} minuten ${demo === 'pricing' ? 'de marktprijs opzoeken, rekenen en de actieprijs invullen' : 'gegevens opzoeken, teksten invoeren en foto’s toevoegen'}.`;
+  : `${timeExample.products} ${timeExample.products === 1 ? 'product' : 'producten'} × ${manualPerProduct} minuten ${demo === 'pricing' ? 'de marktprijs opzoeken, rekenen en de saleprijs invullen' : 'gegevens opzoeken, teksten invoeren en foto’s toevoegen'}.`;
 const afterBreakdown = demo === 'pricing'
-  ? (en ? '1 minute to send one sentence, then 3 minutes to check the four sale prices. The assistant looks up the market prices and enters the sale prices.' : '1 minuut om één zin te sturen, daarna 3 minuten om de vier actieprijzen na te kijken. De assistent zoekt de marktprijzen op en vult de actieprijzen in.')
+  ? (en ? '1 minute to send one sentence, then 3 minutes to check the four sale prices. The assistant looks up the market prices and enters the sale prices.' : '1 minuut om één zin te sturen, daarna 3 minuten om de vier saleprijzen na te kijken. De assistent zoekt de marktprijzen op en vult de saleprijzen in.')
   : demo === 'woocommerce'
   ? (en ? '2 minutes to upload your export and request the move, then 5 minutes to review five products and approve. The assistant copies the details and photos.' : '2 minuten om je bestand te uploaden en de overstap te vragen, daarna 5 minuten om vijf producten na te kijken en akkoord te geven. De assistent neemt de gegevens en foto’s over.')
   : demo === 'lego'
@@ -224,7 +224,18 @@ const labels = en ? {
 };
 if (demo === 'woocommerce') {
   labels.afterNote = en ? 'Upload, review, then approve:' : 'Uploaden, controleren en akkoord geven:';
-  if (!en) {
+  if (en) {
+    labels.discuss = 'Discuss your move';
+    labels.input = 'You start with';
+    labels.output = 'What you get';
+    labels.before = 'Moving products by hand';
+    labels.beforeNote = 'If you enter everything again:';
+    labels.afterNote = 'Upload your file, check the preview, approve:';
+    labels.created = 'Transferred to the demo shop';
+    labels.fit = 'You decide';
+    labels.review = 'Check these before you switch';
+    labels.faq = 'Questions about switching';
+  } else {
     labels.discuss = 'Bespreek je overstap';
     labels.input = 'Je begint met';
     labels.output = 'Dit staat er straks';
@@ -239,11 +250,11 @@ if (demo === 'woocommerce') {
 }
 if (demo === 'pricing') {
   labels.afterNote = en ? 'One sentence in the chat:' : 'Eén zin in de chat:';
-  labels.created = en ? 'Sale prices in the demo shop' : 'Actieprijzen in de demoshop';
+  labels.created = en ? 'Sale prices in the demo shop' : 'Saleprijzen in de demoshop';
   labels.before = en ? 'Working it out by hand' : 'Zelf uitrekenen';
-  labels.beforeNote = en ? 'For every product, before the sale can start:' : 'Voor elk product, voordat de actie kan starten:';
+  labels.beforeNote = en ? 'For every product, before the sale can start:' : 'Voor elk product, voordat de sale kan starten:';
   labels.fit = en ? 'You set the price' : 'Jij bepaalt de prijs';
-  labels.review = en ? 'Check these before you announce the sale' : 'Loop dit na voordat je de actie aankondigt';
+  labels.review = en ? 'Check these before you announce the sale' : 'Loop dit na voordat je de sale aankondigt';
   labels.faq = en ? 'Questions about this demo' : 'Vragen over deze demo';
 }
 ---
