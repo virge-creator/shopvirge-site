@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { cases } from '../data/cases';
+
+interface Props { lang: 'en' | 'nl' }
+const { lang } = Astro.props;
+const en = lang === 'en';
+const base = import.meta.env.BASE_URL;
+const title = en ? 'See what AI can do for your webshop' : 'Bekijk wat AI voor jouw webshop kan doen';
+const description = en
+  ? 'Watch real ShopVirge demos: create products from a photo or item numbers, or move your WooCommerce catalog. Choose the case that fits your shop.'
+  : 'Bekijk echte ShopVirge-demo’s: maak producten aan met een foto of artikelnummers, of verhuis je WooCommerce-catalogus. Kies de case die bij jouw shop past.';
+---
+<Layout title={title} description={description} lang={lang} image={`https://shopvirge.com${base}videos/cases/lego-wide-result.webp`}>
+  <section class="hero py-16 md:py-24 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-4">{en ? 'Cases · Recorded demos' : 'Cases · Opgenomen demo’s'}</p>
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">{title}</h1>
+      <p class="text-lg md:text-xl text-white/85 leading-relaxed">{en
+        ? 'Less time entering products. More time for your shop. Start with what you already have: a photo, item numbers or an export. Pick an example and watch the result in a demo shop.'
+        : 'Minder tijd kwijt aan producten invoeren. Meer tijd voor je shop. Begin met wat je al hebt: een foto, artikelnummers of een export. Kies een voorbeeld en bekijk het resultaat in een demoshop.'}</p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20" aria-labelledby="cases-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="cases-heading" class="text-3xl font-bold text-gray-900 mb-8">{en ? 'What do you start with?' : 'Waar begin jij mee?'}</h2>
+      <div class="grid gap-8 md:grid-cols-3">
+        {cases.map((item) => (
+          <a href={`${base}${lang}/cases/${item.slug}/`} class="group flex flex-col overflow-hidden rounded-2xl border border-brand/10 bg-white shadow-sm hover:shadow-lg transition-shadow focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand">
+            <img src={`${base}videos/cases/${item.poster}`} alt="" width="1280" height="720" loading="lazy" class="aspect-video w-full object-cover" />
+            <div class="flex flex-1 flex-col p-6">
+              <p class="text-sm font-semibold text-brand mb-3">{item[lang].input}</p>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">{item[lang].title}</h3>
+              <p class="text-gray-600 leading-relaxed mb-6">{item[lang].description}</p>
+              <span class="mt-auto font-semibold text-brand group-hover:underline">{en ? 'Watch this demo' : 'Bekijk deze demo'} →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="mt-8 text-sm text-gray-600 leading-relaxed">{en
+        ? 'These recordings show a connected AI assistant in demo shops. Recordings are shortened or sped up. You review product details and prices; we discuss the connection and scope for your shop before setting it up.'
+        : 'Deze opnames tonen een gekoppelde AI-assistent in demoshops. De opnames zijn ingekort of versneld. Jij controleert productgegevens en prijzen; we bespreken de koppeling en mogelijkheden voor jouw shop voordat we die inrichten.'}</p>
+    </div>
+  </section>
+
+  <section class="section-alt py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">{en ? 'What would you like to spend less time on?' : 'Waar zou jij minder tijd aan willen besteden?'}</h2>
+      <p class="text-lg text-gray-600 mb-8">{en ? 'Bring your photos, item numbers or product export. We will look at what could work for your shop together.' : 'Neem je foto’s, artikelnummers of productexport mee. Samen bekijken we wat voor jouw shop kan werken.'}</p>
+      <a href={`${base}${lang}/contact/?type=demo`} data-open-demo class="btn-primary">{en ? 'Discuss your shop' : 'Bespreek jouw shop'} →</a>
+    </div>
+  </section>
+</Layout>

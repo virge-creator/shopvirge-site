@@ -9,9 +9,9 @@ interface Props { lang: 'en' | 'nl'; demo: 'photo' | 'lego' | 'woocommerce' }
 const { lang, demo } = Astro.props;
 const en = lang === 'en';
 const base = import.meta.env.BASE_URL;
-const videoBase = `${base}videos/ai-demos/`;
-const imageBase = `${base}images/ai-demos/`;
-const overview = `${base}${lang}/ai-demos/`;
+const videoBase = `${base}videos/cases/`;
+const imageBase = `${base}images/cases/`;
+const overview = `${base}${lang}/cases/`;
 const contact = `${base}${lang}/contact/?type=demo`;
 const migrationNotes = woocommerceDemo[lang].notes as Record<number, string>;
 const note = (id: number) => demo === 'woocommerce' ? migrationNotes[id] : demo === 'lego' ? concerns.find((c) => c.id === id && c.tier === 'inline')?.[lang].note : undefined;
@@ -196,6 +196,7 @@ if (demo === 'woocommerce') {
 <Layout title={copy.title} description={copy.description} lang={lang} image={`https://shopvirge.com${videoBase}${copy.video}-wide.webp`}>
   <section class="hero text-white py-12 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href={overview} class="inline-block mb-6 text-sm font-semibold text-white/85 hover:text-white hover:underline">← {en ? 'All cases' : 'Alle cases'}</a>
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-12 items-center">
         <div class="lg:col-span-5">
           <span class="inline-flex items-center rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold mb-8">{ui.eyebrow}</span>
@@ -219,7 +220,7 @@ if (demo === 'woocommerce') {
                 ? <ul class="grid gap-y-2 sm:grid-cols-2 sm:gap-x-5">{details.outputs.map((item) => <li class="flex items-center gap-2 text-sm font-medium whitespace-nowrap"><span class="text-amber-400"><Icon name="circle-check" size={16} /></span>{item}</li>)}</ul>
                 : <div class="flex">
                     {details.cards.map((card, index) => (
-                      <img src={`${imageBase}${card}.webp`} alt="" class={`h-28 w-auto rounded-lg shadow-xl ring-2 ring-white/20 ${index > 0 ? '-ml-10 sm:-ml-8' : ''}`} style={`transform: rotate(${(index - (details.cards.length - 1) / 2) * 4}deg)`} />
+                      <img src={`${imageBase}${card}.webp`} alt="" class={`h-24 sm:h-28 w-auto rounded-lg shadow-xl ring-2 ring-white/20 ${index > 0 ? '-ml-10 sm:-ml-8' : ''}`} style={`transform: rotate(${(index - (details.cards.length - 1) / 2) * 4}deg)`} />
                     ))}
                   </div>}
             </div>

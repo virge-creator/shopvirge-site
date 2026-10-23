@@ -18,7 +18,7 @@ Perhaps the most immediate way AI saves time: product copy. Connect an AI assist
 
 The result: what used to take hours of copywriting can now be done in minutes. Quality isn't perfect, you always review it yourself, but for webshops with hundreds or thousands of products, this is a massive time saver. And because ShopVirge is natively multilingual, the same agent can write and translate every description into English, German, French, and more in a single pass, instead of you copy-pasting between tools.
 
-For a concrete catalogue example, [watch the ShopVirge AI product demos](/en/ai-demos/): a connected assistant creates listings from a product photo and from a list of item numbers in a demo shop.
+For a concrete catalogue example, [watch the ShopVirge AI product demos](/en/cases/): a connected assistant creates listings from a product photo and from a list of item numbers in a demo shop.
 
 ## MCP-First: Hand Your Catalog and Inventory to an AI Agent
 
