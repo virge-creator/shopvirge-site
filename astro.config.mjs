@@ -5,6 +5,14 @@ export default defineConfig({
   vite: { plugins: [tailwindcss()] },
   site: 'https://shopvirge.com',
   base: '/',
+  redirects: Object.fromEntries(
+    ['en', 'nl'].flatMap((lang) =>
+      ['', 'photo', 'lego', 'woocommerce'].map((slug) => [
+        `/${lang}/ai-demos/${slug ? `${slug}/` : ''}`,
+        `/${lang}/cases/${slug ? `${slug}/` : ''}`,
+      ])
+    )
+  ),
   integrations: [
     sitemap({
       i18n: {
