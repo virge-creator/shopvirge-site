@@ -5,6 +5,7 @@ const prompt = 'We\'re celebrating our 10th anniversary. Put our headphones on s
 
 export const pricingDemo = {
   en: {
+    sendLabel: 'Start a 10% sale for everything',
     copy: {
       title: 'Run a sale priced against the market',
       description: 'Tell the assistant to put your headphones on sale 10% below the Tweakers price. Watch four products get a sale price while your regular prices stay as they are.',
@@ -61,6 +62,7 @@ export const pricingDemo = {
     ],
   },
   nl: {
+    sendLabel: 'Start een actie van 10% op alles',
     copy: {
       title: 'Een actie met prijzen die de markt volgen',
       description: 'Vraag de assistent je koptelefoons 10% onder de Tweakers-prijs in de aanbieding te zetten. Bekijk hoe vier producten een actieprijs krijgen en je normale prijzen blijven staan.',

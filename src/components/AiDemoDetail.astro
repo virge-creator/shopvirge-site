@@ -262,7 +262,7 @@ if (demo === 'pricing') {
             <div class="min-w-0">
               <p class="text-xs font-semibold uppercase tracking-wide text-white/70 mb-2">{labels.input}</p>
               {demo === 'pricing'
-                ? <div class="max-w-36 sm:max-w-44 rounded-xl rounded-bl-sm bg-white px-3 py-3 text-xs sm:text-sm leading-snug text-surface-dark shadow-lg">“{details.prompt}”</div>
+                ? <div class="max-w-36 sm:max-w-44 rounded-xl rounded-bl-sm bg-white px-3 py-3 text-xs sm:text-sm leading-snug text-surface-dark shadow-lg">“{pricingDemo[lang].sendLabel}”</div>
                 : demo === 'woocommerce'
                 ? <div class="max-w-28 rounded-xl bg-white px-3 py-4 text-surface-dark shadow-lg"><Icon name="file-spreadsheet" size={32} /><p class="mt-2 break-all font-mono text-xs">woocommerce-products.csv</p></div>
                 : details.inputImage
