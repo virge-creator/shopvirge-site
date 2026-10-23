@@ -171,7 +171,15 @@ const details = {
     },
   },
 }[lang][demo];
-const faqItems = [...details.faq, ...concernFaq];
+// Shown on every case: how the assistant connects, and how changes can be undone.
+const sharedFaq = en ? [
+  { q: 'Can I use my own AI agent, or Claude or Codex?', a: 'Yes. ShopVirge offers a standard connection (MCP), so you can connect Claude or Codex straight to your shop, or bring your own agent. The assistant in this recording is one way to work; the same steps are available to any connected agent.' },
+  { q: 'What if the assistant changes something I did not want?', a: 'ShopVirge keeps a revision history. Every change to a product, category, tag or attribute is saved as a version, including who made it and whether it came from an agent. You can go back to an earlier version, and deleted items go to a trash so they can be restored.' },
+] : [
+  { q: 'Kan ik mijn eigen AI-agent gebruiken, of Claude of Codex?', a: 'Ja. ShopVirge biedt een standaardkoppeling (MCP), dus je koppelt Claude of Codex direct aan je shop, of je gebruikt je eigen agent. De assistent in deze opname is één manier van werken; dezelfde stappen zijn beschikbaar voor elke gekoppelde agent.' },
+  { q: 'Wat als de assistent iets wijzigt dat ik niet wilde?', a: 'ShopVirge houdt een versiegeschiedenis bij. Elke wijziging aan een product, categorie, tag of kenmerk wordt als versie opgeslagen, inclusief wie de wijziging deed en of die van een agent kwam. Je kunt terug naar een eerdere versie, en verwijderde items gaan naar een prullenbak, zodat je ze kunt terugzetten.' },
+];
+const faqItems = [...details.faq, ...concernFaq, ...sharedFaq];
 // Two independent columns (first half, second half) so card heights in one never stretch the other, and the order still reads top to bottom on phones.
 const faqSplit = Math.ceil(faqItems.length / 2);
 const faqColumns = [faqItems.slice(0, faqSplit), faqItems.slice(faqSplit)];
@@ -247,7 +255,6 @@ if (demo === 'woocommerce') {
           <span class="text-accent font-semibold tracking-wide uppercase text-sm">{labels.problem}</span>
           <h2 id="problem-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-5">{details.problemTitle}</h2>
           <p class="text-lg text-gray-600 leading-relaxed">{details.problemBody}</p>
-          {demo === 'woocommerce' && <aside class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm leading-relaxed text-gray-700"><p>{woocommerceDemo[lang].news}</p><p class="mt-3 flex flex-wrap gap-x-4 gap-y-2"><a class="font-semibold underline" href="https://www.php.net/archive/2026.php">PHP · 21 October 2026</a><a class="font-semibold underline" href="https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w">CVE-2026-109618</a><a class="font-semibold underline" href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp">CVE-2026-109619</a></p></aside>}
         </div>
         <div class="grid gap-6 lg:grid-cols-12">
           <div class="lg:col-span-5 rounded-2xl border border-gray-200 bg-surface p-7 md:p-8">

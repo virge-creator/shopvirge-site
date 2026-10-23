@@ -31,8 +31,8 @@ export const woocommerceDemo = {
         "Enter the names, descriptions and prices again",
         "Upload the photos and check each product"
       ],
-      "problemTitle": "Another PHP emergency. Still putting off leaving WooCommerce?",
-      "problemBody": "Plugin updates. Hosting updates. Another urgent PHP fix. You opened a webshop to sell products. Moving should not mean typing your entire catalog again. Start with the export you already have: let the connected AI assistant prepare the import, check the preview, and approve the move.",
+      "problemTitle": "Spending more time maintaining your shop than selling?",
+      "problemBody": "Plugin updates, hosting updates, security fixes. You opened a webshop to sell products, not to manage servers. ShopVirge is a managed service: we run and update the stack for you. And moving should not mean typing your entire catalog again. Start with the export you already have: let the connected AI assistant prepare the import, check the preview, and approve the move.",
       "useTitle": "You approve the products before anything is imported",
       "useBody": "This recording moves five simple products between two demo shops, including a sale item and a product with zero stock. The original product words are kept, with HTML formatting converted to readable paragraphs. Photos are copied into ShopVirge. Existing matching products are skipped, not overwritten.",
       "review": [
@@ -43,7 +43,7 @@ export const woocommerceDemo = {
       "faq": [
         {
           "q": "Does this move my entire shop?",
-          "a": "This demo transfers the product catalog. Customer accounts, order history, subscriptions, redirects, payment and shipping settings, and the domain are not moved. We plan those separately before a live cutover."
+          "a": "This demo transfers the product catalog. For redirects, we can import a list of your old URLs and set up redirects where needed, so links and search results keep working. Need more, such as order history or customer accounts? Contact us and we will plan that with you before the live switch."
         },
         {
           "q": "Are the photos copied, or do they still depend on WooCommerce?",
@@ -54,8 +54,8 @@ export const woocommerceDemo = {
           "a": "This first version handles up to 20 rows in a small product CSV. Variants, multiple categories, category hierarchies and special tax mappings need review. Unsupported items are reported rather than silently changed. Bring an export so we can assess your catalog."
         },
         {
-          "q": "Why mention the PHP security news?",
-          "a": "WordPress and WooCommerce run on PHP. ShopVirge’s application uses Python and TypeScript instead. That avoids reliance on the affected PHP runtime; it does not make any software immune to security issues. Keep the old shop patched while preparing a migration."
+          "q": "Who takes care of hosting, updates and security?",
+          "a": "We do. ShopVirge is a managed service: we host, update and secure the platform for you, so there are no plugins or server updates to keep up with. Keep your old shop patched until you have switched."
         },
         {
           "q": "Is the recording sped up?",
@@ -72,7 +72,6 @@ export const woocommerceDemo = {
       "3": "Nothing is written until you approve the preview.",
       "4": "An existing export becomes five catalog products, without retyping."
     },
-    "news": "On 21 October 2026, PHP released fixes for two critical vulnerabilities: CVE-2026-109618 and CVE-2026-109619, both rated 9.2. That is a reason to check your hosting updates now, and a timely moment to reconsider the work your shop platform creates.",
     "concernFaq": [
       {
         "q": "Do I need to write code or complicated instructions?",
@@ -115,8 +114,8 @@ export const woocommerceDemo = {
         "Voer namen, teksten en prijzen opnieuw in",
         "Upload de foto’s en controleer elk product"
       ],
-      "problemTitle": "Weer een PHP-noodpatch. Stel je de overstap nog uit?",
-      "problemBody": "Plug-ins bijwerken. Hosting bijwerken. Nu weer een PHP-noodpatch. Je begon een webshop om te verkopen. Overstappen hoeft niet te betekenen dat je je hele catalogus opnieuw intypt. Begin met je bestaande export: laat de gekoppelde AI-assistent de import voorbereiden, controleer het overzicht en geef akkoord.",
+      "problemTitle": "Ben je meer tijd kwijt aan onderhoud dan aan verkopen?",
+      "problemBody": "Plug-ins bijwerken, hosting bijwerken, beveiligingsupdates. Je begon een webshop om te verkopen, niet om servers te beheren. ShopVirge is een beheerde dienst: wij beheren en updaten alles voor je. En overstappen hoeft niet te betekenen dat je je hele catalogus opnieuw intypt. Begin met je bestaande export: laat de gekoppelde AI-assistent de import voorbereiden, controleer het overzicht en geef akkoord.",
       "useTitle": "Jij geeft akkoord voordat er iets wordt geïmporteerd",
       "useBody": "In deze opname verhuizen vijf eenvoudige producten tussen twee demoshops, waaronder een aanbieding en een product met nul voorraad. De oorspronkelijke teksten blijven behouden; HTML-opmaak wordt omgezet naar leesbare alinea’s. Foto’s worden naar ShopVirge gekopieerd. Bestaande overeenkomende producten worden overgeslagen, niet overschreven.",
       "review": [
@@ -127,7 +126,7 @@ export const woocommerceDemo = {
       "faq": [
         {
           "q": "Verhuist dit mijn hele webshop?",
-          "a": "Deze demo verhuist de productcatalogus. Klantaccounts, bestelgeschiedenis, abonnementen, redirects, betaal- en verzendinstellingen en je domein gaan niet mee. Die plannen we apart vóór de echte overstap."
+          "a": "Deze demo verhuist de productcatalogus. Voor redirects kunnen we een lijst met je oude URL’s importeren en waar nodig doorverwijzingen instellen, zodat links en zoekresultaten blijven werken. Wil je meer meenemen, zoals bestelgeschiedenis of klantaccounts? Neem contact met ons op, dan plannen we dat samen vóór de echte overstap."
         },
         {
           "q": "Worden de foto’s gekopieerd of blijven ze afhankelijk van WooCommerce?",
@@ -138,8 +137,8 @@ export const woocommerceDemo = {
           "a": "Deze eerste versie verwerkt maximaal 20 regels in een klein productbestand. Varianten, meerdere categorieën, categoriehiërarchieën en bijzondere btw-koppelingen vragen om controle. Niet-ondersteunde artikelen worden gemeld in plaats van stilzwijgend aangepast. Neem een export mee, dan bekijken we jouw catalogus."
         },
         {
-          "q": "Waarom noemen jullie het PHP-beveiligingsnieuws?",
-          "a": "WordPress en WooCommerce draaien op PHP. De applicatie van ShopVirge gebruikt Python en TypeScript. Daardoor is die niet afhankelijk van de getroffen PHP-runtime; dat maakt software niet onkwetsbaar. Blijf je oude shop bijwerken terwijl je de overstap voorbereidt."
+          "q": "Wie zorgt voor hosting, updates en beveiliging?",
+          "a": "Dat doen wij. ShopVirge is een beheerde dienst: wij hosten, updaten en beveiligen het platform voor je, dus je hoeft geen plug-ins of serverupdates bij te houden. Houd je oude webshop bijgewerkt tot je bent overgestapt."
         },
         {
           "q": "Is de opname versneld?",
@@ -156,7 +155,6 @@ export const woocommerceDemo = {
       "3": "Er wordt niets weggeschreven voordat jij het overzicht goedkeurt.",
       "4": "Een bestaande export wordt vijf producten, zonder alles opnieuw in te typen."
     },
-    "news": "Op 21 oktober 2026 bracht PHP updates uit voor twee kritieke kwetsbaarheden: CVE-2026-109618 en CVE-2026-109619, beide met score 9,2. Een reden om nu je hostingupdates te controleren, en een goed moment om te kijken hoeveel onderhoud je webshopplatform vraagt.",
     "concernFaq": [
       {
         "q": "Moet ik code of ingewikkelde instructies schrijven?",
