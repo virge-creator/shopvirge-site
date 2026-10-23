@@ -1,0 +1,121 @@
+// Copy follows the recorded anniversary sale: one request, four existing headphones, sale prices 10% below the Tweakers benchmark.
+// The recording used a saved Tweakers snapshot of 23 October 2026 (the assistant says so on screen). Regular prices are demo data.
+const cards = ['pricing-card-1', 'pricing-card-2', 'pricing-card-3', 'pricing-card-4'];
+const prompt = 'We\'re celebrating our 10th anniversary. Put our headphones on sale at 10% below market using Tweakers.';
+
+export const pricingDemo = {
+  en: {
+    sendLabel: 'Start a 10% sale for everything',
+    copy: {
+      title: 'Run a sale priced against the market',
+      description: 'Tell the assistant to put your headphones on sale 10% below the Tweakers price. Watch four products get a sale price while your regular prices stay as they are.',
+      intro: 'Celebrating an anniversary with a sale? One sentence puts every headphone on sale, priced against the market.',
+      video: 'anniversary-pricing',
+      other: '',
+    },
+    details: {
+      input: 'One sentence', output: 'Four sale prices',
+      inputImage: '', inputLabel: 'One sentence in the chat', outputs: null, numbers: [],
+      cards, prompt,
+      beforeCost: '',
+      before: [
+        'Open each headphone’s page on Tweakers',
+        'Find the lowest price from a regular shop, delivery included',
+        'Work out 10% below it and round so it stays below',
+        'Enter the result as a sale price, next to your regular price',
+        'Check the product page in your shop',
+      ],
+      problemTitle: 'You know how you want to price the sale. Working out every price is the slow part.',
+      problemBody: 'A sale against the market means looking up each product on Tweakers, comparing shops, doing the sums and typing the result into every product. For four headphones that is about twenty minutes. With a full range it adds up quickly, and market prices keep moving in the meantime.',
+      useTitle: 'A sale that follows the market',
+      useBody: 'Your regular prices stay in your shop, crossed out next to the new sale price. The assistant works out the sale price from the Tweakers price and tells you which price it used for each product. You decide whether that price suits your range and your margin.',
+      review: [
+        'Is the Tweakers price for the same model and colour?',
+        'Does the sale price still leave you a margin?',
+        'Is the product in stock at the sale price?',
+      ],
+      faq: [
+        { q: 'Does it look up Tweakers live?', a: 'Yes, the assistant can look up current prices on Tweakers. This recording used a saved copy of the Tweakers prices from 23 October 2026, so you can see exactly which prices went in. The assistant states this in its answer.' },
+        { q: 'Which Tweakers price does it use?', a: 'The lowest price for the exact new model and colour from a regular webshop, delivery included. Marketplace sellers and refurbished or open-box offers are left out. The assistant shows that price next to every sale price.' },
+        { q: 'Is the sale really 10% below the market?', a: 'At least 10% below. Net prices are stored to the cent, so the price including VAT can end up a cent lower than the exact 10%. In the recording the Sony WH-1000XM5 came out at €233.09, one cent below its €233.10 target.' },
+        { q: 'What happens to my regular prices?', a: 'They stay as they are. The sale price is stored separately and shown next to your regular price, which is crossed out.' },
+        { q: 'Does it check whether the headphones are in stock?', a: 'No. The assistant says in its answer that stock is not verified, and that one price came from a cached Tweakers listing and needs a fresh check. Check stock and supplier prices yourself before you promote the sale.' },
+        { q: 'Are the shop prices in the recording real?', a: 'The regular prices in the demo shop are made up for the demo. The Tweakers prices are the ones recorded on 23 October 2026.' },
+        { q: 'Is the recording sped up?', a: 'Yes. Typing and storefront movement are sped up and waiting time is shortened. The request, the answer and the resulting prices are as recorded.' },
+      ],
+      ctaTitle: 'Which of your products would you put on sale this month?',
+      ctaBody: 'Bring a few products and the sale you have in mind. We will look at it with you and discuss a setup that fits your shop.',
+      caption: 'Four headphones in the demo shop get a sale price below the market price. The regular price stays, crossed out.',
+    },
+    notes: {
+      1: 'Recorded in English in a demo shop. Typing and processing are sped up; waiting time is shortened. The Tweakers prices are a saved copy of 23 October 2026.',
+      3: 'You decide which price goes on your products.',
+      4: 'One sentence, four products, sale prices based on the market.',
+    },
+    concernFaq: [
+      { q: 'Where does the assistant get its facts, and can I see what it did?', a: 'In this recording the market prices come from Tweakers, and the assistant lists the price it used next to every sale price. It is told not to invent facts: if a price is missing or uncertain it says so, as it does for the cached listing in the recording. You can follow each step in the chat, and every run is logged together with the tools it used.' },
+      { q: 'Do I need to know how to prompt or code?', a: 'No. You write a normal sentence, like in the recording. We connect the assistant to your shop and tune its instructions to your pricing rules, such as how far below the market you want to be.' },
+      { q: 'Does my data need to be in order first?', a: 'No. It works with the products already in your shop, so there is no data project first. Your regular prices stay as they are and the sale prices are added next to them.' },
+      { q: 'My team worries about mistakes, or about their jobs.', a: 'You stay in charge: right model, right benchmark, a price you can live with? The assistant takes over the looking up and the sums, not the decisions. It works as the account you are signed in with, so it can only do what that account may do. For staff who only need to look things up, there is a read-only assistant that cannot change anything.' },
+      { q: 'Where do I even start?', a: 'With a few products you would like to put on sale and the discount you have in mind. Bring them to a demo and we will look at them together.' },
+      { q: 'We don’t have the expertise in-house.', a: 'You don’t have to work it out alone: we look at your range with you, tune the assistant to your shop’s pricing rules, and discuss a setup that fits.' },
+    ],
+  },
+  nl: {
+    sendLabel: 'Start een sale van 10% op alles',
+    copy: {
+      title: 'Een sale met prijzen die de markt volgen',
+      description: 'Vraag de assistent je koptelefoons 10% onder de Tweakers-prijs in de sale te zetten. Bekijk hoe vier producten een saleprijs krijgen en je normale prijzen blijven staan.',
+      intro: 'Vier je jubileum met een sale. Met één zin zet je alle koptelefoons in de sale, tegen prijzen die de markt volgen.',
+      video: 'anniversary-pricing',
+      other: '',
+    },
+    details: {
+      input: 'Eén zin', output: 'Vier saleprijzen',
+      inputImage: '', inputLabel: 'Eén zin in de chat', outputs: null, numbers: [],
+      cards, prompt,
+      beforeCost: '',
+      before: [
+        'De pagina van elke koptelefoon op Tweakers openen',
+        'De laagste prijs bij een gewone webwinkel zoeken, inclusief verzendkosten',
+        '10% eronder uitrekenen en zo afronden dat je eronder blijft',
+        'De uitkomst als saleprijs invullen, naast je normale prijs',
+        'De productpagina in je webshop nakijken',
+      ],
+      problemTitle: 'Je weet hoe je de sale wilt prijzen. Het uitrekenen per product kost de meeste tijd.',
+      problemBody: 'Wil je een sale die de markt volgt, dan zoek je elk product op Tweakers op, vergelijk je webwinkels, reken je de korting uit en vul je het resultaat per product in. Voor vier koptelefoons ben je zo’n twintig minuten kwijt. Bij een heel assortiment loopt dat snel op, terwijl de marktprijzen intussen veranderen.',
+      useTitle: 'Een sale die de markt volgt',
+      useBody: 'Je normale prijzen blijven in je webshop staan, doorgestreept naast de nieuwe saleprijs. De assistent rekent de saleprijs uit op basis van de Tweakers-prijs en laat per product zien welke prijs hij gebruikte. Jij bepaalt of die prijs past bij je assortiment en je marge.',
+      review: [
+        'Is de Tweakers-prijs voor hetzelfde model en dezelfde kleur?',
+        'Houd je met de saleprijs nog marge over?',
+        'Is het product op voorraad voor de saleprijs?',
+      ],
+      faq: [
+        { q: 'Zoekt de assistent Tweakers live op?', a: 'Ja, de assistent kan actuele prijzen op Tweakers opzoeken. Deze opname gebruikte een bewaarde kopie van de Tweakers-prijzen van 23 oktober 2026, zodat je precies ziet welke prijzen zijn gebruikt. De assistent meldt dat in zijn antwoord.' },
+        { q: 'Welke Tweakers-prijs gebruikt hij?', a: 'De laagste prijs voor precies dat nieuwe model en die kleur bij een gewone webwinkel, inclusief verzendkosten. Aanbiedingen van marktplaatsen, refurbished producten en open-boxproducten blijven buiten beschouwing. De assistent toont die prijs naast elke saleprijs.' },
+        { q: 'Zit de saleprijs echt 10% onder de markt?', a: 'Minstens 10% eronder. Prijzen exclusief btw worden op de cent opgeslagen, dus de prijs inclusief btw kan een cent lager uitkomen dan precies 10%. In de opname kwam de Sony WH-1000XM5 uit op € 233,09, een cent onder het doel van € 233,10.' },
+        { q: 'Wat gebeurt er met mijn normale prijzen?', a: 'Die blijven staan. De saleprijs wordt apart opgeslagen en getoond naast je normale prijs, die doorgestreept is.' },
+        { q: 'Controleert de assistent of de koptelefoons op voorraad zijn?', a: 'Nee. De assistent meldt in zijn antwoord dat de voorraad niet is gecontroleerd, en dat één prijs uit een bewaarde Tweakers-vermelding komt en opnieuw gecontroleerd moet worden. Controleer voorraad en inkoopprijzen zelf voordat je de sale aankondigt.' },
+        { q: 'Zijn de winkelprijzen in de opname echt?', a: 'De normale prijzen in de demoshop zijn verzonnen voor de demo. De Tweakers-prijzen zijn die van 23 oktober 2026.' },
+        { q: 'Is de opname versneld?', a: 'Ja. Typen en bewegen door de winkel zijn versneld en wachttijd is ingekort. Het verzoek, het antwoord en de uiteindelijke prijzen zijn zoals opgenomen.' },
+      ],
+      ctaTitle: 'Welke producten zou jij deze maand in de sale zetten?',
+      ctaBody: 'Neem een paar producten mee en vertel welke sale je in gedachten hebt. We bekijken het samen en bespreken welke inrichting bij je webshop past.',
+      caption: 'Vier koptelefoons in de demoshop krijgen een saleprijs onder de marktprijs. De normale prijs blijft staan, doorgestreept.',
+    },
+    notes: {
+      1: 'Opgenomen in het Engels in een demoshop. Typen en verwerken zijn versneld; wachttijd is ingekort. De Tweakers-prijzen zijn een bewaarde kopie van 23 oktober 2026.',
+      3: 'Jij bepaalt welke prijs bij je producten komt.',
+      4: 'Eén zin, vier producten, saleprijzen op basis van de markt.',
+    },
+    concernFaq: [
+      { q: 'Waar haalt de assistent zijn gegevens vandaan, en kan ik zien wat hij deed?', a: 'In deze opname komen de marktprijzen van Tweakers, en de assistent noemt bij elke saleprijs de prijs die hij gebruikte. Hij hoort geen feiten te verzinnen: ontbreekt er een prijs of is hij onzeker, dan zegt hij dat, zoals bij de bewaarde vermelding in de opname. Je volgt elke stap in de chat en elke run wordt vastgelegd met de gebruikte tools.' },
+      { q: 'Moet ik kunnen prompten of programmeren?', a: 'Nee. Je schrijft een gewone zin, zoals in de opname. Wij koppelen de assistent aan je shop en stemmen zijn instructies af op jouw prijsregels, zoals hoe ver je onder de markt wilt zitten.' },
+      { q: 'Moet mijn data eerst op orde zijn?', a: 'Nee. Het werkt met de producten die al in je shop staan, dus er is geen datatraject vooraf. Je normale prijzen blijven staan en de saleprijzen komen ernaast.' },
+      { q: 'Mijn team is bang voor fouten, of voor hun baan.', a: 'Jij houdt de regie: klopt het model, de vergelijkingsprijs en een prijs waar je achter staat? De assistent neemt het opzoeken en rekenen over, niet de beslissingen. Hij werkt als het account waarmee je bent ingelogd, dus hij kan alleen wat dat account mag. Voor medewerkers die alleen iets willen opzoeken is er een assistent met alleen leesrechten die niets kan wijzigen.' },
+      { q: 'Waar begin ik eigenlijk?', a: 'Met een paar producten die je in de sale wilt zetten en de korting die je in gedachten hebt. Neem ze mee naar een demo en we bekijken ze samen.' },
+      { q: 'We hebben de expertise niet in huis.', a: 'Je hoeft het niet alleen uit te zoeken: we bekijken je assortiment samen met je, stemmen de assistent af op de prijsregels van jouw shop en bespreken welke inrichting past.' },
+    ],
+  },
+};

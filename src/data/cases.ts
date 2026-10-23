@@ -35,16 +35,32 @@ export const cases = [
     slug: 'woocommerce',
     poster: 'woocommerce-wide-result.webp',
     en: {
-      title: 'Move your WooCommerce catalog',
+      title: 'From WooCommerce to ShopVirge',
       footerLabel: 'WooCommerce migration',
-      description: 'Bring your existing product export. Review the preview and approve the import of five products, including their descriptions, prices, stock and photos.',
-      input: 'Start with a WooCommerce export',
+      description: 'Switch without entering everything again. Watch five products move across with their descriptions, prices, stock and photos. You check the details and approve.',
+      input: 'Your WooCommerce product file',
     },
     nl: {
-      title: 'Neem je WooCommerce-producten mee',
+      title: 'Van WooCommerce naar ShopVirge',
       footerLabel: 'WooCommerce overstap',
-      description: 'Begin met je bestaande productexport. Controleer het overzicht en keur de import van vijf producten goed, inclusief teksten, prijzen, voorraad en foto’s.',
-      input: 'Begin met een WooCommerce-export',
+      description: 'Overstappen zonder alles opnieuw in te voeren? Bekijk hoe vijf artikelen worden overgezet, met teksten, prijzen, voorraad en foto’s. Jij kijkt alles na en geeft akkoord.',
+      input: 'Je productbestand uit WooCommerce',
+    },
+  },
+  {
+    slug: 'pricing',
+    poster: 'anniversary-pricing-wide-result.webp',
+    en: {
+      title: 'A sale priced against the market',
+      footerLabel: 'Sale pricing',
+      description: 'One sentence puts four headphones on sale 10% below the Tweakers price. Your regular prices stay, crossed out next to the sale price.',
+      input: 'Start with one sentence',
+    },
+    nl: {
+      title: 'Een sale afgestemd op de markt',
+      footerLabel: 'Saleprijzen',
+      description: 'Eén zin zet vier koptelefoons 10% onder de Tweakers-prijs in de sale. Je normale prijzen blijven staan, doorgestreept naast de saleprijs.',
+      input: 'Begin met één zin',
     },
   },
 ];

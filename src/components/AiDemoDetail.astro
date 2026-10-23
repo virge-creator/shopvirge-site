@@ -4,8 +4,9 @@ import Icon from './Icon.astro';
 import Term from './Term.astro';
 import { concerns } from '../data/mkb-concerns';
 import { woocommerceDemo } from '../data/woocommerce-demo';
+import { pricingDemo } from '../data/pricing-demo';
 
-interface Props { lang: 'en' | 'nl'; demo: 'photo' | 'lego' | 'woocommerce' }
+interface Props { lang: 'en' | 'nl'; demo: 'photo' | 'lego' | 'woocommerce' | 'pricing' }
 const { lang, demo } = Astro.props;
 const en = lang === 'en';
 const base = import.meta.env.BASE_URL;
@@ -14,8 +15,9 @@ const imageBase = `${base}images/cases/`;
 const overview = `${base}${lang}/cases/`;
 const contact = `${base}${lang}/contact/?type=demo`;
 const migrationNotes = woocommerceDemo[lang].notes as Record<number, string>;
-const note = (id: number) => demo === 'woocommerce' ? migrationNotes[id] : demo === 'lego' ? concerns.find((c) => c.id === id && c.tier === 'inline')?.[lang].note : undefined;
-const concernFaq = demo === 'woocommerce' ? woocommerceDemo[lang].concernFaq : concerns.filter((c) => c.tier === 'faq').map((c) => {
+const pricingNotes = pricingDemo[lang].notes as Record<number, string>;
+const note = (id: number) => demo === 'woocommerce' ? migrationNotes[id] : demo === 'pricing' ? pricingNotes[id] : demo === 'lego' ? concerns.find((c) => c.id === id && c.tier === 'inline')?.[lang].note : undefined;
+const concernFaq = demo === 'woocommerce' ? woocommerceDemo[lang].concernFaq : demo === 'pricing' ? pricingDemo[lang].concernFaq : concerns.filter((c) => c.tier === 'faq').map((c) => {
   const copy = demo === 'photo' ? c.photo?.[lang] ?? c[lang] : c[lang];
   return { q: copy.concern!, a: copy.answer! };
 });
@@ -23,6 +25,7 @@ const other = demo === 'photo' ? 'lego' : 'photo';
 const copy = {
   en: {
     woocommerce: woocommerceDemo.en.copy,
+    pricing: pricingDemo.en.copy,
     photo: {
       title: 'Create a webshop product from a photo',
       description: 'Watch a connected AI assistant identify a second-hand computer power supply from a photo and create a product in a ShopVirge demo shop.',
@@ -40,6 +43,7 @@ const copy = {
   },
   nl: {
     woocommerce: woocommerceDemo.nl.copy,
+    pricing: pricingDemo.nl.copy,
     photo: {
       title: 'Van productfoto naar product in je webshop',
       description: 'Bekijk hoe een gekoppelde AI-assistent een tweedehands computervoeding herkent op een foto en een product aanmaakt in een ShopVirge-demoshop.',
@@ -70,6 +74,7 @@ const ui = en ? {
 const details = {
   en: {
     woocommerce: woocommerceDemo.en.details,
+    pricing: pricingDemo.en.details,
     photo: {
       input: 'A product photo', output: 'One new product',
       prompt: 'Can you add this second hand PSU to my store, you can fill out all the details yourself', inputImage: 'psu-photo', numbers: [],
@@ -121,6 +126,7 @@ const details = {
   },
   nl: {
     woocommerce: woocommerceDemo.nl.details,
+    pricing: pricingDemo.nl.details,
     photo: {
       input: 'Een productfoto', output: 'Eén nieuw product',
       prompt: 'Can you add this second hand PSU to my store, you can fill out all the details yourself', inputImage: 'psu-photo', numbers: [],
@@ -183,22 +189,73 @@ const faqItems = [...details.faq, ...concernFaq, ...sharedFaq];
 // Two independent columns (first half, second half) so card heights in one never stretch the other, and the order still reads top to bottom on phones.
 const faqSplit = Math.ceil(faqItems.length / 2);
 const faqColumns = [faqItems.slice(0, faqSplit), faqItems.slice(faqSplit)];
+// Hands-on time including review; manual estimates and assistant examples endorsed by the user.
+const timeExample = {
+  photo: { products: 1, inputMinutes: 1, reviewMinutes: 2 },
+  lego: { products: 5, inputMinutes: 1, reviewMinutes: 5 },
+  woocommerce: { products: 5, inputMinutes: 2, reviewMinutes: 5 },
+  pricing: { products: 4, inputMinutes: 1, reviewMinutes: 3, manualPerProduct: 5 },
+}[demo];
+const manualPerProduct = 'manualPerProduct' in timeExample ? timeExample.manualPerProduct : 10;
+const beforeMinutes = timeExample.products * manualPerProduct;
+const afterMinutes = timeExample.inputMinutes + timeExample.reviewMinutes;
+const beforeTime = en ? `Estimated: about ${beforeMinutes} minutes` : `Geschat: circa ${beforeMinutes} minuten`;
+const afterTime = en ? `About ${afterMinutes} minutes of your time` : `Circa ${afterMinutes} minuten van jouw tijd`;
+const beforeBreakdown = en
+  ? `${timeExample.products} ${timeExample.products === 1 ? 'product' : 'products'} × ${manualPerProduct} minutes ${demo === 'pricing' ? 'looking up the market price, doing the sums and entering the sale price' : 'looking up details, entering text and adding photos'}.`
+  : `${timeExample.products} ${timeExample.products === 1 ? 'product' : 'producten'} × ${manualPerProduct} minuten ${demo === 'pricing' ? 'de marktprijs opzoeken, rekenen en de saleprijs invullen' : 'gegevens opzoeken, teksten invoeren en foto’s toevoegen'}.`;
+const afterBreakdown = demo === 'pricing'
+  ? (en ? '1 minute to send one sentence, then 3 minutes to check the four sale prices. The assistant looks up the market prices and enters the sale prices.' : '1 minuut om één zin te sturen, daarna 3 minuten om de vier saleprijzen na te kijken. De assistent zoekt de marktprijzen op en vult de saleprijzen in.')
+  : demo === 'woocommerce'
+  ? (en ? '2 minutes to upload your export and request the move, then 5 minutes to review five products and approve. The assistant copies the details and photos.' : '2 minuten om je bestand te uploaden en de overstap te vragen, daarna 5 minuten om vijf producten na te kijken en akkoord te geven. De assistent neemt de gegevens en foto’s over.')
+  : demo === 'lego'
+    ? (en ? '1 minute to send five set numbers in one message, then 5 minutes to check the five products. The assistant looks up the details and fills in the listings.' : '1 minuut om vijf setnummers in één bericht te sturen, daarna 5 minuten om de vijf producten te controleren. De assistent zoekt de gegevens op en vult de producten in.')
+    : (en ? '1 minute to send your photo and request, then 2 minutes to check the product. The assistant identifies the model and fills in the listing.' : '1 minuut om je foto en verzoek te sturen, daarna 2 minuten om het product na te kijken. De assistent herkent het model en vult het product in.');
 const labels = en ? {
   discuss: 'Discuss your shop', input: 'You send', output: 'You get',
   before: 'By hand', beforeNote: 'For every product, before it can go online:', after: 'With the assistant', afterNote: 'One message in the chat:', created: 'Created in the demo shop',
-  afterCost: 'One message instead',
   problem: 'Sound familiar?', fit: 'You stay in charge',
   review: 'What you would check before selling', faq: 'Questions about this demo',
 } : {
   discuss: 'Bespreek jouw shop', input: 'Je stuurt', output: 'Je krijgt',
   before: 'Met de hand', beforeNote: 'Voor elk product, voordat het online kan:', after: 'Met de assistent', afterNote: 'Eén bericht in de chat:', created: 'Aangemaakt in de demoshop',
-  afterCost: 'Eén bericht in plaats daarvan',
   problem: 'Herkenbaar?', fit: 'Jij houdt de regie',
   review: 'Wat je controleert voor de verkoop', faq: 'Vragen over deze demo',
 };
 if (demo === 'woocommerce') {
   labels.afterNote = en ? 'Upload, review, then approve:' : 'Uploaden, controleren en akkoord geven:';
-  labels.afterCost = en ? 'You approve before the import' : 'Jij geeft akkoord vóór de import';
+  if (en) {
+    labels.discuss = 'Discuss your move';
+    labels.input = 'You start with';
+    labels.output = 'What you get';
+    labels.before = 'Moving products by hand';
+    labels.beforeNote = 'If you enter everything again:';
+    labels.afterNote = 'Upload your file, check the preview, approve:';
+    labels.created = 'Transferred to the demo shop';
+    labels.fit = 'You decide';
+    labels.review = 'Check these before you switch';
+    labels.faq = 'Questions about switching';
+  } else {
+    labels.discuss = 'Bespreek je overstap';
+    labels.input = 'Je begint met';
+    labels.output = 'Dit staat er straks';
+    labels.before = 'Zelf overzetten';
+    labels.beforeNote = 'Als je alles opnieuw invoert:';
+    labels.afterNote = 'Bestand uploaden, voorstel bekijken, akkoord geven:';
+    labels.created = 'Overgezet in de demoshop';
+    labels.fit = 'Jij beslist';
+    labels.review = 'Loop dit na voordat je overstapt';
+    labels.faq = 'Vragen over het overstappen';
+  }
+}
+if (demo === 'pricing') {
+  labels.afterNote = en ? 'One sentence in the chat:' : 'Eén zin in de chat:';
+  labels.created = en ? 'Sale prices in the demo shop' : 'Saleprijzen in de demoshop';
+  labels.before = en ? 'Working it out by hand' : 'Zelf uitrekenen';
+  labels.beforeNote = en ? 'For every product, before the sale can start:' : 'Voor elk product, voordat de sale kan starten:';
+  labels.fit = en ? 'You set the price' : 'Jij bepaalt de prijs';
+  labels.review = en ? 'Check these before you announce the sale' : 'Loop dit na voordat je de sale aankondigt';
+  labels.faq = en ? 'Questions about this demo' : 'Vragen over deze demo';
 }
 ---
 <Layout title={copy.title} description={copy.description} lang={lang} image={`https://shopvirge.com${videoBase}${copy.video}-wide.webp`}>
@@ -215,7 +272,9 @@ if (demo === 'woocommerce') {
           <div class="mt-8 flex items-center gap-4 sm:gap-6">
             <div class="min-w-0">
               <p class="text-xs font-semibold uppercase tracking-wide text-white/70 mb-2">{labels.input}</p>
-              {demo === 'woocommerce'
+              {demo === 'pricing'
+                ? <div class="max-w-36 sm:max-w-44 rounded-xl rounded-bl-sm bg-white px-3 py-3 text-xs sm:text-sm leading-snug text-surface-dark shadow-lg">“{pricingDemo[lang].sendLabel}”</div>
+                : demo === 'woocommerce'
                 ? <div class="max-w-28 rounded-xl bg-white px-3 py-4 text-surface-dark shadow-lg"><Icon name="file-spreadsheet" size={32} /><p class="mt-2 break-all font-mono text-xs">woocommerce-products.csv</p></div>
                 : details.inputImage
                 ? <figure><img src={`${imageBase}${details.inputImage}.webp`} alt="" class="h-24 w-24 rounded-xl object-cover ring-4 ring-white/20 shadow-lg" />{details.inputLabel && <figcaption class="mt-2 text-sm font-medium">{details.inputLabel}</figcaption>}</figure>
@@ -237,7 +296,7 @@ if (demo === 'woocommerce') {
         </div>
         <figure id="recording" class="lg:col-span-7 rounded-2xl bg-surface-dark p-2 sm:p-3 shadow-2xl scroll-mt-16">
           <video class="hidden sm:block w-full rounded-xl bg-black aspect-video" data-hero-video muted loop playsinline controls preload="metadata" poster={`${videoBase}${copy.video}-wide-result.webp`} aria-label={copy.title}>
-            <source src={`${videoBase}${copy.video}-wide.mp4#t=${copy.video === 'woocommerce' ? 0 : copy.video === 'lego' ? 13 : 10}`} type="video/mp4" />{ui.fallback}
+            <source src={`${videoBase}${copy.video}-wide.mp4#t=${copy.video === 'woocommerce' ? 0 : copy.video === 'lego' ? 13 : copy.video === 'anniversary-pricing' ? 0 : 10}`} type="video/mp4" />{ui.fallback}
           </video>
           <video class="sm:hidden w-full rounded-xl bg-black aspect-[9/16] max-h-[65vh] object-contain" muted loop playsinline controls preload="none" poster={`${videoBase}${copy.video}-vertical.webp`} aria-label={copy.title}>
             <source src={`${videoBase}${copy.video}-vertical.mp4`} type="video/mp4" />{ui.fallback}
@@ -251,10 +310,22 @@ if (demo === 'woocommerce') {
   <main>
     <section class="py-16 md:py-24" aria-labelledby="problem-heading">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mb-12">
-          <span class="text-accent font-semibold tracking-wide uppercase text-sm">{labels.problem}</span>
-          <h2 id="problem-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-5">{details.problemTitle}</h2>
-          <p class="text-lg text-gray-600 leading-relaxed">{details.problemBody}</p>
+        <div class="mb-12">
+          <div class="max-w-3xl">
+            <span class="text-accent font-semibold tracking-wide uppercase text-sm">{labels.problem}</span>
+            <h2 id="problem-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-5">{details.problemTitle}</h2>
+            <p class="text-lg text-gray-600 leading-relaxed">{details.problemBody}</p>
+          </div>
+          {demo === 'woocommerce' && (
+            <aside class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm leading-relaxed text-gray-700">
+              <p>{woocommerceDemo[lang].news}</p>
+              <ul class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                {woocommerceDemo[lang].newsSources.map(({ href, label }) => (
+                  <li><a class="inline-flex items-center gap-1 font-semibold underline" href={href} target="_blank" rel="noopener noreferrer" aria-label={`${label} (${en ? 'opens in a new tab' : 'opent in een nieuw tabblad'})`}>{label}<span class="shrink-0" aria-hidden="true"><Icon name="external-link" size={14} /></span></a></li>
+                ))}
+              </ul>
+            </aside>
+          )}
         </div>
         <div class="grid gap-6 lg:grid-cols-12">
           <div class="lg:col-span-5 rounded-2xl border border-gray-200 bg-surface p-7 md:p-8">
@@ -262,7 +333,8 @@ if (demo === 'woocommerce') {
               <h3 class="text-xl font-bold text-gray-500">{labels.before}</h3>
             </div>
             <p class="text-sm text-gray-500 mb-2">{labels.beforeNote}</p>
-            {details.beforeCost && <p class="mb-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-semibold text-accent"><Icon name="clock" size={16} />{details.beforeCost}</p>}
+            <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-semibold text-accent"><span class="shrink-0"><Icon name="clock" size={16} /></span>{beforeTime}</p>
+            <p class="mb-6 text-sm text-gray-600 leading-relaxed">{beforeBreakdown}</p>
             <ol class="space-y-3">
               {details.before.map((task, index) => (
                 <li class="flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-gray-600 shadow-sm">
@@ -274,7 +346,8 @@ if (demo === 'woocommerce') {
           <div class="lg:col-span-7 rounded-2xl bg-surface-dark p-7 md:p-8 text-white shadow-xl">
             <h3 class="text-xl font-bold mb-2">{labels.after}</h3>
             <p class="text-sm text-white/70 mb-2">{labels.afterNote}</p>
-            <p class="mb-5 inline-flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1 text-sm font-semibold text-amber-400"><Icon name="zap" size={16} />{labels.afterCost}</p>
+            <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1 text-sm font-semibold text-amber-400"><span class="shrink-0"><Icon name="zap" size={16} /></span>{afterTime}</p>
+            <p class="mb-5 text-sm text-white/85 leading-relaxed">{afterBreakdown}</p>
             <div class="ml-auto max-w-md rounded-2xl rounded-br-sm bg-white px-4 py-3 text-gray-900 shadow-lg">
               {details.inputImage && <img src={`${imageBase}${details.inputImage}.webp`} alt="" class="mb-3 h-24 w-24 rounded-lg object-cover" />}
               <p class="text-sm leading-relaxed">“{details.prompt}”</p>
@@ -288,6 +361,9 @@ if (demo === 'woocommerce') {
             </ul>
           </div>
         </div>
+        <p class="mt-5 text-sm text-gray-500 leading-relaxed">{en
+          ? 'The manual times are estimates. The AI assistant times are close to what you can expect in practice. As the job gets bigger, the assistant saves you more time.'
+          : 'De tijden voor handmatig invoeren zijn schattingen. De tijden met de AI-assistent liggen dicht bij de praktijk. Hoe groter de klus, hoe meer tijd de assistent je bespaart.'}</p>
       </div>
     </section>
 

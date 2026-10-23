@@ -53,6 +53,8 @@ function switchLangUrl(path: string, toLang: 'nl' | 'en'): string {
   // Extract all path segments and translate known slugs
   const parts = switched.split('/');
   for (let i = 0; i < parts.length; i++) {
+    // Case slugs (/cases/pricing/) are shared between languages; 'pricing' only means 'prijzen' elsewhere.
+    if (parts[i - 1] === 'cases') continue;
     if (slugMap[parts[i]]) {
       parts[i] = slugMap[parts[i]];
     }

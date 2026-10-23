@@ -5,6 +5,19 @@
 
 export type Lang = 'en' | 'nl';
 export type Tier = 'inline' | 'faq';
+
+/** Product history is available throughout ShopVirge, across all demo cases. */
+export const productHistoryFaq = {
+  en: {
+    q: 'What if something goes wrong?',
+    a: 'ShopVirge keeps the version history of your product details, including descriptions. You can see what changed, who made the change and when. If a change is wrong, you can restore an earlier version. That applies to changes made by you, a colleague or the AI assistant.',
+  },
+  nl: {
+    q: 'En als er iets misgaat?',
+    a: 'ShopVirge bewaart de versiegeschiedenis van je productgegevens, zoals beschrijvingen. Je ziet wat er is aangepast, door wie en wanneer. Klopt een wijziging niet? Dan kun je een eerdere versie terugzetten. Dat geldt voor wijzigingen van jou, een collega én de AI-assistent.',
+  },
+};
+
 type ConcernText = { note?: string; concern?: string; answer?: string };
 
 export interface Concern {
