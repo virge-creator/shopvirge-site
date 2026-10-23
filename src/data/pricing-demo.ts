@@ -9,7 +9,7 @@ export const pricingDemo = {
     copy: {
       title: 'Run a sale priced against the market',
       description: 'Tell the assistant to put your headphones on sale 10% below the Tweakers price. Watch four products get a sale price while your regular prices stay as they are.',
-      intro: 'Your shop’s 10th anniversary is coming. One sentence puts every headphone on sale, priced against the market.',
+      intro: 'Celebrating an anniversary with a sale? One sentence puts every headphone on sale, priced against the market.',
       video: 'anniversary-pricing',
       other: '',
     },
