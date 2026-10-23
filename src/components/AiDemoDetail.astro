@@ -183,22 +183,37 @@ const faqItems = [...details.faq, ...concernFaq, ...sharedFaq];
 // Two independent columns (first half, second half) so card heights in one never stretch the other, and the order still reads top to bottom on phones.
 const faqSplit = Math.ceil(faqItems.length / 2);
 const faqColumns = [faqItems.slice(0, faqSplit), faqItems.slice(faqSplit)];
+// Illustrative hands-on time, including review; not measured recording durations.
+const timeExample = {
+  photo: { products: 1, inputMinutes: 1, reviewMinutes: 2 },
+  lego: { products: 5, inputMinutes: 1, reviewMinutes: 5 },
+  woocommerce: { products: 5, inputMinutes: 2, reviewMinutes: 5 },
+}[demo];
+const beforeMinutes = timeExample.products * 10;
+const afterMinutes = timeExample.inputMinutes + timeExample.reviewMinutes;
+const beforeTime = en ? `Example: about ${beforeMinutes} minutes` : `Rekenvoorbeeld: circa ${beforeMinutes} minuten`;
+const afterTime = en ? `About ${afterMinutes} minutes of your time` : `Circa ${afterMinutes} minuten van jouw tijd`;
+const beforeBreakdown = en
+  ? `${timeExample.products} ${timeExample.products === 1 ? 'product' : 'products'} × 10 minutes looking up details, entering text and adding photos.`
+  : `${timeExample.products} ${timeExample.products === 1 ? 'product' : 'producten'} × 10 minuten gegevens opzoeken, teksten invoeren en foto’s toevoegen.`;
+const afterBreakdown = demo === 'woocommerce'
+  ? (en ? '2 minutes to upload your export and request the move, then 5 minutes to review five products and approve. The assistant copies the details and photos.' : '2 minuten om je bestand te uploaden en de overstap te vragen, daarna 5 minuten om vijf producten na te kijken en akkoord te geven. De assistent neemt de gegevens en foto’s over.')
+  : demo === 'lego'
+    ? (en ? '1 minute to send five set numbers in one message, then 5 minutes to check the five products. The assistant looks up the details and fills in the listings.' : '1 minuut om vijf setnummers in één bericht te sturen, daarna 5 minuten om de vijf producten te controleren. De assistent zoekt de gegevens op en vult de producten in.')
+    : (en ? '1 minute to send your photo and request, then 2 minutes to check the product. The assistant identifies the model and fills in the listing.' : '1 minuut om je foto en verzoek te sturen, daarna 2 minuten om het product na te kijken. De assistent herkent het model en vult het product in.');
 const labels = en ? {
   discuss: 'Discuss your shop', input: 'You send', output: 'You get',
   before: 'By hand', beforeNote: 'For every product, before it can go online:', after: 'With the assistant', afterNote: 'One message in the chat:', created: 'Created in the demo shop',
-  afterCost: 'One message instead',
   problem: 'Sound familiar?', fit: 'You stay in charge',
   review: 'What you would check before selling', faq: 'Questions about this demo',
 } : {
   discuss: 'Bespreek jouw shop', input: 'Je stuurt', output: 'Je krijgt',
   before: 'Met de hand', beforeNote: 'Voor elk product, voordat het online kan:', after: 'Met de assistent', afterNote: 'Eén bericht in de chat:', created: 'Aangemaakt in de demoshop',
-  afterCost: 'Eén bericht in plaats daarvan',
   problem: 'Herkenbaar?', fit: 'Jij houdt de regie',
   review: 'Wat je controleert voor de verkoop', faq: 'Vragen over deze demo',
 };
 if (demo === 'woocommerce') {
   labels.afterNote = en ? 'Upload, review, then approve:' : 'Uploaden, controleren en akkoord geven:';
-  labels.afterCost = en ? 'You approve before the import' : 'Jij geeft akkoord vóór de import';
 }
 ---
 <Layout title={copy.title} description={copy.description} lang={lang} image={`https://shopvirge.com${videoBase}${copy.video}-wide.webp`}>
@@ -274,7 +289,8 @@ if (demo === 'woocommerce') {
               <h3 class="text-xl font-bold text-gray-500">{labels.before}</h3>
             </div>
             <p class="text-sm text-gray-500 mb-2">{labels.beforeNote}</p>
-            {details.beforeCost && <p class="mb-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-semibold text-accent"><Icon name="clock" size={16} />{details.beforeCost}</p>}
+            <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-semibold text-accent"><span class="shrink-0"><Icon name="clock" size={16} /></span>{beforeTime}</p>
+            <p class="mb-6 text-sm text-gray-600 leading-relaxed">{beforeBreakdown}</p>
             <ol class="space-y-3">
               {details.before.map((task, index) => (
                 <li class="flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-gray-600 shadow-sm">
@@ -286,7 +302,8 @@ if (demo === 'woocommerce') {
           <div class="lg:col-span-7 rounded-2xl bg-surface-dark p-7 md:p-8 text-white shadow-xl">
             <h3 class="text-xl font-bold mb-2">{labels.after}</h3>
             <p class="text-sm text-white/70 mb-2">{labels.afterNote}</p>
-            <p class="mb-5 inline-flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1 text-sm font-semibold text-amber-400"><Icon name="zap" size={16} />{labels.afterCost}</p>
+            <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1 text-sm font-semibold text-amber-400"><span class="shrink-0"><Icon name="zap" size={16} /></span>{afterTime}</p>
+            <p class="mb-5 text-sm text-white/85 leading-relaxed">{afterBreakdown}</p>
             <div class="ml-auto max-w-md rounded-2xl rounded-br-sm bg-white px-4 py-3 text-gray-900 shadow-lg">
               {details.inputImage && <img src={`${imageBase}${details.inputImage}.webp`} alt="" class="mb-3 h-24 w-24 rounded-lg object-cover" />}
               <p class="text-sm leading-relaxed">“{details.prompt}”</p>
@@ -300,6 +317,9 @@ if (demo === 'woocommerce') {
             </ul>
           </div>
         </div>
+        <p class="mt-5 text-sm text-gray-500 leading-relaxed">{en
+          ? 'Illustrative estimates for entering and checking these products, not measured demo timings. Assistant processing time and initial setup are additional; corrections can take longer.'
+          : 'Rekenvoorbeelden voor het invoeren en controleren van deze producten, geen gemeten demotijden. Verwerking door de assistent en eenmalige inrichting komen erbij; aanpassingen kunnen extra tijd kosten.'}</p>
       </div>
     </section>
 
