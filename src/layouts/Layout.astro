@@ -245,7 +245,7 @@ const ogImage = image || `${siteUrl}${base}images/logo.png`;
           <ul class="space-y-2 text-sm text-gray-400">
             <li><a href={`${base}${lang}/cases/`} class="hover:text-white transition-colors">{isEn ? 'All demos' : 'Alle demo’s'}</a></li>
             {cases.map((item) => (
-              <li><a href={`${base}${lang}/cases/${item.slug}/`} class="hover:text-white transition-colors">{item[isEn ? 'en' : 'nl'].title}</a></li>
+              <li><a href={`${base}${lang}/cases/${item.slug}/`} class="hover:text-white transition-colors">{item[isEn ? 'en' : 'nl'].footerLabel}</a></li>
             ))}
           </ul>
         </div>
