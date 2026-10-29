@@ -367,13 +367,13 @@ if (demo === 'pricing') {
           <div class="flex flex-1 flex-col rounded-xl bg-white p-5 md:p-6 text-gray-900">
             <h3 class="flex items-center gap-3 text-3xl md:text-4xl font-bold mb-2">{en ? 'With ShopVirge' : 'Met Shopvirge'}<img src={`${base}images/logo.png`} alt="" class="h-10 md:h-12 w-auto rounded-xl" /></h3>
             <p class="text-sm text-gray-500 mb-2">{labels.afterNote}</p>
-            <p class="mb-5 self-start inline-flex items-center gap-2 rounded-full bg-emerald-500/15 px-3 py-1 text-sm font-semibold text-emerald-600"><span class="shrink-0"><Icon name="zap" size={16} /></span>{afterTime}</p>
+            <p class="mb-5 self-start inline-flex items-center gap-2 rounded-full bg-emerald-500/15 px-3 py-1 text-sm font-semibold text-emerald-700"><span class="shrink-0"><Icon name="zap" size={16} /></span>{afterTime}</p>
             <div class="ml-auto max-w-md rounded-2xl rounded-br-sm bg-gray-100 px-4 py-3 text-gray-900">
               {details.inputImage && <img src={`${imageBase}${details.inputImage}.webp`} alt="" class="mb-3 h-24 w-24 rounded-lg object-cover" />}
               <p class="text-sm leading-relaxed">“{details.prompt}”</p>
               {demo === 'woocommerce' && <p class="mt-3 border-t border-gray-200 pt-3 text-sm"><span class="font-semibold">{en ? 'After reviewing:' : 'Na controle:'}</span> “Import the preview.”</p>}
             </div>
-            <p class="mt-8 mb-4 flex items-center gap-2 text-sm font-semibold text-emerald-600"><Icon name="circle-check" size={18} />{labels.created}</p>
+            <p class="mt-8 mb-4 flex items-center gap-2 text-sm font-semibold text-emerald-700"><Icon name="circle-check" size={18} />{labels.created}</p>
             <ul class="flex flex-wrap gap-3">
               {details.cards.map((card) => (
                 <li class="w-[calc(33.333%-0.5rem)] sm:w-[calc(20%-0.6rem)] min-w-24 max-w-44"><img src={`${imageBase}${card}.webp`} alt="" loading="lazy" class="w-full aspect-[300/520] object-cover object-top rounded-lg ring-1 ring-gray-200" /></li>
