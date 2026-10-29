@@ -194,18 +194,21 @@ const timeExample = {
   photo: { products: 1, inputMinutes: 1, reviewMinutes: 2 },
   lego: { products: 5, inputMinutes: 1, reviewMinutes: 5 },
   woocommerce: { products: 5, inputMinutes: 2, reviewMinutes: 5 },
-  pricing: { products: 4, inputMinutes: 1, reviewMinutes: 3, manualPerProduct: 5 },
+  pricing: { products: 4, inputMinutes: 1, reviewMinutes: 2, manualPerProduct: 5 },
 }[demo];
 const manualPerProduct = 'manualPerProduct' in timeExample ? timeExample.manualPerProduct : 10;
+const showLoop = timeExample.products > 1 && demo !== 'woocommerce';
 const beforeMinutes = timeExample.products * manualPerProduct;
 const afterMinutes = timeExample.inputMinutes + timeExample.reviewMinutes;
 const beforeTime = en ? `Estimated: about ${beforeMinutes} minutes` : `Geschat: circa ${beforeMinutes} minuten`;
 const afterTime = en ? `About ${afterMinutes} minutes of your time` : `Circa ${afterMinutes} minuten van jouw tijd`;
+const beforeTotal = en ? `Total: about ${beforeMinutes} minutes.` : `Totaal: circa ${beforeMinutes} minuten.`;
+const afterTotal = en ? `Total: about ${afterMinutes} minutes.` : `Totaal: circa ${afterMinutes} minuten.`;
 const beforeBreakdown = en
   ? `${timeExample.products} ${timeExample.products === 1 ? 'product' : 'products'} × ${manualPerProduct} minutes ${demo === 'pricing' ? 'looking up the market price, doing the sums and entering the sale price' : 'looking up details, entering text and adding photos'}.`
   : `${timeExample.products} ${timeExample.products === 1 ? 'product' : 'producten'} × ${manualPerProduct} minuten ${demo === 'pricing' ? 'de marktprijs opzoeken, rekenen en de saleprijs invullen' : 'gegevens opzoeken, teksten invoeren en foto’s toevoegen'}.`;
 const afterBreakdown = demo === 'pricing'
-  ? (en ? '1 minute to send one sentence, then 3 minutes to check the four sale prices. The assistant looks up the market prices and enters the sale prices.' : '1 minuut om één zin te sturen, daarna 3 minuten om de vier saleprijzen na te kijken. De assistent zoekt de marktprijzen op en vult de saleprijzen in.')
+  ? (en ? '1 minute to send one sentence, then 2 minutes to check the four sale prices. The assistant looks up the market prices and enters the sale prices.' : '1 minuut om één zin te sturen, daarna 2 minuten om de vier saleprijzen na te kijken. De assistent zoekt de marktprijzen op en vult de saleprijzen in.')
   : demo === 'woocommerce'
   ? (en ? '2 minutes to upload your export and request the move, then 5 minutes to review five products and approve. The assistant copies the details and photos.' : '2 minuten om je bestand te uploaden en de overstap te vragen, daarna 5 minuten om vijf producten na te kijken en akkoord te geven. De assistent neemt de gegevens en foto’s over.')
   : demo === 'lego'
@@ -328,37 +331,57 @@ if (demo === 'pricing') {
           )}
         </div>
         <div class="grid gap-6 lg:grid-cols-12">
-          <div class="lg:col-span-5 rounded-2xl border border-gray-200 bg-surface p-7 md:p-8">
+          <div class="lg:col-span-5 flex flex-col">
+          <h2 class="mb-4 pl-4 text-3xl md:text-4xl font-bold text-gray-900">{en ? 'Old' : 'Oud'} <span class="font-normal text-gray-500">· {en ? 'manual' : 'handmatig'}</span></h2>
+          <div class="flex flex-1 flex-col rounded-2xl border border-gray-200 bg-surface p-7 md:p-8">
             <div class="flex items-center justify-between gap-4 mb-2">
-              <h3 class="text-xl font-bold text-gray-500">{labels.before}</h3>
+              <h3 class="text-3xl md:text-4xl font-bold text-gray-500">{en ? 'Your current process' : 'Uw huidig proces'}</h3>
             </div>
-            <p class="text-sm text-gray-500 mb-2">{labels.beforeNote}</p>
-            <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-semibold text-accent"><span class="shrink-0"><Icon name="clock" size={16} /></span>{beforeTime}</p>
-            <p class="mb-6 text-sm text-gray-600 leading-relaxed">{beforeBreakdown}</p>
-            <ol class="space-y-3">
+            <p class="text-sm text-gray-500 mb-2 mt-2">{labels.beforeNote}</p>
+            <p class="mb-5 self-start inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-sm font-semibold text-accent"><span class="shrink-0"><Icon name="clock" size={16} /></span>{beforeTime}</p>
+            <div class={`relative ${showLoop ? 'pr-11' : ''}`}>
+            <ol class="flex flex-col items-stretch">
               {details.before.map((task, index) => (
-                <li class="flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-gray-600 shadow-sm">
-                  <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-xs font-bold text-gray-500">{index + 1}</span>{task}
-                </li>
+                <>
+                  {index > 0 && <li aria-hidden="true" class="flex justify-center py-1.5 text-gray-400"><Icon name="arrow-down" size={22} /></li>}
+                  <li class="flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-gray-600 shadow-sm">
+                    <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-xs font-bold text-gray-500">{index + 1}</span>
+                    {task}
+                  </li>
+                </>
               ))}
             </ol>
+            {showLoop && (
+              <div aria-hidden="true" class="pointer-events-none absolute right-0 top-6 bottom-6 w-9 rounded-r-2xl border-2 border-l-0 border-gray-400">
+                <span class="absolute -left-0.5 -top-[9px] bg-surface text-gray-400"><Icon name="arrow-left" size={16} /></span>
+                <span class="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 rounded-full bg-surface px-1.5 py-0.5 text-sm font-bold text-gray-500">×{timeExample.products}</span>
+              </div>
+            )}
+            </div>
+            {demo !== 'woocommerce' && <p class="mt-auto pt-6 text-sm text-gray-600 leading-relaxed">{beforeBreakdown} {beforeTotal}</p>}
           </div>
-          <div class="lg:col-span-7 rounded-2xl bg-surface-dark p-7 md:p-8 text-white shadow-xl">
-            <h3 class="text-xl font-bold mb-2">{labels.after}</h3>
-            <p class="text-sm text-white/70 mb-2">{labels.afterNote}</p>
-            <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-amber-400/15 px-3 py-1 text-sm font-semibold text-amber-400"><span class="shrink-0"><Icon name="zap" size={16} /></span>{afterTime}</p>
-            <p class="mb-5 text-sm text-white/85 leading-relaxed">{afterBreakdown}</p>
-            <div class="ml-auto max-w-md rounded-2xl rounded-br-sm bg-white px-4 py-3 text-gray-900 shadow-lg">
+          </div>
+          <div class="lg:col-span-7 flex flex-col">
+          <h2 class="mb-4 pl-4 text-3xl md:text-4xl font-bold text-gray-900">{en ? 'New' : 'Nieuw'} <span class="font-normal text-gray-500">· {en ? 'automagic' : 'automagisch'}</span></h2>
+          <div class="flex flex-1 flex-col rounded-2xl bg-brand-light p-2 shadow-xl">
+          <div class="flex flex-1 flex-col rounded-xl bg-white p-5 md:p-6 text-gray-900">
+            <h3 class="flex items-center gap-3 text-3xl md:text-4xl font-bold mb-2">{en ? 'With ShopVirge' : 'Met Shopvirge'}<img src={`${base}images/logo.png`} alt="" class="h-10 md:h-12 w-auto rounded-xl" /></h3>
+            <p class="text-sm text-gray-500 mb-2">{labels.afterNote}</p>
+            <p class="mb-5 self-start inline-flex items-center gap-2 rounded-full bg-emerald-500/15 px-3 py-1 text-sm font-semibold text-emerald-600"><span class="shrink-0"><Icon name="zap" size={16} /></span>{afterTime}</p>
+            <div class="ml-auto max-w-md rounded-2xl rounded-br-sm bg-gray-100 px-4 py-3 text-gray-900">
               {details.inputImage && <img src={`${imageBase}${details.inputImage}.webp`} alt="" class="mb-3 h-24 w-24 rounded-lg object-cover" />}
               <p class="text-sm leading-relaxed">“{details.prompt}”</p>
               {demo === 'woocommerce' && <p class="mt-3 border-t border-gray-200 pt-3 text-sm"><span class="font-semibold">{en ? 'After reviewing:' : 'Na controle:'}</span> “Import the preview.”</p>}
             </div>
-            <p class="mt-8 mb-4 flex items-center gap-2 text-sm font-semibold text-amber-400"><Icon name="circle-check" size={18} />{labels.created}</p>
+            <p class="mt-8 mb-4 flex items-center gap-2 text-sm font-semibold text-emerald-600"><Icon name="circle-check" size={18} />{labels.created}</p>
             <ul class="flex flex-wrap gap-3">
               {details.cards.map((card) => (
-                <li class="w-[calc(33.333%-0.5rem)] sm:w-[calc(20%-0.6rem)] min-w-24 max-w-44"><img src={`${imageBase}${card}.webp`} alt="" loading="lazy" class="w-full aspect-[300/520] object-cover object-top rounded-lg ring-1 ring-white/10" /></li>
+                <li class="w-[calc(33.333%-0.5rem)] sm:w-[calc(20%-0.6rem)] min-w-24 max-w-44"><img src={`${imageBase}${card}.webp`} alt="" loading="lazy" class="w-full aspect-[300/520] object-cover object-top rounded-lg ring-1 ring-gray-200" /></li>
               ))}
             </ul>
+            <p class="mt-auto pt-6 text-sm text-gray-600 leading-relaxed">{afterBreakdown} {afterTotal}</p>
+          </div>
+          </div>
           </div>
         </div>
         <p class="mt-5 text-sm text-gray-500 leading-relaxed">{en
